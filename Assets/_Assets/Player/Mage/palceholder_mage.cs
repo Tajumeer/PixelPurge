@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class palceholder_mage : MonoBehaviour
+public class palceholder_mag : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
