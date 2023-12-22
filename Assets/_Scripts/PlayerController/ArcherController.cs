@@ -1,7 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ArcherController : MonoBehaviour
@@ -26,14 +23,26 @@ public class ArcherController : MonoBehaviour
 
     [Header("Components")]
     [SerializeField] private SpriteRenderer m_spriteRenderer;
-
+    [SerializeField] private Animator m_animator;
     private Vector2 m_moveDirection;
     private Rigidbody2D m_rigidbody;
+
+    private bool m_isDead;
+
+    private enum AnimationState
+    {
+        archer_run,
+        archer_idle,
+        archer_death,
+    }
+
+    private AnimationState m_currentState;
 
 
     void Start()
     {
         m_isAbleToDash = true;
+        m_isDead = false;
         m_attackTimer = 0;
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
@@ -47,6 +56,11 @@ public class ArcherController : MonoBehaviour
         }
         else m_attackTimer -= Time.deltaTime;
 
+        if (!m_isDead)
+        {
+            SetAnimation();
+        }
+
         if (m_isDashing) { return; }
 
         Inputs();
@@ -56,6 +70,20 @@ public class ArcherController : MonoBehaviour
             StartCoroutine(Dash());
         }
     }
+
+    private void SetAnimation()
+    {
+        //TODO:Placeholder function to test death anmiation
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            m_isDead = true;
+            ChangeAnimationState(AnimationState.archer_death);
+            return;
+        }
+        if (m_moveDirection.x == 0 && m_moveDirection.y == 0) ChangeAnimationState(AnimationState.archer_idle);
+        else ChangeAnimationState(AnimationState.archer_run);
+    }
+
     private void FixedUpdate()
     {
         if (m_isDashing) { return; }
@@ -70,8 +98,8 @@ public class ArcherController : MonoBehaviour
         m_moveDirection = new Vector2(moveX, moveY).normalized;
         m_attackDirection = new Vector2(moveX, moveY).normalized;
 
-        if (m_moveDirection.x == -1f) { m_spriteRenderer.flipX = true; }
-        else if (m_moveDirection.x == 1f) { m_spriteRenderer.flipX = false; }
+        if (m_moveDirection.x < 0f) { m_spriteRenderer.flipX = true; }
+        else if (m_moveDirection.x > 0f) { m_spriteRenderer.flipX = false; }
     }
 
     private void Move()
@@ -123,5 +151,25 @@ public class ArcherController : MonoBehaviour
         }
 
         arrow.transform.Rotate(0f, 0f, Mathf.Atan2(m_attackDirection.y, m_attackDirection.x) * Mathf.Rad2Deg);
+    }
+
+    void ChangeAnimationState(AnimationState newState)
+    {
+        string animationName = string.Empty;
+        if (m_currentState == newState) return;
+        switch (newState)
+        {
+            case AnimationState.archer_idle:
+                animationName = "archer_idle";
+                break;
+            case AnimationState.archer_run:
+                animationName = "archer_run";
+                break;
+            case AnimationState.archer_death:
+                animationName = "archer_death";
+                break;
+        }
+        m_animator.Play(animationName);
+        m_currentState = newState;
     }
 }

@@ -235,6 +235,7 @@ MonoBehaviour:
   m_attackForce: 20
   m_attackSpeed: 0.5
   m_spriteRenderer: {fileID: 1840692344}
+  m_animator: {fileID: 1840692345}
 --- !u!4 &985177028
 Transform:
   m_ObjectHideFlags: 0
@@ -416,6 +417,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1840692343}
   - component: {fileID: 1840692344}
+  - component: {fileID: 1840692345}
   m_Layer: 0
   m_Name: PlayerVisual
   m_TagString: Untagged
@@ -490,6 +492,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1840692345
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840692342}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d0f2bc356035ed34489683771e3b8059, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1989070068
 GameObject:
   m_ObjectHideFlags: 0
@@ -502,6 +525,7 @@ GameObject:
   - component: {fileID: 1989070070}
   - component: {fileID: 1989070069}
   - component: {fileID: 1989070072}
+  - component: {fileID: 1989070073}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -627,6 +651,19 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1989070073
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1989070068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482487b7e3610fb4984abb6f3406f82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 985177028}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
