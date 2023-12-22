@@ -14,7 +14,7 @@ public class ArcherController : MonoBehaviour
     private bool m_isDashing;
 
     [Header("Basic Attack")]
-    [SerializeField] private Transform m_attackPoint;
+    [SerializeField] private Transform m_projectileParent;
     [SerializeField] private GameObject m_attackPrefab;
     [SerializeField] private float m_attackForce;
     [SerializeField] private float m_attackSpeed;
@@ -123,7 +123,7 @@ public class ArcherController : MonoBehaviour
 
     private void Fire()
     {
-        GameObject arrow = Instantiate(m_attackPrefab, transform.position, Quaternion.identity);
+        GameObject arrow = Instantiate(m_attackPrefab, transform.position, Quaternion.identity, m_projectileParent);
         if (m_attackDirection.x == 0 && m_attackDirection.y == 0)
         {
             if (m_spriteRenderer.flipX == true)

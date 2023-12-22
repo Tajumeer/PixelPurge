@@ -6,14 +6,16 @@ public class Arrow : MonoBehaviour
 {
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        //TODO: Check enemy hit deal damage
+   
+        if(collision.gameObject.CompareTag("Player"))
         {
             return;
         }
         else
         {
-            Destroy(gameObject);
+        Destroy(gameObject);
+
         }
-        //TODO: Check enemy hit deal damage
     }
 }
