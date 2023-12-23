@@ -18,6 +18,7 @@ public class ArcherController : MonoBehaviour
     [SerializeField] private GameObject m_attackPrefab;
     [SerializeField] private float m_attackForce;
     [SerializeField] private float m_attackSpeed;
+    [SerializeField] private float m_attackOffest;
     private float m_attackTimer;
     private Vector2 m_attackDirection;
 
@@ -123,7 +124,7 @@ public class ArcherController : MonoBehaviour
 
     private void Fire()
     {
-        GameObject arrow = Instantiate(m_attackPrefab, transform.position, Quaternion.identity, m_projectileParent);
+        GameObject arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
         if (m_attackDirection.x == 0 && m_attackDirection.y == 0)
         {
             if (m_spriteRenderer.flipX == true)
