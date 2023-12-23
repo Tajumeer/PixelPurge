@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class DungeonManager : MonoBehaviour
 {
-    private const int M_ROOM_WIDTH = 36;
+    private const float F_ROOM_WIDTH = 35.6f;
 
     [SerializeField] private int m_middleRoomAmount;
 
@@ -14,32 +14,56 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private List<GameObject> m_startRooms;
     [SerializeField] private List<GameObject> m_middleRooms;
     [SerializeField] private List<GameObject> m_endRooms;
-   private int m_roomCount;
+
+    private List<GameObject> m_spawnedRooms;
+    private int m_roomCount;
+    private Vector3 startPos;
 
 
     private void Start()
     {
+        m_spawnedRooms = new List<GameObject>();
+        startPos = Vector3.zero;
         SpawnDungeonRooms();
     }
 
     private void SpawnDungeonRooms()
     {
-        Vector3 startPos = Vector3.zero;
 
-        Instantiate(m_startRooms[RandomizeNumber(m_startRooms)], new Vector3(startPos.x + (m_roomCount * M_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
+        Instantiate(m_startRooms[RandomizeNumber(m_startRooms)], new Vector3(startPos.x + (m_roomCount * F_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
         m_roomCount++;
 
         for (int i = 0; i < m_middleRoomAmount; i++)
         {
-            Instantiate(m_middleRooms[RandomizeNumber(m_middleRooms)], new Vector3(startPos.x + (m_roomCount * M_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
-            m_roomCount++; 
+            SpawnUniqueRoom(m_middleRooms);
         }
 
-        Instantiate(m_endRooms[RandomizeNumber(m_endRooms)], new Vector3(startPos.x + (m_roomCount * M_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
+        Instantiate(m_endRooms[RandomizeNumber(m_endRooms)], new Vector3(startPos.x + (m_roomCount * F_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
     }
+
+    private void SpawnUniqueRoom(List<GameObject> _roomList)
+    {
+        int randomIndex = RandomizeNumber(_roomList);
+        GameObject roomPrefab = _roomList[randomIndex];
+
+        if (m_spawnedRooms != null)
+        {
+            while (m_spawnedRooms.Contains(roomPrefab))
+            {
+                randomIndex = RandomizeNumber(_roomList);
+                roomPrefab = _roomList[randomIndex];
+            }
+
+        }
+
+        m_spawnedRooms.Add(roomPrefab);
+        Instantiate(roomPrefab, new Vector3(startPos.x + (m_roomCount * F_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
+        m_roomCount++;
+    }
+
     private int RandomizeNumber(List<GameObject> _list)
     {
         return Random.Range(0, _list.Count);
     }
- 
+
 }

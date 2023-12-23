@@ -181,14 +181,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1165b2add14fe414abfad99f3e133c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_movementSpeed: 5
-  m_dashingPower: 20
+  m_movementSpeed: 3
+  m_dashingPower: 25
   m_dashinTime: 0.1
   m_dashingCooldown: 3
   m_projectileParent: {fileID: 1874774945}
   m_attackPrefab: {fileID: 7311436246905014917, guid: 163f9ddf75803d24fb4e36e027dbd479, type: 3}
-  m_attackForce: 20
-  m_attackSpeed: 0.5
+  m_attackForce: 10
+  m_attackSpeed: 1
+  m_attackOffest: 0.25
   m_spriteRenderer: {fileID: 1840692344}
   m_animator: {fileID: 1840692345}
 --- !u!4 &985177028
@@ -412,8 +413,31 @@ MonoBehaviour:
   m_middleRoomAmount: 8
   m_startRooms:
   - {fileID: 650791566760450624, guid: 513a41001f99df043b5ce01afa33c3cd, type: 3}
+  - {fileID: 650791566760450624, guid: 72a8ead7e5a602943ab1c7ab6618004b, type: 3}
+  - {fileID: 650791566760450624, guid: 106deb52672b11b468810a5f31419db1, type: 3}
+  - {fileID: 650791566760450624, guid: a3956e9441e450541a804094160121ed, type: 3}
+  - {fileID: 650791566760450624, guid: f0e6196e75af5bd4eb5693c7ea0e1a3c, type: 3}
   m_middleRooms:
   - {fileID: 3173116062488440946, guid: 7010ff9cda174dc4ab27f4b4b5f8b3ea, type: 3}
+  - {fileID: 3173116062488440946, guid: 45d138437d56ca3499d4ec3812a1c993, type: 3}
+  - {fileID: 3173116062488440946, guid: 6d72dc804270eb94c944ae88eb936c90, type: 3}
+  - {fileID: 3173116062488440946, guid: 895c048b492a7554e8911504de2a149e, type: 3}
+  - {fileID: 3173116062488440946, guid: ef922368795aa744ab0c77eb1d459422, type: 3}
+  - {fileID: 3173116062488440946, guid: e872cb072e682c74d94e04331071e1c4, type: 3}
+  - {fileID: 3173116062488440946, guid: 5560f96c7aa251f4ca992d6f3eba6c05, type: 3}
+  - {fileID: 3173116062488440946, guid: 61d556bc3b27b764b8c08eed2cda42d4, type: 3}
+  - {fileID: 3173116062488440946, guid: 840b49578e6e68349b2e6521a2462e23, type: 3}
+  - {fileID: 3173116062488440946, guid: b0f7c941a9f97de43bbc253f72358856, type: 3}
+  - {fileID: 3173116062488440946, guid: c64f94cba2ffb7248afa1b3af87d4668, type: 3}
+  - {fileID: 3173116062488440946, guid: 00b91763307d5054b941fee0bae7ac41, type: 3}
+  - {fileID: 3173116062488440946, guid: c15e2f09e99c74b4c9b5560f2dec89ab, type: 3}
+  - {fileID: 3173116062488440946, guid: 43a8cc6f46679d440858f784af96a93b, type: 3}
+  - {fileID: 3173116062488440946, guid: a3156f2467187914da525c1012b351c6, type: 3}
+  - {fileID: 3173116062488440946, guid: 568c7d3c31996804fb7331cf25628b69, type: 3}
+  - {fileID: 3173116062488440946, guid: 0965b149e71792d46988f6a424a160b6, type: 3}
+  - {fileID: 3173116062488440946, guid: 9e76c870315e7c04ea167886635288da, type: 3}
+  - {fileID: 3173116062488440946, guid: 5c05aa3fe5724594ea222bf189b8d8fd, type: 3}
+  - {fileID: 3173116062488440946, guid: c8b8893b75ffd2d4c832e4a6738215bd, type: 3}
   m_endRooms:
   - {fileID: 3173116062488440946, guid: 5fc64d4b1edc9c14486fc662aa2c4946, type: 3}
 --- !u!4 &1886186622
@@ -494,7 +518,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
