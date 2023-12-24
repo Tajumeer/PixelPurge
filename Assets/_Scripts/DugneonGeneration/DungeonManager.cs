@@ -35,6 +35,8 @@ public class DungeonManager : MonoBehaviour
         //Generate NavMesh in Runtime
         m_navMeshSurface.BuildNavMeshAsync();
 
+        GameObject.FindObjectOfType<WaveManager>().Initialize();
+
         //Gives each with enemy Tagged enemy a NavMeshAgent
         CreateAgents();
 

@@ -88,6 +88,7 @@ public class ArcherController : MonoBehaviour
     {
         m_isDead = true;
         m_spriteRenderer.sortingOrder = 0;
+        m_moveDirection = Vector3.zero;
         //Time.timeScale = 0f;
     }
 

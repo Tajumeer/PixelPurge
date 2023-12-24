@@ -123,291 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &463684834
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1201855683}
-    m_Modifications:
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.879522
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.14346178
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885787755428085968, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: EnemyDamage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885787755428085968, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: EnemyHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_Name
-      value: SandCrawler (1)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
---- !u!4 &463684835 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-  m_PrefabInstance: {fileID: 463684834}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &468152250
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1201855683}
-    m_Modifications:
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.879522
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.97
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.14346178
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885787755428085968, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: EnemyDamage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885787755428085968, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: EnemyHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_Name
-      value: SandCrawler (3)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
---- !u!4 &468152251 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-  m_PrefabInstance: {fileID: 468152250}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &625958003 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-  m_PrefabInstance: {fileID: 7149939032711192506}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &799367720
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1201855683}
-    m_Modifications:
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.879522
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -1.86
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.14346178
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885787755428085968, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: EnemyDamage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885787755428085968, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: EnemyHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_Name
-      value: SandCrawler (2)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
---- !u!4 &799367721 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-  m_PrefabInstance: {fileID: 799367720}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &921742458
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1201855683}
-    m_Modifications:
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.879522
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.9
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.14346178
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885787755428085968, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: EnemyDamage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885787755428085968, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: EnemyHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_Name
-      value: SandCrawler (4)
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
---- !u!4 &921742459 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-  m_PrefabInstance: {fileID: 921742458}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &985177028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
@@ -422,6 +137,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1201855683}
+  - component: {fileID: 1201855684}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -441,14 +157,24 @@ Transform:
   m_LocalPosition: {x: -0.8804777, y: -0.06310801, z: 0.14346178}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 625958003}
-  - {fileID: 463684835}
-  - {fileID: 799367721}
-  - {fileID: 468152251}
-  - {fileID: 921742459}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1201855684
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201855682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1c721b102b3924a8cb803353b9157e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_sandCrawlerPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+  m_waveCount: 40
+  m_waveHPScale: 0
 --- !u!1 &1886186620
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,71 +591,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
---- !u!1001 &7149939032711192506
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 1201855683}
-    m_Modifications:
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -11.879522
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.06310801
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -0.14346178
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 555797896833828605, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885787755428085968, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: EnemyDamage
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2885787755428085968, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: EnemyHealth
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-      propertyPath: m_Name
-      value: SandCrawler
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
