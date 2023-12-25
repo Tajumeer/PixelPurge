@@ -6,6 +6,17 @@ TagManager:
   tags:
   - Enemy
   - Spawn
+  - PlayerSpawn
+  - DungeonLevel_0
+  - DungeonLevel_1
+  - DungeonLevel_2
+  - DungeonLevel_3
+  - DungeonLevel_4
+  - DungeonLevel_5
+  - DungeonLevel_6
+  - DungeonLevel_7
+  - DungeonLevel_8
+  - DungeonLevel_9
   layers:
   - Default
   - TransparentFX

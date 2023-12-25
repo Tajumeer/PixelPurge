@@ -9,6 +9,7 @@ using UnityEngine.AI;
 public class DungeonManager : MonoBehaviour
 {
     private const float F_ROOM_WIDTH = 35.6f;
+    private const string S_DUNGEON_TAG = "DungeonLevel_";
 
     [SerializeField] private int m_middleRoomAmount;
 
@@ -21,12 +22,16 @@ public class DungeonManager : MonoBehaviour
     [SerializeField] private NavMeshSurface m_navMeshSurface;
 
     private List<GameObject> m_spawnedRooms;
+    private GameObject m_currentRoom;
     private int m_roomCount;
     private Vector3 startPos;
+    private WaveManager m_waveManager;
 
 
     private void Start()
     {
+        m_waveManager = GameObject.FindObjectOfType<WaveManager>();
+
         m_spawnedRooms = new List<GameObject>();
         startPos = Vector3.zero;
 
@@ -35,7 +40,11 @@ public class DungeonManager : MonoBehaviour
         //Generate NavMesh in Runtime
         m_navMeshSurface.BuildNavMeshAsync();
 
-        GameObject.FindObjectOfType<WaveManager>().Initialize();
+        GameObject.FindGameObjectWithTag("Player").transform.position = GameObject.FindFirstObjectByType<PlayerSpawn>().transform.position;
+        m_waveManager.GetAllSpawns();
+        m_waveManager.SpawnAtRandomPoint(m_waveManager.SpawnPointsZero);
+
+
 
         //Gives each with enemy Tagged enemy a NavMeshAgent
         CreateAgents();
@@ -46,15 +55,19 @@ public class DungeonManager : MonoBehaviour
     private void SpawnDungeonRooms()
     {
 
-        Instantiate(m_startRooms[RandomizeNumber(m_startRooms)], new Vector3(startPos.x + (m_roomCount * F_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
+        m_currentRoom = Instantiate(m_startRooms[RandomizeNumber(m_startRooms)], new Vector3(startPos.x + (m_roomCount * F_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
+        m_currentRoom.tag = S_DUNGEON_TAG + m_roomCount.ToString();
         m_roomCount++;
 
         for (int i = 0; i < m_middleRoomAmount; i++)
         {
             SpawnUniqueRoom(m_middleRooms);
+            m_currentRoom.tag = S_DUNGEON_TAG + m_roomCount.ToString();
+            m_roomCount++;
         }
 
-        Instantiate(m_endRooms[RandomizeNumber(m_endRooms)], new Vector3(startPos.x + (m_roomCount * F_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
+        m_currentRoom = Instantiate(m_endRooms[RandomizeNumber(m_endRooms)], new Vector3(startPos.x + (m_roomCount * F_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
+        m_currentRoom.tag = S_DUNGEON_TAG + m_roomCount.ToString();
     }
 
     private void SpawnUniqueRoom(List<GameObject> _roomList)
@@ -73,8 +86,8 @@ public class DungeonManager : MonoBehaviour
         }
 
         m_spawnedRooms.Add(roomPrefab);
-        Instantiate(roomPrefab, new Vector3(startPos.x + (m_roomCount * F_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
-        m_roomCount++;
+        m_currentRoom = Instantiate(roomPrefab, new Vector3(startPos.x + (m_roomCount * F_ROOM_WIDTH), startPos.y, startPos.z), Quaternion.identity, this.transform);
+
     }
 
     private int RandomizeNumber(List<GameObject> _list)
