@@ -128,6 +128,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
   m_PrefabInstance: {fileID: 5150687444998857520}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1174191811
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1174191812}
+  m_Layer: 0
+  m_Name: MonsterContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1174191812
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1174191811}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1886186622}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1886186620
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,7 +191,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7abec775d69654d816350b6efba219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_middleRoomAmount: 8
   m_startRooms:
   - {fileID: 650791566760450624, guid: 513a41001f99df043b5ce01afa33c3cd, type: 3}
   - {fileID: 650791566760450624, guid: 72a8ead7e5a602943ab1c7ab6618004b, type: 3}
@@ -203,7 +233,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1174191812}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1886186623
@@ -264,10 +295,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1c721b102b3924a8cb803353b9157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sandCrawlerPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
-  m_waveCount: 40
+  m_sandCrawlerPrefab: {fileID: 0}
+  m_waveCount: 0
   m_waveHPScale: 0
-  actors: []
+  m_waveDataRoomZero:
+  - {fileID: 11400000, guid: f373fd09680fab04e97d049f12ba7882, type: 2}
+  - {fileID: 11400000, guid: 91d7cb5412b8a9348a71a946a18a6be4, type: 2}
+  m_monsterContainer: {fileID: 1174191812}
+  SpawnPointsZero: []
+  SpawnPointsOne: []
+  SpawnPointsTwo: []
+  SpawnPointsThree: []
+  SpawnPointsFour: []
+  SpawnPointsFive: []
+  SpawnPointsSix: []
+  SpawnPointsSeven: []
+  SpawnPointsEight: []
+  SpawnPointsNine: []
 --- !u!1 &1989070068
 GameObject:
   m_ObjectHideFlags: 0

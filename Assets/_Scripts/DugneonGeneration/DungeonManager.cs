@@ -2,16 +2,17 @@ using JetBrains.Annotations;
 using NavMeshPlus.Components;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class DungeonManager : MonoBehaviour
 {
+    private const int I_MID_ROOM_SIZE = 8;
     private const float F_ROOM_WIDTH = 35.6f;
     private const string S_DUNGEON_TAG = "DungeonLevel_";
 
-    [SerializeField] private int m_middleRoomAmount;
 
     [Header("Dungeon Room Prefabs")]
     [SerializeField] private List<GameObject> m_startRooms;
@@ -41,15 +42,8 @@ public class DungeonManager : MonoBehaviour
         m_navMeshSurface.BuildNavMeshAsync();
 
         GameObject.FindGameObjectWithTag("Player").transform.position = GameObject.FindFirstObjectByType<PlayerSpawn>().transform.position;
-        m_waveManager.GetAllSpawns();
-        m_waveManager.SpawnAtRandomPoint(m_waveManager.SpawnPointsZero);
 
-
-
-        //Gives each with enemy Tagged enemy a NavMeshAgent
-        CreateAgents();
-
-
+        m_waveManager.Initialize();
     }
 
     private void SpawnDungeonRooms()
@@ -59,7 +53,7 @@ public class DungeonManager : MonoBehaviour
         m_currentRoom.tag = S_DUNGEON_TAG + m_roomCount.ToString();
         m_roomCount++;
 
-        for (int i = 0; i < m_middleRoomAmount; i++)
+        for (int i = 0; i < I_MID_ROOM_SIZE; i++)
         {
             SpawnUniqueRoom(m_middleRooms);
             m_currentRoom.tag = S_DUNGEON_TAG + m_roomCount.ToString();
@@ -95,23 +89,6 @@ public class DungeonManager : MonoBehaviour
         return Random.Range(0, _list.Count);
     }
 
-    private void CreateAgents()
-    {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject go in enemies)
-        {
-            if (!go.GetComponent<NavMeshAgent>())
-            {
-                go.AddComponent<NavMeshAgent>();
-            }
-            go.GetComponent<NavMeshAgent>().enabled = false;
-            go.GetComponent<NavMeshAgent>().baseOffset = .45f;
-            go.GetComponent<NavMeshAgent>().radius = .4f;
-            go.GetComponent<NavMeshAgent>().height = .7f;
-            go.GetComponent<NavMeshAgent>().updateRotation = false;
-            go.GetComponent<NavMeshAgent>().updateUpAxis = false;
-        }
-    }
+   
 
 }
