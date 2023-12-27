@@ -16,6 +16,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private WaveData[] m_waveDataRoomZero;
     [SerializeField] private Transform m_monsterContainer;
 
+    private bool m_waveZeroSpawned;
+    private bool m_waveOneSpawned;
 
     // private List<Transform> m_spawns = new List<Transform>();
     private int m_lastSpawn;
@@ -35,28 +37,40 @@ public class WaveManager : MonoBehaviour
     [HideInInspector] public GameObject[] SpawnPointsEight;
     [HideInInspector] public GameObject[] SpawnPointsNine;
 
+    private TimeManager m_timeManager;
     private List<GameObject> m_actors = new List<GameObject>();
     #endregion
+    private void Awake()
+    {
+        m_timeManager = TimeManager.Instance;
+    }
 
     public void Initialize()
     {
         GetAllSpawns();
-        StartCoroutine(RoomZeroControl(5f));
+        m_timeManager.StartTimer("WaveTimer");
+        SpawnWave(SpawnPointsZero, 0, 0);
+        m_waveZeroSpawned = true;
     }
-    private IEnumerator RoomZeroControl(float _timeAfterFirstSpawn)
+
+    private void Update()
     {
-        SpawnAtRandomPointsInRoom(SpawnPointsZero, 0, 0);
-        CreateAgents();
-        yield return new WaitForSeconds(_timeAfterFirstSpawn); 
-        SpawnAtRandomPointsInRoom(SpawnPointsZero, 1, 0);
-        CreateAgents();
+        Debug.Log(m_timeManager.GetElapsedTime("WaveTimer"));
+        if (m_timeManager.GetElapsedTime("WaveTimer") > 2f && !m_waveOneSpawned)
+        {
+            SpawnWave(SpawnPointsZero, 1, 0);
+        }
+    }
+    private void SpawnWave(GameObject[] _spawnTarget, int _waveNumber, int _enemyType)
+    {
+        SpawnAtRandomPointsInRoom(_spawnTarget, _waveNumber, _enemyType);
+
     }
 
     private void GetAllSpawns()
     {
 
         GetSpawns("DungeonLevel_0", ref SpawnPointsZero);
-        Debug.Log(SpawnPointsZero.Length.ToString());
         GetSpawns("DungeonLevel_1", ref SpawnPointsOne);
         GetSpawns("DungeonLevel_2", ref SpawnPointsTwo);
         GetSpawns("DungeonLevel_3", ref SpawnPointsThree);
@@ -113,12 +127,12 @@ public class WaveManager : MonoBehaviour
 
             if (m_enemyAmount <= m_waveDataRoomZero[_waveNumber].EnemyCount)
             {
-                Instantiate(m_waveDataRoomZero[_waveNumber].EnemyTypes[_enemyType], _spawns[m_randomIndex].transform.position, Quaternion.identity, m_monsterContainer);
+                GameObject enemy = Instantiate(m_waveDataRoomZero[_waveNumber].EnemyTypes[_enemyType], _spawns[m_randomIndex].transform.position, Quaternion.identity, m_monsterContainer);
+                CreateAgent(enemy);
                 m_lastSpawn = m_randomIndex;
                 m_enemyAmount++;
             }
             else { break; }
-
         }
     }
 
@@ -127,22 +141,19 @@ public class WaveManager : MonoBehaviour
         return Random.Range(0, _list.Length - 1);
     }
 
-    private void CreateAgents()
+    private void CreateAgent(GameObject _target)
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        foreach (GameObject go in enemies)
+        if (!_target.GetComponent<NavMeshAgent>())
         {
-            if (!go.GetComponent<NavMeshAgent>())
-            {
-                go.AddComponent<NavMeshAgent>();
-            }
-            go.GetComponent<NavMeshAgent>().enabled = false;
-            go.GetComponent<NavMeshAgent>().baseOffset = .45f;
-            go.GetComponent<NavMeshAgent>().radius = .4f;
-            go.GetComponent<NavMeshAgent>().height = .7f;
-            go.GetComponent<NavMeshAgent>().updateRotation = false;
-            go.GetComponent<NavMeshAgent>().updateUpAxis = false;
+            _target.AddComponent<NavMeshAgent>();
         }
+        _target.GetComponent<NavMeshAgent>().enabled = false;
+        _target.GetComponent<NavMeshAgent>().baseOffset = .45f;
+        _target.GetComponent<NavMeshAgent>().radius = .4f;
+        _target.GetComponent<NavMeshAgent>().height = .7f;
+        _target.GetComponent<NavMeshAgent>().updateRotation = false;
+        _target.GetComponent<NavMeshAgent>().updateUpAxis = false;
+
     }
 }
