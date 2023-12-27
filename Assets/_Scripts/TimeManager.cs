@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class TimeManager : MonoBehaviour
 {
@@ -67,7 +68,9 @@ public class TimeManager : MonoBehaviour
 
     public void UpdateTimers()
     {
-        foreach (var entry in m_timers)
+        Dictionary<string, float> copyOfTimers = new Dictionary<string, float>(m_timers);
+
+        foreach (var entry in copyOfTimers)
         {
             string timerName = entry.Key;
             float elapsedTime = entry.Value;
