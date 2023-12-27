@@ -59,7 +59,7 @@ public class ArcherController : MonoBehaviour
         if (PlayerHealth <= 0)
         {
             SetDeathState();
-           
+
         }
 
         if (m_attackTimer <= 0f && !m_isDead)
@@ -69,10 +69,10 @@ public class ArcherController : MonoBehaviour
         }
         else m_attackTimer -= Time.deltaTime;
 
-       
+
         SetAnimation();
-       
-        if(m_isDead) { return; }
+
+        if (m_isDead) { return; }
         if (m_isDashing) { return; }
 
         Inputs();
@@ -143,39 +143,51 @@ public class ArcherController : MonoBehaviour
 
     private void Fire()
     {
-        GameObject arrow;
-        if (m_spriteRenderer.flipX == true && m_attackDirection.y ==0)
-        {
-            arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x - F_ATTACK_OFFSET_X, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
-        }
-        else if (m_spriteRenderer.flipX == false && m_attackDirection.y == 0)
-        {
-            arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x + F_ATTACK_OFFSET_X, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
-        }
-        else
-        {
-            arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
-        }
+        //Fire in walk direction
+        //
+        //GameObject arrow;
+        //if (m_spriteRenderer.flipX == true && m_attackDirection.y ==0)
+        //{
+        //    arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x - F_ATTACK_OFFSET_X, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
+        //}
+        //else if (m_spriteRenderer.flipX == false && m_attackDirection.y == 0)
+        //{
+        //    arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x + F_ATTACK_OFFSET_X, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
+        //}
+        //else
+        //{
+        //    arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
+        //}
 
-        if (m_attackDirection.x == 0 && m_attackDirection.y == 0)
-        {
-            if (m_spriteRenderer.flipX == true)
-            {
-                arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(-1f * m_attackForce, 0f * m_attackForce);
-                arrow.GetComponent<SpriteRenderer>().flipX = true;
-            }
-            else if (m_spriteRenderer.flipX == false)
-            {
-                arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(1f * m_attackForce, 0f * m_attackForce);
-                arrow.GetComponent<SpriteRenderer>().flipX = false;
-            }
-        }
-        else
-        {
-            arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(m_attackDirection.x * m_attackForce, m_attackDirection.y * m_attackForce);
-        }
+        //if (m_attackDirection.x == 0 && m_attackDirection.y == 0)
+        //{
+        //    if (m_spriteRenderer.flipX == true)
+        //    {
+        //        arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(-1f * m_attackForce, 0f * m_attackForce);
+        //        arrow.GetComponent<SpriteRenderer>().flipX = true;
+        //    }
+        //    else if (m_spriteRenderer.flipX == false)
+        //    {
+        //        arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(1f * m_attackForce, 0f * m_attackForce);
+        //        arrow.GetComponent<SpriteRenderer>().flipX = false;
+        //    }
+        //}
+        //else
+        //{
+        //    arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(m_attackDirection.x * m_attackForce, m_attackDirection.y * m_attackForce);
+        //}
 
-        arrow.transform.Rotate(0f, 0f, Mathf.Atan2(m_attackDirection.y, m_attackDirection.x) * Mathf.Rad2Deg);
+        //arrow.transform.Rotate(0f, 0f, Mathf.Atan2(m_attackDirection.y, m_attackDirection.x) * Mathf.Rad2Deg);
+
+
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 arrowDirection = (mousePosition - transform.position).normalized;
+
+        GameObject arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
+
+        arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(arrowDirection.x * m_attackForce, arrowDirection.y * m_attackForce);
+        arrow.transform.Rotate(0f, 0f, Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg);
+
     }
 
     public void ChangeAnimationState(AnimationState newState)
