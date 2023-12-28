@@ -11,11 +11,14 @@ public class Spell_FourDirection : PoolObject<Spell_FourDirection>
 
     private SO_FourDirection spellData;
 
+    private float health;
+
     public void Spawn(SO_FourDirection _data, Vector2 direction)
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
 
         spellData = _data;
+        health = spellData.EnemyHitPoints;
 
         StartCoroutine(DeleteTimer());
 
@@ -50,6 +53,9 @@ public class Spell_FourDirection : PoolObject<Spell_FourDirection>
         {
             _collision.gameObject.TryGetComponent(out IDamagable character);
             character.GetDamage(spellData.Damage);
+
+            health -= 1;
+            if (health <= 0) Delete();
         }
     }
 }

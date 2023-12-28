@@ -12,4 +12,9 @@ public class SO_FourDirection : ScriptableObject
     public float Speed;
 
     public float Lifetime;
+
+    /// <summary>
+    /// How many Enemys can the spell hit until it dies
+    /// </summary>
+    public float EnemyHitPoints;
 }
