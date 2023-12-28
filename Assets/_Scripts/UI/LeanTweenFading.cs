@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script: Maya
+
 [RequireComponent(typeof(CanvasGroup))]
 public class LeanTweenFading : MonoBehaviour
 {

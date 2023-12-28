@@ -17,6 +17,15 @@ TagManager:
   - DungeonLevel_7
   - DungeonLevel_8
   - DungeonLevel_9
+  - DungenLevel_8
+  - DungenLevel_7
+  - DungenLevel_6
+  - DungenLevel_2
+  - DungenLevel_5
+  - DungenLevel_1
+  - DungenLevel_4
+  - DungenLevel_3
+  - PlayerSpell
   layers:
   - Default
   - TransparentFX

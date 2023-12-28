@@ -1,6 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+// Script: Maya
+
+/// <summary>
+/// Moves the Text of a Button when Button is clicked
+/// </summary>
 public class ButtonTextMovement : MonoBehaviour
 {
     /// <summary>

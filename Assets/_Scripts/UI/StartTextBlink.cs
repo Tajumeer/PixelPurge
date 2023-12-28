@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+// Script: Maya
+
 [RequireComponent(typeof(CanvasGroup))]
 public class StartTextBlink : MonoBehaviour
 {

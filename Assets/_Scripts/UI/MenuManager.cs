@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Script: Maya
+
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
