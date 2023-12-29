@@ -339,13 +339,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b1c721b102b3924a8cb803353b9157e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_sandCrawlerPrefab: {fileID: 0}
-  m_waveCount: 0
   m_waveHPScale: 0
+  m_monsterContainer: {fileID: 1174191812}
   m_waveDataRoomZero:
   - {fileID: 11400000, guid: f373fd09680fab04e97d049f12ba7882, type: 2}
   - {fileID: 11400000, guid: 91d7cb5412b8a9348a71a946a18a6be4, type: 2}
-  m_monsterContainer: {fileID: 1174191812}
+  m_waveDataRoomOne: []
+  m_waveDataRoomTwo: []
+  m_waveDataRoomThree: []
+  m_waveDataRoomFour:
+  - {fileID: 11400000, guid: fb4b9d5125c15ef419c010eaef98a9f0, type: 2}
+  - {fileID: 11400000, guid: ba63d631865faa14fa365d0b13c8aef5, type: 2}
+  m_waveDataRoomFive: []
+  m_waveDataRoomSix: []
+  m_waveDataRoomSeven:
+  - {fileID: 11400000, guid: 463e890d2c76eac468242e9299bd5bfd, type: 2}
+  - {fileID: 11400000, guid: 3a1bba79f9b260049aa6c6f9556d29d5, type: 2}
+  m_waveDataRoomEight: []
+  m_waveDataRoomNine: []
   SpawnPointsZero: []
   SpawnPointsOne: []
   SpawnPointsTwo: []

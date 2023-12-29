@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class BasicEnemyController : MonoBehaviour
+public class FireElementalController : MonoBehaviour, IDamagable
 {
     public float EnemyDamage;
     public float EnemyHealth;
@@ -19,10 +19,9 @@ public class BasicEnemyController : MonoBehaviour
     private bool m_isDead;
     private enum AnimationState
     {
-        sandCrawler_run,
-        enemy_death,
+        fireEle_run,
+        fireEle_death,
     }
-
     private AnimationState m_currentState;
 
     void Start()
@@ -77,7 +76,7 @@ public class BasicEnemyController : MonoBehaviour
         // m_agent.SetDestination(this.m_target.position);
         Destroy(m_agent);
         m_isDead = true;
-        ChangeAnimationState(AnimationState.enemy_death);
+        ChangeAnimationState(AnimationState.fireEle_death);
         Destroy(m_rb);
         Destroy(m_collider);
         m_spriteRenderer.sortingOrder = 0;
@@ -95,7 +94,7 @@ public class BasicEnemyController : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Debug.LogWarning("Hit Player!");
-            collision.GetComponent<ArcherController>().PlayerHealth -= EnemyDamage;
+            collision.GetComponent<IDamagable>().GetDamage(EnemyDamage);
         }
     }
 
@@ -106,14 +105,19 @@ public class BasicEnemyController : MonoBehaviour
         if (m_currentState == newState) return;
         switch (newState)
         {
-            case AnimationState.sandCrawler_run:
-                animationName = "archer_idle";
+            case AnimationState.fireEle_run:
+                animationName = "fireEle_run";
                 break;
-            case AnimationState.enemy_death:
-                animationName = "sandCrawler_death";
+            case AnimationState.fireEle_death:
+                animationName = "fireEle_death";
                 break;
         }
         m_animator.Play(animationName);
         m_currentState = newState;
+    }
+
+    public void GetDamage(float _damageValue)
+    {
+        this.EnemyHealth -= _damageValue;
     }
 }

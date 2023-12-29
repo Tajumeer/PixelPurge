@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ArcherController : MonoBehaviour
+public class ArcherController : MonoBehaviour, IDamagable
 {
     [Header("Combat Stats")]
     [SerializeField] public float PlayerHealth;
@@ -208,5 +208,10 @@ public class ArcherController : MonoBehaviour
         }
         m_animator.Play(animationName);
         m_currentState = newState;
+    }
+
+    public void GetDamage(float _damageValue)
+    {
+        this.PlayerHealth -= _damageValue;
     }
 }

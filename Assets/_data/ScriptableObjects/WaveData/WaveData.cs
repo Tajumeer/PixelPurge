@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 [CreateAssetMenu(fileName = "WaveData", menuName = "PixelPurge/WaveData", order = 1)]
 public class WaveData : ScriptableObject
 {
-    public int EnemyCount;
+    public int[] EnemyTypeCount;
     public GameObject[] EnemyTypes;
-
+    public bool IsSpawned = false;
 }

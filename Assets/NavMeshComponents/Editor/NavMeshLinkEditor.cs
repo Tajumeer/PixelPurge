@@ -162,6 +162,7 @@ namespace NavMeshPlus.Editors.Components
         }
 
         [DrawGizmo(GizmoType.NotInSelectionHierarchy | GizmoType.Pickable)]
+        [System.Obsolete]
         static void RenderBoxGizmoNotSelected(NavMeshLink navLink, GizmoType gizmoType)
         {
             if (NavMeshVisualizationSettings.showNavigation > 0)

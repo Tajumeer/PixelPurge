@@ -26,6 +26,7 @@ TagManager:
   - DungenLevel_4
   - DungenLevel_3
   - PlayerSpell
+  - Exit
   layers:
   - Default
   - TransparentFX

@@ -26,7 +26,7 @@ public class Arrow : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             m_damageToDeal = GameObject.FindWithTag("Player").GetComponent<ArcherController>().PlayerDamage;
-            collision.gameObject.GetComponent<BasicEnemyController>().EnemyHealth -= m_damageToDeal;
+            collision.gameObject.GetComponent<IDamagable>().GetDamage(m_damageToDeal);
             Debug.Log("Hiy Enemy with Arrow");
             Destroy(this.gameObject);
         }
