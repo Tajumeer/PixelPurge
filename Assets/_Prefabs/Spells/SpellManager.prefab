@@ -44,6 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3da54e5eaf7d287429ad476717693cc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab_fourDirection: {fileID: 1960888898802110764, guid: 2c709c61b0ae3f44889ee53d5fe7675c, type: 3}
-  data_fourDirection: {fileID: 11400000, guid: 23815ab94ae03044d903e54392fea425, type: 2}
-  spawn_fourDirection: {fileID: 0}
+  spellPrefab: {fileID: 1960888898802110764, guid: 2c709c61b0ae3f44889ee53d5fe7675c, type: 3}
+  data_FourDirection: {fileID: 11400000, guid: 23815ab94ae03044d903e54392fea425, type: 2}
+  data_NearPlayer: {fileID: 11400000, guid: 476ab0c4739ce75448f7035dc0aa7ea2, type: 2}

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class PoolObject<T> : MonoBehaviour where T : PoolObject<T>
 {
-    private ObjectPool<T> pool;
+    public ObjectPool<T> pool;
 
     /// <summary>
     /// Spawn a new Object
@@ -29,7 +29,7 @@ public class PoolObject<T> : MonoBehaviour where T : PoolObject<T>
     /// <summary>
     /// Put the object back to the ObjectPool and deactivate it
     /// </summary>
-    public virtual void Delete()
+    public virtual void Deactivate()
     {
         pool.AddObject((T)this);        // GameObject added to the queue
         gameObject.SetActive(false);

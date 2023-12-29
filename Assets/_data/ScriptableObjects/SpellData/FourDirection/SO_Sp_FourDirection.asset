@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a6dd5c19fc5da4897ce29d7da8ff33, type: 3}
+  m_Name: SO_Sp_FourDirection
+  m_EditorClassIdentifier: 
+  projectileData: {fileID: 11400000, guid: 4f5b8f3a5558aa449bfd5c23925ee974, type: 2}
+  spellname: Four Direction
+  description: XXX
+  damage: 100
+  lifetime: 5
+  speed: 2

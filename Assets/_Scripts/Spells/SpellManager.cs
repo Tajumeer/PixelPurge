@@ -7,18 +7,14 @@ using UnityEngine;
 
 public class SpellManager : MonoBehaviour
 {
-    [Header("Prefabs")]
-    [SerializeField] private GameObject prefab_fourDirection;
+    [SerializeField] private GameObject spellPrefab;
+    private ObjectPool<Spells> spellPool;
+    private GameObject parent_spells;
 
     [Header("Scriptable Objects")]
-    [SerializeField] private SO_FourDirection data_fourDirection;
+    [SerializeField] private SO_Spells data_FourDirection;
+    [SerializeField] private SO_Spells data_NearPlayer;
 
-    [Header("Pools")]
-    private ObjectPool<Spell_FourDirection> pool_fourDirection;
-
-    [Header("Parents")]
-    GameObject parent_spells;
-    GameObject parent_fourDirection;
 
     private Vector3 playerPosition;
 
@@ -26,59 +22,65 @@ public class SpellManager : MonoBehaviour
     {
         playerPosition = new Vector3(0f, 0f, 0f);
 
-        InitializeAllSpells();
-
+        CreateSpellPool();
         StartCoroutine(TimerFourDirectionSpell());
     }
 
-    private void InitializeAllSpells()
+    private void CreateSpellPool()
     {
+        // fourDirections
+        spellPool = new ObjectPool<Spells>(spellPrefab);
         parent_spells = new GameObject();
         parent_spells.name = "Spells";
-
-        // fourDirections
-        pool_fourDirection = new ObjectPool<Spell_FourDirection>(prefab_fourDirection);
-        parent_fourDirection = new GameObject();
-        parent_fourDirection.name = "Spell_FourDirection";
-        parent_fourDirection.transform.SetParent(parent_spells.transform);
     }
 
     IEnumerator TimerFourDirectionSpell()
     {
         for (int i = 0; i < 5; i++)
         {
-            CastFourDirectionSpell(data_fourDirection);
+            CastFourDirectionSpell(data_FourDirection);
+            CastNearPlayerSpell(data_NearPlayer);
 
             yield return new WaitForSeconds(1f);
         }
     }
 
-    public void CastFourDirectionSpell(SO_FourDirection _spellData)
+    public void CastFourDirectionSpell(SO_Spells data_FourDirection)
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < data_FourDirection.projectileData.amount; i++)
         {
-            Spell_FourDirection spell = pool_fourDirection.GetObject();     // get an object from the pool or a new one 
+            Spells spell = spellPool.GetObject();     // get an object from the pool or a new one 
+
+            Spell_FourDirection spellScript = spell.gameObject.AddComponent<Spell_FourDirection>();
+            spellScript.Init(spell.pool);
+            spell.enabled = false;
 
             // set parent, tag and transform
-            spell.transform.SetParent(parent_fourDirection.transform);
+            spell.transform.SetParent(parent_spells.transform);
             spell.tag = "PlayerSpell";
             spell.ResetObj(playerPosition, new Vector3(0f, 0f, 0f));
 
-            switch (i)
-            {
-                case 0:
-                    spell.Spawn(_spellData, Vector2.up);
-                    break;
-                case 1:
-                    spell.Spawn(_spellData, Vector2.down);
-                    break;
-                case 2:
-                    spell.Spawn(_spellData, Vector2.right);
-                    break;
-                case 3:
-                    spell.Spawn(_spellData, Vector2.left);
-                    break;
-            }
+            spellScript.OnSpawn(i, data_FourDirection);
+                    
+        }
+    }
+
+    public void CastNearPlayerSpell(SO_Spells data_NearPlayer)
+    {
+        for (int i = 0; i < data_NearPlayer.projectileData.amount; i++)
+        {
+            Spells spell = spellPool.GetObject();     // get an object from the pool or a new one 
+
+            Spell_NearPlayer spellScript = spell.gameObject.AddComponent<Spell_NearPlayer>();
+            spellScript.Init(spell.pool);
+            spell.enabled = false;
+
+            // set parent, tag and transform
+            spell.transform.SetParent(parent_spells.transform);
+            spell.tag = "PlayerSpell";
+            spell.ResetObj(playerPosition, new Vector3(0f, 0f, 0f));
+
+            spellScript.OnSpawn(i, data_NearPlayer);
         }
     }
 }
