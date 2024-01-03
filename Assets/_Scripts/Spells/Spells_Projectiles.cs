@@ -6,26 +6,25 @@ using UnityEngine;
 
 public class Spells_Projectiles : Spells
 {
-    protected int amount;
-    protected float enemyHitPoints;
+    SO_Spells spellData;
 
     protected float health;
 
-    public virtual void OnSpawn(int spellIdx, SO_Spells spellData)
+    public virtual void OnSpawn(int _spellIdx, SO_Spells _spellData)
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
 
-        InitStats(spellData);
+        spellData = _spellData;
 
         StartCoroutine(DeleteTimer());
 
-        health = enemyHitPoints;
+        health = spellData.projectileData.enemyHitPoints;
     }
 
     protected virtual void MoveStraightInDirection(Vector2 direction)
     {
         // Move the Spell with the given speed
-        rb.AddRelativeForce(direction * speed, ForceMode2D.Impulse);
+        rb.AddRelativeForce(direction * spellData.speed, ForceMode2D.Impulse);
     }
 
     public virtual void OnCollisionEnter2D(Collision2D _collision)
@@ -34,7 +33,7 @@ public class Spells_Projectiles : Spells
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
         _collision.gameObject.TryGetComponent(out IDamagable character);
-        character.GetDamage(damage);
+        character.GetDamage(spellData.damage);
     }
 
     /// <summary>
@@ -43,15 +42,7 @@ public class Spells_Projectiles : Spells
     /// <returns></returns>
     protected virtual IEnumerator DeleteTimer()
     {
-        yield return new WaitForSeconds(lifetime);
+        yield return new WaitForSeconds(spellData.lifetime);
         Deactivate();
-    }
-
-    protected override void InitStats(SO_Spells spellData)
-    {
-        base.InitStats(spellData);
-
-        amount = spellData.projectileData.amount;
-        enemyHitPoints = spellData.projectileData.enemyHitPoints;
     }
 }

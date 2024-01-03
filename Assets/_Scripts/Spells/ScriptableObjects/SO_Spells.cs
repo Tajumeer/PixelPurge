@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Spells", menuName = "PixelPurge/Spells/Spells", order = 0)]
+[CreateAssetMenu(fileName = "Spells", menuName = "PixelPurge/Spells/Spells", order = 1)]
 public class SO_Spells : ScriptableObject
 {
     [Header("Insert the matching ScriptbleObjects")]
@@ -10,8 +10,8 @@ public class SO_Spells : ScriptableObject
 
     [Header("UI Stuff")]
     public string spellname;
-    public string description;
     // icon
+    public string description;
 
     [Space]
 
@@ -19,4 +19,6 @@ public class SO_Spells : ScriptableObject
     public float damage;
     public float lifetime;
     public float speed;
+    public float cd;
+    public float radius;
 }

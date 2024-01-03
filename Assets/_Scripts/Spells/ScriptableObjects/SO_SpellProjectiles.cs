@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Maya
 
-[CreateAssetMenu(fileName = "SpellProjectiles", menuName = "PixelPurge/Spells/SpellProjectiles", order = 1)]
+[CreateAssetMenu(fileName = "SpellProjectiles", menuName = "PixelPurge/Spells/SpellProjectiles", order = 2)]
 public class SO_SpellProjectiles : ScriptableObject
 {
     [Header("Projectile Stats")]
