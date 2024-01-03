@@ -7,80 +7,81 @@ using UnityEngine;
 
 public class SpellManager : MonoBehaviour
 {
-    [SerializeField] private GameObject spellPrefab;
-    private ObjectPool<Spells> spellPool;
-    private GameObject parent_spells;
+    // spell lernen
+    // upgrade
+    // UI
+
+    SpellSpawner spawnScript;
 
     [Header("Scriptable Objects")]
-    [SerializeField] private SO_Spells data_FourDirection;
+    [SerializeField] private SO_SpellUpgrades data_Upgrades;
+    [SerializeField] private SO_Spells data_AllDirections;
     [SerializeField] private SO_Spells data_NearPlayer;
 
+    [Header("Spell Levels")]
+    private int level_AllDirections = 1;
+    private int level_NearPlayer = 1;
 
-    private Vector3 playerPosition;
-
-    void OnEnable()
+    private void OnEnable()
     {
-        playerPosition = new Vector3(0f, 0f, 0f);
-
-        CreateSpellPool();
-        StartCoroutine(TimerFourDirectionSpell());
+        spawnScript = FindObjectOfType<SpellSpawner>();
+        LearnAllDirections();
+        LearnNearPlayer();
     }
 
-    private void CreateSpellPool()
+    #region Learn New Spells
+
+    /// <summary>
+    /// Learn the Spell "AllDirections" and show it in UI
+    /// </summary>
+    public void LearnAllDirections()
     {
-        // fourDirections
-        spellPool = new ObjectPool<Spells>(spellPrefab);
-        parent_spells = new GameObject();
-        parent_spells.name = "Spells";
+        level_AllDirections = 1;
+        spawnScript.data_AllDirections = Instantiate(data_AllDirections);
+        spawnScript.active_AllDirections = true;
+        
+        // UI
     }
 
-    IEnumerator TimerFourDirectionSpell()
+    /// <summary>
+    /// Learn the Spell "NearPlayer" and show it in UI
+    /// </summary>
+    public void LearnNearPlayer()
     {
-        for (int i = 0; i < 5; i++)
-        {
-            CastFourDirectionSpell(data_FourDirection);
-            CastNearPlayerSpell(data_NearPlayer);
+        level_NearPlayer = 1;
+        spawnScript.data_NearPlayer = Instantiate(data_NearPlayer);
+        spawnScript.active_NearPlayer = true;
 
-            yield return new WaitForSeconds(1f);
-        }
+        // UI
     }
 
-    public void CastFourDirectionSpell(SO_Spells data_FourDirection)
+    #endregion
+
+    #region Upgrade Spells
+
+    /// <summary>
+    /// Upgrade values of the spell and update UI
+    /// </summary>
+    public void UpradeAllDirections()
     {
-        for (int i = 0; i < data_FourDirection.projectileData.amount; i++)
-        {
-            Spells spell = spellPool.GetObject();     // get an object from the pool or a new one 
+        spawnScript.data_AllDirections.damage *= (1f + data_Upgrades.Damage[level_AllDirections]);
 
-            Spell_FourDirection spellScript = spell.gameObject.AddComponent<Spell_FourDirection>();
-            spellScript.Init(spell.pool);
-            spell.enabled = false;
+        level_AllDirections++;
 
-            // set parent, tag and transform
-            spell.transform.SetParent(parent_spells.transform);
-            spell.tag = "PlayerSpell";
-            spell.ResetObj(playerPosition, new Vector3(0f, 0f, 0f));
-
-            spellScript.OnSpawn(i, data_FourDirection);
-                    
-        }
+        // UI
     }
 
-    public void CastNearPlayerSpell(SO_Spells data_NearPlayer)
+    /// <summary>
+    /// Upgrade values of the spell and update UI
+    /// </summary>
+    public void UpgradeNearPlayer()
     {
-        for (int i = 0; i < data_NearPlayer.projectileData.amount; i++)
-        {
-            Spells spell = spellPool.GetObject();     // get an object from the pool or a new one 
+        spawnScript.data_NearPlayer.damage *= (1f + data_Upgrades.Damage[level_NearPlayer]);
 
-            Spell_NearPlayer spellScript = spell.gameObject.AddComponent<Spell_NearPlayer>();
-            spellScript.Init(spell.pool);
-            spell.enabled = false;
+        level_NearPlayer++;
 
-            // set parent, tag and transform
-            spell.transform.SetParent(parent_spells.transform);
-            spell.tag = "PlayerSpell";
-            spell.ResetObj(playerPosition, new Vector3(0f, 0f, 0f));
-
-            spellScript.OnSpawn(i, data_NearPlayer);
-        }
+        // UI
     }
+
+    #endregion
 }

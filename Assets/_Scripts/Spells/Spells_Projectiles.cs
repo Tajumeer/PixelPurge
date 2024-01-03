@@ -6,7 +6,8 @@ using UnityEngine;
 
 public class Spells_Projectiles : Spells
 {
-    SO_Spells spellData;
+    protected SO_Spells spellData;
+    protected SO_SpellProjectiles spellProjectileData;
 
     protected float health;
 
@@ -15,10 +16,11 @@ public class Spells_Projectiles : Spells
         if (rb == null) rb = GetComponent<Rigidbody2D>();
 
         spellData = _spellData;
+        spellProjectileData = spellData.projectileData;
 
         StartCoroutine(DeleteTimer());
 
-        health = spellData.projectileData.enemyHitPoints;
+        health = spellProjectileData.enemyHitPoints;
     }
 
     protected virtual void MoveStraightInDirection(Vector2 direction)

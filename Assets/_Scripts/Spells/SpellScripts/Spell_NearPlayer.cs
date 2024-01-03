@@ -6,9 +6,9 @@ using UnityEngine;
 
 public class Spell_NearPlayer : Spells_Projectiles
 {
-    public override void OnSpawn(int spellIdx, SO_Spells spellData)
+    public override void OnSpawn(int spellIdx, SO_Spells _spellData)
     {
-        base.OnSpawn(spellIdx, spellData);
+        base.OnSpawn(spellIdx, _spellData);
 
         // Update position and rotation
         rb.velocity = new Vector2(0f, 0f);
@@ -16,7 +16,7 @@ public class Spell_NearPlayer : Spells_Projectiles
         rb.rotation = transform.rotation.z;
 
         // Move the Spell with the given speed
-        rb.AddRelativeForce(Vector2.down * speed, ForceMode2D.Impulse);
+        rb.AddRelativeForce(Vector2.down * spellData.speed, ForceMode2D.Impulse);
     }
 
     public override void OnCollisionEnter2D(Collision2D _collision)
