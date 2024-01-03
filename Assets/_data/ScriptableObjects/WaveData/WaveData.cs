@@ -8,5 +8,6 @@ public class WaveData : ScriptableObject
 {
     public int[] EnemyTypeCount;
     public GameObject[] EnemyTypes;
+    public float SpawnTime;
     public bool IsSpawned = false;
 }

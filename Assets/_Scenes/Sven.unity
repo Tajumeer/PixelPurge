@@ -344,6 +344,7 @@ MonoBehaviour:
   m_waveDataRoomZero:
   - {fileID: 11400000, guid: f373fd09680fab04e97d049f12ba7882, type: 2}
   - {fileID: 11400000, guid: 91d7cb5412b8a9348a71a946a18a6be4, type: 2}
+  - {fileID: 11400000, guid: 0ab76d86c7e853b46bca66bcc433b2a9, type: 2}
   m_waveDataRoomOne: []
   m_waveDataRoomTwo: []
   m_waveDataRoomThree: []

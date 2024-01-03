@@ -25,7 +25,7 @@ public class WaveManager : MonoBehaviour
     [SerializeField] private WaveData[] m_waveDataRoomEight;
     [SerializeField] private WaveData[] m_waveDataRoomNine;
 
-
+    //private WaveData[] m_waveData;
 
     // private List<Transform> m_spawns = new List<Transform>();
     private int m_lastSpawn;
@@ -55,44 +55,81 @@ public class WaveManager : MonoBehaviour
     #endregion
     private void Awake()
     {
+
         m_timeManager = TimeManager.Instance;
 
-        foreach(var b in m_waveDataRoomZero)
+        foreach (var b in m_waveDataRoomZero)
         {
             b.IsSpawned = false;
         }
     }
-
     public void Initialize()
     {
         m_currentRoom = 0;
         GetAllSpawns();
         m_timeManager.StartTimer("WaveTimer");
-        SpawnWave(SpawnPointsZero, 0, 0, m_waveDataRoomZero);
+
         //SpawnWave(SpawnPointsSeven, 0, 0, m_waveDataRoomSeven);
         //SpawnWave(SpawnPointsFour, 0, 0, m_waveDataRoomFour);
-        m_waveDataRoomZero[0].IsSpawned = true;
+
 
     }
 
     private void Update()
     {
-        
+        m_activeEnemies = GameObject.FindObjectsOfType<NavMeshAgent>().Length;
+
     }
 
     private void FixedUpdate()
     {
-        m_activeEnemies = GameObject.FindObjectsOfType<NavMeshAgent>().Length;
 
-        //Debug.Log(m_timeManager.GetElapsedTime("WaveTimer"));
-        if (m_timeManager.GetElapsedTime("WaveTimer") > 2f && !m_waveDataRoomZero[1].IsSpawned)
+        RoomControl();
+
+
+    }
+
+    private void RoomControl()
+    {
+        switch (m_currentRoom)
+        {
+            case 0:
+                DungeonRoomZero();
+                break;
+
+        }
+    }
+    private void DungeonRoomZero()
+    {
+        bool allTrue = m_waveDataRoomZero.All(b => b.IsSpawned);
+        
+
+        //Controls Wave 0
+        if (m_timeManager.GetElapsedTime("WaveTimer") > m_waveDataRoomZero[0].SpawnTime && !m_waveDataRoomZero[0].IsSpawned)
+        {
+            SpawnWave(SpawnPointsZero, 0, 0, m_waveDataRoomZero);
+            m_waveDataRoomZero[0].IsSpawned = true;
+        }
+
+        //Controls Wave 1
+        if (m_timeManager.GetElapsedTime("WaveTimer") > m_waveDataRoomZero[1].SpawnTime && !m_waveDataRoomZero[1].IsSpawned)
         {
             SpawnWave(SpawnPointsZero, 1, 0, m_waveDataRoomZero);
             SpawnWave(SpawnPointsZero, 1, 1, m_waveDataRoomZero);
             m_waveDataRoomZero[1].IsSpawned = true;
-            m_currentRoom++;
         }
-        else if (m_activeEnemies == 0 && m_waveDataRoomZero[0].IsSpawned && m_waveDataRoomZero[1].IsSpawned)
+
+        //Controls Wave 2
+        if (m_timeManager.GetElapsedTime("WaveTimer") > m_waveDataRoomZero[2].SpawnTime && !m_waveDataRoomZero[2].IsSpawned)
+        {
+            SpawnWave(SpawnPointsZero, 2, 0, m_waveDataRoomZero);
+            SpawnWave(SpawnPointsZero, 2, 1, m_waveDataRoomZero);
+            m_waveDataRoomZero[2].IsSpawned = true;
+        }
+
+
+        //Opens Exit
+        else if (m_activeEnemies == 0 && allTrue)
         {
             FindObjectsWithTag("DungeonLevel_0", "Exit", m_exits);
 
@@ -101,11 +138,17 @@ public class WaveManager : MonoBehaviour
                 go.SetActive(false);
             }
 
+            m_currentRoom++;
+            Debug.Log(m_timeManager.GetElapsedTime("WaveTimer"));
+            m_timeManager.SetTimer("WaveTimer", 0f);
+            Debug.Log(m_timeManager.GetElapsedTime("WaveTimer"));
             Debug.Log("Room Zero Cleared!");
+
         }
     }
 
 
+    #region Spawns
     private void GetAllSpawns()
     {
 
@@ -151,6 +194,7 @@ public class WaveManager : MonoBehaviour
         }
     }
 
+    #endregion
     private void SpawnWave(GameObject[] _spawns, int _waveNumber, int _enemyType, WaveData[] _roomData)
     {
         //GameObject spawnContainer = new GameObject("Room: " + m_currentRoom);

@@ -40,32 +40,39 @@ public class TimeManager : MonoBehaviour
         UpdateTimers();
     }
 
-    public void StartTimer(string timerName)
+    public void StartTimer(string _timerName)
     {
-        if (!m_timers.ContainsKey(timerName))
+        if (!m_timers.ContainsKey(_timerName))
         {
-            m_timers.Add(timerName, 0f);
+            m_timers.Add(_timerName, 0f);
         }
     }
 
-    public void StopTimer(string timerName)
+    public void StopTimer(string _timerName)
     {
-        if (m_timers.ContainsKey(timerName))
+        if (m_timers.ContainsKey(_timerName))
         {
-            m_timers.Remove(timerName);
+            m_timers.Remove(_timerName);
         }
     }
 
-    public float GetElapsedTime(string timerName)
+    public float GetElapsedTime(string _timerName)
     {
-        if (m_timers.ContainsKey(timerName))
+        if (m_timers.ContainsKey(_timerName))
         {
-            return m_timers[timerName];
+            return m_timers[_timerName];
         }
 
         return 0f;
     }
 
+    public void SetTimer(string _timerName, float _newValue)
+    {
+        if (m_timers.ContainsKey(_timerName))
+        {
+            m_timers[_timerName] = _newValue;
+        }
+    }
     public void UpdateTimers()
     {
         Dictionary<string, float> copyOfTimers = new Dictionary<string, float>(m_timers);

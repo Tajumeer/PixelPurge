@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 33e452af62ffcfc448a375f7a62fddbb, type: 3}
-  m_Name: WaveTwo
+  m_Name: Wave3
   m_EditorClassIdentifier: 
-  EnemyTypeCount: 0f00000001000000
+  EnemyTypeCount: 0500000000000000
   EnemyTypes:
   - {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
   - {fileID: 7794670824351030394, guid: c8fc194ff74105b4a87f5986624bb17b, type: 3}
-  IsSpawned: 0
+  SpawnTime: 20
+  IsSpawned: 1
