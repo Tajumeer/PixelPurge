@@ -4,16 +4,11 @@ using UnityEngine;
 
 // Maya
 
-public class Spell_AllDirections : Spells_Projectiles
+public class Spell_AllDirections : SpellsProjectiles
 {
     public override void OnSpawn(int spellIdx, SO_Spells _spellData)
     {
         base.OnSpawn(spellIdx, _spellData);
-
-        // Update position and rotation
-        rb.velocity = new Vector2(0f, 0f);
-        rb.position = new Vector2(transform.position.x, transform.position.y);
-        rb.rotation = transform.rotation.z;
 
         Vector2 direction = Vector2.up;
 

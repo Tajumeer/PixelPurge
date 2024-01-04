@@ -4,18 +4,22 @@ using UnityEngine;
 
 // Maya
 
-public class Spells_Projectiles : Spells
+public class SpellsProjectiles : Spells
 {
-    protected SO_Spells spellData;
     protected SO_SpellProjectiles spellProjectileData;
 
     protected float health;
 
-    public virtual void OnSpawn(int _spellIdx, SO_Spells _spellData)
+    /// <summary>
+    /// Get Rigidbody, set SpellData
+    /// and start DeleteTimer
+    /// </summary>
+    /// <param name="_spellIdx"></param>
+    /// <param name="_spellData"></param>
+    public override void OnSpawn(int _spellIdx, SO_Spells _spellData)
     {
-        if (rb == null) rb = GetComponent<Rigidbody2D>();
+        base.OnSpawn(_spellIdx, _spellData);
 
-        spellData = _spellData;
         spellProjectileData = spellData.projectileData;
 
         StartCoroutine(DeleteTimer());
@@ -45,6 +49,10 @@ public class Spells_Projectiles : Spells
     protected virtual IEnumerator DeleteTimer()
     {
         yield return new WaitForSeconds(spellData.lifetime);
+
+        if (gameObject.GetComponent<Spell_NearPlayer>() != null) Destroy(gameObject.GetComponent<Spell_NearPlayer>());
+        if (gameObject.GetComponent<Spell_AllDirections>() != null) Destroy(gameObject.GetComponent<Spell_AllDirections>());
+
         Deactivate();
     }
 }

@@ -4,16 +4,11 @@ using UnityEngine;
 
 // Maya
 
-public class Spell_NearPlayer : Spells_Projectiles
+public class Spell_NearPlayer : SpellsProjectiles
 {
     public override void OnSpawn(int spellIdx, SO_Spells _spellData)
     {
         base.OnSpawn(spellIdx, _spellData);
-
-        // Update position and rotation
-        rb.velocity = new Vector2(0f, 0f);
-        rb.position = new Vector2(transform.position.x, transform.position.y);
-        rb.rotation = transform.rotation.z;
 
         // Move the Spell with the given speed
         rb.AddRelativeForce(Vector2.down * spellData.speed, ForceMode2D.Impulse);
@@ -23,4 +18,10 @@ public class Spell_NearPlayer : Spells_Projectiles
     {
         base.OnCollisionEnter2D(_collision);
     }
+
+    //protected override IEnumerator DeleteTimer()
+    //{
+    //    return base.DeleteTimer();
+    //    Destroy(gameObject.GetComponent<Spell_NearPlayer>());
+    //}
 }

@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c9a6dd5c19fc5da4897ce29d7da8ff33, type: 3}
-  m_Name: SO_Sp_AllDirections
+  m_Name: SO_Sp_Aura
   m_EditorClassIdentifier: 
-  projectileData: {fileID: 11400000, guid: 4f5b8f3a5558aa449bfd5c23925ee974, type: 2}
-  spellname: Four Direction
-  description: XXX
-  damage: 100
-  lifetime: 5
-  speed: 2
-  cd: 4
+  projectileData: {fileID: 0}
+  spellname: 
+  description: 
+  damage: 0
+  lifetime: 0
+  speed: 0
+  cd: 0
   radius: 0
