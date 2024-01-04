@@ -18,10 +18,4 @@ public class Spell_NearPlayer : SpellsProjectiles
     {
         base.OnCollisionEnter2D(_collision);
     }
-
-    //protected override IEnumerator DeleteTimer()
-    //{
-    //    return base.DeleteTimer();
-    //    Destroy(gameObject.GetComponent<Spell_NearPlayer>());
-    //}
 }

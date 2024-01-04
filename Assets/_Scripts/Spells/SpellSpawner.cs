@@ -67,8 +67,11 @@ public class SpellSpawner : MonoBehaviour
     {
         Spells spellObj = spellPool.GetObject();     // get an object from the pool or a new one 
 
-        spellObj.transform.SetParent(parent_spells.transform);
-        spellObj.tag = "PlayerSpell";
+        if(spellObj.tag != "PlayerSpell")
+        {
+            spellObj.transform.SetParent(parent_spells.transform);
+            spellObj.tag = "PlayerSpell";
+        }
         spellObj.ResetObj(playerPosition, new Vector3(0f, 0f, 0f));
 
         return spellObj;
@@ -83,7 +86,13 @@ public class SpellSpawner : MonoBehaviour
         {
             Spells spellObj = SpawnPrefab();
 
-            Spell_AllDirections spellScript = spellObj.gameObject.AddComponent<Spell_AllDirections>();
+            Spell_AllDirections spellScript;
+            if (spellObj.gameObject.GetComponent<Spell_AllDirections>() != null)
+                spellScript = spellObj.gameObject.GetComponent<Spell_AllDirections>();
+            else
+                spellScript = spellObj.gameObject.AddComponent<Spell_AllDirections>();
+
+            spellScript.enabled = true;
             spellScript.Init(spellObj.pool);
             spellObj.enabled = false;
 
@@ -100,7 +109,13 @@ public class SpellSpawner : MonoBehaviour
         {
             Spells spellObj = SpawnPrefab();
 
-            Spell_NearPlayer spellScript = spellObj.gameObject.AddComponent<Spell_NearPlayer>();
+            Spell_NearPlayer spellScript;
+            if(spellObj.gameObject.GetComponent<Spell_NearPlayer>() != null)
+                spellScript = spellObj.gameObject.GetComponent<Spell_NearPlayer>();
+            else
+                spellScript = spellObj.gameObject.AddComponent<Spell_NearPlayer>();
+
+            spellScript.enabled = true;
             spellScript.Init(spellObj.pool);
             spellObj.enabled = false;
 

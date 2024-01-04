@@ -25,7 +25,7 @@ public class SpellManager : MonoBehaviour
     private void OnEnable()
     {
         spawnScript = FindObjectOfType<SpellSpawner>();
-        //LearnAllDirections();
+        LearnAllDirections();
         LearnNearPlayer();
     }
 

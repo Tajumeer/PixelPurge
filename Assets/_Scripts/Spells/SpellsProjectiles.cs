@@ -50,8 +50,8 @@ public class SpellsProjectiles : Spells
     {
         yield return new WaitForSeconds(spellData.lifetime);
 
-        if (gameObject.GetComponent<Spell_NearPlayer>() != null) Destroy(gameObject.GetComponent<Spell_NearPlayer>());
-        if (gameObject.GetComponent<Spell_AllDirections>() != null) Destroy(gameObject.GetComponent<Spell_AllDirections>());
+        if (gameObject.GetComponent<Spell_NearPlayer>() != null) gameObject.GetComponent<Spell_NearPlayer>().enabled = false;
+        if (gameObject.GetComponent<Spell_AllDirections>() != null) gameObject.GetComponent<Spell_AllDirections>().enabled = false;
 
         Deactivate();
     }

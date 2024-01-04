@@ -16,7 +16,7 @@ MonoBehaviour:
   spellname: Near Player
   description: XXX
   damage: 10
-  lifetime: 7
-  speed: 4
+  lifetime: 3
+  speed: 1
   cd: 2
   radius: 0
