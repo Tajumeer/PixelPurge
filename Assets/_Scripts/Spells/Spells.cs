@@ -6,24 +6,23 @@ using UnityEngine;
 
 public class Spells : PoolObject<Spells>
 {
-    [Header("UI Stuff")]
-    public string spellname;
-    public string description;
-    // icon
-
-    [Space]
-
     protected Rigidbody2D rb;
-    protected float damage;
-    protected float lifetime;
-    protected float speed;
+    protected SO_Spells spellData;
 
-    protected virtual void InitStats(SO_Spells spellData)
+    /// <summary>
+    /// Get and reset Rigidbody and set SpellData
+    /// </summary>
+    /// <param name="_spellIdx"></param>
+    /// <param name="_spellData"></param>
+    public virtual void OnSpawn(int _spellIdx, SO_Spells _spellData)
     {
-        spellname = spellData.name;
-        description = spellData.description;
-        damage = spellData.damage;
-        lifetime = spellData.lifetime;
-        speed = spellData.speed;
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+
+        // Reset rigidbody
+        rb.velocity = new Vector2(0f, 0f);
+        rb.position = new Vector2(transform.position.x, transform.position.y);
+        rb.rotation = transform.rotation.z;
+
+        spellData = _spellData;
     }
 }

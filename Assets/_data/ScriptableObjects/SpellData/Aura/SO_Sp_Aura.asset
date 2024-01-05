@@ -9,8 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 362883aa5dad7684e87d92edef85e6b2, type: 3}
-  m_Name: SO_Proj_FourDirection
+  m_Script: {fileID: 11500000, guid: c9a6dd5c19fc5da4897ce29d7da8ff33, type: 3}
+  m_Name: SO_Sp_Aura
   m_EditorClassIdentifier: 
-  amount: 4
-  enemyHitPoints: 3
+  projectileData: {fileID: 0}
+  spellname: 
+  description: 
+  damage: 0
+  lifetime: 0
+  speed: 0
+  cd: 0
+  radius: 0
