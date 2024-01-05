@@ -94,7 +94,7 @@ public class SandCrawlerController : MonoBehaviour, IDamagable
         if (collision.CompareTag("Player"))
         {
             Debug.LogWarning("Hit Player!");
-            collision.GetComponent<ArcherController>().PlayerHealth -= EnemyDamage;
+            collision.GetComponent<PlayerController>().PlayerHealth -= EnemyDamage;
         }
     }
 

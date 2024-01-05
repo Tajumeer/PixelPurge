@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class ArcherController : MonoBehaviour, IDamagable
+public class PlayerController : MonoBehaviour, IDamagable
 {
     [Header("Combat Stats")]
     [SerializeField] public float PlayerHealth;
@@ -24,13 +24,14 @@ public class ArcherController : MonoBehaviour, IDamagable
     [SerializeField] private float m_attackSpeed;
     [SerializeField] private float m_attackOffest;
     private float m_attackTimer;
-    private Vector2 m_attackDirection;
-    private const float F_ATTACK_OFFSET_X = 0.25f;
+    //private Vector2 m_attackDirection;
+    //private const float F_ATTACK_OFFSET_X = 0.25f;
 
     [Header("Components")]
     [SerializeField] private SpriteRenderer m_spriteRenderer;
     [SerializeField] private Animator m_animator;
-    private Vector2 m_moveDirection;
+    //[HideInInspector]
+    public Vector2 MoveDirection;
     private Rigidbody2D m_rigidbody;
 
     private bool m_isDead;
@@ -88,7 +89,7 @@ public class ArcherController : MonoBehaviour, IDamagable
     {
         m_isDead = true;
         m_spriteRenderer.sortingOrder = 0;
-        m_moveDirection = Vector3.zero;
+        MoveDirection = Vector3.zero;
         //Time.timeScale = 0f;
     }
 
@@ -99,7 +100,7 @@ public class ArcherController : MonoBehaviour, IDamagable
             ChangeAnimationState(AnimationState.player_death);
             return;
         }
-        if (m_moveDirection.x == 0 && m_moveDirection.y == 0) ChangeAnimationState(AnimationState.archer_idle);
+        if (MoveDirection.x == 0 && MoveDirection.y == 0) ChangeAnimationState(AnimationState.archer_idle);
         else ChangeAnimationState(AnimationState.archer_run);
     }
 
@@ -115,16 +116,16 @@ public class ArcherController : MonoBehaviour, IDamagable
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
 
-        m_moveDirection = new Vector2(moveX, moveY).normalized;
-        m_attackDirection = new Vector2(moveX, moveY).normalized;
+        MoveDirection = new Vector2(moveX, moveY).normalized;
+        //m_attackDirection = new Vector2(moveX, moveY).normalized;
 
-        if (m_moveDirection.x < 0f) { m_spriteRenderer.flipX = true; }
-        else if (m_moveDirection.x > 0f) { m_spriteRenderer.flipX = false; }
+        if (MoveDirection.x < 0f) { m_spriteRenderer.flipX = true; }
+        else if (MoveDirection.x > 0f) { m_spriteRenderer.flipX = false; }
     }
 
     private void Move()
     {
-        m_rigidbody.velocity = new Vector2(m_moveDirection.x * m_movementSpeed, m_moveDirection.y * m_movementSpeed);
+        m_rigidbody.velocity = new Vector2(MoveDirection.x * m_movementSpeed, MoveDirection.y * m_movementSpeed);
     }
 
     private IEnumerator Dash()
@@ -132,7 +133,7 @@ public class ArcherController : MonoBehaviour, IDamagable
         m_isAbleToDash = false;
         m_isDashing = true;
 
-        m_rigidbody.velocity = new Vector2(m_moveDirection.x * m_dashingPower, m_moveDirection.y * m_dashingPower);
+        m_rigidbody.velocity = new Vector2(MoveDirection.x * m_dashingPower, MoveDirection.y * m_dashingPower);
         yield return new WaitForSeconds(m_dashinTime);
 
         m_isDashing = false;

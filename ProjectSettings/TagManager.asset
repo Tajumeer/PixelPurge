@@ -34,7 +34,7 @@ TagManager:
   - Player
   - Water
   - UI
-  - Ground
+  - Terrain
   - Obstacle
   - 
   - 
