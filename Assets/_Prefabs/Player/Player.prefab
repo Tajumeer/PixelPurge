@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1939566472389394243}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.22, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -137,6 +137,88 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4254612813726314173}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6613809233529687863
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 854773063786143067}
+  - component: {fileID: 3692364988099145144}
+  - component: {fileID: 6015671900528321373}
+  m_Layer: 3
+  m_Name: PlayerXP
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &854773063786143067
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613809233529687863}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4254612813726314173}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &3692364988099145144
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613809233529687863}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
+--- !u!114 &6015671900528321373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6613809233529687863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6df66df6cff1b5d4aba0203cfdc3e63b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xpPointsNeeded: 5
+  xpNeedMultiplier: 0.1
 --- !u!1 &7931933358026006842
 GameObject:
   m_ObjectHideFlags: 0
@@ -171,6 +253,7 @@ Transform:
   m_Children:
   - {fileID: 7798492612734919627}
   - {fileID: 5877650892401374059}
+  - {fileID: 854773063786143067}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1982553278900513807
@@ -185,19 +268,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1165b2add14fe414abfad99f3e133c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerHealth: 100
-  PlayerDamage: 25
-  m_movementSpeed: 3
-  m_dashingPower: 25
-  m_dashinTime: 0.1
-  m_dashingCooldown: 3
-  m_projectileParent: {fileID: 5877650892401374059}
-  m_attackPrefab: {fileID: 7311436246905014917, guid: 163f9ddf75803d24fb4e36e027dbd479, type: 3}
-  m_attackForce: 10
-  m_attackSpeed: 1
-  m_attackOffest: 0.25
+  PlayerData: []
+  PlayerVisual: []
+  ActivePlayerData: {fileID: 0}
+  ClassIndex: 0
   m_spriteRenderer: {fileID: 4826832813789174053}
   m_animator: {fileID: 8826063440950333840}
+  MoveDirection: {x: 0, y: 0}
 --- !u!50 &6995192994167844590
 Rigidbody2D:
   serializedVersion: 4
@@ -257,6 +334,6 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.025488377, y: -0.2182442}
+  m_Offset: {x: -0.025488377, y: 0}
   m_Size: {x: 0.5063721, y: 0.63997674}
   m_Direction: 0
