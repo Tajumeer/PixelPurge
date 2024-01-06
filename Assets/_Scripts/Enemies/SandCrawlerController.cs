@@ -15,6 +15,7 @@ public class SandCrawlerController : MonoBehaviour, IDamagable
     private Collider2D m_collider;
     private Rigidbody2D m_rb;
     private SpriteRenderer m_spriteRenderer;
+    private EnemySpawner m_enemySpawner;
 
     private bool m_isDead;
     private enum AnimationState
@@ -31,7 +32,7 @@ public class SandCrawlerController : MonoBehaviour, IDamagable
         m_collider = GetComponent<Collider2D>();
         m_rb = GetComponent<Rigidbody2D>();
         m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-
+     
     }
 
     void Update()
@@ -79,7 +80,9 @@ public class SandCrawlerController : MonoBehaviour, IDamagable
         ChangeAnimationState(AnimationState.sandCrawler_death);
         Destroy(m_rb);
         Destroy(m_collider);
+        m_enemySpawner = GetComponent<EnemySpawner>();
         m_spriteRenderer.sortingOrder = 0;
+        m_enemySpawner.OnEnemyKilled();
         StartCoroutine(DestroyGameObject(5f));
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor.Purchasing;
 using UnityEngine;
+using NavMeshPlus.Components;
 
 public class MapController : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class MapController : MonoBehaviour
     [SerializeField] private LayerMask m_terrainMask;
     [SerializeField] private List<GameObject> m_terrainChunks;
     [HideInInspector] public GameObject CurrentChunk;
+    [SerializeField] private NavMeshSurface m_navMeshSurface;
 
     private Vector3 m_lastPlayerPosition;
 
@@ -29,6 +31,8 @@ public class MapController : MonoBehaviour
     {
         TimeManager.Instance.StartTimer("ChunkCleanupCooldown");
         m_lastPlayerPosition = m_player.transform.position;
+        m_navMeshSurface.BuildNavMeshAsync();
+        TimeManager.Instance.StartTimer("WaveSpawnTimer");
     }
 
 
@@ -119,6 +123,8 @@ public class MapController : MonoBehaviour
         int rnd = Random.Range(0, m_terrainChunks.Count);
         m_latestChunk = Instantiate(m_terrainChunks[rnd], _spawnPosition, Quaternion.identity, m_chunkContainer.transform);
         SpawnedChunks.Add(m_latestChunk);
+
+        m_navMeshSurface.UpdateNavMesh(m_navMeshSurface.navMeshData);
     }
 
     private void ChunkCleaner()
