@@ -17,6 +17,7 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private SO_SpellUpgrades data_Upgrades;
     [SerializeField] private SO_Spells data_AllDirections;
     [SerializeField] private SO_Spells data_NearPlayer;
+    [SerializeField] private SO_Spells data_BaseArcher;
 
     [Header("Spell Levels")]
     private int level_AllDirections = 1;
@@ -25,11 +26,23 @@ public class SpellManager : MonoBehaviour
     private void OnEnable()
     {
         spawnScript = FindObjectOfType<SpellSpawner>();
+
+        // Prototype
+        LearnBaseArcher();
         LearnAllDirections();
         LearnNearPlayer();
     }
 
     #region Learn New Spells
+
+    /// <summary>
+    /// Learn the Spell "AllDirections" and show it in UI
+    /// </summary>
+    public void LearnBaseArcher()
+    {
+        spawnScript.data_BaseArcher = Instantiate(data_BaseArcher);
+        spawnScript.active_BaseArcher = true;
+    }
 
     /// <summary>
     /// Learn the Spell "AllDirections" and show it in UI

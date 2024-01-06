@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9a6dd5c19fc5da4897ce29d7da8ff33, type: 3}
+  m_Name: SO_Sp_BaseArcher
+  m_EditorClassIdentifier: 
+  projectileData: {fileID: 11400000, guid: 32f75ef856b71284487ce4ea16fe0b56, type: 2}
+  spellname: Archer
+  description: The base spell of the Archer. Shoots in the direction of the mouse.
+  damage: 50
+  lifetime: 3
+  speed: 2
+  cd: 1
+  radius: 1

@@ -27,6 +27,10 @@ public class SpellsProjectiles : Spells
         health = spellProjectileData.enemyHitPoints;
     }
 
+    /// <summary>
+    /// Moves the GameObject in the direction with the data-speed
+    /// </summary>
+    /// <param name="direction"></param>
     protected virtual void MoveStraightInDirection(Vector2 direction)
     {
         // Move the Spell with the given speed

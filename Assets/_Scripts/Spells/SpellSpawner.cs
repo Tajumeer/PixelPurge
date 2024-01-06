@@ -10,19 +10,23 @@ public class SpellSpawner : MonoBehaviour
     private ObjectPool<Spells> spellPool;
     private GameObject parent_spells;
 
+    [SerializeField] private GameObject playerObj;
     private Vector3 playerPosition;
 
     [Header("Scriptable Objects")]
     [HideInInspector] public SO_Spells data_AllDirections;
     [HideInInspector] public SO_Spells data_NearPlayer;
+    [HideInInspector] public SO_Spells data_BaseArcher;
 
     [Header("Active Spells")]
     [HideInInspector] public bool active_AllDirections = false;
     [HideInInspector] public bool active_NearPlayer = false;
+    [HideInInspector] public bool active_BaseArcher = false;
 
     [Header("Spell Timer")]
     private float timer_AllDirections = 0f;
     private float timer_NearPlayer = 0f;
+    private float timer_BaseArcher = 0f;
 
 
     void OnEnable()
@@ -33,6 +37,7 @@ public class SpellSpawner : MonoBehaviour
         spellPool = new ObjectPool<Spells>(spellPrefab);
         parent_spells = new GameObject();
         parent_spells.name = "Spells";
+        if(playerObj != null) parent_spells.transform.SetParent(playerObj.transform);
     }
 
     private void Update()
@@ -58,6 +63,17 @@ public class SpellSpawner : MonoBehaviour
                 timer_NearPlayer = 0;
             }
         }
+
+        // BASE ARCHER
+        if (active_BaseArcher)
+        {
+            timer_BaseArcher += Time.deltaTime;
+            if (timer_BaseArcher >= data_BaseArcher.cd)
+            {
+                SpawnBaseArcher();
+                timer_BaseArcher = 0;
+            }
+        }
     }
 
     /// <summary>
@@ -72,9 +88,30 @@ public class SpellSpawner : MonoBehaviour
             spellObj.transform.SetParent(parent_spells.transform);
             spellObj.tag = "PlayerSpell";
         }
-        spellObj.ResetObj(playerPosition, new Vector3(0f, 0f, 0f));
+        spellObj.ResetObjLocal(playerPosition, new Vector3(0f, 0f, 0f));
 
         return spellObj;
+    }
+
+    private void SpawnBaseArcher()
+    {
+
+        for (int i = 0; i < data_NearPlayer.projectileData.amount; i++)
+        {
+            Spells spellObj = SpawnPrefab();
+
+            Spell_BaseArcher spellScript;
+            if (spellObj.gameObject.GetComponent<Spell_BaseArcher>() != null)
+                spellScript = spellObj.gameObject.GetComponent<Spell_BaseArcher>();
+            else
+                spellScript = spellObj.gameObject.AddComponent<Spell_BaseArcher>();
+
+            spellScript.enabled = true;
+            spellScript.Init(spellObj.pool);
+            spellObj.enabled = false;
+
+            spellScript.OnSpawn(i, data_BaseArcher);
+        }
     }
 
     /// <summary>
@@ -106,7 +143,7 @@ public class SpellSpawner : MonoBehaviour
     private void SpawnNearPlayer()
     {
         for (int i = 0; i < data_NearPlayer.projectileData.amount; i++)
-        {
+        { 
             Spells spellObj = SpawnPrefab();
 
             Spell_NearPlayer spellScript;

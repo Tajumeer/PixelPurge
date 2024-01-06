@@ -48,6 +48,7 @@ MonoBehaviour:
   data_Upgrades: {fileID: 11400000, guid: e499ab8e7b38db5438fd5a9dd15dfe89, type: 2}
   data_AllDirections: {fileID: 11400000, guid: 23815ab94ae03044d903e54392fea425, type: 2}
   data_NearPlayer: {fileID: 11400000, guid: 476ab0c4739ce75448f7035dc0aa7ea2, type: 2}
+  data_BaseArcher: {fileID: 11400000, guid: 36e3eecb13a74ca46a35875b87e9530e, type: 2}
 --- !u!114 &7157674019473293842
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,3 +64,7 @@ MonoBehaviour:
   spellPrefab: {fileID: 1960888898802110764, guid: 2c709c61b0ae3f44889ee53d5fe7675c, type: 3}
   data_AllDirections: {fileID: 11400000, guid: 23815ab94ae03044d903e54392fea425, type: 2}
   data_NearPlayer: {fileID: 11400000, guid: 476ab0c4739ce75448f7035dc0aa7ea2, type: 2}
+  data_BaseArcher: {fileID: 0}
+  active_AllDirections: 0
+  active_NearPlayer: 0
+  active_BaseArcher: 0

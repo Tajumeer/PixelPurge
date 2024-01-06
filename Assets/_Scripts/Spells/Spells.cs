@@ -20,8 +20,8 @@ public class Spells : PoolObject<Spells>
 
         // Reset rigidbody
         rb.velocity = new Vector2(0f, 0f);
-        rb.position = new Vector2(transform.position.x, transform.position.y);
-        rb.rotation = transform.rotation.z;
+        rb.position = new Vector2(transform.localPosition.x, transform.localPosition.y);
+        rb.rotation = transform.localRotation.z;
 
         spellData = _spellData;
     }
