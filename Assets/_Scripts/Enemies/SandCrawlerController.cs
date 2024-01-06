@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.RestService;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -97,7 +98,7 @@ public class SandCrawlerController : MonoBehaviour, IDamagable
         if (collision.CompareTag("Player"))
         {
             Debug.LogWarning("Hit Player!");
-            collision.GetComponent<PlayerController>().PlayerHealth -= EnemyDamage;
+            collision.GetComponent<PlayerController>().ActivePlayerData.CurrentHealth -= EnemyDamage;  
         }
     }
 

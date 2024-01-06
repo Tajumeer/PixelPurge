@@ -2326,6 +2326,14 @@ PrefabInstance:
       propertyPath: m_movementSpeed
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 1982553278900513807, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: PlayerData.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1982553278900513807, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: PlayerData.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: df91bc8c82c2ea84f838aeb3c9daf98b, type: 2}
     - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_LocalScale.x
       value: 1

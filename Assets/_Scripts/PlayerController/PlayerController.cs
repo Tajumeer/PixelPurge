@@ -1,31 +1,17 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour, IDamagable
 {
-    [Header("Combat Stats")]
-    [SerializeField] public float PlayerHealth;
-    [SerializeField] public float PlayerDamage;
+    public List<PlayerStats> PlayerData;
+    public List<GameObject> PlayerVisual;
+    [HideInInspector] public PlayerStats ActivePlayerData;
+    [HideInInspector] public int ClassIndex; 
 
-    [Header("Movement")]
-    [SerializeField] private float m_movementSpeed;
-
-    [Header("Dashing")]
-    [SerializeField] private float m_dashingPower;
-    [SerializeField] private float m_dashinTime;
-    [SerializeField] private float m_dashingCooldown;
     private bool m_isAbleToDash;
     private bool m_isDashing;
 
-    [Header("Basic Attack")]
-    [SerializeField] private Transform m_projectileParent;
-    [SerializeField] private GameObject m_attackPrefab;
-    [SerializeField] private float m_attackForce;
-    [SerializeField] private float m_attackSpeed;
-    [SerializeField] private float m_attackOffest;
-    private float m_attackTimer;
-    //private Vector2 m_attackDirection;
-    //private const float F_ATTACK_OFFSET_X = 0.25f;
 
     [Header("Components")]
     [SerializeField] private SpriteRenderer m_spriteRenderer;
@@ -45,30 +31,35 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private AnimationState m_currentState;
 
-
-    void Start()
+    /// <summary>
+    /// the Int is the index for the List on the PlayerController to choose which Data is to be used
+    /// </summary>
+    /// <param name="_newIndex"></param>
+    public void SetActivePlayerData(int _newIndex)
     {
+        if(_newIndex > PlayerData.Count)
+        {
+            Debug.Log("SetActivePlayerData Error: " + _newIndex + "is out of Bounds check if the new index is correct:: No Changes have been Made to ActivePlayerData");
+            return;
+        }
+        ActivePlayerData = PlayerData[_newIndex];
+    }
+
+   private void Start()
+    {
+        ActivePlayerData = PlayerData[ClassIndex];
+        ActivePlayerData.CurrentHealth = ActivePlayerData.MaxHealth;
         m_isAbleToDash = true;
         m_isDead = false;
-        m_attackTimer = 0;
         m_rigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    private void Update()
     {
-
-        if (PlayerHealth <= 0)
+        if (ActivePlayerData.CurrentHealth <= 0)
         {
             SetDeathState();
-
         }
-
-        if (m_attackTimer <= 0f && !m_isDead)
-        {
-            Fire();
-            m_attackTimer = m_attackSpeed;
-        }
-        else m_attackTimer -= Time.deltaTime;
 
 
         SetAnimation();
@@ -105,8 +96,8 @@ public class PlayerController : MonoBehaviour, IDamagable
     }
 
     private void FixedUpdate()
+
     {
-        Debug.Log(PlayerHealth + "|" + m_isDead);
         if (m_isDashing) { return; }
         Move();
     }
@@ -125,7 +116,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void Move()
     {
-        m_rigidbody.velocity = new Vector2(MoveDirection.x * m_movementSpeed, MoveDirection.y * m_movementSpeed);
+        m_rigidbody.velocity = new Vector2(MoveDirection.x * ActivePlayerData.MovementSpeed, MoveDirection.y * ActivePlayerData.MovementSpeed);
     }
 
     private IEnumerator Dash()
@@ -133,63 +124,63 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_isAbleToDash = false;
         m_isDashing = true;
 
-        m_rigidbody.velocity = new Vector2(MoveDirection.x * m_dashingPower, MoveDirection.y * m_dashingPower);
-        yield return new WaitForSeconds(m_dashinTime);
+        m_rigidbody.velocity = new Vector2(MoveDirection.x * ActivePlayerData.DashSpeed, MoveDirection.y * ActivePlayerData.DashSpeed);
+        yield return new WaitForSeconds(ActivePlayerData.DashTime);
 
         m_isDashing = false;
 
-        yield return new WaitForSeconds(m_dashingCooldown);
+        yield return new WaitForSeconds(ActivePlayerData.DashCooldown);
         m_isAbleToDash = true;
     }
 
-    private void Fire()
-    {
-        //Fire in walk direction
-        //
-        //GameObject arrow;
-        //if (m_spriteRenderer.flipX == true && m_attackDirection.y ==0)
-        //{
-        //    arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x - F_ATTACK_OFFSET_X, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
-        //}
-        //else if (m_spriteRenderer.flipX == false && m_attackDirection.y == 0)
-        //{
-        //    arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x + F_ATTACK_OFFSET_X, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
-        //}
-        //else
-        //{
-        //    arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
-        //}
+    //private void Fire()
+    //{
+    //    //Fire in walk direction
+    //    //
+    //    //GameObject arrow;
+    //    //if (m_spriteRenderer.flipX == true && m_attackDirection.y ==0)
+    //    //{
+    //    //    arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x - F_ATTACK_OFFSET_X, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
+    //    //}
+    //    //else if (m_spriteRenderer.flipX == false && m_attackDirection.y == 0)
+    //    //{
+    //    //    arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x + F_ATTACK_OFFSET_X, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
+    //    //}
+    //    //else
+    //    //{
+    //    //    arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
+    //    //}
 
-        //if (m_attackDirection.x == 0 && m_attackDirection.y == 0)
-        //{
-        //    if (m_spriteRenderer.flipX == true)
-        //    {
-        //        arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(-1f * m_attackForce, 0f * m_attackForce);
-        //        arrow.GetComponent<SpriteRenderer>().flipX = true;
-        //    }
-        //    else if (m_spriteRenderer.flipX == false)
-        //    {
-        //        arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(1f * m_attackForce, 0f * m_attackForce);
-        //        arrow.GetComponent<SpriteRenderer>().flipX = false;
-        //    }
-        //}
-        //else
-        //{
-        //    arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(m_attackDirection.x * m_attackForce, m_attackDirection.y * m_attackForce);
-        //}
+    //    //if (m_attackDirection.x == 0 && m_attackDirection.y == 0)
+    //    //{
+    //    //    if (m_spriteRenderer.flipX == true)
+    //    //    {
+    //    //        arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(-1f * m_attackForce, 0f * m_attackForce);
+    //    //        arrow.GetComponent<SpriteRenderer>().flipX = true;
+    //    //    }
+    //    //    else if (m_spriteRenderer.flipX == false)
+    //    //    {
+    //    //        arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(1f * m_attackForce, 0f * m_attackForce);
+    //    //        arrow.GetComponent<SpriteRenderer>().flipX = false;
+    //    //    }
+    //    //}
+    //    //else
+    //    //{
+    //    //    arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(m_attackDirection.x * m_attackForce, m_attackDirection.y * m_attackForce);
+    //    //}
 
-        //arrow.transform.Rotate(0f, 0f, Mathf.Atan2(m_attackDirection.y, m_attackDirection.x) * Mathf.Rad2Deg);
+    //    //arrow.transform.Rotate(0f, 0f, Mathf.Atan2(m_attackDirection.y, m_attackDirection.x) * Mathf.Rad2Deg);
 
 
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector2 arrowDirection = (mousePosition - transform.position).normalized;
+    //    Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+    //    Vector2 arrowDirection = (mousePosition - transform.position).normalized;
 
-        GameObject arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
+    //    GameObject arrow = Instantiate(m_attackPrefab, new Vector3(transform.position.x, transform.position.y - m_attackOffest, 0f), Quaternion.identity, m_projectileParent);
 
-        arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(arrowDirection.x * m_attackForce, arrowDirection.y * m_attackForce);
-        arrow.transform.Rotate(0f, 0f, Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg);
+    //    arrow.GetComponent<Rigidbody2D>().velocity = new Vector2(arrowDirection.x * m_attackForce, arrowDirection.y * m_attackForce);
+    //    arrow.transform.Rotate(0f, 0f, Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg);
 
-    }
+    //}
 
     public void ChangeAnimationState(AnimationState newState)
     {
@@ -213,6 +204,6 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     public void GetDamage(float _damageValue)
     {
-        this.PlayerHealth -= _damageValue;
+        this.ActivePlayerData.CurrentHealth -= _damageValue;
     }
 }
