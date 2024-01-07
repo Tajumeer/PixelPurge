@@ -217,8 +217,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6df66df6cff1b5d4aba0203cfdc3e63b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xpPointsNeeded: 5
-  xpNeedMultiplier: 0.1
+  xpPrefab: {fileID: 8008992375750755040, guid: 1e98c551b9b7d4247bc7818196898e75, type: 3}
 --- !u!1 &7931933358026006842
 GameObject:
   m_ObjectHideFlags: 0

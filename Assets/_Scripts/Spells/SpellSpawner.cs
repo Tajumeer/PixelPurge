@@ -8,7 +8,7 @@ public class SpellSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject spellPrefab;
     private ObjectPool<Spells> spellPool;
-    private GameObject parent_spells;
+    private GameObject spellParent;
 
     private PlayerController player;
 
@@ -34,8 +34,8 @@ public class SpellSpawner : MonoBehaviour
 
         // Create Spell Parent GameObject
         spellPool = new ObjectPool<Spells>(spellPrefab);
-        parent_spells = new GameObject();
-        parent_spells.name = "Spells";
+        spellParent = new GameObject();
+        spellParent.name = "Spells";
     }
 
     private void Update()
@@ -83,7 +83,7 @@ public class SpellSpawner : MonoBehaviour
 
         if(spellObj.tag != "PlayerSpell")
         {
-            spellObj.transform.SetParent(parent_spells.transform);
+            spellObj.transform.SetParent(spellParent.transform);
             spellObj.tag = "PlayerSpell";
         }
         

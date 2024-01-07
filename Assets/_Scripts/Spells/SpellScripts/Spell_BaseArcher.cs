@@ -15,8 +15,8 @@ public class Spell_BaseArcher : SpellsProjectiles
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 arrowDirection = (mousePosition - transform.position).normalized;
 
-        MoveStraightInDirection(arrowDirection);
-        
+        MoveStraightInDirection(new Vector2(arrowDirection.x, arrowDirection.y).normalized);
+
         transform.Rotate(0f, 0f, Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg);
 
         /**** Sven End ****/

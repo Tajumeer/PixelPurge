@@ -35,7 +35,6 @@ public class SpellsProjectiles : Spells
     {
         // Move the Spell with the given speed
         rb.AddRelativeForce(direction * spellData.speed, ForceMode2D.Impulse);
-        //rb.AddForce(direction * spellData.speed, ForceMode2D.Impulse);
     }
 
     public virtual void OnCollisionEnter2D(Collision2D _collision)

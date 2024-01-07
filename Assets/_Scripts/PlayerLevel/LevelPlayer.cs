@@ -9,6 +9,11 @@ public class LevelPlayer : MonoBehaviour
     private CircleCollider2D col;
     private PlayerStats playerData;
 
+    [Header("Object Pool")]
+    [SerializeField] private GameObject xpPrefab;
+    private ObjectPool<LevelXP> xpPool;
+    private GameObject xpParent;
+
     private int level;
 
     /// <summary>
@@ -19,27 +24,61 @@ public class LevelPlayer : MonoBehaviour
     /// <summary>
     /// the amount of xp needed to level up
     /// </summary>
-    [Tooltip("The amount of xp needed for the first level")]
-    [SerializeField] private float xpPointsNeeded;
+    private float xpPointsNeeded;
 
-    [Tooltip("Increase the amount of XP needed to level up every Level by XX%")]
-    [SerializeField] private float xpNeedMultiplier;
+    /// <summary>
+    /// Increase the amount of XP needed to level up every Level by XX%
+    /// </summary>
+    private float xpNeedMultiplier;
 
-    private void Start()
-    {
-        //xpPointsNeeded = playerData.XPNeeded;
-        //xpNeedMultiplier = playerData.XPMultiplier; // !!!! XPNeededMultiplier 
-    }
-
-    public void initxp()
+    /// <summary>
+    /// Set values from playerData and create ObjectPool
+    /// </summary>
+    public void InitXP()
     {
         col = GetComponent<CircleCollider2D>();
         playerData = GetComponentInParent<PlayerController>().ActivePlayerData;
 
+        // Set values from playerData
         level = 1;
         xpPointsNeeded = playerData.XPNeeded;
-        xpNeedMultiplier = playerData.XPMultiplier; // !!!! XPNeededMultiplier 
-        IncreaseRadius(playerData.CollectionRadius);
+        xpNeedMultiplier = playerData.XPNeededMultiplier;
+        IncreaseCollectionRadius(playerData.CollectionRadius);
+
+        // Create Object Pool and Parent
+        xpPool = new ObjectPool<LevelXP>(xpPrefab);
+        xpParent = new GameObject();
+        xpParent.name = "XP";
+
+        StartCoroutine(Spawn());
+    }
+
+    private IEnumerator Spawn()
+    {
+        for(int i = 0; i < 20; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            SpawnXP(new Vector3(Random.Range(-8, 8), Random.Range(-4, 4), 0f), 1f);
+        }
+    }
+
+    /// <summary>
+    /// Spawn an object from the xp Prefab
+    /// </summary>
+    /// <param name="_position">The position of the xp / where the enemy died</param>
+    /// <param name="_xpAmount">The amount of xp points the player gets when collecting this xp object</param>
+    public void SpawnXP(Vector3 _position, float _xpAmount)
+    {
+        LevelXP xp = xpPool.GetObject();
+
+        if (xp.tag != "XP")
+        {
+            xp.transform.SetParent(xpParent.transform);
+            xp.tag = "XP";
+        }
+        xp.ResetObj(_position, new Vector3(0f, 0f, 0f));
+
+        xp.OnSpawn(_xpAmount, this);
     }
 
     /// <summary>
@@ -48,11 +87,11 @@ public class LevelPlayer : MonoBehaviour
     /// <param name="_amount">The amount of XP the player gets</param>
     public void GetXP(float _amount)
     {
-        Debug.Log("Get XP");
+        Debug.Log("Get XP: " + _amount);
         xpPoints += _amount * (1f + playerData.XPMultiplier);
 
         // if current xp = needed xp -> level up
-        if(xpPoints >= xpPointsNeeded)  
+        if (xpPoints >= xpPointsNeeded)
         {
             LevelUp();
 
@@ -65,7 +104,7 @@ public class LevelPlayer : MonoBehaviour
     /// Increase the Radius of the Collection Trigger
     /// </summary>
     /// <param name="_radius"></param>
-    public void IncreaseRadius(float _radius)
+    public void IncreaseCollectionRadius(float _radius)
     {
         col.radius = _radius; // + 0.1f
     }
