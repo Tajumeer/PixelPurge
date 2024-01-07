@@ -27,16 +27,6 @@ public class PoolObject<T> : MonoBehaviour where T : PoolObject<T>
     }
 
     /// <summary>
-    /// Activate the Object and reset the local position and rotation to the given ones
-    /// </summary>
-    public virtual void ResetObjLocal(Vector3 _position, Vector3 _eulerAngle)
-    {
-        gameObject.SetActive(true);
-        transform.localPosition = _position;
-        transform.eulerAngles = _eulerAngle;
-    }
-
-    /// <summary>
     /// Put the object back to the ObjectPool and deactivate it
     /// </summary>
     public virtual void Deactivate()

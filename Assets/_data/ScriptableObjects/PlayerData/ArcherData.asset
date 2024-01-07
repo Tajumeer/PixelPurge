@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerClassName: Archer
   Level: 0
-  CurrentHealth: 0
+  CurrentHealth: 100
   MovementSpeed: 3
   DashAmount: 1
   DashSpeed: 25
@@ -30,7 +30,8 @@ MonoBehaviour:
   MaxHealth: 100
   HealthRegeneration: 0
   DamageReductionPercentage: 0
-  XPNeeded: 0
-  CollectionRadius: 5
+  CollectionRadius: 1
   GoldMultiplier: 1
+  XPNeeded: 5
+  XPNeededMultiplier: 0.1
   XPMultiplier: 1

@@ -26,7 +26,7 @@ public class SpellManager : MonoBehaviour
         // Prototype
         LearnBaseArcher();
         LearnAllDirections();
-        LearnNearPlayer();
+        //LearnNearPlayer();
     }
 
     #region Learn New Spells

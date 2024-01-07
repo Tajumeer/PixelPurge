@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class LevelXP : MonoBehaviour
 {
-    [SerializeField] private Transform playerTransf;
-    private Rigidbody2D rb;
+    private PlayerController player;
 
     [SerializeField] private float speed;
     private float xpAmount;
@@ -15,17 +14,20 @@ public class LevelXP : MonoBehaviour
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
+        player = FindObjectOfType<PlayerController>();
 
         // Debugging
         isCollected = false;
         xpAmount = 1f;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if(isCollected)
-            rb.AddRelativeForce(playerTransf.position * speed, ForceMode2D.Impulse);
+        if (isCollected)
+        {
+            player = FindObjectOfType<PlayerController>();
+            gameObject.transform.position = Vector2.MoveTowards(transform.position, player.gameObject.transform.position, speed * Time.deltaTime);
+        }
     }
 
     /// <summary>
@@ -38,27 +40,20 @@ public class LevelXP : MonoBehaviour
         xpAmount = _xpAmount;
     }
 
-    /// <summary>
-    /// Is the XP "Collected" / is it in the collection radius of the player -> then fly to him 
-    /// </summary>
-    private void CollectXP()
-    {
-        isCollected = true;
-    }
-
     private void OnTriggerEnter2D(Collider2D _collision)
     {
         // if the xp reaches the player, it is collected and increase XP
         if (_collision.gameObject.CompareTag("Player"))
         {
-            _collision.gameObject.TryGetComponent(out LevelPlayer character);
-            character.GetXP(xpAmount);
+            LevelPlayer character = _collision.GetComponentInChildren<LevelPlayer>();
+            if (character != null) character.GetXP(xpAmount);
+            // Deactivate();
         }
 
         // if the player collects the xp (when it is in the collection radius) it flies to him
         else if (_collision.gameObject.CompareTag("PlayerXpCollect"))
         {
-            CollectXP();
+            isCollected = true;
         }
     }
 }

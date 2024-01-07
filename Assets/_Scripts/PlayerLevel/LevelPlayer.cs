@@ -25,7 +25,13 @@ public class LevelPlayer : MonoBehaviour
     [Tooltip("Increase the amount of XP needed to level up every Level by XX%")]
     [SerializeField] private float xpNeedMultiplier;
 
-    private void Awake()
+    private void Start()
+    {
+        //xpPointsNeeded = playerData.XPNeeded;
+        //xpNeedMultiplier = playerData.XPMultiplier; // !!!! XPNeededMultiplier 
+    }
+
+    public void initxp()
     {
         col = GetComponent<CircleCollider2D>();
         playerData = GetComponentInParent<PlayerController>().ActivePlayerData;
@@ -42,6 +48,7 @@ public class LevelPlayer : MonoBehaviour
     /// <param name="_amount">The amount of XP the player gets</param>
     public void GetXP(float _amount)
     {
+        Debug.Log("Get XP");
         xpPoints += _amount * (1f + playerData.XPMultiplier);
 
         // if current xp = needed xp -> level up
@@ -60,7 +67,7 @@ public class LevelPlayer : MonoBehaviour
     /// <param name="_radius"></param>
     public void IncreaseRadius(float _radius)
     {
-        col.radius *= _radius; // + 0.1f
+        col.radius = _radius; // + 0.1f
     }
 
     private void LevelUp()

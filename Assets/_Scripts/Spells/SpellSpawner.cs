@@ -10,8 +10,7 @@ public class SpellSpawner : MonoBehaviour
     private ObjectPool<Spells> spellPool;
     private GameObject parent_spells;
 
-    [SerializeField] private GameObject playerObj;
-    private Vector3 playerPosition;
+    private PlayerController player;
 
     [Header("Scriptable Objects")]
     [HideInInspector] public SO_Spells data_AllDirections;
@@ -31,13 +30,12 @@ public class SpellSpawner : MonoBehaviour
 
     void OnEnable()
     {
-        playerPosition = new Vector3(0f, 0f, 0f);
+        player = FindObjectOfType<PlayerController>();
 
         // Create Spell Parent GameObject
         spellPool = new ObjectPool<Spells>(spellPrefab);
         parent_spells = new GameObject();
         parent_spells.name = "Spells";
-        if(playerObj != null) parent_spells.transform.SetParent(playerObj.transform);
     }
 
     private void Update()
@@ -88,7 +86,8 @@ public class SpellSpawner : MonoBehaviour
             spellObj.transform.SetParent(parent_spells.transform);
             spellObj.tag = "PlayerSpell";
         }
-        spellObj.ResetObjLocal(playerPosition, new Vector3(0f, 0f, 0f));
+        
+        spellObj.ResetObj(player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
 
         return spellObj;
     }

@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_isAbleToDash = true;
         m_isDead = false;
         m_rigidbody = GetComponent<Rigidbody2D>();
+
+        GetComponentInChildren<LevelPlayer>().initxp();
     }
 
     private void Update()

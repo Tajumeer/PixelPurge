@@ -116,7 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5877650892401374059}
   m_Layer: 0
-  m_Name: PlayerProjectiles
+  m_Name: PlayerAura
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -268,7 +268,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1165b2add14fe414abfad99f3e133c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerData: []
+  PlayerData:
+  - {fileID: 11400000, guid: df91bc8c82c2ea84f838aeb3c9daf98b, type: 2}
   PlayerVisual: []
   ActivePlayerData: {fileID: 0}
   ClassIndex: 0
