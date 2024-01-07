@@ -50,7 +50,7 @@ public class LevelPlayer : MonoBehaviour
         xpParent = new GameObject();
         xpParent.name = "XP";
 
-        StartCoroutine(Spawn());
+      //  StartCoroutine(Spawn());
     }
 
     private IEnumerator Spawn()

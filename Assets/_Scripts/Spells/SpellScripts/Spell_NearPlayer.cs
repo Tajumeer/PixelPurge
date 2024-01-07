@@ -13,8 +13,8 @@ public class Spell_NearPlayer : SpellsProjectiles
         // Move the Spell with the given speed
         rb.AddRelativeForce(Vector2.down * spellData.speed, ForceMode2D.Impulse);
     }
-
-    protected override void OnTriggerEnter2D(Collider2D _collision)
+ 
+    public override void OnTriggerEnter2D(Collider2D _collision)
     {
         base.OnTriggerEnter2D(_collision);
     }

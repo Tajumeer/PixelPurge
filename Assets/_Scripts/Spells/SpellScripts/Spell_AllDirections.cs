@@ -35,8 +35,8 @@ public class Spell_AllDirections : SpellsProjectiles
     {
         base.MoveStraightInDirection(direction);
     }
-
-    protected override void OnTriggerEnter2D(Collider2D _collision)
+ 
+    public override void OnTriggerEnter2D(Collider2D _collision)
     {
         base.OnTriggerEnter2D(_collision);
 

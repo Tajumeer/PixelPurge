@@ -36,18 +36,16 @@ public class SpellsProjectiles : Spells
         // Move the Spell with the given speed
         rb.AddRelativeForce(direction * spellData.speed, ForceMode2D.Impulse);
     }
-
-    protected virtual void OnTriggerEnter2D(Collider2D _collision)
+    public virtual void OnTriggerEnter2D(Collider2D _collision)
     {
         // if an enemy got hit by the spell
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
+        Debug.Log("Hit!");
         _collision.gameObject.GetComponent<IDamagable>().GetDamage(spellData.damage);
-        //_collision.gameObject.TryGetComponent(out IDamagable character);
-        //character.GetDamage(spellData.damage);
-
-        DeactivateSpell();
+        // character.GetDamage(spellData.damage);
     }
+  
 
     /// <summary>
     /// Deletes the Object when the lifetime ends
