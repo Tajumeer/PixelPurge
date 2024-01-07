@@ -156,6 +156,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDamage: 20
   EnemyHealth: 400
+  m_XPonDeath: 5
 --- !u!195 &7851237647990967117
 NavMeshAgent:
   m_ObjectHideFlags: 0

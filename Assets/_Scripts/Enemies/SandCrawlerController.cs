@@ -5,10 +5,11 @@ using UnityEditor.Experimental.RestService;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SandCrawlerController : PoolObject<SandCrawlerController> ,IDamagable
+public class SandCrawlerController : MonoBehaviour ,IDamagable
 {
     public float EnemyDamage;
     public float EnemyHealth;
+   [SerializeField] private float m_ExpOnDeath;
 
     private NavMeshAgent m_agent;
     private Transform m_target;
@@ -17,6 +18,7 @@ public class SandCrawlerController : PoolObject<SandCrawlerController> ,IDamagab
     private Rigidbody2D m_rb;
     private SpriteRenderer m_spriteRenderer;
     private EnemySpawner m_enemySpawner;
+    private LevelPlayer m_levelPlayer;
 
     private bool m_isDead;
     private enum AnimationState
@@ -33,6 +35,8 @@ public class SandCrawlerController : PoolObject<SandCrawlerController> ,IDamagab
         m_collider = GetComponent<Collider2D>();
         m_rb = GetComponent<Rigidbody2D>();
         m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        m_levelPlayer = FindObjectOfType<LevelPlayer>();
+        m_enemySpawner = FindObjectOfType<EnemySpawner>();
      
     }
 
@@ -75,13 +79,14 @@ public class SandCrawlerController : PoolObject<SandCrawlerController> ,IDamagab
 
     public void SetDeathState()
     {
+        if (m_isDead) { return; }
         // m_agent.SetDestination(this.m_target.position);
+        m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
         Destroy(m_agent);
         m_isDead = true;
         ChangeAnimationState(AnimationState.sandCrawler_death);
         Destroy(m_rb);
         Destroy(m_collider);
-        m_enemySpawner = GetComponent<EnemySpawner>();
         m_spriteRenderer.sortingOrder = 0;
         m_enemySpawner.OnEnemyKilled();
         StartCoroutine(DestroyGameObject(5f));

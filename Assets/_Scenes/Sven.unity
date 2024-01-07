@@ -539,6 +539,63 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1430140957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &420063631
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1335565029319372703, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_Name
+      value: SpellManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159834198189621193, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159834198189621193, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159834198189621193, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159834198189621193, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159834198189621193, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159834198189621193, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159834198189621193, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159834198189621193, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159834198189621193, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5159834198189621193, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: aa5393ed66471bf47b43652a3f9c6ea4, type: 3}
 --- !u!1 &422999795
 GameObject:
   m_ObjectHideFlags: 0
@@ -921,7 +978,7 @@ MonoBehaviour:
     SpawnCount: 0
     EnemyGroups:
     - EnemyName: Sand Crawler
-      EnemyCount: 5000
+      EnemyCount: 5
       SpawnCount: 0
       EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
   m_waveInterval: 60
@@ -2525,3 +2582,4 @@ SceneRoots:
   - {fileID: 1894924148}
   - {fileID: 1392810973}
   - {fileID: 961896537}
+  - {fileID: 420063631}

@@ -22,8 +22,9 @@ public class Spell_BaseArcher : SpellsProjectiles
         /**** Sven End ****/
     }
 
-    public override void OnCollisionEnter2D(Collision2D _collision)
+ 
+    public override void OnTriggerEnter2D(Collider2D _collision)
     {
-        base.OnCollisionEnter2D(_collision);
+        base.OnTriggerEnter2D(_collision);
     }
 }

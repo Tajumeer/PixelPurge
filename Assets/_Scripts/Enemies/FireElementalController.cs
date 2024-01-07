@@ -4,10 +4,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FireElementalController : PoolObject<FireElementalController>, IDamagable
+public class FireElementalController : MonoBehaviour, IDamagable
 {
     public float EnemyDamage;
     public float EnemyHealth;
+    [SerializeField] private float m_ExpOnDeath;
 
     private NavMeshAgent m_agent;
     private Transform m_target;
@@ -15,6 +16,9 @@ public class FireElementalController : PoolObject<FireElementalController>, IDam
     private Collider2D m_collider;
     private Rigidbody2D m_rb;
     private SpriteRenderer m_spriteRenderer;
+
+    private EnemySpawner m_enemySpawner;
+    private LevelPlayer m_levelPlayer;
 
     private bool m_isDead;
     private enum AnimationState
@@ -31,6 +35,8 @@ public class FireElementalController : PoolObject<FireElementalController>, IDam
         m_collider = GetComponent<Collider2D>();
         m_rb = GetComponent<Rigidbody2D>();
         m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        m_levelPlayer = FindObjectOfType<LevelPlayer>();
+        m_enemySpawner = FindObjectOfType<EnemySpawner>();
 
     }
 
@@ -73,13 +79,18 @@ public class FireElementalController : PoolObject<FireElementalController>, IDam
 
     public void SetDeathState()
     {
+        if (m_isDead) { return; }
         // m_agent.SetDestination(this.m_target.position);
         Destroy(m_agent);
         m_isDead = true;
         ChangeAnimationState(AnimationState.fireEle_death);
         Destroy(m_rb);
         Destroy(m_collider);
+   
+        m_enemySpawner.OnEnemyKilled();
         m_spriteRenderer.sortingOrder = 0;
+     
+        m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
         StartCoroutine(DestroyGameObject(5f));
     }
 
