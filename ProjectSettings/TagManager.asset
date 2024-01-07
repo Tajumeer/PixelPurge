@@ -28,6 +28,7 @@ TagManager:
   - PlayerSpell
   - Exit
   - XP
+  - PlayerXpCollect
   layers:
   - Default
   - TransparentFX

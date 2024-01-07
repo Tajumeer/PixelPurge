@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Maya
+
 public class LevelXP : MonoBehaviour
 {
     [SerializeField] private Transform playerTransf;
@@ -14,6 +16,10 @@ public class LevelXP : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // Debugging
+        isCollected = false;
+        xpAmount = 1f;
     }
 
     private void Update()
@@ -35,7 +41,7 @@ public class LevelXP : MonoBehaviour
     /// <summary>
     /// Is the XP "Collected" / is it in the collection radius of the player -> then fly to him 
     /// </summary>
-    public void CollectXP()
+    private void CollectXP()
     {
         isCollected = true;
     }

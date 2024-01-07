@@ -7,10 +7,6 @@ using UnityEngine;
 
 public class SpellManager : MonoBehaviour
 {
-    // spell lernen
-    // upgrade
-    // UI
-
     SpellSpawner spawnScript;
 
     [Header("Scriptable Objects")]
