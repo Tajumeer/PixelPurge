@@ -106,6 +106,7 @@ public class SpellSpawner : MonoBehaviour
             else
                 spellScript = spellObj.gameObject.AddComponent<Spell_BaseArcher>();
 
+            // copy the spellScript values and disable it to use the specified spell script
             spellScript.enabled = true;
             spellScript.Init(spellObj.pool);
             spellObj.enabled = false;
