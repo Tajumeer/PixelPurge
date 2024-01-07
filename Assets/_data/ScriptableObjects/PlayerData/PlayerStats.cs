@@ -34,14 +34,11 @@ public class PlayerStats : ScriptableObject
     public float DamageReductionPercentage;
 
     [Header("Utility Stats")]
-    public float XPNeeded;
     public float CollectionRadius;
     public float GoldMultiplier;
+
+    [Header("XP Stats")]
+    public float XPNeeded;
+    public float XPNeededMultiplier;
     public float XPMultiplier;
-
-    
-
-
-
-
 }

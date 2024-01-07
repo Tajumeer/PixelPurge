@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FireElementalController : MonoBehaviour, IDamagable
+public class FireElementalController : PoolObject<FireElementalController>, IDamagable
 {
     public float EnemyDamage;
     public float EnemyHealth;
