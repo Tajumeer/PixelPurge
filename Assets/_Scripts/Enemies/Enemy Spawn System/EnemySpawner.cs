@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Rendering;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -41,14 +42,11 @@ public class EnemySpawner : MonoBehaviour
     private int m_currentWaveCount;
     private Transform m_player;
 
-
     private void Start()
 
     {
         m_player = FindObjectOfType<PlayerController>().transform;
         m_isMaxEnemiesReached = false;
-
-    
 
         CalculateWaveQuota();
     }

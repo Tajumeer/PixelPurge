@@ -917,15 +917,15 @@ MonoBehaviour:
   m_waves:
   - WaveName: Wave 1
     WaveQuota: 0
-    SpawnInterval: 0.3
+    SpawnInterval: 0.1
     SpawnCount: 0
     EnemyGroups:
     - EnemyName: Sand Crawler
-      EnemyCount: 250
+      EnemyCount: 5000
       SpawnCount: 0
       EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
   m_waveInterval: 60
-  m_maxEnemies: 200
+  m_maxEnemies: 20000
   m_SpawnPoints:
   - {fileID: 1651431110}
   - {fileID: 779299244}

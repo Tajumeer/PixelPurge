@@ -5,7 +5,7 @@ using UnityEditor.Experimental.RestService;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class SandCrawlerController : MonoBehaviour, IDamagable
+public class SandCrawlerController : PoolObject<SandCrawlerController> ,IDamagable
 {
     public float EnemyDamage;
     public float EnemyHealth;
