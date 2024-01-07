@@ -37,13 +37,16 @@ public class SpellsProjectiles : Spells
         rb.AddRelativeForce(direction * spellData.speed, ForceMode2D.Impulse);
     }
 
-    public virtual void OnCollisionEnter2D(Collision2D _collision)
+    protected virtual void OnTriggerEnter2D(Collider2D _collision)
     {
         // if an enemy got hit by the spell
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
-        _collision.gameObject.TryGetComponent(out IDamagable character);
-        character.GetDamage(spellData.damage);
+        _collision.gameObject.GetComponent<IDamagable>().GetDamage(spellData.damage);
+        //_collision.gameObject.TryGetComponent(out IDamagable character);
+        //character.GetDamage(spellData.damage);
+
+        DeactivateSpell();
     }
 
     /// <summary>
@@ -53,6 +56,13 @@ public class SpellsProjectiles : Spells
     protected virtual IEnumerator DeleteTimer()
     {
         yield return new WaitForSeconds(spellData.lifetime);
+
+        DeactivateSpell();
+    }
+
+    protected virtual void DeactivateSpell()
+    {
+        StopAllCoroutines();
 
         if (gameObject.GetComponent<Spell_NearPlayer>() != null) gameObject.GetComponent<Spell_NearPlayer>().enabled = false;
         if (gameObject.GetComponent<Spell_AllDirections>() != null) gameObject.GetComponent<Spell_AllDirections>().enabled = false;

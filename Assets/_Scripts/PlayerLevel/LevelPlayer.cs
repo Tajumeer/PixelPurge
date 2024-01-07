@@ -71,11 +71,7 @@ public class LevelPlayer : MonoBehaviour
     {
         LevelXP xp = xpPool.GetObject();
 
-        if (xp.tag != "XP")
-        {
-            xp.transform.SetParent(xpParent.transform);
-            xp.tag = "XP";
-        }
+        xp.transform.SetParent(xpParent.transform);
         xp.ResetObj(_position, new Vector3(0f, 0f, 0f));
 
         xp.OnSpawn(_xpAmount, this);

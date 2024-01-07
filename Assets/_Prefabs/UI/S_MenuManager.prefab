@@ -45,10 +45,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Village: 1
-  Credits: 2
-  Options: 3
-  StatUpgrade: 4
-  Pause: 5
-  LevelUp: 6
-  Finish: 7
-  Lose: 8
+  VillageHUD: 2
+  Credits: 3
+  Options: 4
+  StatUpgrade: 5
+  Dungeon: 6
+  DungeonHUD: 7
+  Pause: 8
+  LevelUp: 9
+  Finish: 10
+  Lose: 11

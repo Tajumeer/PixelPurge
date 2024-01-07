@@ -9,7 +9,7 @@ public class Spell_Aura : Spells
         base.OnSpawn(_spellIdx, _spellData);
     }
 
-    public void OnCollisionStay2D(Collision2D _collision)
+    protected void OnTriggerStay2D(Collider2D _collision)
     {
         // if an enemy got hit by the spell
         if (!_collision.gameObject.CompareTag("Enemy")) return;

@@ -10,9 +10,12 @@ public class MenuManager : MonoBehaviour
 
     [Header("Scene Numbers in Build Settings")]
     [SerializeField] private int Village;
+    [SerializeField] private int VillageHUD;
     [SerializeField] private int Credits;
     [SerializeField] private int Options;
     [SerializeField] private int StatUpgrade;
+    [SerializeField] private int Dungeon;
+    [SerializeField] private int DungeonHUD;
     [SerializeField] private int Pause;
     [SerializeField] private int LevelUp;
     [SerializeField] private int Finish;
