@@ -41,9 +41,7 @@ public class SpellsProjectiles : Spells
         // if an enemy got hit by the spell
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
-        Debug.Log("Hit!");
         _collision.gameObject.GetComponent<IDamagable>().GetDamage(spellData.damage);
-        // character.GetDamage(spellData.damage);
     }
   
 
