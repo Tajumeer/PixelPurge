@@ -974,15 +974,28 @@ MonoBehaviour:
   m_waves:
   - WaveName: Wave 1
     WaveQuota: 0
-    SpawnInterval: 0.1
+    SpawnInterval: 1.25
     SpawnCount: 0
     EnemyGroups:
-    - EnemyName: Sand Crawler
-      EnemyCount: 5
+    - EnemyName: Frost Ghost
+      EnemyCount: 75
       SpawnCount: 0
       EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+  - WaveName: Wave 1
+    WaveQuota: 0
+    SpawnInterval: 0.75
+    SpawnCount: 0
+    EnemyGroups:
+    - EnemyName: Frost Ghost
+      EnemyCount: 175
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+    - EnemyName: Frost Golem
+      EnemyCount: 1
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 7794670824351030394, guid: c8fc194ff74105b4a87f5986624bb17b, type: 3}
   m_waveInterval: 60
-  m_maxEnemies: 20000
+  m_maxEnemies: 250
   m_SpawnPoints:
   - {fileID: 1651431110}
   - {fileID: 779299244}
@@ -1995,6 +2008,10 @@ MonoBehaviour:
   - {fileID: 5635514078983145396, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
   - {fileID: 5635514078983145396, guid: 0f2c647a88a6a564d8d58545e7c2c573, type: 3}
   - {fileID: 5635514078983145396, guid: 3c4bd81446f20194ca4c405d61929073, type: 3}
+  - {fileID: 5635514078983145396, guid: c394f63372e79e5498f835d8d21c3db5, type: 3}
+  - {fileID: 5635514078983145396, guid: 52864ac9e3399464ca024a27343810e5, type: 3}
+  - {fileID: 5635514078983145396, guid: fa3e6512b2888904aa1a485ac0e3c06f, type: 3}
+  - {fileID: 5635514078983145396, guid: b8cd2c546ca47ed498c628f7b4c29b12, type: 3}
   CurrentChunk: {fileID: 0}
   m_navMeshSurface: {fileID: 1894924150}
   m_maxOpDist: 39.6
@@ -2393,15 +2410,15 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: df91bc8c82c2ea84f838aeb3c9daf98b, type: 2}
     - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 1.4
       objectReference: {fileID: 0}
     - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2445,7 +2462,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_ConstrainProportionsScale
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7931933358026006842, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_Name
@@ -2520,6 +2537,118 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.size
+      value: 27
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 5539999785541664915, guid: 1f4125c19a93d054d95e4cc93cf81e60, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4844024852670890348, guid: 889cadaa297d8f34483b6900e6133f17, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 778509477848228564, guid: 48b9a6da79b934b46a6b9011e4274732, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[3]
+      value: 
+      objectReference: {fileID: 629890912465330158, guid: eade5f589af3ea24482c88df1647bdfa, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 6129248973333514771, guid: f48cbe5641a9917438a1cf140c630300, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 5660048870588553184, guid: 702281db7755c60458c1ad33b01b60f4, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 5302294494057857608, guid: c5190d0f2106db94a88bb2a775e1adf7, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[7]
+      value: 
+      objectReference: {fileID: 3563528137660004910, guid: ad256c811f7e3474aab92a520701992e, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[8]
+      value: 
+      objectReference: {fileID: 834219479026107772, guid: 1f934e0c5f7c9474f91d1c98ae90d256, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[9]
+      value: 
+      objectReference: {fileID: 7936265802729296466, guid: 1942ae4db6b184d42b2a7c477bc6d62d, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[10]
+      value: 
+      objectReference: {fileID: 7952339174961276674, guid: b6944eec2cbe96845ae403ff6c81fc80, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[11]
+      value: 
+      objectReference: {fileID: 1535113377977612280, guid: 28ff2ae2b8c706f4e8f460b0da60cee4, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[12]
+      value: 
+      objectReference: {fileID: 831094659851412908, guid: 3df97c0d4384d164c8ada92a9faea917, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[13]
+      value: 
+      objectReference: {fileID: 3953707489822482601, guid: 8ae8f88a69d575745b78df07e2af284e, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[14]
+      value: 
+      objectReference: {fileID: 4812482747575146565, guid: b67361839b0b44743a495c57d0fbb774, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[15]
+      value: 
+      objectReference: {fileID: 4303273482991278799, guid: 18c6085a2c5c9894ea82d30ffb7111e5, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[16]
+      value: 
+      objectReference: {fileID: 3357368812445664157, guid: da758bf0a6ba0784b8f1903df0adc908, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[17]
+      value: 
+      objectReference: {fileID: 7130728856763257893, guid: 788fe1c5bf8cf0b41b8c4a57b86c698c, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[18]
+      value: 
+      objectReference: {fileID: 2216145220642532431, guid: 5c8c5f74947daca44baca89867d6b45e, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[19]
+      value: 
+      objectReference: {fileID: 1936475376770308132, guid: 74655d84db09e6044aa04160192b1aa1, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[20]
+      value: 
+      objectReference: {fileID: 744232090690119277, guid: def4a8494aa0ba54db24f59fd0e57759, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[21]
+      value: 
+      objectReference: {fileID: 2309531745230376507, guid: af2d5372b3b22e64cbf6cf62ebc29514, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[22]
+      value: 
+      objectReference: {fileID: 5353890277719056690, guid: be0d816a69698c044bb4a05a572023bd, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[23]
+      value: 
+      objectReference: {fileID: 2120019779652756737, guid: b2fa3d2f0884d634d9f6d820825e9cc5, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[24]
+      value: 
+      objectReference: {fileID: 50000275750148711, guid: 03d626812aad69d48b4f7be8f322cca3, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[25]
+      value: 
+      objectReference: {fileID: 7378769990532079044, guid: cb439f123ab806c41b3ab17d94682247, type: 3}
+    - target: {fileID: 6832795982443132599, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
+      propertyPath: PropPrefabs.Array.data[26]
+      value: 
+      objectReference: {fileID: 1505244277469610668, guid: cc62578d2fb0e384d9c1ee7316fb908a, type: 3}
     m_RemovedComponents:
     - {fileID: 3133204093575372945, guid: de77fde87f8c8f34bbe49b67237ae26e, type: 3}
     m_RemovedGameObjects: []
