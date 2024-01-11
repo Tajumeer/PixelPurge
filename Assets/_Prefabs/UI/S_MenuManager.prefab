@@ -51,7 +51,8 @@ MonoBehaviour:
   StatUpgrade: 5
   Dungeon: 6
   DungeonHUD: 7
-  Pause: 8
+  DetailsHUD: 8
   LevelUp: 9
-  Finish: 10
-  Lose: 11
+  Pause: 10
+  Finish: 11
+  Lose: 12

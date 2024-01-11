@@ -9,17 +9,18 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Instance;
 
     [Header("Scene Numbers in Build Settings")]
-    [SerializeField] private int Village;
-    [SerializeField] private int VillageHUD;
-    [SerializeField] private int Credits;
-    [SerializeField] private int Options;
-    [SerializeField] private int StatUpgrade;
-    [SerializeField] private int Dungeon;
-    [SerializeField] private int DungeonHUD;
-    [SerializeField] private int Pause;
-    [SerializeField] private int LevelUp;
-    [SerializeField] private int Finish;
-    [SerializeField] private int Lose;
+    [SerializeField] public int Village;
+    [SerializeField] public int VillageHUD;
+    [SerializeField] public int Credits;
+    [SerializeField] public int Options;
+    [SerializeField] public int StatUpgrade;
+    [SerializeField] public int Dungeon;
+    [SerializeField] public int DungeonHUD;
+    [SerializeField] public int DetailsHUD;
+    [SerializeField] public int LevelUp;
+    [SerializeField] public int Pause;
+    [SerializeField] public int Finish;
+    [SerializeField] public int Lose;
 
     private void Awake()
     {

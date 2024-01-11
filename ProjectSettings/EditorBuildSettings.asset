@@ -30,11 +30,14 @@ EditorBuildSettings:
     path: Assets/_Scenes/UI/DungeonHUD.unity
     guid: 68517fb7342851b45b46b3beb81705f0
   - enabled: 1
-    path: Assets/_Scenes/UI/Pause.unity
-    guid: bc69bc249c5146445b4fa7b91d16cb20
+    path: Assets/_Scenes/UI/DetailsHUD.unity
+    guid: a0ae713101e3bbb45b7caf630197c550
   - enabled: 1
     path: Assets/_Scenes/UI/LevelUp.unity
     guid: 3c90654a2ab88bf4ea6c7b389b013141
+  - enabled: 1
+    path: Assets/_Scenes/UI/Pause.unity
+    guid: bc69bc249c5146445b4fa7b91d16cb20
   - enabled: 1
     path: Assets/_Scenes/UI/Finish.unity
     guid: 91a9fcba70329da4caccbc1fe134810a
