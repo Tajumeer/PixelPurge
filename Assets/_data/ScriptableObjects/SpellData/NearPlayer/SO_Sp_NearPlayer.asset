@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: SO_Sp_NearPlayer
   m_EditorClassIdentifier: 
   projectileData: {fileID: 11400000, guid: 0390f4cb9bdd1374485f70fa7d7cd12c, type: 2}
-  spellname: Near Player
-  description: XXX
+  spellName: Near Player
+  spellDescription: 
+  spellSound: {fileID: 0}
   damage: 10
   lifetime: 3
   speed: 1

@@ -9,9 +9,10 @@ public class SO_Spells : ScriptableObject
     public SO_SpellProjectiles projectileData;
 
     [Header("UI Stuff")]
-    public string spellname;
+    public string spellName;
     // icon
-    public string description;
+    public string spellDescription;
+    public AudioSource spellSound;
 
     [Space]
 
