@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: SO_Sp_BaseArcher
   m_EditorClassIdentifier: 
   projectileData: {fileID: 11400000, guid: 32f75ef856b71284487ce4ea16fe0b56, type: 2}
-  spellname: Archer
-  description: The base spell of the Archer. Shoots in the direction of the mouse.
+  spellName: Base Archer
+  spellDescription: 
+  spellSound: {fileID: 0}
   damage: 50
   lifetime: 3
   speed: 2
