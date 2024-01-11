@@ -12,7 +12,7 @@ public class SO_Spells : ScriptableObject
     public string spellName;
     // icon
     public string spellDescription;
-    public AudioSource spellSound;
+    public List<AudioClip> spellSFX;
 
     [Space]
 
