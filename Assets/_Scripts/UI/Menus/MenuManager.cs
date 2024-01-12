@@ -22,6 +22,8 @@ public class MenuManager : MonoBehaviour
     [SerializeField] public int Finish;
     [SerializeField] public int Lose;
 
+    [SerializeField] public int Alpha;
+
     private void Awake()
     {
         // Destroy Instance when it is already existing, else create it

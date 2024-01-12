@@ -107,6 +107,7 @@ public class LevelPlayer : MonoBehaviour
 
     private void LevelUp()
     {
+        Debug.Log("LevelUp");
         level++;
         playerData.Level = level;
 

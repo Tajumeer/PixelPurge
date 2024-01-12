@@ -56,3 +56,4 @@ MonoBehaviour:
   Pause: 10
   Finish: 11
   Lose: 12
+  Alpha: 13
