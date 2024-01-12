@@ -10,26 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffc558594ad5c8247ba9de24e7b7bf13, type: 3}
-  m_Name: ArcherData
+  m_Name: SwordsmanData
   m_EditorClassIdentifier: 
-  PlayerClassName: Archer
+  PlayerClassName: Swordsman
   Level: 1
-  CurrentHealth: 100
-  MovementSpeed: 3
-  DashAmount: 1
-  DashSpeed: 25
-  DashCooldown: 3
-  DashTime: 0.1
+  CurrentHealth: 150
+  MovementSpeed: 2.25
+  DashAmount: 0
+  DashSpeed: 15
+  DashCooldown: 5
+  DashTime: 0.2
   DamageMultiplier: 1
-  CritChance: 0
-  CritMultiplier: 1.5
+  CritChance: 1
+  CritMultiplier: 1
   AttackSpeed: 1
   AreaMultiplier: 1
-  ProjectileSpeed: 25
+  ProjectileSpeed: 1
   RecastTimeMultiplier: 1
-  MaxHealth: 100
+  MaxHealth: 150
   HealthRegeneration: 0
-  DamageReductionPercentage: 0
+  DamageReductionPercentage: 25
   CollectionRadius: 1
   GoldMultiplier: 1
   XPNeeded: 5

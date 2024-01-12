@@ -10,24 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ffc558594ad5c8247ba9de24e7b7bf13, type: 3}
-  m_Name: ArcherData
+  m_Name: MageData
   m_EditorClassIdentifier: 
-  PlayerClassName: Archer
+  PlayerClassName: Mage
   Level: 1
-  CurrentHealth: 100
-  MovementSpeed: 3
-  DashAmount: 1
-  DashSpeed: 25
+  CurrentHealth: 50
+  MovementSpeed: 2.75
+  DashAmount: 0
+  DashSpeed: 20
   DashCooldown: 3
   DashTime: 0.1
   DamageMultiplier: 1
-  CritChance: 0
-  CritMultiplier: 1.5
+  CritChance: 1
+  CritMultiplier: 1
   AttackSpeed: 1
   AreaMultiplier: 1
-  ProjectileSpeed: 25
+  ProjectileSpeed: 1
   RecastTimeMultiplier: 1
-  MaxHealth: 100
+  MaxHealth: 50
   HealthRegeneration: 0
   DamageReductionPercentage: 0
   CollectionRadius: 1
