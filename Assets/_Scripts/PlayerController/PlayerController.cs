@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
 public class PlayerController : MonoBehaviour, IDamagable
 {
     public List<PlayerStats> PlayerData;
     public List<GameObject> PlayerVisual;
-    [HideInInspector] public PlayerStats ActivePlayerData;
+    //[HideInInspector] public PlayerStats ActivePlayerData;
     [HideInInspector] public int ClassIndex;
 
     private int m_characterIndex;
@@ -16,12 +17,66 @@ public class PlayerController : MonoBehaviour, IDamagable
 
 
     [Header("Components")]
-  //  [SerializeField] private SpriteRenderer m_spriteRenderer;
-  // [SerializeField] private Animator m_animator;
+    // [SerializeField] private SpriteRenderer m_spriteRenderer;
+    // [SerializeField] private Animator m_animator;
     [HideInInspector] public Vector2 MoveDirection;
     private Rigidbody2D m_rigidbody;
     private SpriteRenderer m_spriteRenderer;
     private Animator m_animator;
+
+    #region PlayerStats
+    //   [Header("Player Stats")]
+    [HideInInspector] public string PlayerClassName;
+    [HideInInspector] public int Level;
+    [HideInInspector] public float MaxHealth;
+    [HideInInspector] public float CurrentHealth;
+    [HideInInspector] public float MovementSpeed;
+    [HideInInspector] public float DashAmount;
+    [HideInInspector] public float DashSpeed;
+    [HideInInspector] public float DashCooldown;
+    [HideInInspector] public float DashTime;
+    [HideInInspector] public float DamageMultiplier;
+    [HideInInspector] public float CritChance;
+    [HideInInspector] public float CritMultiplier;
+    [HideInInspector] public float AttackSpeedMultiplier;
+    [HideInInspector] public float AreaMultiplier;
+    [HideInInspector] public float ProjectileSpeed;
+    [HideInInspector] public float HealthRegenration;
+    [HideInInspector] public float DamageReductionPercentage;
+    [HideInInspector] public float CollectionRadius;
+    [HideInInspector] public float GoldMultiplier;
+    [HideInInspector] public float XPNeeded;
+    [HideInInspector] public float XPNeededMultiplier;
+    [HideInInspector] public float XPMultiplier;
+
+    public void InitStats()
+    {
+        PlayerClassName = PlayerData[m_characterIndex].PlayerClassName;
+        Level = PlayerData[m_characterIndex].Level;
+        MaxHealth = PlayerData[m_characterIndex].MaxHealth;
+        CurrentHealth = MaxHealth;
+        MovementSpeed = PlayerData[m_characterIndex].MovementSpeed;
+        DashAmount = PlayerData[m_characterIndex].DashAmount;
+        DashSpeed = PlayerData[m_characterIndex].DashSpeed;
+        DashCooldown = PlayerData[m_characterIndex].DashCooldown;
+        DashTime = PlayerData[m_characterIndex].DashTime;
+        DamageMultiplier = PlayerData[m_characterIndex].DamageMultiplier;
+        CritChance = PlayerData[m_characterIndex].CritChance;
+        CritMultiplier = PlayerData[m_characterIndex].CritMultiplier;
+        AttackSpeedMultiplier = PlayerData[m_characterIndex].AttackSpeed;
+        AreaMultiplier = PlayerData[m_characterIndex].AreaMultiplier;
+        ProjectileSpeed = PlayerData[m_characterIndex].ProjectileSpeed;
+        HealthRegenration = PlayerData[m_characterIndex].HealthRegeneration;
+        DamageReductionPercentage = PlayerData[m_characterIndex].DamageReductionPercentage;
+        CollectionRadius = PlayerData[m_characterIndex].CollectionRadius;
+        GoldMultiplier = PlayerData[m_characterIndex].GoldMultiplier;
+        XPNeeded = PlayerData[m_characterIndex].XPNeeded;
+        XPNeededMultiplier = PlayerData[m_characterIndex].XPNeededMultiplier;
+        XPMultiplier = PlayerData[m_characterIndex].XPMultiplier;
+    }
+
+    #endregion
+
 
     private bool m_isDead;
 
@@ -48,7 +103,8 @@ public class PlayerController : MonoBehaviour, IDamagable
             return;
         }
 
-        ActivePlayerData = PlayerData[m_characterIndex];
+        // ActivePlayerData = PlayerData[m_characterIndex];
+        InitStats();
 
         m_spriteRenderer = null;
         m_animator = null;
@@ -59,7 +115,7 @@ public class PlayerController : MonoBehaviour, IDamagable
             {
                 PlayerVisual[i].SetActive(true);
                 m_spriteRenderer = PlayerVisual[i].GetComponent<SpriteRenderer>();
-                m_animator = PlayerVisual[i].GetComponent<Animator>();    
+                m_animator = PlayerVisual[i].GetComponent<Animator>();
             }
             else
             {
@@ -70,8 +126,6 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void Start()
     {
-        ActivePlayerData = PlayerData[ClassIndex];
-        ActivePlayerData.CurrentHealth = ActivePlayerData.MaxHealth;
         m_isAbleToDash = true;
         m_isDead = false;
         m_rigidbody = GetComponent<Rigidbody2D>();
@@ -80,12 +134,12 @@ public class PlayerController : MonoBehaviour, IDamagable
 
         m_characterIndex = 1;
         SetCharacterVisualsAndData(m_characterIndex);
-   
+
     }
 
     private void Update()
     {
-        if (ActivePlayerData.CurrentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             SetDeathState();
         }
@@ -93,7 +147,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             m_characterIndex++;
-            if(m_characterIndex > PlayerData.Count - 1)
+            if (m_characterIndex > PlayerData.Count - 1)
             {
                 m_characterIndex = 0;
             }
@@ -160,7 +214,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void Move()
     {
-        m_rigidbody.velocity = new Vector2(MoveDirection.x * ActivePlayerData.MovementSpeed, MoveDirection.y * ActivePlayerData.MovementSpeed);
+        m_rigidbody.velocity = new Vector2(MoveDirection.x * MovementSpeed, MoveDirection.y * MovementSpeed);
     }
 
     private IEnumerator Dash()
@@ -168,12 +222,12 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_isAbleToDash = false;
         m_isDashing = true;
 
-        m_rigidbody.velocity = new Vector2(MoveDirection.x * ActivePlayerData.DashSpeed, MoveDirection.y * ActivePlayerData.DashSpeed);
-        yield return new WaitForSeconds(ActivePlayerData.DashTime);
+        m_rigidbody.velocity = new Vector2(MoveDirection.x * DashSpeed, MoveDirection.y * DashSpeed);
+        yield return new WaitForSeconds(DashTime);
 
         m_isDashing = false;
 
-        yield return new WaitForSeconds(ActivePlayerData.DashCooldown);
+        yield return new WaitForSeconds(DashCooldown);
         m_isAbleToDash = true;
     }
 
@@ -292,6 +346,6 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     public void GetDamage(float _damageValue)
     {
-        this.ActivePlayerData.CurrentHealth -= _damageValue;
+        this.CurrentHealth -= _damageValue;
     }
 }

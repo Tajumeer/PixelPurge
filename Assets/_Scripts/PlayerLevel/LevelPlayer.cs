@@ -7,7 +7,7 @@ using UnityEngine;
 public class LevelPlayer : MonoBehaviour
 {
     private CircleCollider2D col;
-    private PlayerStats playerData;
+    private PlayerController playerData;
 
     [Header("Object Pool")]
     [SerializeField] private GameObject xpPrefab;
@@ -37,7 +37,7 @@ public class LevelPlayer : MonoBehaviour
     public void InitXP()
     {
         col = GetComponent<CircleCollider2D>();
-        playerData = GetComponentInParent<PlayerController>().ActivePlayerData;
+        playerData = GetComponentInParent<PlayerController>();
 
         // Set values from playerData
         level = 1;

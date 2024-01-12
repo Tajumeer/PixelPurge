@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerClassName: Mage
   Level: 1
-  CurrentHealth: 30
+  CurrentHealth: 50
   MovementSpeed: 2.75
   DashAmount: 0
   DashSpeed: 20

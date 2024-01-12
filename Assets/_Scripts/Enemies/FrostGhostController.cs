@@ -103,7 +103,7 @@ public class FrostGhostController : MonoBehaviour ,IDamagable
         if (collision.CompareTag("Player"))
         {
             Debug.LogWarning("Hit Player!");
-            collision.GetComponent<PlayerController>().ActivePlayerData.CurrentHealth -= EnemyDamage;  
+            collision.GetComponent<PlayerController>().CurrentHealth -= EnemyDamage;  
         }
     }
 
