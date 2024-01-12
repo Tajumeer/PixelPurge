@@ -7,45 +7,68 @@ public class PlayerController : MonoBehaviour, IDamagable
     public List<PlayerStats> PlayerData;
     public List<GameObject> PlayerVisual;
     [HideInInspector] public PlayerStats ActivePlayerData;
-    [HideInInspector] public int ClassIndex; 
+    [HideInInspector] public int ClassIndex;
+
+    private int m_characterIndex;
 
     private bool m_isAbleToDash;
     private bool m_isDashing;
 
 
     [Header("Components")]
-    [SerializeField] private SpriteRenderer m_spriteRenderer;
-    [SerializeField] private Animator m_animator;
-    //[HideInInspector]
-    public Vector2 MoveDirection;
+  //  [SerializeField] private SpriteRenderer m_spriteRenderer;
+  // [SerializeField] private Animator m_animator;
+    [HideInInspector] public Vector2 MoveDirection;
     private Rigidbody2D m_rigidbody;
+    private SpriteRenderer m_spriteRenderer;
+    private Animator m_animator;
 
     private bool m_isDead;
 
     public enum AnimationState
     {
-        archer_run,
-        archer_idle,
+        player_run,
+        player_idle,
         player_death,
     }
 
     private AnimationState m_currentState;
 
     /// <summary>
-    /// the Int is the index for the List on the PlayerController to choose which Data is to be used
+    /// the Int is the index for the List on the PlayerController to choose which Data and Visual is to be used
     /// </summary>
     /// <param name="_newIndex"></param>
-    public void SetActivePlayerData(int _newIndex)
+    public void SetCharacterVisualsAndData(int _newIndex)
     {
-        if(_newIndex > PlayerData.Count)
+        m_characterIndex = _newIndex;
+
+        if (m_characterIndex > PlayerData.Count)
         {
-            Debug.Log("SetActivePlayerData Error: " + _newIndex + "is out of Bounds check if the new index is correct:: No Changes have been Made to ActivePlayerData");
+            Debug.Log("SetActivePlayerData Error: " + m_characterIndex + "is out of Bounds check if the new index is correct:: No Changes have been Made to ActivePlayerData");
             return;
         }
-        ActivePlayerData = PlayerData[_newIndex];
+
+        ActivePlayerData = PlayerData[m_characterIndex];
+
+        m_spriteRenderer = null;
+        m_animator = null;
+
+        for (int i = 0; i < PlayerVisual.Count; ++i)
+        {
+            if (i == m_characterIndex)
+            {
+                PlayerVisual[i].SetActive(true);
+                m_spriteRenderer = PlayerVisual[i].GetComponent<SpriteRenderer>();
+                m_animator = PlayerVisual[i].GetComponent<Animator>();    
+            }
+            else
+            {
+                PlayerVisual[i].SetActive(false);
+            }
+        }
     }
 
-   private void Start()
+    private void Start()
     {
         ActivePlayerData = PlayerData[ClassIndex];
         ActivePlayerData.CurrentHealth = ActivePlayerData.MaxHealth;
@@ -54,6 +77,10 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_rigidbody = GetComponent<Rigidbody2D>();
 
         GetComponentInChildren<LevelPlayer>().InitXP();
+
+        m_characterIndex = 1;
+        SetCharacterVisualsAndData(m_characterIndex);
+   
     }
 
     private void Update()
@@ -61,6 +88,21 @@ public class PlayerController : MonoBehaviour, IDamagable
         if (ActivePlayerData.CurrentHealth <= 0)
         {
             SetDeathState();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            m_characterIndex++;
+            if(m_characterIndex > PlayerData.Count - 1)
+            {
+                m_characterIndex = 0;
+            }
+            if (m_characterIndex == 0) Debug.Log("Archer");
+            else if (m_characterIndex == 1) Debug.Log("Swordsman");
+            else if (m_characterIndex == 2) Debug.Log("Mage");
+            SetCharacterVisualsAndData(m_characterIndex);
+            if (MoveDirection.x == 0 && MoveDirection.y == 0) ChangeAnimationState(AnimationState.player_idle);
+            else ChangeAnimationState(AnimationState.player_run);
         }
 
 
@@ -93,8 +135,8 @@ public class PlayerController : MonoBehaviour, IDamagable
             ChangeAnimationState(AnimationState.player_death);
             return;
         }
-        if (MoveDirection.x == 0 && MoveDirection.y == 0) ChangeAnimationState(AnimationState.archer_idle);
-        else ChangeAnimationState(AnimationState.archer_run);
+        if (MoveDirection.x == 0 && MoveDirection.y == 0) ChangeAnimationState(AnimationState.player_idle);
+        else ChangeAnimationState(AnimationState.player_run);
     }
 
     private void FixedUpdate()
@@ -187,21 +229,65 @@ public class PlayerController : MonoBehaviour, IDamagable
     public void ChangeAnimationState(AnimationState newState)
     {
         string animationName = string.Empty;
-        if (m_currentState == newState) return;
-        switch (newState)
+
+        if (m_characterIndex == 0)
         {
-            case AnimationState.archer_idle:
-                animationName = "archer_idle";
-                break;
-            case AnimationState.archer_run:
-                animationName = "archer_run";
-                break;
-            case AnimationState.player_death:
-                animationName = "archer_death";
-                break;
+            if (m_currentState == newState) return;
+            switch (newState)
+            {
+                case AnimationState.player_idle:
+                    animationName = "archer_idle";
+                    break;
+                case AnimationState.player_run:
+                    animationName = "archer_run";
+                    break;
+                case AnimationState.player_death:
+                    animationName = "archer_death";
+                    break;
+            }
+            m_animator.Play(animationName);
+            m_currentState = newState;
         }
-        m_animator.Play(animationName);
-        m_currentState = newState;
+
+        else if (m_characterIndex == 1)
+        {
+            if (m_currentState == newState) return;
+            switch (newState)
+            {
+                case AnimationState.player_idle:
+                    animationName = "swordsman_idle";
+                    break;
+                case AnimationState.player_run:
+                    animationName = "swordsman_run";
+                    break;
+                case AnimationState.player_death:
+                    animationName = "swordsman_death";
+                    break;
+            }
+            m_animator.Play(animationName);
+            m_currentState = newState;
+        }
+
+        else if (m_characterIndex == 2)
+        {
+            if (m_currentState == newState) return;
+            switch (newState)
+            {
+                case AnimationState.player_idle:
+                    animationName = "mage_idle";
+                    break;
+                case AnimationState.player_run:
+                    animationName = "mage_run";
+                    break;
+                case AnimationState.player_death:
+                    animationName = "mage_death";
+                    break;
+            }
+            m_animator.Play(animationName);
+            m_currentState = newState;
+        }
+
+        else Debug.LogError("Animator out of bounds check m_characterIndex");
     }
 
     public void GetDamage(float _damageValue)
