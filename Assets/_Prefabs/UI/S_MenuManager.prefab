@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b4c88d5c37e8743ad0e27bb0fa63d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Village: 1
+  Village: 13
   VillageHUD: 2
   Credits: 3
   Options: 4
@@ -56,4 +56,4 @@ MonoBehaviour:
   Pause: 10
   Finish: 11
   Lose: 12
-  Alpha: 13
+  Alpha: 1

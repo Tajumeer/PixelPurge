@@ -1,7 +1,5 @@
-using System.Collections;
+
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.Purchasing;
 using UnityEngine;
 using NavMeshPlus.Components;
 
@@ -14,7 +12,7 @@ public class MapController : MonoBehaviour
     [SerializeField] private float m_checkRadius;
     [SerializeField] private LayerMask m_terrainMask;
     [SerializeField] private List<GameObject> m_terrainChunks;
-    [HideInInspector] public GameObject CurrentChunk;
+    public GameObject CurrentChunk;
     [SerializeField] private NavMeshSurface m_navMeshSurface;
 
     private Vector3 m_lastPlayerPosition;
@@ -33,6 +31,18 @@ public class MapController : MonoBehaviour
         m_lastPlayerPosition = m_player.transform.position;
         m_navMeshSurface.BuildNavMeshAsync();
         TimeManager.Instance.StartTimer("WaveSpawnTimer");
+
+
+
+        FirstMapChunks("TopRight");
+        FirstMapChunks("Top");
+        FirstMapChunks("TopLeft");
+        FirstMapChunks("BottomRight");
+        FirstMapChunks("BottomLeft");
+        FirstMapChunks("Bottom");
+        FirstMapChunks("Right");
+        FirstMapChunks("Left");
+
     }
 
 
@@ -56,7 +66,7 @@ public class MapController : MonoBehaviour
 
         CheckAndSpawnChunk(directionName);
 
-        if(directionName.Contains("Top"))
+        if (directionName.Contains("Top"))
         {
             CheckAndSpawnChunk("Top");
         }
@@ -73,10 +83,15 @@ public class MapController : MonoBehaviour
             CheckAndSpawnChunk("Left");
         }
     }
+    
+    private void FirstMapChunks(string _direction)
+    {
+        SpawnChunk(CurrentChunk.transform.Find(_direction).position);
+    }
 
     private void CheckAndSpawnChunk(string _direction)
     {
-        if(!Physics2D.OverlapCircle(CurrentChunk.transform.Find(_direction).position, m_checkRadius, m_terrainMask))
+        if (!Physics2D.OverlapCircle(CurrentChunk.transform.Find(_direction).position, m_checkRadius, m_terrainMask))
         {
             SpawnChunk(CurrentChunk.transform.Find(_direction).position);
         }

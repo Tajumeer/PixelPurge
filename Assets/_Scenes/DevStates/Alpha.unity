@@ -872,6 +872,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -911,9 +923,45 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7009326209639170216, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009326209639170216, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7009326209639170216, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7798492612734919627, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7798492612734919627, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7798492612734919627, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 7931933358026006842, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695663110259463386, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695663110259463386, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8695663110259463386, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1303,7 +1351,7 @@ MonoBehaviour:
       EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
   - WaveName: Wave 1
     WaveQuota: 0
-    SpawnInterval: 0.75
+    SpawnInterval: 0.25
     SpawnCount: 0
     EnemyGroups:
     - EnemyName: Frost Ghost
@@ -1508,7 +1556,7 @@ MonoBehaviour:
   - {fileID: 5635514078983145396, guid: 52864ac9e3399464ca024a27343810e5, type: 3}
   - {fileID: 5635514078983145396, guid: fa3e6512b2888904aa1a485ac0e3c06f, type: 3}
   - {fileID: 5635514078983145396, guid: b8cd2c546ca47ed498c628f7b4c29b12, type: 3}
-  CurrentChunk: {fileID: 0}
+  CurrentChunk: {fileID: 1655010078}
   m_navMeshSurface: {fileID: 1272895099}
   m_maxOpDist: 39.6
   m_cleanUpCooldown: 1

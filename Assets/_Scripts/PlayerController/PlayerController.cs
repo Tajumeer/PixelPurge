@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_isDead = false;
         m_rigidbody = GetComponent<Rigidbody2D>();
 
-        m_characterIndex = 1;
+        m_characterIndex = 0;
         SetCharacterVisualsAndData(m_characterIndex);
 
         GetComponentInChildren<LevelPlayer>().InitXP();

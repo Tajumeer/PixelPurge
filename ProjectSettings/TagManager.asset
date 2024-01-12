@@ -29,6 +29,7 @@ TagManager:
   - Exit
   - XP
   - PlayerXpCollect
+  - Obstacle
   layers:
   - Default
   - TransparentFX

@@ -9,42 +9,42 @@ EditorBuildSettings:
     path: Assets/_Scenes/UI/Start.unity
     guid: 882413174dda97e44a5d141c7c5672ac
   - enabled: 1
-    path: Assets/_Scenes/Game/Village.unity
-    guid: 1673e996ae05b474ba5a1edc8128b21c
-  - enabled: 1
-    path: Assets/_Scenes/UI/VillageHUD.unity
-    guid: 2bb2a55fb6060eb49a6668cc33c33b07
-  - enabled: 1
-    path: Assets/_Scenes/UI/Credits.unity
-    guid: 932ed6582a3c2dd4e813120fce19671b
-  - enabled: 1
-    path: Assets/_Scenes/UI/Options.unity
-    guid: 38798f85beb968a4ca0a51ce16d4f1dc
-  - enabled: 1
-    path: Assets/_Scenes/UI/StatUpgrade.unity
-    guid: 5d98acf0e949f944c81ae49500231b8c
-  - enabled: 1
-    path: Assets/_Scenes/Game/Dungeon.unity
-    guid: 7231a09b9f36c074cbd684c19ba9c9e4
-  - enabled: 1
-    path: Assets/_Scenes/UI/DungeonHUD.unity
-    guid: 68517fb7342851b45b46b3beb81705f0
-  - enabled: 1
-    path: Assets/_Scenes/UI/DetailsHUD.unity
-    guid: a0ae713101e3bbb45b7caf630197c550
-  - enabled: 1
-    path: Assets/_Scenes/UI/LevelUp.unity
-    guid: 3c90654a2ab88bf4ea6c7b389b013141
-  - enabled: 1
-    path: Assets/_Scenes/UI/Pause.unity
-    guid: bc69bc249c5146445b4fa7b91d16cb20
-  - enabled: 1
-    path: Assets/_Scenes/UI/Finish.unity
-    guid: 91a9fcba70329da4caccbc1fe134810a
-  - enabled: 1
-    path: Assets/_Scenes/UI/Lose.unity
-    guid: f2bc15ab47a747f459d53891fc9a1527
-  - enabled: 1
     path: Assets/_Scenes/DevStates/Alpha.unity
     guid: 630c3feb49472ef46b233d0a9561fd81
+  - enabled: 0
+    path: Assets/_Scenes/Game/Village.unity
+    guid: 1673e996ae05b474ba5a1edc8128b21c
+  - enabled: 0
+    path: Assets/_Scenes/UI/VillageHUD.unity
+    guid: 2bb2a55fb6060eb49a6668cc33c33b07
+  - enabled: 0
+    path: Assets/_Scenes/UI/Credits.unity
+    guid: 932ed6582a3c2dd4e813120fce19671b
+  - enabled: 0
+    path: Assets/_Scenes/UI/Options.unity
+    guid: 38798f85beb968a4ca0a51ce16d4f1dc
+  - enabled: 0
+    path: Assets/_Scenes/UI/StatUpgrade.unity
+    guid: 5d98acf0e949f944c81ae49500231b8c
+  - enabled: 0
+    path: Assets/_Scenes/Game/Dungeon.unity
+    guid: 7231a09b9f36c074cbd684c19ba9c9e4
+  - enabled: 0
+    path: Assets/_Scenes/UI/DungeonHUD.unity
+    guid: 68517fb7342851b45b46b3beb81705f0
+  - enabled: 0
+    path: Assets/_Scenes/UI/DetailsHUD.unity
+    guid: a0ae713101e3bbb45b7caf630197c550
+  - enabled: 0
+    path: Assets/_Scenes/UI/LevelUp.unity
+    guid: 3c90654a2ab88bf4ea6c7b389b013141
+  - enabled: 0
+    path: Assets/_Scenes/UI/Pause.unity
+    guid: bc69bc249c5146445b4fa7b91d16cb20
+  - enabled: 0
+    path: Assets/_Scenes/UI/Finish.unity
+    guid: 91a9fcba70329da4caccbc1fe134810a
+  - enabled: 0
+    path: Assets/_Scenes/UI/Lose.unity
+    guid: f2bc15ab47a747f459d53891fc9a1527
   m_configObjects: {}
