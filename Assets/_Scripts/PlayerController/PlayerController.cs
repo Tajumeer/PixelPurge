@@ -106,6 +106,8 @@ public class PlayerController : MonoBehaviour, IDamagable
         // ActivePlayerData = PlayerData[m_characterIndex];
         InitStats();
 
+        ProgressionManager.Instance.InitMetaProgression();
+
         m_spriteRenderer = null;
         m_animator = null;
 
@@ -159,6 +161,10 @@ public class PlayerController : MonoBehaviour, IDamagable
             else ChangeAnimationState(AnimationState.player_run);
         }
 
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            ProgressionManager.Instance.UpgradeHealth();
+        }
 
         SetAnimation();
 
