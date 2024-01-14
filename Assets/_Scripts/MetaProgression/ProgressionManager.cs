@@ -5,17 +5,7 @@ using UnityEngine;
 public class ProgressionManager : MonoBehaviour
 {
     private static ProgressionManager m_instance;
-
-    private int m_healthLevel;
-
-    private bool m_isHealthLevelOne;
-    private bool m_isHealthLevelTwo;
-    private bool m_isHealthLevelThree;
-    private bool m_isHealthLevelFour;
-    private bool m_isHealthLevelFive;
-
-    private float m_defaultMaxHealth;
-
+    
     public static ProgressionManager Instance
     {
         get
@@ -29,8 +19,10 @@ public class ProgressionManager : MonoBehaviour
             return m_instance;
         }
     }
-
     private PlayerController m_playerController;
+
+
+
     private void Awake()
     {
         if (m_instance == null)
@@ -48,6 +40,7 @@ public class ProgressionManager : MonoBehaviour
     {
         m_playerController = FindObjectOfType<PlayerController>();
         m_defaultMaxHealth = m_playerController.MaxHealth;
+        m_defaultAttackSpeed = m_playerController.AttackSpeedMultiplier;
         UpdateMetaProgression();
     }
 
@@ -55,11 +48,27 @@ public class ProgressionManager : MonoBehaviour
     {
         HealthUpgrade();
     }
+
+
+
+    #region Health
+
+    private int m_healthLevel;
+
+    private bool m_isHealthLevelOne;
+    private bool m_isHealthLevelTwo;
+    private bool m_isHealthLevelThree;
+    private bool m_isHealthLevelFour;
+    private bool m_isHealthLevelFive;
+
+    private float m_defaultMaxHealth;
+
     public void UpgradeHealth()
     {
         m_healthLevel++;
         HealthUpgrade();
     }
+
     private void HealthUpgrade()
     {
         switch (m_healthLevel)
@@ -107,4 +116,75 @@ public class ProgressionManager : MonoBehaviour
 
         Debug.Log(m_playerController.MaxHealth);
     }
+
+    #endregion
+
+    #region Attack Speed
+
+    private int m_attackSpeedLevel;
+
+    private bool m_isAttackSpeedLevelOne;
+    private bool m_isAttackSpeedLevelTwo;
+    private bool m_isAttackSpeedLevelThree;
+    private bool m_isAttackSpeedLevelFour;
+    private bool m_isAttackSpeedLevelFive;
+
+    private float m_defaultAttackSpeed;
+
+    public void UpgradeAttackSpeed()
+    {
+        m_attackSpeedLevel++;
+        AttackSpeedUpgrade();
+    }
+
+    private void AttackSpeedUpgrade()
+    {
+        switch (m_attackSpeedLevel)
+        {
+            case 0:
+                break;
+            case 1:
+                if (!m_isAttackSpeedLevelOne)
+                {
+                    m_playerController.AttackSpeedMultiplier = m_defaultAttackSpeed * .95f;
+                    m_isHealthLevelOne = true;
+                }
+                break;
+            case 2:
+                if (!m_isAttackSpeedLevelTwo)
+                {
+                    m_playerController.AttackSpeedMultiplier = m_defaultMaxHealth * .9f;
+                    m_isHealthLevelTwo = true;
+                }
+                break;
+            case 3:
+                if (!m_isAttackSpeedLevelThree)
+                {
+                    m_playerController.AttackSpeedMultiplier = m_defaultMaxHealth * .85f;
+                    m_isHealthLevelTwo = true;
+                }
+                break;
+            case 4:
+                if (!m_isAttackSpeedLevelFour)
+                {
+                    m_playerController.AttackSpeedMultiplier = m_defaultMaxHealth * .8f;
+                    m_isHealthLevelFour = true;
+                }
+                break;
+            case 5:
+                if (!m_isAttackSpeedLevelFive)
+                {
+                    m_playerController.AttackSpeedMultiplier = m_defaultMaxHealth * .75f;
+                    m_isHealthLevelTwo = true;
+                }
+                break;
+            default:
+                break;
+        }
+
+        Debug.Log(m_playerController.AttackSpeedMultiplier);
+    }
+
+    #endregion
+
 }

@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
             ProgressionManager.Instance.UpgradeHealth();
+            ProgressionManager.Instance.UpgradeAttackSpeed();
         }
 
         SetAnimation();
