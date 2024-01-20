@@ -11,14 +11,13 @@ public class Spell_BaseArcher : SpellsProjectiles
         base.OnSpawn(spellIdx, _spellData);
 
         /**** Sven Start ****/
-        AudioSource audioSource = GetComponent<AudioSource>();
+
 
         if (_spellData.spellSFX != null)
         {
-        audioSource.clip = _spellData.spellSFX[Random.Range(0, _spellData.spellSFX.Count)];
-        audioSource.Play();   
+            AudioManager.Instance.PlaySound(_spellData.spellSFX[Random.Range(0, _spellData.spellSFX.Count)]);
         }
-      
+
 
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 arrowDirection = (mousePosition - transform.position).normalized;
@@ -30,7 +29,7 @@ public class Spell_BaseArcher : SpellsProjectiles
         /**** Sven End ****/
     }
 
- 
+
     public override void OnTriggerEnter2D(Collider2D _collision)
     {
         base.OnTriggerEnter2D(_collision);
