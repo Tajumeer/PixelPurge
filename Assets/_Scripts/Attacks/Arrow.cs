@@ -5,28 +5,25 @@ using UnityEngine.AI;
 
 public class Arrow : MonoBehaviour
 {
-    private float m_damageToDeal;
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    [SerializeField] private float m_projectileLifetime;
+
+    private void Update()
     {
-        //TODO: Check enemy hit deal damage
+        m_projectileLifetime -= Time.deltaTime;
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (m_projectileLifetime <= 0)
         {
-            return;
-        }
-
-        else
-        {
-            Destroy(gameObject);
+            Destroy(this);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player"))
         {
-           // m_damageToDeal = GameObject.FindWithTag("Player").GetComponent<PlayerController>().PlayerDamage;
-            collision.gameObject.GetComponent<IDamagable>().GetDamage(m_damageToDeal);
+            // m_damageToDeal = GameObject.FindWithTag("Player").GetComponent<PlayerController>().PlayerDamage;
+            collision.gameObject.GetComponent<IDamagable>().GetDamage(GetComponentInParent<RangedController>().EnemyDamage);
             Debug.Log("Hiy Enemy with Arrow");
             Destroy(this.gameObject);
         }

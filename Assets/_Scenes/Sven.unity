@@ -1106,6 +1106,10 @@ MonoBehaviour:
       EnemyCount: 75
       SpawnCount: 0
       EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+    - EnemyName: Frost Crawler
+      EnemyCount: 10
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 76c240a8cf54c8c448abbdd6392ec5df, type: 3}
   - WaveName: Wave 1
     WaveQuota: 0
     SpawnInterval: 0.75
