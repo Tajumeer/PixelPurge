@@ -133,13 +133,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb205b50b18d044b8295ad9a8bc8da8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_projectilePrefab: {fileID: 7311436246905014917, guid: 163f9ddf75803d24fb4e36e027dbd479, type: 3}
+  m_projectilePrefab: {fileID: 1960888898802110764, guid: 58287c6db8b03774da71b3f3f8e3f20d, type: 3}
   m_projectileParent: {fileID: 4326482867426308180}
   EnemyDamage: 15
   EnemyHealth: 125
   m_ExpOnDeath: 3
   m_attackFrequency: 2.5
-  m_projectileSpeed: 10
+  m_projectileSpeed: 4
   m_attackRange: 5
   m_playerLayer:
     serializedVersion: 2

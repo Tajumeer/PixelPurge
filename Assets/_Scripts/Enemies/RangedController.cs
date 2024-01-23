@@ -50,7 +50,7 @@ public class RangedController : MonoBehaviour, IDamagable
         m_levelPlayer = FindObjectOfType<LevelPlayer>();
         m_enemySpawner = FindObjectOfType<EnemySpawner>();
 
-        m_attackFrequencyTimer = m_attackFrequency;
+        m_attackFrequencyTimer = 0f;
     }
 
     void Update()
@@ -68,12 +68,12 @@ public class RangedController : MonoBehaviour, IDamagable
         {
             m_agent.SetDestination(this.transform.position);
 
-            m_attackFrequencyTimer -= Time.deltaTime;
+            m_attackFrequencyTimer += Time.deltaTime;
 
-            if (m_attackFrequencyTimer < 0)
+            if (m_attackFrequencyTimer >= m_attackFrequency)
             {
                 Shoot();
-                m_attackFrequencyTimer = m_attackFrequency;
+                m_attackFrequencyTimer = 0f;
             }
 
             return;

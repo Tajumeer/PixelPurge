@@ -18,13 +18,13 @@ public class Arrow : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             // m_damageToDeal = GameObject.FindWithTag("Player").GetComponent<PlayerController>().PlayerDamage;
             collision.gameObject.GetComponent<IDamagable>().GetDamage(GetComponentInParent<RangedController>().EnemyDamage);
-            Debug.Log("Hiy Enemy with Arrow");
+            Debug.Log("Hit Enemy with Arrow");
             Destroy(this.gameObject);
         }
     }
