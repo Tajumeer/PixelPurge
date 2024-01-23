@@ -4,17 +4,17 @@ using UnityEngine;
 
 // Maya
 
-public class Spells : PoolObject<Spells>
+public class Spells_old : PoolObject<Spells_old>
 {
     protected Rigidbody2D rb;
-    protected SO_Spells spellData;
+    protected SO_Spells_old spellData;
 
     /// <summary>
     /// Get and reset Rigidbody and set SpellData
     /// </summary>
     /// <param name="_spellIdx"></param>
     /// <param name="_spellData"></param>
-    public virtual void OnSpawn(int _spellIdx, SO_Spells _spellData)
+    public virtual void OnSpawn(int _spellIdx, SO_Spells_old _spellData)
     {
         if (rb == null) rb = GetComponent<Rigidbody2D>();
 

@@ -2,11 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Spells", menuName = "PixelPurge/Spells/Spells", order = 1)]
-public class SO_Spells : ScriptableObject
+// Maya
+
+[CreateAssetMenu(fileName = "Spells", menuName = "PixelPurge/Spells_old/Spells", order = 1)]
+public class SO_Spells_old : ScriptableObject
 {
     [Header("Insert the matching ScriptbleObjects")]
-    public SO_SpellProjectiles projectileData;
+    public SO_SpellProjectiles_old projectileData;
 
     [Header("UI Stuff")]
     public string spellName;

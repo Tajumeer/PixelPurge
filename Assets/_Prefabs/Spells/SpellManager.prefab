@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5159834198189621193}
-  - component: {fileID: 6257404862059624131}
-  - component: {fileID: 7157674019473293842}
+  - component: {fileID: 9115074017497020477}
+  - component: {fileID: 2556516342377364200}
   m_Layer: 0
   m_Name: SpellManager
   m_TagString: Untagged
@@ -33,7 +33,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6257404862059624131
+--- !u!114 &9115074017497020477
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,29 +42,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 1335565029319372703}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da54e5eaf7d287429ad476717693cc3, type: 3}
+  m_Script: {fileID: 11500000, guid: 57b41a42f9d144540b95c6f3cdd02809, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data_Upgrades: {fileID: 11400000, guid: e499ab8e7b38db5438fd5a9dd15dfe89, type: 2}
-  data_AllDirections: {fileID: 11400000, guid: 23815ab94ae03044d903e54392fea425, type: 2}
-  data_NearPlayer: {fileID: 11400000, guid: 476ab0c4739ce75448f7035dc0aa7ea2, type: 2}
-  data_BaseArcher: {fileID: 11400000, guid: 36e3eecb13a74ca46a35875b87e9530e, type: 2}
---- !u!114 &7157674019473293842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335565029319372703}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fed871239a26c57429bf65d38249fb55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spellPrefab: {fileID: 1960888898802110764, guid: 2c709c61b0ae3f44889ee53d5fe7675c, type: 3}
-  data_AllDirections: {fileID: 11400000, guid: 23815ab94ae03044d903e54392fea425, type: 2}
-  data_NearPlayer: {fileID: 11400000, guid: 476ab0c4739ce75448f7035dc0aa7ea2, type: 2}
-  data_BaseArcher: {fileID: 0}
+  data_Upgrades: {fileID: 11400000, guid: a5155a3c25ed7f2459725e6c5a9bcaef, type: 2}
+  data_AllDirections_original: {fileID: 11400000, guid: 0dde0cc93c843964f80ed4d09b9a72cc, type: 2}
+  data_NearPlayer_original: {fileID: 11400000, guid: 76841c80a81d28f4181e8f90e132a0ee, type: 2}
+  data_BaseArcher_original: {fileID: 11400000, guid: 36842b3da483bb74e85a5fe52ccda6ba, type: 2}
   active_AllDirections: 0
   active_NearPlayer: 0
   active_BaseArcher: 0
+  active_Aura: 0
+  prefab_AllDirections: {fileID: 1960888898802110764, guid: f288201a02c22134fbee2a0dab0cdb90, type: 3}
+  prefab_NearPlayer: {fileID: 1960888898802110764, guid: 82023d0ce7f8b7a489ad6a607b5dbc0c, type: 3}
+  prefab_BaseArcher: {fileID: 1960888898802110764, guid: ae79387ff636f2247ab98a06adb8fce6, type: 3}
+  prefab_Aura: {fileID: 0}
+  parent_Spells: {fileID: 0}
+  parent_AllDirections: {fileID: 0}
+  parent_NearPlayer: {fileID: 0}
+  parent_BaseArcher: {fileID: 0}
+--- !u!114 &2556516342377364200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335565029319372703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c114d94c0180c764199551c90e631a3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

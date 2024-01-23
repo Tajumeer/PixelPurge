@@ -4,9 +4,9 @@ using UnityEngine;
 
 // Maya
 
-public class SpellsProjectiles : Spells
+public class SpellsProjectiles_old : Spells_old
 {
-    protected SO_SpellProjectiles spellProjectileData;
+    protected SO_SpellProjectiles_old spellProjectileData;
 
     protected float health;
 
@@ -16,7 +16,7 @@ public class SpellsProjectiles : Spells
     /// </summary>
     /// <param name="_spellIdx"></param>
     /// <param name="_spellData"></param>
-    public override void OnSpawn(int _spellIdx, SO_Spells _spellData)
+    public override void OnSpawn(int _spellIdx, SO_Spells_old _spellData)
     {
         base.OnSpawn(_spellIdx, _spellData);
 
@@ -60,8 +60,8 @@ public class SpellsProjectiles : Spells
     {
         StopAllCoroutines();
 
-        if (gameObject.GetComponent<Spell_NearPlayer>() != null) gameObject.GetComponent<Spell_NearPlayer>().enabled = false;
-        if (gameObject.GetComponent<Spell_AllDirections>() != null) gameObject.GetComponent<Spell_AllDirections>().enabled = false;
+        if (gameObject.GetComponent<Spell_NearPlayer_old>() != null) gameObject.GetComponent<Spell_NearPlayer_old>().enabled = false;
+        if (gameObject.GetComponent<Spell_AllDirections_old>() != null) gameObject.GetComponent<Spell_AllDirections_old>().enabled = false;
 
         Deactivate();
     }

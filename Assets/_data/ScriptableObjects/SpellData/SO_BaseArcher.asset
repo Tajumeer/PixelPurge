@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 601565650cffb7548b5b0946a4b1d31b, type: 3}
+  m_Name: SO_BaseArcher
+  m_EditorClassIdentifier: 
+  SpellName: Base Archer
+  SpellDescription: The Base Attack of the Archer. Shoots at mouse position.
+  SpellSFX: []
+  Damage: 100
+  Lifetime: 6
+  Speed: 3
+  Cd: 2
+  Radius: 0
+  EnemyHitPoints: 1
+  Amount: 1
