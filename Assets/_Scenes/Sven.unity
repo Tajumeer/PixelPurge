@@ -2829,6 +2829,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1982553278900513807, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_damageTakenClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 451e9233b3e10e84e8cb72a875156d30, type: 3}
     - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2868,6 +2872,10 @@ PrefabInstance:
     - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5774243225863762753, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 128
       objectReference: {fileID: 0}
     - target: {fileID: 7931933358026006842, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_Name

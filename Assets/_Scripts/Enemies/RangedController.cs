@@ -157,6 +157,16 @@ public class RangedController : MonoBehaviour, IDamagable
     public void GetDamage(float _damageValue)
     {
         this.EnemyHealth -= _damageValue;
+        StartCoroutine(FlashDamage());
+    }
+
+    IEnumerator FlashDamage()
+    {
+        m_spriteRenderer.color = Color.red;
+
+        yield return new WaitForSeconds(.2f);
+
+        m_spriteRenderer.color = Color.white;
     }
 }
 
