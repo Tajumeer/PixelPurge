@@ -49,18 +49,12 @@ MonoBehaviour:
   data_AllDirections_original: {fileID: 11400000, guid: 0dde0cc93c843964f80ed4d09b9a72cc, type: 2}
   data_NearPlayer_original: {fileID: 11400000, guid: 76841c80a81d28f4181e8f90e132a0ee, type: 2}
   data_BaseArcher_original: {fileID: 11400000, guid: 36842b3da483bb74e85a5fe52ccda6ba, type: 2}
-  active_AllDirections: 0
-  active_NearPlayer: 0
-  active_BaseArcher: 0
-  active_Aura: 0
+  data_Aura_original: {fileID: 11400000, guid: 0442f70c6affafc40acfe718b0e0cca9, type: 2}
   prefab_AllDirections: {fileID: 1960888898802110764, guid: f288201a02c22134fbee2a0dab0cdb90, type: 3}
   prefab_NearPlayer: {fileID: 1960888898802110764, guid: 82023d0ce7f8b7a489ad6a607b5dbc0c, type: 3}
   prefab_BaseArcher: {fileID: 1960888898802110764, guid: ae79387ff636f2247ab98a06adb8fce6, type: 3}
-  prefab_Aura: {fileID: 0}
-  parent_Spells: {fileID: 0}
-  parent_AllDirections: {fileID: 0}
-  parent_NearPlayer: {fileID: 0}
-  parent_BaseArcher: {fileID: 0}
+  prefab_Aura: {fileID: 1960888898802110764, guid: 10c47cb03c1b37e4bb2bbe7c0d201d56, type: 3}
+  parent_Aura: {fileID: 0}
 --- !u!114 &2556516342377364200
 MonoBehaviour:
   m_ObjectHideFlags: 0

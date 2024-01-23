@@ -14,16 +14,17 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private SO_AllDirections data_AllDirections_original;
     [SerializeField] private SO_NearPlayer data_NearPlayer_original;
     [SerializeField] private SO_BaseArcher data_BaseArcher_original;
+    [SerializeField] private SO_Aura data_Aura_original;
 
     private SO_AllDirections data_AllDirections;
     private SO_NearPlayer data_NearPlayer;
     private SO_BaseArcher data_BaseArcher;
+    private SO_Aura data_Aura;
 
     [Header("Active Spells")]
-    [HideInInspector] public bool active_AllDirections = false;
-    [HideInInspector] public bool active_NearPlayer = false;
-    [HideInInspector] public bool active_BaseArcher = false;
-    [HideInInspector] public bool active_Aura = false;
+    private bool active_AllDirections = false;
+    private bool active_NearPlayer = false;
+    private bool active_BaseArcher = false;
 
     [Header("Spell Timer")]
     private float timer_AllDirections = 0f;
@@ -37,33 +38,36 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject prefab_Aura;
 
     [Header("Pools")]
-    [HideInInspector] public ObjectPool<Spell_AllDirections> pool_AllDirections;
-    [HideInInspector] public ObjectPool<Spell_NearPlayer> pool_NearPlayer;
-    [HideInInspector] public ObjectPool<Spell_BaseArcher> pool_BaseArcher;
+    private ObjectPool<Spell_AllDirections> pool_AllDirections;
+    private ObjectPool<Spell_NearPlayer> pool_NearPlayer;
+    private ObjectPool<Spell_BaseArcher> pool_BaseArcher;
 
     [Header("Parent Objects")]
-    [HideInInspector] public Transform parent_Spells;
-    [HideInInspector] public Transform parent_AllDirections;
-    [HideInInspector] public Transform parent_NearPlayer;
-    [HideInInspector] public Transform parent_BaseArcher;
+    private Transform parent_Spells;
+    private Transform parent_AllDirections;
+    private Transform parent_NearPlayer;
+    private Transform parent_BaseArcher;
+    private Transform parent_Aura;
 
     [Header("Spell Levels")]
     private int level_AllDirections = 1;
     private int level_NearPlayer = 1;
+    private int level_Aura = 1;
 
     private void OnEnable()
     {
         spawnScript = FindObjectOfType<SpellSpawner>();
 
         // Create Spell Parent GameObject
-        GameObject temp = new GameObject();
-        temp.name = "Spells";
-        parent_Spells = temp.transform;
+        GameObject obj = new GameObject();
+        obj.name = "Spells";
+        parent_Spells = obj.transform;
 
         // Prototype
         LearnBaseArcher();
         LearnAllDirections();
         LearnNearPlayer();
+        LearnAura();
     }
 
     private void Update()
@@ -110,18 +114,16 @@ public class SpellManager : MonoBehaviour
     public void LearnBaseArcher()
     {
         data_BaseArcher = Instantiate(data_BaseArcher_original);
-        //spawnScript.data_BaseArcher = Instantiate(data_BaseArcher_original);
-        //spawnScript.active_BaseArcher = true;
         active_BaseArcher = true;
 
         // Create ObjectPool
         pool_BaseArcher = new ObjectPool<Spell_BaseArcher>(prefab_BaseArcher);
 
         // Create Spell Parent GameObject 
-        GameObject temp = new GameObject();
-        temp.name = "BaseArcher";
-        temp.transform.SetParent(parent_Spells.transform);
-        parent_BaseArcher = temp.transform;
+        GameObject obj = new GameObject();
+        obj.name = "BaseArcher";
+        obj.transform.SetParent(parent_Spells.transform);
+        parent_BaseArcher = obj.transform;
     }
 
     /// <summary>
@@ -131,18 +133,16 @@ public class SpellManager : MonoBehaviour
     {
         level_AllDirections = 1;
         data_AllDirections = Instantiate(data_AllDirections_original);
-        //spawnScript.data_AllDirections = Instantiate(data_AllDirections_original);
-        //spawnScript.active_AllDirections = true;
         active_AllDirections = true;
 
         // Create ObjectPool
         pool_AllDirections = new ObjectPool<Spell_AllDirections>(prefab_AllDirections);
 
         // Create Spell Parent GameObject 
-        GameObject temp = new GameObject();
-        temp.name = "AllDirections";
-        temp.transform.SetParent(parent_Spells.transform);
-        parent_AllDirections = temp.transform;
+        GameObject obj = new GameObject();
+        obj.name = "AllDirections";
+        obj.transform.SetParent(parent_Spells.transform);
+        parent_AllDirections = obj.transform;
 
         // UI
     }
@@ -154,18 +154,34 @@ public class SpellManager : MonoBehaviour
     {
         level_NearPlayer = 1;
         data_NearPlayer = Instantiate(data_NearPlayer_original);
-        //spawnScript.data_NearPlayer = Instantiate(data_NearPlayer_original);
-        //spawnScript.active_NearPlayer = true;
         active_NearPlayer = true;
 
         // Create ObjectPool
         pool_NearPlayer = new ObjectPool<Spell_NearPlayer>(prefab_NearPlayer);
 
         // Create Spell Parent GameObject 
-        GameObject temp = new GameObject();
-        temp.name = "NearPlayer";
-        temp.transform.SetParent(parent_Spells.transform);
-        parent_NearPlayer = temp.transform;
+        GameObject obj = new GameObject();
+        obj.name = "NearPlayer";
+        obj.transform.SetParent(parent_Spells.transform);
+        parent_NearPlayer = obj.transform;
+
+        // UI
+    }
+
+    /// <summary>
+    /// Learn the Spell "Aura" and show it in UI
+    /// </summary>
+    public void LearnAura()
+    {
+        level_Aura = 1;
+        data_Aura = Instantiate(data_Aura_original);
+
+        // Create Spell Parent GameObject 
+        GameObject auraObj = Instantiate(prefab_Aura, FindObjectOfType<PlayerController>().gameObject.transform);
+        auraObj.name = "Aura";
+        parent_Aura = auraObj.transform;
+
+        auraObj.GetComponent<Spell_Aura>().OnSpawn(data_Aura);
 
         // UI
     }
@@ -179,7 +195,6 @@ public class SpellManager : MonoBehaviour
     /// </summary>
     public void UpradeAllDirections()
     {
-        //spawnScript.data_AllDirections.damage *= (1f + data_Upgrades_original.Damage[level_AllDirections]);
         data_AllDirections.Damage *= (1f + data_Upgrades.Damage[level_AllDirections]);
 
         level_AllDirections++;
@@ -192,10 +207,22 @@ public class SpellManager : MonoBehaviour
     /// </summary>
     public void UpgradeNearPlayer()
     {
-        //spawnScript.data_NearPlayer.damage *= (1f + data_Upgrades_original.Damage[level_NearPlayer]);
         data_NearPlayer.Damage *= (1f + data_Upgrades.Damage[level_NearPlayer]);
 
         level_NearPlayer++;
+
+        // UI
+    }
+
+    /// <summary>
+    /// Upgrade values of the spell and update UI
+    /// </summary>
+    public void UpgradeAura()
+    {
+        data_Aura.Damage *= (1f + data_Upgrades.Damage[level_Aura]);
+        
+
+        level_Aura++;
 
         // UI
     }

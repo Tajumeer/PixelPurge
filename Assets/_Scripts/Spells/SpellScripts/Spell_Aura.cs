@@ -18,9 +18,11 @@ public class Spell_Aura : MonoBehaviour
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_Aura _spellData, int _spellIdx)
+    public void OnSpawn(SO_Aura _spellData)
     {
         InitRigidbody();
+
+        enemysInAura = new Queue<IDamagable>();
 
         spellData = _spellData;
     }
@@ -33,10 +35,14 @@ public class Spell_Aura : MonoBehaviour
             DealDamage();
             activeCD = 0;
         }
+
+        //transform.position = Vector3.zero;
     }
 
     private void DealDamage()
     {
+        if (!enemysInAura.TryPeek(out IDamagable temp)) return;
+
         foreach(IDamagable enemy in enemysInAura)
         {
             enemy.GetDamage(spellData.Damage);
