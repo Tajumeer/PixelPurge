@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class Spell_Aura : MonoBehaviour
 {
-    private Rigidbody2D rb;
-    private SO_Aura spellData;
+    private Rigidbody2D m_rb;
+    private SO_Aura m_spellData;
 
-    private float activeCD = 0f;
-    private Queue<IDamagable> enemysInAura;
+    private float m_activeCD = 0f;
+    private Queue<IDamagable> m_enemysInAura;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -22,18 +22,18 @@ public class Spell_Aura : MonoBehaviour
     {
         InitRigidbody();
 
-        enemysInAura = new Queue<IDamagable>();
+        m_enemysInAura = new Queue<IDamagable>();
 
-        spellData = _spellData;
+        m_spellData = _spellData;
     }
 
     private void Update()
     {
-        activeCD += Time.deltaTime;
-        if (activeCD >= spellData.Cd)
+        m_activeCD += Time.deltaTime;
+        if (m_activeCD >= m_spellData.Cd)
         {
             DealDamage();
-            activeCD = 0;
+            m_activeCD = 0;
         }
 
         //transform.position = Vector3.zero;
@@ -41,11 +41,11 @@ public class Spell_Aura : MonoBehaviour
 
     private void DealDamage()
     {
-        if (!enemysInAura.TryPeek(out IDamagable temp)) return;
+        if (!m_enemysInAura.TryPeek(out IDamagable temp)) return;
 
-        foreach(IDamagable enemy in enemysInAura)
+        foreach(IDamagable enemy in m_enemysInAura)
         {
-            enemy.GetDamage(spellData.Damage);
+            enemy.GetDamage(m_spellData.Damage);
         }
     }
 
@@ -54,10 +54,10 @@ public class Spell_Aura : MonoBehaviour
     /// </summary>
     private void InitRigidbody()
     {
-        if (rb == null) rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(0f, 0f);
-        rb.position = new Vector2(transform.position.x, transform.position.y);
-        rb.rotation = transform.localRotation.z;
+        if (m_rb == null) m_rb = GetComponent<Rigidbody2D>();
+        m_rb.velocity = new Vector2(0f, 0f);
+        m_rb.position = new Vector2(transform.position.x, transform.position.y);
+        m_rb.rotation = transform.localRotation.z;
     }
 
     public void OnTriggerEnter2D(Collider2D _collision)
@@ -65,7 +65,7 @@ public class Spell_Aura : MonoBehaviour
         // only an enemy can get hit by the spell
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
-        enemysInAura.Enqueue(_collision.gameObject.GetComponent<IDamagable>());
+        m_enemysInAura.Enqueue(_collision.gameObject.GetComponent<IDamagable>());
 
         // the enemy get damage on hit
         //_collision.gameObject.GetComponent<IDamagable>().GetDamage(spellData.Damage);
@@ -77,6 +77,6 @@ public class Spell_Aura : MonoBehaviour
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
         IDamagable enemy = _collision.gameObject.GetComponent<IDamagable>();
-        enemysInAura.TryDequeue(out enemy);
+        m_enemysInAura.TryDequeue(out enemy);
     }
 }

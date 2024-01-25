@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class Spell_AllDirections : PoolObject<Spell_AllDirections>
 {
-    private Rigidbody2D rb;
-    private SO_AllDirections spellData;
+    private Rigidbody2D m_rb;
+    private SO_AllDirections m_spellData;
 
-    private float health;
+    private float m_health;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -21,11 +21,11 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
     {
         InitRigidbody();
 
-        spellData = _spellData;
+        m_spellData = _spellData;
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
-        health = spellData.EnemyHitPoints;
+        m_health = m_spellData.EnemyHitPoints;
 
         Move(_spellIdx);
     }
@@ -54,7 +54,7 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
                 break;
         }
 
-        rb.AddRelativeForce(direction * spellData.Speed, ForceMode2D.Impulse);
+        m_rb.AddRelativeForce(direction * m_spellData.Speed, ForceMode2D.Impulse);
     }
 
     /// <summary>
@@ -62,10 +62,10 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
     /// </summary>
     private void InitRigidbody()
     {
-        if (rb == null) rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(0f, 0f);
-        rb.position = new Vector2(transform.position.x, transform.position.y);
-        rb.rotation = transform.localRotation.z;
+        if (m_rb == null) m_rb = GetComponent<Rigidbody2D>();
+        m_rb.velocity = new Vector2(0f, 0f);
+        m_rb.position = new Vector2(transform.position.x, transform.position.y);
+        m_rb.rotation = transform.localRotation.z;
     }
 
     public void OnTriggerEnter2D(Collider2D _collision)
@@ -74,11 +74,11 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
         // the enemy get damage on hit
-        _collision.gameObject.GetComponent<IDamagable>().GetDamage(spellData.Damage);
+        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage);
 
         // and the spell loses duration or dies
-        health -= 1;
-        if (health <= 0) DeactivateSpell();
+        m_health -= 1;
+        if (m_health <= 0) DeactivateSpell();
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
     /// <returns></returns>
     private IEnumerator DeleteTimer()
     {
-        yield return new WaitForSeconds(spellData.Lifetime);
+        yield return new WaitForSeconds(m_spellData.Lifetime);
 
         DeactivateSpell();
     }

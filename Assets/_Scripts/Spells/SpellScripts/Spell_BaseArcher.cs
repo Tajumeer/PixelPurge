@@ -6,10 +6,10 @@ using UnityEngine;
 
 public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
 {
-    private Rigidbody2D rb;
-    private SO_BaseArcher spellData;
+    private Rigidbody2D m_rb;
+    private SO_BaseArcher m_spellData;
 
-    private float health;
+    private float m_health;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -21,15 +21,15 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
     {
         InitRigidbody();
 
-        spellData = _spellData;
+        m_spellData = _spellData;
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
-        health = spellData.EnemyHitPoints;
+        m_health = m_spellData.EnemyHitPoints;
 
         /**** Sven Start ****/
 
-        if (spellData.SpellSFX != null)
+        if (m_spellData.SpellSFX != null)
         {
             //AudioManager.Instance.PlaySound(spellData.SpellSFX[Random.Range(0, spellData.SpellSFX.Count)]);
         }
@@ -49,7 +49,7 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
         Vector2 arrowDirection = (mousePosition - transform.position).normalized;
 
         Vector2 direction = new Vector2(arrowDirection.x, arrowDirection.y).normalized;
-        rb.AddRelativeForce(direction * spellData.Speed, ForceMode2D.Impulse);
+        m_rb.AddRelativeForce(direction * m_spellData.Speed, ForceMode2D.Impulse);
 
         transform.Rotate(0f, 0f, Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg);
     }
@@ -59,10 +59,10 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
     /// </summary>
     private void InitRigidbody()
     {
-        if (rb == null) rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(0f, 0f);
-        rb.position = new Vector2(transform.position.x, transform.position.y);
-        rb.rotation = transform.localRotation.z;
+        if (m_rb == null) m_rb = GetComponent<Rigidbody2D>();
+        m_rb.velocity = new Vector2(0f, 0f);
+        m_rb.position = new Vector2(transform.position.x, transform.position.y);
+        m_rb.rotation = transform.localRotation.z;
     }
 
     public void OnTriggerEnter2D(Collider2D _collision)
@@ -71,11 +71,11 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
         // the enemy get damage on hit
-        _collision.gameObject.GetComponent<IDamagable>().GetDamage(spellData.Damage);
+        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage);
 
         // and the spell loses duration or dies
-        health -= 1;
-        if (health <= 0) DeactivateSpell();
+        m_health -= 1;
+        if (m_health <= 0) DeactivateSpell();
     }
 
     /// <summary>
@@ -84,7 +84,7 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
     /// <returns></returns>
     private IEnumerator DeleteTimer()
     {
-        yield return new WaitForSeconds(spellData.Lifetime);
+        yield return new WaitForSeconds(m_spellData.Lifetime);
 
         DeactivateSpell();
     }

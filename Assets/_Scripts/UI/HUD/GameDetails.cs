@@ -10,22 +10,15 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class GameDetails : MonoBehaviour
 {
-    [SerializeField] private GameObject ingameSpells;
-    private int gameDetailsScene;
-
-    private void Awake()
-    {
-        gameDetailsScene = MenuManager.Instance.DetailsHUD;
-        Debug.Log("Scene: " + gameDetailsScene);
-    }
+    [SerializeField] private GameObject m_ingameSpells;
 
     /// <summary>
     /// Loads the Scene with the Details and hides the ingame view of the spells
     /// </summary>
     public void ShowGameDetails()
     {
-        if (ingameSpells != null) ingameSpells.SetActive(false);
-        SceneManager.LoadScene(gameDetailsScene, LoadSceneMode.Additive);
+        if (m_ingameSpells != null) m_ingameSpells.SetActive(false);
+        MenuManager.Instance.LoadSceneAsync(Scenes.DetailsHUD, LoadSceneMode.Additive);
     }
 
     /// <summary>
@@ -33,7 +26,7 @@ public class GameDetails : MonoBehaviour
     /// </summary>
     public void HideGameDetails()
     {
-        if (ingameSpells != null) ingameSpells.SetActive(true);
-        SceneManager.UnloadSceneAsync(gameDetailsScene);
+        if (m_ingameSpells != null) m_ingameSpells.SetActive(true);
+        MenuManager.Instance.UnloadSceneAsync(Scenes.DetailsHUD);
     }
 }

@@ -1,28 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Script: Maya
+
+public enum Scenes
+{
+    Start = 0,
+    Village,
+    VillageHUD,
+    Credits,
+    Options,
+    StatUpgrade,
+    Dungeon,
+    DungeonHUD,
+    DetailsHUD,
+    LevelUp,
+    Pause,
+    Finish,
+    Lose,
+    Alpha
+}
 
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
-
-    [Header("Scene Numbers in Build Settings")]
-    [SerializeField] public int Village;
-    [SerializeField] public int VillageHUD;
-    [SerializeField] public int Credits;
-    [SerializeField] public int Options;
-    [SerializeField] public int StatUpgrade;
-    [SerializeField] public int Dungeon;
-    [SerializeField] public int DungeonHUD;
-    [SerializeField] public int DetailsHUD;
-    [SerializeField] public int LevelUp;
-    [SerializeField] public int Pause;
-    [SerializeField] public int Finish;
-    [SerializeField] public int Lose;
-
-    [SerializeField] public int Alpha;
 
     private void Awake()
     {
@@ -33,5 +36,15 @@ public class MenuManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void LoadSceneAsync(Scenes scene, LoadSceneMode mode = LoadSceneMode.Single)
+    {
+        SceneManager.LoadSceneAsync((int)scene, mode);
+    }
+
+    public void UnloadSceneAsync(Scenes scene)
+    {
+        SceneManager.UnloadSceneAsync((int)scene);
     }
 }

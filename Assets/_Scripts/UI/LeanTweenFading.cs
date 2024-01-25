@@ -3,35 +3,35 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Script: Maya
+// Maya
 
 [RequireComponent(typeof(CanvasGroup))]
 public class LeanTweenFading : MonoBehaviour
 {
-    Image image;
-    CanvasGroup canvasGrp;
+    Image m_image;
+    CanvasGroup m_canvasGrp;
 
     [Header("Position in Y")]
-    [SerializeField] float posStart;
-    [SerializeField] float posEnd;
-    [SerializeField] float posChangeSpeed;
+    [SerializeField] float m_posStart;
+    [SerializeField] float m_posEnd;
+    [SerializeField] float m_posChangeSpeed;
 
     [Header("Rotation around Z")]
-    [SerializeField] float rotStart;
-    [SerializeField] float rotAdd;
-    [SerializeField] float rotChangeSpeed;
+    [SerializeField] float m_rotStart;
+    [SerializeField] float m_rotAdd;
+    [SerializeField] float m_rotChangeSpeed;
 
     [Header("Alpha from Image")]
-    [SerializeField] float alphaStart;
-    [SerializeField] float alphaEnd;
+    [SerializeField] float m_alphaStart;
+    [SerializeField] float m_alphaEnd;
     [Tooltip("After which Animation duration should the Object fade? Cant be greater than the posChangeSpeed!")]
-    [SerializeField] float alphaChangeTimer;
-    float alphaChangeDuration;
+    [SerializeField] float m_alphaChangeTimer;
+    float m_alphaChangeDuration;
 
     private void Awake()
     {
-        image = GetComponent<Image>();
-        canvasGrp = GetComponent<CanvasGroup>();
+        m_image = GetComponent<Image>();
+        m_canvasGrp = GetComponent<CanvasGroup>();
     }
 
     private void OnEnable()
@@ -39,8 +39,8 @@ public class LeanTweenFading : MonoBehaviour
         MoveInY();
         RotateInZ();
 
-        if (alphaChangeTimer > posChangeSpeed) alphaChangeTimer = posChangeSpeed;
-        alphaChangeDuration = posChangeSpeed - alphaChangeTimer;
+        if (m_alphaChangeTimer > m_posChangeSpeed) m_alphaChangeTimer = m_posChangeSpeed;
+        m_alphaChangeDuration = m_posChangeSpeed - m_alphaChangeTimer;
         StartCoroutine(FadeAlphaDelay());
     }
 
@@ -50,9 +50,9 @@ public class LeanTweenFading : MonoBehaviour
     private void MoveInY()
     {
         // teleport up
-        transform.localPosition = new Vector3(transform.localPosition.x, posStart, transform.localPosition.z);
+        transform.localPosition = new Vector3(transform.localPosition.x, m_posStart, transform.localPosition.z);
         // slide down
-        LeanTween.moveLocalY(this.gameObject, posEnd, posChangeSpeed).setOnComplete(MoveInY);
+        LeanTween.moveLocalY(this.gameObject, m_posEnd, m_posChangeSpeed).setOnComplete(MoveInY);
     }
 
     /// <summary>
@@ -61,9 +61,9 @@ public class LeanTweenFading : MonoBehaviour
     private void RotateInZ()
     {
         // set start Rotation
-        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, rotStart);
+        transform.rotation = Quaternion.Euler(transform.rotation.x, transform.rotation.y, m_rotStart);
         // rotate 
-        LeanTween.rotateAround(gameObject, Vector3.back, rotAdd, rotChangeSpeed).setOnComplete(RotateInZ);
+        LeanTween.rotateAround(gameObject, Vector3.back, m_rotAdd, m_rotChangeSpeed).setOnComplete(RotateInZ);
     }
 
     /// <summary>
@@ -73,8 +73,8 @@ public class LeanTweenFading : MonoBehaviour
     private IEnumerator FadeAlphaDelay()
     {
         // set start Color
-        canvasGrp.alpha = alphaStart;
-        yield return new WaitForSeconds(alphaChangeTimer);
+        m_canvasGrp.alpha = m_alphaStart;
+        yield return new WaitForSeconds(m_alphaChangeTimer);
         FadeAlpha();
     }
 
@@ -84,6 +84,6 @@ public class LeanTweenFading : MonoBehaviour
     private void FadeAlpha()
     {
         // change alpha
-        LeanTween.alphaCanvas(canvasGrp, alphaEnd, alphaChangeDuration).setOnComplete(() => StartCoroutine(FadeAlphaDelay()));
+        LeanTween.alphaCanvas(m_canvasGrp, m_alphaEnd, m_alphaChangeDuration).setOnComplete(() => StartCoroutine(FadeAlphaDelay()));
     }
 }

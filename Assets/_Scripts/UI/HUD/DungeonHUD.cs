@@ -1,31 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Maya
+
 public class DungeonHUD : MonoBehaviour
 {
-    private int sceneLevelUp;
-    private int sceneDetails;
-    private int scenePause;
-
-    private GameDetails detailsScript;
+    private GameDetails m_detailsScript;
+    private bool m_optionsLoaded;
 
     private void Start()
     {
-        sceneLevelUp = MenuManager.Instance.LevelUp;
-        sceneDetails = MenuManager.Instance.DetailsHUD;
-        scenePause = MenuManager.Instance.Pause;
-
-        detailsScript = FindObjectOfType<GameDetails>();
+        m_detailsScript = FindObjectOfType<GameDetails>();
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (m_optionsLoaded)
+                UnloadOptions();
+            else
+                LoadOptions();
+        }
         if (Input.GetKeyDown(KeyCode.Alpha1)) LoadLevelUp();
-        if (Input.GetKeyDown(KeyCode.Alpha2)) UnloadLevelUp();
-        if (Input.GetKeyDown(KeyCode.Alpha3)) LoadPause();
-        if (Input.GetKeyDown(KeyCode.Alpha4)) UnloadPause();
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) UnloadLevelUp();
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) LoadPause();
+        else if (Input.GetKeyDown(KeyCode.Alpha4)) UnloadPause();
     }
 
     #region Level Up
@@ -33,14 +36,14 @@ public class DungeonHUD : MonoBehaviour
     public void LoadLevelUp()
     {
         Debug.Log("LevelUp");
-        SceneManager.LoadScene(sceneLevelUp, LoadSceneMode.Additive);
-        detailsScript.ShowGameDetails();
+        MenuManager.Instance.LoadSceneAsync(Scenes.LevelUp, LoadSceneMode.Additive);
+        m_detailsScript.ShowGameDetails();
     }
 
     public void UnloadLevelUp()
     {
-        detailsScript.HideGameDetails();
-        SceneManager.UnloadSceneAsync(sceneLevelUp);
+        m_detailsScript.HideGameDetails();
+        MenuManager.Instance.UnloadSceneAsync(Scenes.LevelUp);
     }
 
     #endregion
@@ -49,14 +52,32 @@ public class DungeonHUD : MonoBehaviour
 
     public void LoadPause()
     {
-        SceneManager.LoadScene(scenePause, LoadSceneMode.Additive);
-        detailsScript.ShowGameDetails();
+        MenuManager.Instance.LoadSceneAsync(Scenes.Pause, LoadSceneMode.Additive);
+        m_detailsScript.ShowGameDetails();
     }
 
     public void UnloadPause()
     {
-        detailsScript.HideGameDetails();
-        SceneManager.UnloadSceneAsync(scenePause);
+        m_detailsScript.HideGameDetails();
+        MenuManager.Instance.UnloadSceneAsync(Scenes.Pause);
+    }
+
+    #endregion
+
+    #region Options
+
+    private void LoadOptions()
+    {
+        m_optionsLoaded = true;
+        MenuManager.Instance.LoadSceneAsync(Scenes.Options, LoadSceneMode.Additive);
+        m_detailsScript.ShowGameDetails();
+    }
+
+    public void UnloadOptions()
+    {
+        m_detailsScript.HideGameDetails();
+        MenuManager.Instance.UnloadSceneAsync(Scenes.Options);
+        m_optionsLoaded = false;
     }
 
     #endregion
