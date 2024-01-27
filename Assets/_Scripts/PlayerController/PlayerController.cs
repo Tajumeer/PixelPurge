@@ -7,6 +7,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 {
     public List<PlayerStats> PlayerData;
     public List<GameObject> PlayerVisual;
+    [SerializeField] private AudioClip m_damageTakenClip;
     //[HideInInspector] public PlayerStats ActivePlayerData;
     [HideInInspector] public int ClassIndex;
 
@@ -354,5 +355,15 @@ public class PlayerController : MonoBehaviour, IDamagable
     public void GetDamage(float _damageValue)
     {
         this.CurrentHealth -= _damageValue;
+        AudioManager.Instance.PlaySound(m_damageTakenClip);
+        StartCoroutine(FlashDamage());
+    }
+    IEnumerator FlashDamage()
+    {
+        m_spriteRenderer.color = Color.red;
+
+        yield return new WaitForSeconds(.2f);
+
+        m_spriteRenderer.color = Color.white;
     }
 }

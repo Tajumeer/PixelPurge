@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "884345367195",
+    "project_id": "pixelpurge-35e6e",
+    "storage_bucket": "pixelpurge-35e6e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:884345367195:android:3cb51bab98ce40415ab43e",
+        "android_client_info": {
+          "package_name": "com.SAE.PixelPurge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAWQZan0hnhax3jyWKDfYeOi8yJfFP0Dio"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
