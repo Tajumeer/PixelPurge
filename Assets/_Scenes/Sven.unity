@@ -836,6 +836,58 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1430140957}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &871959035
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 871959037}
+  - component: {fileID: 871959036}
+  m_Layer: 0
+  m_Name: LeaderboardManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &871959036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871959035}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af74509de6705814faa884360fc2daad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_collection: Leaderboard
+  m_collectionTest: LeaderboardTest
+  m_baseURL: https://firestore.googleapis.com/v1/projects/pixelpurge-35e6e/databases/(default)/documents
+  Leaderboard: []
+  m_isTesting: 1
+  m_isGeneratingDBEntries: 0
+  m_jobDelay: 25
+  m_numberOfEntries: 0
+--- !u!4 &871959037
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 871959035}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &916001002
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,99 +2522,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
---- !u!1001 &6374579579324156227
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 915087520604754628, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 2.2517421
-      objectReference: {fileID: 0}
-    - target: {fileID: 915087520604754628, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.020590872
-      objectReference: {fileID: 0}
-    - target: {fileID: 915087520604754628, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.012019882
-      objectReference: {fileID: 0}
-    - target: {fileID: 915087520604754628, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 915087520604754628, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 915087520604754628, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 915087520604754628, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 915087520604754628, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 915087520604754628, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 915087520604754628, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6447545616705178974, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_Name
-      value: RESTManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: baseURL
-      value: https://firestore.googleapis.com/v1/projects/pixelpurge-35e6e/databases/(default)/documents
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_baseURL
-      value: https://firestore.googleapis.com/v1/projects/pixelpurge-35e6e/databases/(default)/documents
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_isTesting
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_collection
-      value: Leaderboard
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_isClearingDB
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_collectionName
-      value: Leaderboard
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_collectionTest
-      value: LeaderboardTest
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_numberOfEntries
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
-      propertyPath: m_isGeneratingDBEntries
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
 --- !u!1001 &6466799950120074097
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2976,4 +2935,4 @@ SceneRoots:
   - {fileID: 9016824399889119780}
   - {fileID: 2647623997868203039}
   - {fileID: 7815994009186807109}
-  - {fileID: 6374579579324156227}
+  - {fileID: 871959037}

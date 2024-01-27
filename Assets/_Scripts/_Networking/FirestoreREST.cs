@@ -10,7 +10,7 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using Unity.VisualScripting;
 
-public class FirestoreExample : MonoBehaviour
+public class FirestoreRest : MonoBehaviour
 {
     [System.Serializable]
     public class FirestoreResponse
@@ -55,42 +55,63 @@ public class FirestoreExample : MonoBehaviour
     [Header("Testing")]
     [SerializeField] private bool m_isTesting;
     [SerializeField] private bool m_isGeneratingDBEntries;
+    [SerializeField] private float m_jobDelay;
     [SerializeField] private int m_numberOfEntries;
 
-
-    void Start()
+    private void Start()
     {
+        Debug.Log("Started Database Initialization");
+
+        Time.timeScale = 0f;
+
         if (m_isTesting)
         {
             if (m_isGeneratingDBEntries)
             {
-                StartCoroutine(GenerateTestingData(m_numberOfEntries, m_collectionTest));
-                StartCoroutine(GetDataFromFirestore(m_collectionTest));
+                StartCoroutine(GenerateTestingData(m_numberOfEntries, m_collectionTest, () =>
+                {
+                    StartCoroutine(GetDataFromFirestore(m_collectionTest, () =>
+                    {
+                        Debug.Log("Database Operations done for " + Leaderboard.Count + " Entries");
+                    }));
+                }));
             }
             else
             {
-                StartCoroutine(GetDataFromFirestore(m_collectionTest));
+                StartCoroutine(GetDataFromFirestore(m_collectionTest, () =>
+                {
+                    Debug.Log("Database Operations done for " + Leaderboard.Count + " Entries");
+                }));
             }
         }
         else
         {
             if (m_isGeneratingDBEntries)
             {
-                StartCoroutine(GenerateTestingData(m_numberOfEntries, m_collection));
-                StartCoroutine(GetDataFromFirestore(m_collectionTest));
+                StartCoroutine(GenerateTestingData(m_numberOfEntries, m_collection, () =>
+                {
+                    StartCoroutine(GetDataFromFirestore(m_collection, () =>
+                    {
+                        Debug.Log("Database Operations done for " + Leaderboard.Count + " Entries");
+                    }));
+                }));
             }
             else
             {
-                StartCoroutine(GetDataFromFirestore(m_collection));
+                StartCoroutine(GetDataFromFirestore(m_collection, () =>
+                {
+                    Debug.Log("Database Operations done for " + Leaderboard.Count + " Entries");
+                }));
             }
         }
+
+        Time.timeScale = 1f;
     }
 
-    public IEnumerator GetDataFromFirestore(string _collection)
+    public IEnumerator GetDataFromFirestore(string _collection, System.Action _onComplete)
     {
         while (true)
         {
-
             string url = m_baseURL + "/" + _collection + "?pageSize=50";
 
             if (!string.IsNullOrEmpty(m_nextPageToken))
@@ -124,11 +145,23 @@ public class FirestoreExample : MonoBehaviour
                         {
                             Leaderboard.AddRange(response.Documents
                                    .OrderByDescending(doc => doc.Fields.Score.integerValue)
+                                   .Select(doc =>
+                                   {
+                                       string documentName = doc.Name.Substring(doc.Name.LastIndexOf('/') + 1);
+                                       doc.Name = documentName;
+                                       return doc;
+                                   })
                                    .ToList());
 
                         }
 
                         m_nextPageToken = response.NextPageToken;
+
+                        if (string.IsNullOrEmpty(m_nextPageToken))
+                        {
+                            break;
+                        }
+
                     }
                     catch (JsonReaderException ex)
                     {
@@ -138,6 +171,7 @@ public class FirestoreExample : MonoBehaviour
                 }
             }
         }
+        _onComplete?.Invoke();
     }
 
 
@@ -174,7 +208,7 @@ public class FirestoreExample : MonoBehaviour
         }
     }
 
-    private IEnumerator GenerateTestingData(int _numberOfDBEntries, string _collectionTarget)
+    private IEnumerator GenerateTestingData(int _numberOfDBEntries, string _collectionTarget, System.Action _onComplete)
     {
         Debug.Log("Starting Job: Generating " + m_isGeneratingDBEntries + " DataBase Entries");
 
@@ -186,6 +220,7 @@ public class FirestoreExample : MonoBehaviour
             yield return StartCoroutine(SaveUserData(_collectionTarget, randomUsername, randomScore));
         }
 
+        _onComplete?.Invoke();
         Debug.Log("Job Done");
     }
 
