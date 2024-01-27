@@ -18,6 +18,12 @@ public class OptionsManager : MonoBehaviour
         DeactivateTab(2);
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            UnloadOptions();
+    }
+
     public void ActivateTab(int _tabNumber)
     {
         DeactivateTab(m_activeTab);
@@ -33,6 +39,5 @@ public class OptionsManager : MonoBehaviour
     public void UnloadOptions()
     {
         MenuManager.Instance.UnloadSceneAsync(Scenes.Options);
-        FindObjectOfType<DungeonHUD>().UnloadOptions();
     }
 }

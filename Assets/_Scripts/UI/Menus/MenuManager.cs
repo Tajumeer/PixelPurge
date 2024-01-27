@@ -18,8 +18,8 @@ public enum Scenes
     DetailsHUD,
     LevelUp,
     Pause,
-    Finish,
-    Lose,
+    Win,
+    Death,
     Alpha
 }
 
@@ -46,5 +46,26 @@ public class MenuManager : MonoBehaviour
     public void UnloadSceneAsync(Scenes scene)
     {
         SceneManager.UnloadSceneAsync((int)scene);
+    }
+
+    public void LoadDungeon()
+    {
+        LoadSceneAsync(Scenes.Dungeon);
+        LoadSceneAsync(Scenes.DungeonHUD, LoadSceneMode.Additive);
+    }
+
+    public void UnloadDungeon()
+    {
+        // unload all scenes
+        UnloadSceneAsync(Scenes.Dungeon);
+        UnloadSceneAsync(Scenes.DungeonHUD);
+        // check if pause menu/win screen/death screen was an open scene, then close it
+        if (SceneManager.GetSceneByBuildIndex((int)Scenes.Pause).isLoaded) UnloadSceneAsync(Scenes.Pause);
+        else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Win).isLoaded) UnloadSceneAsync(Scenes.Win);
+        else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Death).isLoaded) UnloadSceneAsync(Scenes.Death);
+
+        // load all scenes for the village
+        LoadSceneAsync(Scenes.Village);
+        LoadSceneAsync(Scenes.VillageHUD, LoadSceneMode.Additive);
     }
 }
