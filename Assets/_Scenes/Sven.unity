@@ -2531,12 +2531,32 @@ PrefabInstance:
       value: https://firestore.googleapis.com/v1/projects/pixelpurge-35e6e/databases/(default)/documents
       objectReference: {fileID: 0}
     - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
+      propertyPath: m_isTesting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
       propertyPath: m_collection
       value: Leaderboard
       objectReference: {fileID: 0}
     - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
+      propertyPath: m_isClearingDB
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
       propertyPath: m_collectionName
       value: Leaderboard
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
+      propertyPath: m_collectionTest
+      value: LeaderboardTest
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
+      propertyPath: m_numberOfEntries
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7439930118549109890, guid: ea553bcd339d08e488010dfc7a84c20e, type: 3}
+      propertyPath: m_isGeneratingDBEntries
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
