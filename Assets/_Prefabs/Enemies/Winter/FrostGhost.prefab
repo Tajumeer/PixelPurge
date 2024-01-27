@@ -135,6 +135,7 @@ MonoBehaviour:
   EnemyDamage: 5
   EnemyHealth: 50
   m_ExpOnDeath: 1
+  m_ScoreOnDeath: 50
 --- !u!1 &8581502561020487003
 GameObject:
   m_ObjectHideFlags: 0

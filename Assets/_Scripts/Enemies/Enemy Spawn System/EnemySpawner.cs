@@ -37,6 +37,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private int m_maxEnemies;
     [SerializeField] private List<Transform> m_SpawnPoints;
 
+    private int m_scorePerWave = 2000;
     private int m_enemiesAlive;
     private bool m_isMaxEnemiesReached;
     private int m_currentWaveCount;
@@ -72,6 +73,7 @@ public class EnemySpawner : MonoBehaviour
         if (m_currentWaveCount < m_waves.Count - 1)
         {
             m_currentWaveCount++;
+            GameManager.Instance.AddScore(m_scorePerWave * m_currentWaveCount);
             CalculateWaveQuota();
         }
     }

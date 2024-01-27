@@ -157,6 +157,7 @@ MonoBehaviour:
   EnemyDamage: 20
   EnemyHealth: 1200
   m_ExpOnDeath: 5
+  m_ScoreOnDeath: 500
 --- !u!195 &7851237647990967117
 NavMeshAgent:
   m_ObjectHideFlags: 0

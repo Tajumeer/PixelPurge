@@ -9,6 +9,7 @@ public class FrostGolemController : MonoBehaviour, IDamagable
     public float EnemyDamage;
     public float EnemyHealth;
     [SerializeField] private float m_ExpOnDeath;
+    [SerializeField] private int m_ScoreOnDeath;
 
     private NavMeshAgent m_agent;
     private Transform m_target;
@@ -86,10 +87,9 @@ public class FrostGolemController : MonoBehaviour, IDamagable
         ChangeAnimationState(AnimationState.FrostGolemDeath);
         Destroy(m_rb);
         Destroy(m_collider);
-   
         m_enemySpawner.OnEnemyKilled();
         m_spriteRenderer.sortingOrder = 0;
-     
+        GameManager.Instance.AddScore(m_ScoreOnDeath);
         m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
         StartCoroutine(DestroyGameObject(5f));
     }

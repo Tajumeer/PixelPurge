@@ -2,11 +2,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FrostGhostController : MonoBehaviour ,IDamagable
+public class FrostGhostController : MonoBehaviour, IDamagable
 {
     public float EnemyDamage;
     public float EnemyHealth;
-   [SerializeField] private float m_ExpOnDeath;
+    [SerializeField] private float m_ExpOnDeath;
+    [SerializeField] private int m_ScoreOnDeath;
 
     private NavMeshAgent m_agent;
     private Transform m_target;
@@ -34,7 +35,7 @@ public class FrostGhostController : MonoBehaviour ,IDamagable
         m_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         m_levelPlayer = FindObjectOfType<LevelPlayer>();
         m_enemySpawner = FindObjectOfType<EnemySpawner>();
-     
+
     }
 
     void Update()
@@ -77,7 +78,6 @@ public class FrostGhostController : MonoBehaviour ,IDamagable
     public void SetDeathState()
     {
         if (m_isDead) { return; }
-        // m_agent.SetDestination(this.m_target.position);
         m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
         Destroy(m_agent);
         m_isDead = true;
@@ -85,6 +85,7 @@ public class FrostGhostController : MonoBehaviour ,IDamagable
         Destroy(m_rb);
         Destroy(m_collider);
         m_spriteRenderer.sortingOrder = 0;
+        GameManager.Instance.AddScore(m_ScoreOnDeath);
         m_enemySpawner.OnEnemyKilled();
         StartCoroutine(DestroyGameObject(5f));
     }

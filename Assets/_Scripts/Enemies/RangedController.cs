@@ -24,6 +24,7 @@ public class RangedController : MonoBehaviour, IDamagable
     public float EnemyDamage;
     public float EnemyHealth;
     [SerializeField] private float m_ExpOnDeath;
+    [SerializeField] private int m_ScoreOnDeath;
     [SerializeField] private float m_attackFrequency;
     [SerializeField] private float m_projectileSpeed;
     [SerializeField] private float m_attackRange;
@@ -121,6 +122,7 @@ public class RangedController : MonoBehaviour, IDamagable
         Destroy(m_collider);
         m_spriteRenderer.sortingOrder = 0;
         m_enemySpawner.OnEnemyKilled();
+        GameManager.Instance.AddScore(m_ScoreOnDeath);
         StartCoroutine(DestroyGameObject(5f));
     }
 
