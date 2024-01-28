@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-// Script: Maya
+// Maya
 
 /// <summary>
 /// Moves the Text of a Button when Button is clicked
@@ -11,14 +11,14 @@ public class ButtonTextMovement : MonoBehaviour
     /// <summary>
     /// Rect Transform of the text
     /// </summary>
-    private RectTransform transf;
+    private RectTransform m_transf;
 
-    private float clickedPosition = 0f;
-    private float normalPosition = 10f;
+    private float m_clickedPosition = 0f;
+    private float m_normalPosition = 10f;
 
     private void Awake()
     {
-        transf = GetComponent<RectTransform>();
+        m_transf = GetComponent<RectTransform>();
     }
 
     /// <summary>
@@ -26,7 +26,7 @@ public class ButtonTextMovement : MonoBehaviour
     /// </summary>
     public void OnButtonPressed()
     {
-        transf.anchoredPosition = new Vector2(0f, clickedPosition);
+        m_transf.anchoredPosition = new Vector2(0f, m_clickedPosition);
     }
 
     /// <summary>
@@ -34,6 +34,6 @@ public class ButtonTextMovement : MonoBehaviour
     /// </summary>
     public void OnButtonReleased()
     {
-        transf.anchoredPosition = new Vector2(0f, normalPosition);
+        m_transf.anchoredPosition = new Vector2(0f, m_normalPosition);
     }
 }

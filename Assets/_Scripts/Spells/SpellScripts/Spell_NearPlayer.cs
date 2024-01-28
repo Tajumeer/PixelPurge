@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
 {
-    private Rigidbody2D rb;
-    private SO_NearPlayer spellData;
+    private Rigidbody2D m_rb;
+    private SO_NearPlayer m_spellData;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -19,7 +19,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     {
         InitRigidbody();
 
-        spellData = _spellData;
+        m_spellData = _spellData;
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
@@ -33,7 +33,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     /// <param name="_spellIdx"></param>
     private void Move()
     {
-        rb.AddRelativeForce(Vector2.down * spellData.Speed, ForceMode2D.Impulse);
+        m_rb.AddRelativeForce(Vector2.down * m_spellData.Speed, ForceMode2D.Impulse);
     }
 
     /// <summary>
@@ -41,10 +41,10 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     /// </summary>
     private void InitRigidbody()
     {
-        if (rb == null) rb = GetComponent<Rigidbody2D>();
-        rb.velocity = new Vector2(0f, 0f);
-        rb.position = new Vector2(transform.position.x, transform.position.y);
-        rb.rotation = transform.localRotation.z;
+        if (m_rb == null) m_rb = GetComponent<Rigidbody2D>();
+        m_rb.velocity = new Vector2(0f, 0f);
+        m_rb.position = new Vector2(transform.position.x, transform.position.y);
+        m_rb.rotation = transform.localRotation.z;
     }
 
     public void OnTriggerEnter2D(Collider2D _collision)
@@ -53,7 +53,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
         // the enemy get damage on hit
-        _collision.gameObject.GetComponent<IDamagable>().GetDamage(spellData.Damage);
+        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage);
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     /// <returns></returns>
     private IEnumerator DeleteTimer()
     {
-        yield return new WaitForSeconds(spellData.Lifetime);
+        yield return new WaitForSeconds(m_spellData.Lifetime);
 
         DeactivateSpell();
     }

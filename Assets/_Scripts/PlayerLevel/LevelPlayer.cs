@@ -88,12 +88,7 @@ public class LevelPlayer : MonoBehaviour
 
         // if current xp = needed xp -> level up
         if (xpPoints >= xpPointsNeeded)
-        {
             LevelUp();
-
-            xpPoints = 0;                                       // reset current xp
-            xpPointsNeeded *= (1f + xpNeedMultiplier);     // increase needed amount of xp
-        }
     }
 
     /// <summary>
@@ -107,10 +102,12 @@ public class LevelPlayer : MonoBehaviour
 
     private void LevelUp()
     {
-        Debug.Log("LevelUp");
+        xpPoints = 0;                                   // reset current xp
+        xpPointsNeeded *= (1f + xpNeedMultiplier);      // increase needed amount of xp
+
         level++;
         playerData.Level = level;
 
-        // UI Selection
+        FindObjectOfType<DungeonHUD>().LoadLevelUp();
     }
 }

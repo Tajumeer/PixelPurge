@@ -1,62 +1,93 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// Maya
+
 public class DungeonHUD : MonoBehaviour
 {
-    private int sceneLevelUp;
-    private int sceneDetails;
-    private int scenePause;
-
-    private GameDetails detailsScript;
-
-    private void Start()
-    {
-        sceneLevelUp = MenuManager.Instance.LevelUp;
-        sceneDetails = MenuManager.Instance.DetailsHUD;
-        scenePause = MenuManager.Instance.Pause;
-
-        detailsScript = FindObjectOfType<GameDetails>();
-    }
+    [SerializeField] private GameObject m_ingameSpells;
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // cannot open pausemenu if optionsmenu, win or death screen are open
+            if (SceneManager.GetSceneByBuildIndex((int)Scenes.Options).isLoaded) return;
+            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Pause).isLoaded) UnloadPause();
+            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Win).isLoaded) return;
+            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Death).isLoaded) return;
+            else LoadPause();
+        }
+
+        // Debug
         if (Input.GetKeyDown(KeyCode.Alpha1)) LoadLevelUp();
-        if (Input.GetKeyDown(KeyCode.Alpha2)) UnloadLevelUp();
-        if (Input.GetKeyDown(KeyCode.Alpha3)) LoadPause();
-        if (Input.GetKeyDown(KeyCode.Alpha4)) UnloadPause();
+        else if (Input.GetKeyDown(KeyCode.Alpha2)) UnloadLevelUp();
+        else if (Input.GetKeyDown(KeyCode.Alpha3)) LoadPause();
+        else if (Input.GetKeyDown(KeyCode.Alpha4)) UnloadPause();
     }
+
+    #region Details HUD
+
+    /// <summary>
+    /// Loads the Scene with the Details and hides the ingame view of the spells
+    /// </summary>
+    private void ShowGameDetails()
+    {
+        if (m_ingameSpells != null) m_ingameSpells.SetActive(false);
+        MenuManager.Instance.LoadSceneAsync(Scenes.DetailsHUD, LoadSceneMode.Additive);
+    }
+
+    /// <summary>
+    /// Unloads the Details Scene and shows the ingame spell view
+    /// </summary>
+    private void HideGameDetails()
+    {
+        if (m_ingameSpells != null) m_ingameSpells.SetActive(true);
+        MenuManager.Instance.UnloadSceneAsync(Scenes.DetailsHUD);
+    }
+
+    #endregion
 
     #region Level Up
 
     public void LoadLevelUp()
     {
-        Debug.Log("LevelUp");
-        SceneManager.LoadScene(sceneLevelUp, LoadSceneMode.Additive);
-        detailsScript.ShowGameDetails();
+        Time.timeScale = 0f;
+
+        ShowGameDetails();
+        MenuManager.Instance.LoadSceneAsync(Scenes.LevelUp, LoadSceneMode.Additive);
     }
 
     public void UnloadLevelUp()
     {
-        detailsScript.HideGameDetails();
-        SceneManager.UnloadSceneAsync(sceneLevelUp);
+        MenuManager.Instance.UnloadSceneAsync(Scenes.LevelUp);
+        HideGameDetails();
+
+        Time.timeScale = 1f;
     }
 
     #endregion
 
     #region Pause
 
-    public void LoadPause()
+    private void LoadPause()
     {
-        SceneManager.LoadScene(scenePause, LoadSceneMode.Additive);
-        detailsScript.ShowGameDetails();
+        Time.timeScale = 0f;
+
+        if (!SceneManager.GetSceneByBuildIndex((int)Scenes.DetailsHUD).isLoaded) ShowGameDetails();
+        MenuManager.Instance.LoadSceneAsync(Scenes.Pause, LoadSceneMode.Additive);
     }
 
     public void UnloadPause()
     {
-        detailsScript.HideGameDetails();
-        SceneManager.UnloadSceneAsync(scenePause);
+        MenuManager.Instance.UnloadSceneAsync(Scenes.Pause);
+        if (!SceneManager.GetSceneByBuildIndex((int)Scenes.LevelUp).isLoaded) HideGameDetails();
+
+        Time.timeScale = 1f;
     }
 
     #endregion

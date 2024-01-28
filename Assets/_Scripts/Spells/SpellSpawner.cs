@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class SpellSpawner : MonoBehaviour
 {
-    private PlayerController player;
+    private PlayerController m_player;
 
     void OnEnable()
     {
-        player = FindObjectOfType<PlayerController>();
+        m_player = FindObjectOfType<PlayerController>();
     }
 
     public void SpawnBaseArcher(SO_BaseArcher _data, ObjectPool<Spell_BaseArcher> _pool, Transform _parent)
@@ -25,7 +25,7 @@ public class SpellSpawner : MonoBehaviour
                 spellObj.tag = "PlayerSpell";
             }
 
-            spellObj.ResetObj(player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
 
             spellObj.OnSpawn(_data);
         }
@@ -46,7 +46,7 @@ public class SpellSpawner : MonoBehaviour
                 spellObj.tag = "PlayerSpell";
             }
 
-            spellObj.ResetObj(player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
 
             spellObj.OnSpawn(_data, i);
         }
@@ -67,7 +67,7 @@ public class SpellSpawner : MonoBehaviour
                 spellObj.tag = "PlayerSpell";
             }
 
-            spellObj.ResetObj(player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
 
             spellObj.OnSpawn(_data);
         }

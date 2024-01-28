@@ -1,28 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Script: Maya
+
+public enum Scenes
+{
+    Start = 0,
+    Village,
+    VillageHUD,
+    Credits,
+    Options,
+    StatUpgrade,
+    Dungeon,
+    DungeonHUD,
+    DetailsHUD,
+    LevelUp,
+    Pause,
+    Win,
+    Death,
+    Alpha
+}
 
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
-
-    [Header("Scene Numbers in Build Settings")]
-    [SerializeField] public int Village;
-    [SerializeField] public int VillageHUD;
-    [SerializeField] public int Credits;
-    [SerializeField] public int Options;
-    [SerializeField] public int StatUpgrade;
-    [SerializeField] public int Dungeon;
-    [SerializeField] public int DungeonHUD;
-    [SerializeField] public int DetailsHUD;
-    [SerializeField] public int LevelUp;
-    [SerializeField] public int Pause;
-    [SerializeField] public int Finish;
-    [SerializeField] public int Lose;
-
-    [SerializeField] public int Alpha;
 
     private void Awake()
     {
@@ -33,5 +36,36 @@ public class MenuManager : MonoBehaviour
             Destroy(gameObject);
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void LoadSceneAsync(Scenes scene, LoadSceneMode mode = LoadSceneMode.Single)
+    {
+        SceneManager.LoadSceneAsync((int)scene, mode);
+    }
+
+    public void UnloadSceneAsync(Scenes scene)
+    {
+        SceneManager.UnloadSceneAsync((int)scene);
+    }
+
+    public void LoadDungeon()
+    {
+        LoadSceneAsync(Scenes.Dungeon);
+        LoadSceneAsync(Scenes.DungeonHUD, LoadSceneMode.Additive);
+    }
+
+    public void UnloadDungeon()
+    {
+        // unload all scenes
+        UnloadSceneAsync(Scenes.Dungeon);
+        UnloadSceneAsync(Scenes.DungeonHUD);
+        // check if pause menu/win screen/death screen was an open scene, then close it
+        if (SceneManager.GetSceneByBuildIndex((int)Scenes.Pause).isLoaded) UnloadSceneAsync(Scenes.Pause);
+        else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Win).isLoaded) UnloadSceneAsync(Scenes.Win);
+        else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Death).isLoaded) UnloadSceneAsync(Scenes.Death);
+
+        // load all scenes for the village
+        LoadSceneAsync(Scenes.Village);
+        LoadSceneAsync(Scenes.VillageHUD, LoadSceneMode.Additive);
     }
 }
