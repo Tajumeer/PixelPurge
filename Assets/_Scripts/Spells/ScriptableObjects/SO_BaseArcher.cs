@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Maya
 
-[CreateAssetMenu(fileName = "BaseArcher", menuName = "PixelPurge/Spells/BaseArcher", order = 1)]
+[CreateAssetMenu(fileName = "BaseArcher", menuName = "PixelPurge/Spells/BaseArcher", order = 2)]
 public class SO_BaseArcher : ScriptableObject
 {
     [Header("UI Stuff")]
@@ -16,6 +16,8 @@ public class SO_BaseArcher : ScriptableObject
     [Space]
 
     [Header("General Stats")]
+    public int Level = 0;
+    [Space]
     public float Damage;
     public float Lifetime;
     public float Speed;

@@ -333,6 +333,7 @@ GameObject:
   m_Component:
   - component: {fileID: 73153118}
   - component: {fileID: 73153117}
+  - component: {fileID: 73153119}
   m_Layer: 0
   m_Name: HUD Manager
   m_TagString: Untagged
@@ -368,6 +369,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &73153119
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 73153116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07679ddcfb09ebd42ae48e9028d2b5d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_spellSO: {fileID: 11400000, guid: dd9b82bf091429348b9db7f7fa8f2317, type: 2}
+  m_sprites_active:
+  - {fileID: 1602929022}
+  - {fileID: 612699892}
+  - {fileID: 1319368550}
+  - {fileID: 575614267}
+  m_cdImage:
+  - {fileID: 295510875}
+  - {fileID: 1213256001}
+  - {fileID: 1304702890}
+  - {fileID: 1913535811}
+  m_sprites_passive:
+  - {fileID: 1565952011}
+  - {fileID: 146135280}
+  - {fileID: 304766597}
+  - {fileID: 1133966588}
 --- !u!1 &146135278
 GameObject:
   m_ObjectHideFlags: 0
@@ -385,7 +414,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &146135279
 RectTransform:
   m_ObjectHideFlags: 0
@@ -530,7 +559,7 @@ GameObject:
   - component: {fileID: 295510876}
   - component: {fileID: 295510875}
   m_Layer: 5
-  m_Name: CD
+  m_Name: CD 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -610,7 +639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &304766596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -734,8 +763,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294967295
-  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+    rgba: 4283647526
+  m_fontColor: {r: 0.14901961, g: 0.27450982, b: 0.3254902, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1047,7 +1076,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &575614266
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1081,7 +1110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.81494355, g: 0.21226418, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1123,7 +1152,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &612699891
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1157,7 +1186,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.20768867, b: 0.18396229, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1482,7 +1511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1133966587
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1552,7 +1581,7 @@ GameObject:
   - component: {fileID: 1213256002}
   - component: {fileID: 1213256001}
   m_Layer: 5
-  m_Name: CD
+  m_Name: CD 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1702,7 +1731,7 @@ GameObject:
   - component: {fileID: 1304702891}
   - component: {fileID: 1304702890}
   m_Layer: 5
-  m_Name: CD
+  m_Name: CD 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1782,7 +1811,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1319368549
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1816,7 +1845,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.2216981, g: 0.66446966, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1907,8 +1936,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4293519849
-  m_fontColor: {r: 0.9150943, g: 0.9150943, b: 0.9150943, a: 1}
+    rgba: 4283647526
+  m_fontColor: {r: 0.14901961, g: 0.27450982, b: 0.3254902, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -2068,7 +2097,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1565952010
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2143,7 +2172,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1602929021
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2177,7 +2206,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.33450362, g: 1, b: 0.3066038, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2493,7 +2522,7 @@ GameObject:
   - component: {fileID: 1913535812}
   - component: {fileID: 1913535811}
   m_Layer: 5
-  m_Name: CD
+  m_Name: CD 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

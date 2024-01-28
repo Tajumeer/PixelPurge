@@ -16,6 +16,8 @@ public class SO_Aura : ScriptableObject
     [Space]
 
     [Header("General Stats")]
+    public int Level = 0;
+    [Space]
     public float Damage;
     public float Cd;
     public float Radius;
