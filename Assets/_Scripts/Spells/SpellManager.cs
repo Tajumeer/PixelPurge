@@ -15,24 +15,27 @@ public enum Spells
     Aura,
     SpellAmount
 }
+// where to edit Spells: SpellManager, LevelUpManager
 
 public class SpellManager : MonoBehaviour
 {
     SpellSpawner spawnScript;
+    ShowSpells spellUIScript;
 
     public int m_maxSpellLevel = 5;
 
     [Header("Scriptable Objects")]
     [SerializeField] private SO_SpellUpgrades m_data_Upgrades;
+    [SerializeField] private SO_AllSpellSO m_data_Spells;
     [Space]
+    [SerializeField] private SO_BaseArcher m_data_BaseArcher_original;
     [SerializeField] private SO_AllDirections m_data_AllDirections_original;
     [SerializeField] private SO_NearPlayer m_data_NearPlayer_original;
-    [SerializeField] private SO_BaseArcher m_data_BaseArcher_original;
     [SerializeField] private SO_Aura m_data_Aura_original;
 
+    [HideInInspector] public SO_BaseArcher m_data_BaseArcher;
     [HideInInspector] public SO_AllDirections m_data_AllDirections;
     [HideInInspector] public SO_NearPlayer m_data_NearPlayer;
-    [HideInInspector] public SO_BaseArcher m_data_BaseArcher;
     [HideInInspector] public SO_Aura m_data_Aura;
 
     [Header("Prefabs")]
@@ -61,6 +64,7 @@ public class SpellManager : MonoBehaviour
     private void OnEnable()
     {
         spawnScript = FindObjectOfType<SpellSpawner>();
+        spellUIScript = FindObjectOfType<ShowSpells>();
 
         // Create Spell Parent GameObject
         GameObject obj = new GameObject();
@@ -79,6 +83,11 @@ public class SpellManager : MonoBehaviour
         m_data_AllDirections = Instantiate(m_data_AllDirections_original);
         m_data_NearPlayer = Instantiate(m_data_NearPlayer_original);
         m_data_Aura = Instantiate(m_data_Aura_original);
+
+        m_data_Spells.BaseArcher = Instantiate(m_data_BaseArcher_original);
+        m_data_Spells.AllDirections = Instantiate(m_data_AllDirections_original);
+        m_data_Spells.NearPlayer = Instantiate(m_data_NearPlayer_original);
+        m_data_Spells.Aura = Instantiate(m_data_Aura_original);
 
         // Prototype
         LearnBaseArcher();
@@ -129,18 +138,26 @@ public class SpellManager : MonoBehaviour
             {
                 case Spells.AllDirections:
                     LearnAllDirections();
+                    spellUIScript.ShowNewSpell
+                        (Spells.AllDirections, m_data_AllDirections.SpellIcon, true, m_data_AllDirections.Cd);
                     break;
 
                 case Spells.Aura:
                     LearnAura();
+                    spellUIScript.ShowNewSpell
+                        (Spells.Aura, m_data_Aura.SpellIcon, true, m_data_Aura.Cd);
                     break;
 
                 case Spells.BaseArcher:
                     LearnBaseArcher();
+                    spellUIScript.ShowNewSpell
+                        (Spells.BaseArcher, m_data_BaseArcher.SpellIcon, true, m_data_BaseArcher.Cd);
                     break;
 
                 case Spells.NearPlayer:
                     LearnNearPlayer();
+                    spellUIScript.ShowNewSpell
+                        (Spells.NearPlayer, m_data_NearPlayer.SpellIcon, true, m_data_NearPlayer.Cd);
                     break;
 
                 default:
@@ -244,18 +261,22 @@ public class SpellManager : MonoBehaviour
         {
             case Spells.AllDirections:
                 //m_data_AllDirections.Damage *= (1f + m_data_Upgrades.Damage[m_level[(int)_spell]]);
+                spellUIScript.ChangeCDofSpell(_spell, m_data_AllDirections.Cd);
                 break;
 
             case Spells.BaseArcher:
                 
+                spellUIScript.ChangeCDofSpell(_spell, m_data_BaseArcher.Cd);
                 break;
 
             case Spells.NearPlayer:
                 //m_data_NearPlayer.Damage *= (1f + m_data_Upgrades.Damage[m_level[(int)_spell]]);
+                spellUIScript.ChangeCDofSpell(_spell, m_data_NearPlayer.Cd);
                 break;
 
             case Spells.Aura:
                 //m_data_Aura.Damage *= (1f + m_data_Upgrades.Damage[m_level[(int)_spell]]);
+                spellUIScript.ChangeCDofSpell(_spell, m_data_Aura.Cd);
                 break;
         }
 

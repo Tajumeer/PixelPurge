@@ -18,6 +18,7 @@ public class LevelUpManager : MonoBehaviour
     {
         m_spellScript = FindObjectOfType<SpellManager>();
     }
+
     private void OnEnable()
     {
         List<Spells> availableSpells = new List<Spells>();
