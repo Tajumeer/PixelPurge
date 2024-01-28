@@ -84,7 +84,7 @@ public class SpellManager : MonoBehaviour
         LearnBaseArcher();
         //LearnAllDirections();
         //LearnNearPlayer();
-        LearnAura();
+        //LearnAura();
     }
 
     private void Update()
@@ -228,6 +228,8 @@ public class SpellManager : MonoBehaviour
         GameObject auraObj = Instantiate(m_prefab_Aura, FindObjectOfType<PlayerController>().gameObject.transform);
         auraObj.name = "Aura";
         m_parent[(int)Spells.Aura] = auraObj.transform;
+
+        auraObj.transform.localScale = new Vector3(m_data_Aura.Radius, m_data_Aura.Radius, m_data_Aura.Radius);
 
         auraObj.GetComponent<Spell_Aura>().OnSpawn(m_data_Aura);
 

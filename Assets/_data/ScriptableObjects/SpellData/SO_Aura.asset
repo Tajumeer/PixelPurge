@@ -16,6 +16,6 @@ MonoBehaviour:
   SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
   SpellDescription: Deals continuous damage to near enemies.
   SpellSFX: []
-  Damage: 10
-  Cd: 1
-  Radius: 1.2
+  Damage: 50
+  Cd: 0.5
+  Radius: 2
