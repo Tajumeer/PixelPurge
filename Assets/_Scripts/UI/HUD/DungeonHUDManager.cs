@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 // Maya
 
-public class DungeonHUD : MonoBehaviour
+public class DungeonHUDManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_ingameSpells;
 
@@ -22,12 +22,6 @@ public class DungeonHUD : MonoBehaviour
             else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Death).isLoaded) return;
             else LoadPause();
         }
-
-        // Debug
-        if (Input.GetKeyDown(KeyCode.Alpha1)) LoadLevelUp();
-        else if (Input.GetKeyDown(KeyCode.Alpha2)) UnloadLevelUp();
-        else if (Input.GetKeyDown(KeyCode.Alpha3)) LoadPause();
-        else if (Input.GetKeyDown(KeyCode.Alpha4)) UnloadPause();
     }
 
     #region Details HUD
@@ -37,6 +31,10 @@ public class DungeonHUD : MonoBehaviour
     /// </summary>
     private void ShowGameDetails()
     {
+        // do nothing if its already loaded (e.g. open pause in levelup screen)
+        if (SceneManager.GetSceneByBuildIndex((int)Scenes.DetailsHUD).isLoaded) return;
+
+        Time.timeScale = 0f;
         if (m_ingameSpells != null) m_ingameSpells.SetActive(false);
         MenuManager.Instance.LoadSceneAsync(Scenes.DetailsHUD, LoadSceneMode.Additive);
     }
@@ -46,8 +44,12 @@ public class DungeonHUD : MonoBehaviour
     /// </summary>
     private void HideGameDetails()
     {
+        // if levelUp screen is still open, dont close details (e.g. if pause is closed but levelup is still open)
+        if (SceneManager.GetSceneByBuildIndex((int)Scenes.LevelUp).isLoaded) return;
+
         if (m_ingameSpells != null) m_ingameSpells.SetActive(true);
         MenuManager.Instance.UnloadSceneAsync(Scenes.DetailsHUD);
+        Time.timeScale = 1f;
     }
 
     #endregion
@@ -76,18 +78,14 @@ public class DungeonHUD : MonoBehaviour
 
     private void LoadPause()
     {
-        Time.timeScale = 0f;
-
-        if (!SceneManager.GetSceneByBuildIndex((int)Scenes.DetailsHUD).isLoaded) ShowGameDetails();
+        ShowGameDetails();
         MenuManager.Instance.LoadSceneAsync(Scenes.Pause, LoadSceneMode.Additive);
     }
 
     public void UnloadPause()
     {
         MenuManager.Instance.UnloadSceneAsync(Scenes.Pause);
-        if (!SceneManager.GetSceneByBuildIndex((int)Scenes.LevelUp).isLoaded) HideGameDetails();
-
-        Time.timeScale = 1f;
+        HideGameDetails();
     }
 
     #endregion

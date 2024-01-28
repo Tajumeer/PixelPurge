@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f07935f3073f5d459fb652f4623d029, type: 3}
   m_Name: SO_Aura
   m_EditorClassIdentifier: 
-  SpellName: 
-  SpellDescription: 
+  SpellName: Aura
+  SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
+  SpellDescription: Deals continuous damage to near enemies.
   SpellSFX: []
   Damage: 10
   Cd: 1

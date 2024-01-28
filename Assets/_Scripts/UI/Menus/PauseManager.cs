@@ -12,7 +12,7 @@ public class PauseManager : MonoBehaviour
 
     public void UnloadPause()
     {
-        FindObjectOfType<DungeonHUD>().UnloadPause();
+        FindObjectOfType<DungeonHUDManager>().UnloadPause();
     }
 
     public void UnloadDungeon()

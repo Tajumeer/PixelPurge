@@ -9,7 +9,7 @@ public class SO_AllDirections : ScriptableObject
 {
     [Header("UI Stuff")]
     public string SpellName;
-    // icon
+    public Sprite SpellIcon;
     public string SpellDescription;
     public List<AudioClip> SpellSFX;
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using UnityEngine.UIElements;
 
 // Maya
 
+[Serializable]
 public enum Spells
 {
     AllDirections = 0,
@@ -18,6 +20,8 @@ public class SpellManager : MonoBehaviour
 {
     SpellSpawner spawnScript;
 
+    public int m_maxSpellLevel = 5;
+
     [Header("Scriptable Objects")]
     [SerializeField] private SO_SpellUpgrades m_data_Upgrades;
     [Space]
@@ -26,16 +30,10 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private SO_BaseArcher m_data_BaseArcher_original;
     [SerializeField] private SO_Aura m_data_Aura_original;
 
-    private SO_AllDirections m_data_AllDirections;
-    private SO_NearPlayer m_data_NearPlayer;
-    private SO_BaseArcher m_data_BaseArcher;
-    private SO_Aura m_data_Aura;
-
-    [Header("Active Spells")]
-    private bool[] m_active = new bool[(int)Spells.SpellAmount];
-
-    [Header("Spell Timer")]
-    private float[] m_timer = new float[(int)Spells.SpellAmount];
+    [HideInInspector] public SO_AllDirections m_data_AllDirections;
+    [HideInInspector] public SO_NearPlayer m_data_NearPlayer;
+    [HideInInspector] public SO_BaseArcher m_data_BaseArcher;
+    [HideInInspector] public SO_Aura m_data_Aura;
 
     [Header("Prefabs")]
     [SerializeField] private GameObject m_prefab_AllDirections;
@@ -52,8 +50,11 @@ public class SpellManager : MonoBehaviour
     private Transform[] m_parent = new Transform[(int)Spells.SpellAmount];
     private Transform m_parent_Spells;
 
-    [Header("Spell Levels")]
-    private int[] m_level = new int[(int)Spells.SpellAmount];
+    private bool[] m_active = new bool[(int)Spells.SpellAmount];
+
+    private float[] m_timer = new float[(int)Spells.SpellAmount];
+
+    [HideInInspector] public int[] m_level = new int[(int)Spells.SpellAmount];
 
     private float[] m_cd = new float[(int)Spells.SpellAmount];
 
@@ -66,10 +67,23 @@ public class SpellManager : MonoBehaviour
         obj.name = "Spells";
         m_parent_Spells = obj.transform;
 
+        // set start values
+        for(int i = 0; i < (int)Spells.SpellAmount; i++)
+        {
+            m_active[i] = false;
+            m_timer[i] = 0f;
+            m_level[i] = 0;
+        }
+
+        m_data_BaseArcher = Instantiate(m_data_BaseArcher_original);
+        m_data_AllDirections = Instantiate(m_data_AllDirections_original);
+        m_data_NearPlayer = Instantiate(m_data_NearPlayer_original);
+        m_data_Aura = Instantiate(m_data_Aura_original);
+
         // Prototype
         LearnBaseArcher();
-        LearnAllDirections();
-        LearnNearPlayer();
+        //LearnAllDirections();
+        //LearnNearPlayer();
         LearnAura();
     }
 
@@ -105,14 +119,44 @@ public class SpellManager : MonoBehaviour
         }
     }
 
+    public void ChooseNewSpell(Spells _spell)
+    {
+        if (m_level[(int)_spell] != 0)
+            UpgradeSpell(_spell);
+        else
+        {
+            switch (_spell)
+            {
+                case Spells.AllDirections:
+                    LearnAllDirections();
+                    break;
+
+                case Spells.Aura:
+                    LearnAura();
+                    break;
+
+                case Spells.BaseArcher:
+                    LearnBaseArcher();
+                    break;
+
+                case Spells.NearPlayer:
+                    LearnNearPlayer();
+                    break;
+
+                default:
+                    return;
+            }
+        }
+    }
+
     #region Learn New Spells
 
     /// <summary>
     /// Learn the Spell "AllDirections" and show it in UI
     /// </summary>
-    public void LearnBaseArcher()
+    private void LearnBaseArcher()
     {
-        m_data_BaseArcher = Instantiate(m_data_BaseArcher_original);
+        m_level[(int)Spells.BaseArcher] = 1;
         m_active[(int)Spells.BaseArcher] = true;
 
         m_cd[(int)Spells.BaseArcher] = m_data_BaseArcher.Cd;
@@ -130,10 +174,9 @@ public class SpellManager : MonoBehaviour
     /// <summary>
     /// Learn the Spell "AllDirections" and show it in UI
     /// </summary>
-    public void LearnAllDirections()
+    private void LearnAllDirections()
     {
         m_level[(int)Spells.AllDirections] = 1;
-        m_data_AllDirections = Instantiate(m_data_AllDirections_original);
         m_active[(int)Spells.AllDirections] = true;
 
         m_cd[(int)Spells.AllDirections] = m_data_AllDirections.Cd;
@@ -153,10 +196,9 @@ public class SpellManager : MonoBehaviour
     /// <summary>
     /// Learn the Spell "NearPlayer" and show it in UI
     /// </summary>
-    public void LearnNearPlayer()
+    private void LearnNearPlayer()
     {
         m_level[(int)Spells.NearPlayer] = 1;
-        m_data_NearPlayer = Instantiate(m_data_NearPlayer_original);
         m_active[(int)Spells.NearPlayer] = true;
 
         m_cd[(int)Spells.NearPlayer] = m_data_NearPlayer.Cd;
@@ -176,10 +218,9 @@ public class SpellManager : MonoBehaviour
     /// <summary>
     /// Learn the Spell "Aura" and show it in UI
     /// </summary>
-    public void LearnAura()
+    private void LearnAura()
     {
         m_level[(int)Spells.Aura] = 1;
-        m_data_Aura = Instantiate(m_data_Aura_original);
 
         m_cd[(int)Spells.Aura] = m_data_Aura.Cd;
 
@@ -195,12 +236,12 @@ public class SpellManager : MonoBehaviour
 
     #endregion
 
-    public void UpgradeSpell(Spells _spell)
+    private void UpgradeSpell(Spells _spell)
     {
         switch (_spell)                  // check which spell it was and upgrade it
         {
             case Spells.AllDirections:
-                m_data_AllDirections.Damage *= (1f + m_data_Upgrades.Damage[m_level[(int)_spell]]);
+                //m_data_AllDirections.Damage *= (1f + m_data_Upgrades.Damage[m_level[(int)_spell]]);
                 break;
 
             case Spells.BaseArcher:
@@ -208,11 +249,11 @@ public class SpellManager : MonoBehaviour
                 break;
 
             case Spells.NearPlayer:
-                m_data_NearPlayer.Damage *= (1f + m_data_Upgrades.Damage[m_level[(int)_spell]]);
+                //m_data_NearPlayer.Damage *= (1f + m_data_Upgrades.Damage[m_level[(int)_spell]]);
                 break;
 
             case Spells.Aura:
-                m_data_Aura.Damage *= (1f + m_data_Upgrades.Damage[m_level[(int)_spell]]);
+                //m_data_Aura.Damage *= (1f + m_data_Upgrades.Damage[m_level[(int)_spell]]);
                 break;
         }
 

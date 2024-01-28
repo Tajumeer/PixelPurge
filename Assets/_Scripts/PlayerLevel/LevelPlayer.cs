@@ -108,6 +108,6 @@ public class LevelPlayer : MonoBehaviour
         level++;
         playerData.Level = level;
 
-        FindObjectOfType<DungeonHUD>().LoadLevelUp();
+        FindObjectOfType<DungeonHUDManager>().LoadLevelUp();
     }
 }
