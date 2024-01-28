@@ -8,8 +8,6 @@ using UnityEngine.UI;
 
 public class DetailsHUDManager : MonoBehaviour
 {
-    private SpellManager m_spellScript;
-
     [Header("Active Spells")]
     [SerializeField] private Image[] m_sprites_active;
     [SerializeField] private TextMeshProUGUI[] m_level_active;
@@ -17,11 +15,6 @@ public class DetailsHUDManager : MonoBehaviour
     [Header("Passive Spells")]
     [SerializeField] private Image[] m_sprites_passive;
     [SerializeField] private TextMeshProUGUI[] m_level_passive;
-
-    private void Awake()
-    {
-        m_spellScript = FindObjectOfType<SpellManager>();
-    }
 
     private void OnEnable()
     {

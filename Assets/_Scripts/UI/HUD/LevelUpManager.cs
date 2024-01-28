@@ -7,6 +7,7 @@ using UnityEngine;
 public class LevelUpManager : MonoBehaviour
 {
     private SpellManager m_spellScript;
+    [SerializeField] private SO_AllSpellSO m_spellSO;
 
     [SerializeField] private GameObject m_prefab_spellCardActive;
     [SerializeField] private GameObject m_prefab_spellCardPassive;
@@ -27,7 +28,10 @@ public class LevelUpManager : MonoBehaviour
         for (int i = 0; i < (int)Spells.SpellAmount; i++)
         {
             // if spell is already at max level, its not available for choosing
-            if (m_spellScript.m_level[i] >= m_spellScript.m_maxSpellLevel) return;
+            if (i == (int)Spells.BaseArcher && m_spellSO.BaseArcher.Level >= m_spellScript.m_maxSpellLevel) return;
+            if (i == (int)Spells.AllDirections && m_spellSO.AllDirections.Level >= m_spellScript.m_maxSpellLevel) return;
+            if (i == (int)Spells.NearPlayer && m_spellSO.NearPlayer.Level >= m_spellScript.m_maxSpellLevel) return;
+            if (i == (int)Spells.Aura && m_spellSO.Aura.Level >= m_spellScript.m_maxSpellLevel) return;
 
             availableSpells.Add((Spells)i);
         }
@@ -93,14 +97,14 @@ public class LevelUpManager : MonoBehaviour
         // set spell, icon, name
         ChooseSpell values = spellCard.GetComponent<ChooseSpell>();
         values.m_spell = Spells.BaseArcher;
-        values.m_icon.sprite = m_spellScript.m_data_BaseArcher.SpellIcon;
-        values.m_name.text = m_spellScript.m_data_BaseArcher.SpellName;
+        values.m_icon.sprite = m_spellSO.BaseArcher.SpellIcon;
+        values.m_name.text = m_spellSO.BaseArcher.SpellName;
 
         // if its not already learned, show spell description
-        if (m_spellScript.m_level[(int)Spells.BaseArcher] == 0)
+        if (m_spellSO.BaseArcher.Level == 0)
         {
             values.m_description.alignment = TMPro.TextAlignmentOptions.Center;
-            values.m_description.text = m_spellScript.m_data_BaseArcher.SpellDescription;
+            values.m_description.text = m_spellSO.BaseArcher.SpellDescription;
         }
         // else show upgrades
         else
@@ -118,14 +122,14 @@ public class LevelUpManager : MonoBehaviour
         // set spell, icon, name
         ChooseSpell values = spellCard.GetComponent<ChooseSpell>();
         values.m_spell = Spells.AllDirections;
-        values.m_icon.sprite = m_spellScript.m_data_AllDirections.SpellIcon;
-        values.m_name.text = m_spellScript.m_data_AllDirections.SpellName;
+        values.m_icon.sprite = m_spellSO.AllDirections.SpellIcon;
+        values.m_name.text = m_spellSO.AllDirections.SpellName;
 
         // if its not already learned, show spell description
-        if (m_spellScript.m_level[(int)Spells.AllDirections] == 0)
+        if (m_spellSO.AllDirections.Level == 0)
         {
             values.m_description.alignment = TMPro.TextAlignmentOptions.Center;
-            values.m_description.text = m_spellScript.m_data_AllDirections.SpellDescription;
+            values.m_description.text = m_spellSO.AllDirections.SpellDescription;
         }
         // else show upgrades
         else
@@ -142,16 +146,16 @@ public class LevelUpManager : MonoBehaviour
 
         // set spell, icon, name
         ChooseSpell values = spellCard.GetComponent<ChooseSpell>();
-        
+
         values.m_spell = Spells.NearPlayer;
-        values.m_icon.sprite = m_spellScript.m_data_NearPlayer.SpellIcon;
-        values.m_name.text = m_spellScript.m_data_NearPlayer.SpellName;
+        values.m_icon.sprite = m_spellSO.NearPlayer.SpellIcon;
+        values.m_name.text = m_spellSO.NearPlayer.SpellName;
 
         // if its not already learned, show spell description
-        if (m_spellScript.m_level[(int)Spells.NearPlayer] == 0)
+        if (m_spellSO.NearPlayer.Level == 0)
         {
             values.m_description.alignment = TMPro.TextAlignmentOptions.Center;
-            values.m_description.text = m_spellScript.m_data_NearPlayer.SpellDescription;
+            values.m_description.text = m_spellSO.NearPlayer.SpellDescription;
         }
         // else show upgrades
         else
@@ -169,14 +173,14 @@ public class LevelUpManager : MonoBehaviour
         // set spell, icon, name
         ChooseSpell values = spellCard.GetComponent<ChooseSpell>();
         values.m_spell = Spells.Aura;
-        values.m_icon.sprite = m_spellScript.m_data_Aura.SpellIcon;
-        values.m_name.text = m_spellScript.m_data_Aura.SpellName;
+        values.m_icon.sprite = m_spellSO.Aura.SpellIcon;
+        values.m_name.text = m_spellSO.Aura.SpellName;
 
         // if its not already learned, show spell description
-        if (m_spellScript.m_level[(int)Spells.Aura] == 0)
+        if (m_spellSO.Aura.Level == 0)
         {
             values.m_description.alignment = TMPro.TextAlignmentOptions.Center;
-            values.m_description.text = m_spellScript.m_data_Aura.SpellDescription;
+            values.m_description.text = m_spellSO.Aura.SpellDescription;
         }
         // else show upgrades
         else

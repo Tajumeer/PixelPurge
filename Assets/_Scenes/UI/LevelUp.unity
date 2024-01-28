@@ -483,10 +483,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99b251ddb2c9b574888a02dd90c6ec1e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_spellSO: {fileID: 11400000, guid: dd9b82bf091429348b9db7f7fa8f2317, type: 2}
   m_prefab_spellCardActive: {fileID: 4652599780296313819, guid: 24f4f346c9ceab24aa917aa5cc777ae4, type: 3}
   m_prefab_spellCardPassive: {fileID: 8164334777945018022, guid: 3d946c616b7d61d4490797168042e83b, type: 3}
   m_spellCardParent: {fileID: 974205999}
-  m_goldIcon: {fileID: 0}
+  m_goldIcon: {fileID: 21300000, guid: 86b8b432ee768404c97251c2a4c12ec6, type: 3}
 --- !u!4 &1259787517
 Transform:
   m_ObjectHideFlags: 0

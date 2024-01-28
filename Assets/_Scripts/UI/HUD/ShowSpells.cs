@@ -30,7 +30,6 @@ public class ShowSpells : MonoBehaviour
 
     private void OnEnable()
     {
-        Debug.Log("SO "+m_spellSO.AllDirections.Cd);
         m_cds = new List<float>();
         m_activeCds = new List<float>();
         m_learnedActiveSpells = new List<Spells>();
@@ -39,6 +38,8 @@ public class ShowSpells : MonoBehaviour
 
     private void Update()
     {
+        if (m_cds.Count == 0) return;
+
         for (int i = 0; i < m_cds.Count; i++)
         {
             m_activeCds[i] += Time.deltaTime;                               // cd of the spells
@@ -58,20 +59,37 @@ public class ShowSpells : MonoBehaviour
     /// <param name="_icon">The Sprite of the Icon that should bne showed in the HUD</param>
     /// <param name="_active">Is the Spell active (true) or passie (false)</param>
     /// <param name="_cd">The CD of the active spell</param>
-    public void ShowNewSpell(Spells _spell, Sprite _icon, bool _active, float _cd = 0f)
+    public void ShowNewSpell(Spells _spell)
     {
-        if (_active)
+        switch (_spell)
         {
-            m_sprites_active[m_learnedActiveSpells.Count].sprite = _icon;
-            m_learnedActiveSpells.Add(_spell);
+            case Spells.AllDirections:
+                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.AllDirections.SpellIcon;
+                m_learnedActiveSpells.Add(_spell);
+                m_cds.Add(m_spellSO.AllDirections.Cd);
+                m_activeCds.Add(0f);
+                break;
 
-            m_cds.Add(_cd);
-            m_activeCds.Add(0f);
-        }
-        else
-        {
-            m_sprites_passive[m_learnedPassiveSpells.Count].sprite = _icon;
-            m_learnedPassiveSpells.Add(_spell);
+            case Spells.Aura:
+                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.Aura.SpellIcon;
+                m_learnedActiveSpells.Add(_spell);
+                m_cds.Add(m_spellSO.Aura.Cd);
+                m_activeCds.Add(0f);
+                break;
+
+            case Spells.BaseArcher:
+                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.BaseArcher.SpellIcon;
+                m_learnedActiveSpells.Add(_spell);
+                m_cds.Add(m_spellSO.BaseArcher.Cd);
+                m_activeCds.Add(0f);
+                break;
+
+            case Spells.NearPlayer:
+                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.NearPlayer.SpellIcon;
+                m_learnedActiveSpells.Add(_spell);
+                m_cds.Add(m_spellSO.NearPlayer.Cd);
+                m_activeCds.Add(0f);
+                break;
         }
     }
 

@@ -381,12 +381,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07679ddcfb09ebd42ae48e9028d2b5d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_spellSO: {fileID: 11400000, guid: dd9b82bf091429348b9db7f7fa8f2317, type: 2}
   m_sprites_active:
   - {fileID: 1602929022}
   - {fileID: 612699892}
   - {fileID: 1319368550}
   - {fileID: 575614267}
-  m_cd:
+  m_cdImage:
   - {fileID: 295510875}
   - {fileID: 1213256001}
   - {fileID: 1304702890}
