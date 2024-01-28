@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 8701125666328511382}
   - component: {fileID: 1210572828293242190}
   - component: {fileID: -5250309188827039354}
+  - component: {fileID: -6250474057389454401}
+  - component: {fileID: -4392395068342566214}
   m_Layer: 0
   m_Name: RangeEnemie
   m_TagString: Enemy
@@ -148,6 +150,8 @@ MonoBehaviour:
     m_Bits: 8
   m_DropList:
   - {fileID: -5250309188827039354}
+  - {fileID: -6250474057389454401}
+  - {fileID: -4392395068342566214}
 --- !u!114 &-5250309188827039354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,6 +165,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemPrefab: {fileID: 1910158392446484125, guid: f62de59e4b4b20b4ebccd7f1712a965b, type: 3}
+  m_dropChance: 1
+--- !u!114 &-6250474057389454401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626227658068341081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bd1b5e3e9de284489747d09ad0000c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemPrefab: {fileID: 1910158392446484125, guid: 09fd18b9f0abfbd43935fc2fa0250ebb, type: 3}
+  m_dropChance: 1
+--- !u!114 &-4392395068342566214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626227658068341081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bd1b5e3e9de284489747d09ad0000c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemPrefab: {fileID: 1910158392446484125, guid: 7ba1c778680f1d444a5338881ce15e2e, type: 3}
   m_dropChance: 1
 --- !u!1 &4326482867426308180
 GameObject:

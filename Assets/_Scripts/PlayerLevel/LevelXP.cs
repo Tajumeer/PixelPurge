@@ -11,14 +11,14 @@ public class LevelXP : PoolObject<LevelXP>
 
     [SerializeField] private float speed;
     private float xpAmount;
-    private bool isCollected;
+    [HideInInspector]public bool IsCollected;
 
     private void Awake()
     {
         player = FindObjectOfType<PlayerController>();
 
         // Debugging
-        isCollected = false;
+        IsCollected = false;
         xpAmount = 1f;
     }
 
@@ -28,7 +28,7 @@ public class LevelXP : PoolObject<LevelXP>
     /// <param name="_xpAmount">The amount of XP the player gets when collected</param>
     public void OnSpawn(float _xpAmount, LevelPlayer _levelScript)
     {
-        isCollected = false;
+        IsCollected = false;
         xpAmount = _xpAmount;
         levelScript = _levelScript;
     }
@@ -36,7 +36,7 @@ public class LevelXP : PoolObject<LevelXP>
     private void FixedUpdate()
     {
         // Move towards player if he collected the xp
-        if (isCollected)
+        if (IsCollected)
             gameObject.transform.position = Vector2.MoveTowards(transform.position, player.gameObject.transform.position, speed * Time.deltaTime);
     }
 
@@ -52,7 +52,7 @@ public class LevelXP : PoolObject<LevelXP>
         // if the player collects the xp (when it is in the collection radius) it flies to him
         else if (_collision.gameObject.CompareTag("PlayerXpCollect"))
         {
-            isCollected = true;
+            IsCollected = true;
         }
     }
 }

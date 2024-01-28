@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class ItemDrop : MonoBehaviour
 {
@@ -22,7 +24,7 @@ public class ItemDrop : MonoBehaviour
     {
         if (UnityEngine.Random.value < m_dropChance)
         {
-            Instantiate(m_itemPrefab, m_parent.position, Quaternion.identity, m_container);
+            Instantiate(m_itemPrefab, new Vector3(m_parent.position.x + (Random.Range(.1f, 2f)), m_parent.position.y + (Random.Range(.1f, 2f)), 0f) , Quaternion.identity, m_container);
         }
     }
 }

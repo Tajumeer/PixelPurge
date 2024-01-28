@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5351816127516481093}
   - component: {fileID: 2642962166434547208}
-  - component: {fileID: 3577757027919608290}
   - component: {fileID: 8670959993171023348}
+  - component: {fileID: 420662838848253576}
   m_Layer: 0
-  m_Name: HealDrop
+  m_Name: MagentDrop
   m_TagString: Drop
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +29,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.377, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,31 +75,17 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: d64053ab13636704ab1c689b810b009e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0b6ceae3ad40b584b9fd60375896ea6d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.28, y: 1.28}
+  m_Size: {x: 0.32, y: 0.32}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3577757027919608290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1910158392446484125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa35341e991920e4dbd2d45561410342, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_healAmount: 15
-  m_speed: 7
 --- !u!58 &8670959993171023348
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -135,3 +121,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &420662838848253576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1910158392446484125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dadfe3802e910dc42bade9a25255e0d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_speed: 7
