@@ -56,7 +56,8 @@ public class DungeonHUD : MonoBehaviour
 
     public void LoadLevelUp()
     {
-        Debug.Log("LevelUp");
+        Time.timeScale = 0f;
+
         ShowGameDetails();
         MenuManager.Instance.LoadSceneAsync(Scenes.LevelUp, LoadSceneMode.Additive);
     }
@@ -65,6 +66,8 @@ public class DungeonHUD : MonoBehaviour
     {
         MenuManager.Instance.UnloadSceneAsync(Scenes.LevelUp);
         HideGameDetails();
+
+        Time.timeScale = 1f;
     }
 
     #endregion
@@ -73,14 +76,18 @@ public class DungeonHUD : MonoBehaviour
 
     private void LoadPause()
     {
-        ShowGameDetails();
+        Time.timeScale = 0f;
+
+        if (!SceneManager.GetSceneByBuildIndex((int)Scenes.DetailsHUD).isLoaded) ShowGameDetails();
         MenuManager.Instance.LoadSceneAsync(Scenes.Pause, LoadSceneMode.Additive);
     }
 
     public void UnloadPause()
     {
         MenuManager.Instance.UnloadSceneAsync(Scenes.Pause);
-        HideGameDetails();
+        if (!SceneManager.GetSceneByBuildIndex((int)Scenes.LevelUp).isLoaded) HideGameDetails();
+
+        Time.timeScale = 1f;
     }
 
     #endregion
