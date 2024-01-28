@@ -29,6 +29,7 @@ public class RangedController : MonoBehaviour, IDamagable
     [SerializeField] private float m_projectileSpeed;
     [SerializeField] private float m_attackRange;
     [SerializeField] private LayerMask m_playerLayer;
+    [SerializeField] private List<ItemDrop> m_DropList;
     private float m_attackFrequencyTimer;
 
    
@@ -114,6 +115,12 @@ public class RangedController : MonoBehaviour, IDamagable
     public void SetDeathState()
     {
         if (m_isDead) { return; }
+
+        foreach (ItemDrop drop in m_DropList)
+        {
+            drop.DropItem();
+        }
+
         m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
         Destroy(m_agent);
         m_isDead = true;

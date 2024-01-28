@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -8,6 +9,7 @@ public class FrostGhostController : MonoBehaviour, IDamagable
     public float EnemyHealth;
     [SerializeField] private float m_ExpOnDeath;
     [SerializeField] private int m_ScoreOnDeath;
+    [SerializeField] private List<ItemDrop> m_DropList;
 
     private NavMeshAgent m_agent;
     private Transform m_target;
@@ -78,6 +80,12 @@ public class FrostGhostController : MonoBehaviour, IDamagable
     public void SetDeathState()
     {
         if (m_isDead) { return; }
+
+        foreach (ItemDrop drop in m_DropList)
+        {
+            drop.DropItem();
+        }
+
         m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
         Destroy(m_agent);
         m_isDead = true;

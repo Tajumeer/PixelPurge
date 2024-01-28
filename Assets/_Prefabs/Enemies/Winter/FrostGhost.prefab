@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 5869254009730049233}
   - component: {fileID: 8701125666328511382}
   - component: {fileID: 2885787755428085968}
+  - component: {fileID: 4650730811708328167}
   m_Layer: 0
   m_Name: FrostGhost
   m_TagString: Enemy
@@ -136,6 +137,22 @@ MonoBehaviour:
   EnemyHealth: 50
   m_ExpOnDeath: 1
   m_ScoreOnDeath: 50
+  m_DropList:
+  - {fileID: 4650730811708328167}
+--- !u!114 &4650730811708328167
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626227658068341081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bd1b5e3e9de284489747d09ad0000c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemPrefab: {fileID: 1910158392446484125, guid: f62de59e4b4b20b4ebccd7f1712a965b, type: 3}
+  m_dropChance: 1
 --- !u!1 &8581502561020487003
 GameObject:
   m_ObjectHideFlags: 0

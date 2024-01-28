@@ -116,6 +116,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8900606599362672407}
   - component: {fileID: 7342161212416733567}
+  - component: {fileID: -5216834863397654387}
   - component: {fileID: 7851237647990967117}
   - component: {fileID: 1983383517682829490}
   - component: {fileID: 5580399509507064713}
@@ -158,6 +159,22 @@ MonoBehaviour:
   EnemyHealth: 1200
   m_ExpOnDeath: 5
   m_ScoreOnDeath: 500
+  m_DropList:
+  - {fileID: -5216834863397654387}
+--- !u!114 &-5216834863397654387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7794670824351030394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 91bd1b5e3e9de284489747d09ad0000c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_itemPrefab: {fileID: 1910158392446484125, guid: f62de59e4b4b20b4ebccd7f1712a965b, type: 3}
+  m_dropChance: 1
 --- !u!195 &7851237647990967117
 NavMeshAgent:
   m_ObjectHideFlags: 0

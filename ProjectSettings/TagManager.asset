@@ -7,29 +7,13 @@ TagManager:
   - Enemy
   - Spawn
   - PlayerSpawn
-  - DungeonLevel_0
-  - DungeonLevel_1
-  - DungeonLevel_2
-  - DungeonLevel_3
-  - DungeonLevel_4
-  - DungeonLevel_5
-  - DungeonLevel_6
-  - DungeonLevel_7
-  - DungeonLevel_8
-  - DungeonLevel_9
-  - DungenLevel_8
-  - DungenLevel_7
-  - DungenLevel_6
-  - DungenLevel_2
-  - DungenLevel_5
-  - DungenLevel_1
-  - DungenLevel_4
-  - DungenLevel_3
   - PlayerSpell
   - Exit
   - XP
   - PlayerXpCollect
   - Obstacle
+  - Drop
+  - MapControl
   layers:
   - Default
   - TransparentFX

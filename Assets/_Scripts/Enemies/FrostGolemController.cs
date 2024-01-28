@@ -10,6 +10,7 @@ public class FrostGolemController : MonoBehaviour, IDamagable
     public float EnemyHealth;
     [SerializeField] private float m_ExpOnDeath;
     [SerializeField] private int m_ScoreOnDeath;
+    [SerializeField] private List<ItemDrop> m_DropList;
 
     private NavMeshAgent m_agent;
     private Transform m_target;
@@ -82,6 +83,11 @@ public class FrostGolemController : MonoBehaviour, IDamagable
     {
         if (m_isDead) { return; }
         // m_agent.SetDestination(this.m_target.position);
+
+        foreach (ItemDrop drop in m_DropList) {
+            drop.DropItem();
+        }
+
         Destroy(m_agent);
         m_isDead = true;
         ChangeAnimationState(AnimationState.FrostGolemDeath);
