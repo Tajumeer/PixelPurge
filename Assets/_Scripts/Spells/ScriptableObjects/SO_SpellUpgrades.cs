@@ -4,7 +4,7 @@ using UnityEngine;
 
 // Maya
 
-[CreateAssetMenu(fileName = "SpellUpgrades", menuName = "PixelPurge/Spells/SpellUpgrades", order = 0)]
+[CreateAssetMenu(fileName = "SpellUpgrades", menuName = "PixelPurge/Spells/SpellUpgrades", order = 10)]
 public class SO_SpellUpgrades : ScriptableObject
 {
     [Header("The Array Objects are the upgrade levels: \nDamage[0] is the damage in Level 1 of a spell and so on \nUpgrades in 0.XX%")]

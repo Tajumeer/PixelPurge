@@ -7,7 +7,7 @@ using UnityEngine;
 public class LevelUpManager : MonoBehaviour
 {
     private SpellManager m_spellScript;
-    [SerializeField] private SO_AllSpellSO m_spellSO;
+    [SerializeField] private SO_AllSpells m_spellSO;
 
     [SerializeField] private GameObject m_prefab_spellCardActive;
     [SerializeField] private GameObject m_prefab_spellCardPassive;

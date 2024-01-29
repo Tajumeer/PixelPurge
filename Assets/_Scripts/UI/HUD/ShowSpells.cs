@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ShowSpells : MonoBehaviour
 {
-    [SerializeField] private SO_AllSpellSO m_spellSO;
+    [SerializeField] private SO_AllSpells m_dataSpells;
 
     [Header("Active Spells")]
     [SerializeField] public Image[] m_sprites_active;
@@ -32,6 +32,7 @@ public class ShowSpells : MonoBehaviour
     {
         m_cd = new List<float>();
         m_timer = new List<float>();
+
         m_learnedActiveSpells = new List<Spells>();
         m_learnedPassiveSpells = new List<Spells>();
 
@@ -44,9 +45,7 @@ public class ShowSpells : MonoBehaviour
 
     private void Update()
     {
-        if (m_cd.Count == 0) return;
-
-        for (int i = 0; i < m_cd.Count; i++)
+        for (int i = 0; i < m_learnedActiveSpells.Count; i++)
         {
             m_timer[i] += Time.deltaTime;                               // cd of the spells
             m_cdImage[i].fillAmount = 1f - (m_timer[i] / m_cd[i]);     // set cd image in HUD inverted (1->0)
@@ -62,42 +61,50 @@ public class ShowSpells : MonoBehaviour
     /// <summary>
     /// Shows an Icon of a new learned spell in the HUD
     /// </summary>
-    /// <param name="_icon">The Sprite of the Icon that should bne showed in the HUD</param>
-    /// <param name="_active">Is the Spell active (true) or passie (false)</param>
-    /// <param name="_cd">The CD of the active spell</param>
-    public void ShowNewSpell(Spells _spell)
+    public void LearnNewSpell(Spells _spell)
     {
+        SO_Spells spellSO = m_dataSpells.spellSO[(int)_spell];
+
+        // activate and set sprite icon
+        m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
+        m_sprites_active[m_learnedActiveSpells.Count].sprite = spellSO.SpellIcon;
+
+        // set cd values
+        m_learnedActiveSpells.Add(_spell);
+        m_cd.Add(spellSO.Cd[spellSO.Level]);
+        m_timer.Add(0f);
+
         switch (_spell)
         {
             case Spells.AllDirections:
                 m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.AllDirections.SpellIcon;
+                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_dataSpells.AllDirections.SpellIcon;
                 m_learnedActiveSpells.Add(_spell);
-                m_cd.Add(m_spellSO.AllDirections.Cd);
+                m_cd.Add(m_dataSpells.AllDirections.Cd);
                 m_timer.Add(0f);
                 break;
 
             case Spells.Aura:
                 m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.Aura.SpellIcon;
+                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_dataSpells.Aura.SpellIcon;
                 m_learnedActiveSpells.Add(_spell);
-                m_cd.Add(m_spellSO.Aura.Cd);
+                m_cd.Add(m_dataSpells.Aura.Cd);
                 m_timer.Add(0f);
                 break;
 
             case Spells.BaseArcher:
                 m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.BaseArcher.SpellIcon;
+                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_dataSpells.BaseArcher.SpellIcon;
                 m_learnedActiveSpells.Add(_spell);
-                m_cd.Add(m_spellSO.BaseArcher.Cd);
+                m_cd.Add(m_dataSpells.BaseArcher.Cd);
                 m_timer.Add(0f);
                 break;
 
             case Spells.NearPlayer:
                 m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.NearPlayer.SpellIcon;
+                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_dataSpells.NearPlayer.SpellIcon;
                 m_learnedActiveSpells.Add(_spell);
-                m_cd.Add(m_spellSO.NearPlayer.Cd);
+                m_cd.Add(m_dataSpells.NearPlayer.Cd);
                 m_timer.Add(0f);
                 break;
         }
