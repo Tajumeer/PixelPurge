@@ -19,35 +19,41 @@ public class ShowSpells : MonoBehaviour
     /// <summary>
     /// the cd this spell has
     /// </summary>
-    private List<float> m_cds;
+    private List<float> m_cd;
     /// <summary>
-    /// the active CD counter for this spell
+    /// the active CD timer for this spell
     /// </summary>
-    private List<float> m_activeCds;
+    private List<float> m_timer;
 
     private List<Spells> m_learnedActiveSpells;
     private List<Spells> m_learnedPassiveSpells;
 
     private void OnEnable()
     {
-        m_cds = new List<float>();
-        m_activeCds = new List<float>();
+        m_cd = new List<float>();
+        m_timer = new List<float>();
         m_learnedActiveSpells = new List<Spells>();
         m_learnedPassiveSpells = new List<Spells>();
+
+        for(int i = 0; i < m_sprites_active.Length; i++)
+        {
+            m_sprites_active[i].gameObject.SetActive(false);
+            m_sprites_passive[i].gameObject.SetActive(false);
+        }
     }
 
     private void Update()
     {
-        if (m_cds.Count == 0) return;
+        if (m_cd.Count == 0) return;
 
-        for (int i = 0; i < m_cds.Count; i++)
+        for (int i = 0; i < m_cd.Count; i++)
         {
-            m_activeCds[i] += Time.deltaTime;                               // cd of the spells
-            m_cdImage[i].fillAmount = 1f - (m_activeCds[i] / m_cds[i]);     // set cd image in HUD inverted (1->0)
+            m_timer[i] += Time.deltaTime;                               // cd of the spells
+            m_cdImage[i].fillAmount = 1f - (m_timer[i] / m_cd[i]);     // set cd image in HUD inverted (1->0)
 
-            if (m_activeCds[i] >= m_cds[i])
+            if (m_timer[i] >= m_cd[i])
             {
-                m_activeCds[i] = 0f;
+                m_timer[i] = 0f;
                 m_cdImage[i].fillAmount = 0f;
             }
         }
@@ -64,31 +70,35 @@ public class ShowSpells : MonoBehaviour
         switch (_spell)
         {
             case Spells.AllDirections:
+                m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
                 m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.AllDirections.SpellIcon;
                 m_learnedActiveSpells.Add(_spell);
-                m_cds.Add(m_spellSO.AllDirections.Cd);
-                m_activeCds.Add(0f);
+                m_cd.Add(m_spellSO.AllDirections.Cd);
+                m_timer.Add(0f);
                 break;
 
             case Spells.Aura:
+                m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
                 m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.Aura.SpellIcon;
                 m_learnedActiveSpells.Add(_spell);
-                m_cds.Add(m_spellSO.Aura.Cd);
-                m_activeCds.Add(0f);
+                m_cd.Add(m_spellSO.Aura.Cd);
+                m_timer.Add(0f);
                 break;
 
             case Spells.BaseArcher:
+                m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
                 m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.BaseArcher.SpellIcon;
                 m_learnedActiveSpells.Add(_spell);
-                m_cds.Add(m_spellSO.BaseArcher.Cd);
-                m_activeCds.Add(0f);
+                m_cd.Add(m_spellSO.BaseArcher.Cd);
+                m_timer.Add(0f);
                 break;
 
             case Spells.NearPlayer:
+                m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
                 m_sprites_active[m_learnedActiveSpells.Count].sprite = m_spellSO.NearPlayer.SpellIcon;
                 m_learnedActiveSpells.Add(_spell);
-                m_cds.Add(m_spellSO.NearPlayer.Cd);
-                m_activeCds.Add(0f);
+                m_cd.Add(m_spellSO.NearPlayer.Cd);
+                m_timer.Add(0f);
                 break;
         }
     }
@@ -104,7 +114,7 @@ public class ShowSpells : MonoBehaviour
         {
             if (m_learnedActiveSpells[i] == _spell)
             {
-                m_cds[i] = _newCD;
+                m_cd[i] = _newCD;
             }
         }
     }

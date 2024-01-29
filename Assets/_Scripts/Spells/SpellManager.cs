@@ -15,7 +15,7 @@ public enum Spells
     Aura,
     SpellAmount
 }
-// where to edit Spells: SpellManager, LevelUpManager
+// where to edit Spells: SpellManager, LevelUpManager, ShowSpell
 
 public class SpellManager : MonoBehaviour
 {

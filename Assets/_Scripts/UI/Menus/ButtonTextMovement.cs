@@ -13,8 +13,8 @@ public class ButtonTextMovement : MonoBehaviour
     /// </summary>
     private RectTransform m_transf;
 
-    private float m_clickedPosition = 0f;
-    private float m_normalPosition = 10f;
+    [SerializeField] private float m_clickedPosition = 0f;
+    [SerializeField] private float m_normalPosition = 10f;
 
     private void Awake()
     {

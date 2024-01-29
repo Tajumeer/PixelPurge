@@ -1241,7 +1241,7 @@ GameObject:
   - component: {fileID: 783287261}
   m_Layer: 0
   m_Name: MapController
-  m_TagString: Untagged
+  m_TagString: MapControl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1527,6 +1527,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 854149198173135770, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 934416542221237853, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e73bb9e2a86fc98478b91f2fbb9d8ee9, type: 3}
+    - target: {fileID: 934416542221237853, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 934416542221237853, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 934416542221237853, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125355967405182394, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4125355967405182394, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.85
+      objectReference: {fileID: 0}
     - target: {fileID: 4254612813726314173, guid: 7d9df00d8b402434bb7b1426d0993171, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
