@@ -8,9 +8,4 @@ using UnityEngine;
 public class SO_AllSpells : ScriptableObject
 {
     public SO_Spells[] spellSO;
-
-    public SO_NearPlayer NearPlayer;
-    public SO_BaseArcher BaseArcher;
-    public SO_Aura Aura;
-    public SO_AllDirections AllDirections;
 }

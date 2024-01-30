@@ -36,7 +36,7 @@ public class ShowSpells : MonoBehaviour
         m_learnedActiveSpells = new List<Spells>();
         m_learnedPassiveSpells = new List<Spells>();
 
-        for(int i = 0; i < m_sprites_active.Length; i++)
+        for (int i = 0; i < m_sprites_active.Length; i++)
         {
             m_sprites_active[i].gameObject.SetActive(false);
             m_sprites_passive[i].gameObject.SetActive(false);
@@ -48,7 +48,7 @@ public class ShowSpells : MonoBehaviour
         for (int i = 0; i < m_learnedActiveSpells.Count; i++)
         {
             m_timer[i] += Time.deltaTime;                               // cd of the spells
-            m_cdImage[i].fillAmount = 1f - (m_timer[i] / m_cd[i]);     // set cd image in HUD inverted (1->0)
+            m_cdImage[i].fillAmount = 1f - (m_timer[i] / m_cd[i]);      // set cd image in HUD inverted (1->0)
 
             if (m_timer[i] >= m_cd[i])
             {
@@ -65,64 +65,26 @@ public class ShowSpells : MonoBehaviour
     {
         SO_Spells spellSO = m_dataSpells.spellSO[(int)_spell];
 
-        // activate and set sprite icon
-        m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-        m_sprites_active[m_learnedActiveSpells.Count].sprite = spellSO.SpellIcon;
-
-        // set cd values
-        m_learnedActiveSpells.Add(_spell);
-        m_cd.Add(spellSO.Cd[spellSO.Level]);
-        m_timer.Add(0f);
-
-        switch (_spell)
+        // check if its active or passive
+        if ((int)_spell < (int)Spells.ActiveSpells)
         {
-            case Spells.AllDirections:
-                m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_dataSpells.AllDirections.SpellIcon;
-                m_learnedActiveSpells.Add(_spell);
-                m_cd.Add(m_dataSpells.AllDirections.Cd);
-                m_timer.Add(0f);
-                break;
+            // activate and set sprite icon
+            m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
+            m_sprites_active[m_learnedActiveSpells.Count].sprite = spellSO.SpellIcon;
 
-            case Spells.Aura:
-                m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_dataSpells.Aura.SpellIcon;
-                m_learnedActiveSpells.Add(_spell);
-                m_cd.Add(m_dataSpells.Aura.Cd);
-                m_timer.Add(0f);
-                break;
+            m_learnedActiveSpells.Add(_spell);
 
-            case Spells.BaseArcher:
-                m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_dataSpells.BaseArcher.SpellIcon;
-                m_learnedActiveSpells.Add(_spell);
-                m_cd.Add(m_dataSpells.BaseArcher.Cd);
-                m_timer.Add(0f);
-                break;
-
-            case Spells.NearPlayer:
-                m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-                m_sprites_active[m_learnedActiveSpells.Count].sprite = m_dataSpells.NearPlayer.SpellIcon;
-                m_learnedActiveSpells.Add(_spell);
-                m_cd.Add(m_dataSpells.NearPlayer.Cd);
-                m_timer.Add(0f);
-                break;
+            // set cd values
+            m_cd.Add(spellSO.Cd[spellSO.Level - 1]);
+            m_timer.Add(0f);
         }
-    }
-
-    /// <summary>
-    /// Changes CD of the Spell Icon to the inserted number
-    /// </summary>
-    /// <param name="_spell">The CD of which spell should be changes</param>
-    /// <param name="_newCD">what is the new CD of this spell</param>
-    public void ChangeCDofSpell(Spells _spell, float _newCD)
-    {
-        for (int i = 0; i < m_learnedActiveSpells.Count; i++)
+        else if ((int)_spell > (int)Spells.ActiveSpells && (int)_spell < (int)Spells.PassiveSpells)
         {
-            if (m_learnedActiveSpells[i] == _spell)
-            {
-                m_cd[i] = _newCD;
-            }
+            // activate and set sprite icon
+            m_sprites_passive[m_learnedPassiveSpells.Count].gameObject.SetActive(true);
+            m_sprites_passive[m_learnedPassiveSpells.Count].sprite = spellSO.SpellIcon;
+
+            m_learnedPassiveSpells.Add(_spell);
         }
     }
 }

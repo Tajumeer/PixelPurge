@@ -7,7 +7,7 @@ using UnityEngine;
 public class Spell_AllDirections : PoolObject<Spell_AllDirections>
 {
     private Rigidbody2D m_rb;
-    private SO_AllDirections m_spellData;
+    private SO_Spells m_spellData;
 
     private float m_health;
 
@@ -17,7 +17,7 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_AllDirections _spellData, int _spellIdx)
+    public void OnSpawn(SO_Spells _spellData, int _spellIdx)
     {
         InitRigidbody();
 
@@ -25,7 +25,7 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
-        m_health = m_spellData.EnemyHitPoints;
+        m_health = m_spellData.EnemyHitPoints[m_spellData.Level - 1];
 
         Move(_spellIdx);
     }
@@ -54,7 +54,7 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
                 break;
         }
 
-        m_rb.AddRelativeForce(direction * m_spellData.Speed, ForceMode2D.Impulse);
+        m_rb.AddRelativeForce(direction * m_spellData.Speed[m_spellData.Level - 1], ForceMode2D.Impulse);
     }
 
     /// <summary>
@@ -74,7 +74,7 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
         // the enemy get damage on hit
-        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage);
+        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage[m_spellData.Level - 1]);
 
         // and the spell loses duration or dies
         m_health -= 1;
@@ -87,7 +87,7 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
     /// <returns></returns>
     private IEnumerator DeleteTimer()
     {
-        yield return new WaitForSeconds(m_spellData.Lifetime);
+        yield return new WaitForSeconds(m_spellData.Lifetime[m_spellData.Level - 1]);
 
         DeactivateSpell();
     }

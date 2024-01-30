@@ -7,7 +7,7 @@ using UnityEngine;
 public class Spell_Aura : MonoBehaviour
 {
     private Rigidbody2D m_rb;
-    private SO_Aura m_spellData;
+    private SO_Spells m_spellData;
 
     private float m_activeCD = 0f;
     private Queue<IDamagable> m_enemysInAura;
@@ -18,7 +18,7 @@ public class Spell_Aura : MonoBehaviour
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_Aura _spellData)
+    public void OnSpawn(SO_Spells _spellData)
     {
         InitRigidbody();
 
@@ -30,7 +30,7 @@ public class Spell_Aura : MonoBehaviour
     private void Update()
     {
         m_activeCD += Time.deltaTime;
-        if (m_activeCD >= m_spellData.Cd)
+        if (m_activeCD >= m_spellData.Cd[m_spellData.Level - 1])
         {
             DealDamage();
             m_activeCD = 0;
@@ -45,7 +45,7 @@ public class Spell_Aura : MonoBehaviour
 
         foreach(IDamagable enemy in m_enemysInAura)
         {
-            enemy.GetDamage(m_spellData.Damage);
+            enemy.GetDamage(m_spellData.Damage[m_spellData.Level - 1]);
         }
     }
 

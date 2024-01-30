@@ -6,6 +6,10 @@ using UnityEngine.UIElements;
 
 // Maya
 
+/// <summary>
+/// First Active Spells then Passive Spells, at last "SpellAmount".
+/// Where to edit them manually: SpellManager
+/// </summary>
 [Serializable]
 public enum Spells
 {
@@ -13,25 +17,19 @@ public enum Spells
     AllDirections,
     NearPlayer,
     Aura,
+    ActiveSpells,
+    PassiveSpells,
     SpellAmount
 }
-// where to edit Spells: SpellManager, LevelUpManager, ShowSpell
 
 public class SpellManager : MonoBehaviour
 {
     SpellSpawner spawnScript;
     ShowSpells spellUIScript;
 
-    public int m_maxSpellLevel = 5;
-
     [Header("Scriptable Objects")]
     [SerializeField] private SO_AllSpells m_data_Spells;
     [Space]
-    [SerializeField] private SO_BaseArcher m_data_BaseArcher_original;
-    [SerializeField] private SO_AllDirections m_data_AllDirections_original;
-    [SerializeField] private SO_NearPlayer m_data_NearPlayer_original;
-    [SerializeField] private SO_Aura m_data_Aura_original;
-
     [SerializeField] private SO_Spells m_data_BaseArcher;
     [SerializeField] private SO_Spells m_data_AllDirections;
     [SerializeField] private SO_Spells m_data_NearPlayer;
@@ -74,25 +72,25 @@ public class SpellManager : MonoBehaviour
             m_timer[i] = 0f;
         }
 
-        // Instantiate new Scriptable Objects for this run
-        for(int i = 0; i < (int)Spells.SpellAmount; i++)
-        {
-            m_data_Spells.spellSO = new SO_Spells[(int)Spells.SpellAmount];
+        m_data_Spells.spellSO = new SO_Spells[(int)Spells.SpellAmount];
 
+        // Instantiate new Scriptable Objects for this run
+        for (int i = 0; i < (int)Spells.SpellAmount; i++)
+        {
             switch ((Spells)i)
             {
                 case Spells.BaseArcher:
                     m_data_Spells.spellSO[i] = Instantiate(m_data_BaseArcher);
                     break;
-                    
+
                 case Spells.AllDirections:
                     m_data_Spells.spellSO[i] = Instantiate(m_data_AllDirections);
                     break;
-                    
+
                 case Spells.NearPlayer:
                     m_data_Spells.spellSO[i] = Instantiate(m_data_NearPlayer);
                     break;
-                    
+
                 case Spells.Aura:
                     m_data_Spells.spellSO[i] = Instantiate(m_data_Aura);
                     break;
@@ -100,22 +98,16 @@ public class SpellManager : MonoBehaviour
             }
         }
 
-        m_data_Spells.BaseArcher = Instantiate(m_data_BaseArcher_original);
-        m_data_Spells.AllDirections = Instantiate(m_data_AllDirections_original);
-        m_data_Spells.NearPlayer = Instantiate(m_data_NearPlayer_original);
-        m_data_Spells.Aura = Instantiate(m_data_Aura_original);
-
         // Prototype
-        LearnBaseArcher();
-        //LearnAllDirections();
-        //LearnNearPlayer();
-        //LearnAura();
+        LearnSpell(Spells.BaseArcher);
     }
 
     private void Update()
     {
         for (int i = 0; i < (int)Spells.SpellAmount; i++)
         {
+            // if at this place is no spell skip
+            if (m_data_Spells.spellSO[i] == null) continue;
             if (!m_active[i]) continue;     // skip if spell is not learned
 
             m_timer[i] += Time.deltaTime;
@@ -124,18 +116,15 @@ public class SpellManager : MonoBehaviour
                 switch (i)                  // check which spell it was and spawn it
                 {
                     case (int)Spells.AllDirections:
-                        spawnScript.SpawnAllDirections(m_data_Spells.AllDirections, m_pool_AllDirections, m_parent[(int)Spells.AllDirections]);
-                        //spawnScript.SpawnAllDirections(m_data_Spells.spellSO[(int)Spells.AllDirections], m_pool_AllDirections, m_parent[(int)Spells.AllDirections]);
+                        spawnScript.SpawnAllDirections(m_data_Spells.spellSO[(int)Spells.AllDirections], m_pool_AllDirections, m_parent[(int)Spells.AllDirections]);
                         break;
 
                     case (int)Spells.BaseArcher:
-                        spawnScript.SpawnBaseArcher(m_data_Spells.BaseArcher, m_pool_BaseArcher, m_parent[(int)Spells.BaseArcher]);
-                        //spawnScript.SpawnBaseArcher(m_data_Spells.spellSO[(int)Spells.BaseArcher], m_pool_BaseArcher, m_parent[(int)Spells.BaseArcher]);
+                        spawnScript.SpawnBaseArcher(m_data_Spells.spellSO[(int)Spells.BaseArcher], m_pool_BaseArcher, m_parent[(int)Spells.BaseArcher]);
                         break;
 
                     case (int)Spells.NearPlayer:
-                        spawnScript.SpawnNearPlayer(m_data_Spells.NearPlayer, m_pool_NearPlayer, m_parent[(int)Spells.NearPlayer]);
-                        //spawnScript.SpawnNearPlayer(m_data_Spells.spellSO[(int)Spells.NearPlayer], m_pool_NearPlayer, m_parent[(int)Spells.NearPlayer]);
+                        spawnScript.SpawnNearPlayer(m_data_Spells.spellSO[(int)Spells.NearPlayer], m_pool_NearPlayer, m_parent[(int)Spells.NearPlayer]);
                         break;
 
                     case (int)Spells.Aura:
@@ -151,226 +140,74 @@ public class SpellManager : MonoBehaviour
     {
         spellUIScript = FindObjectOfType<ShowSpells>();
 
-        //if (m_data_Spells.spellSO[(int)_spell].Level != 0)
-        //    UpgradeSpell(_spell);
-        //else
-        //{
-        //    LearnSpell(_spell);
-        //    spellUIScript.ShowNewSpell(_spell);
-        //}
-
-        switch (_spell)
+        if (m_data_Spells.spellSO[(int)_spell].Level != 0)
+            UpgradeSpell(_spell);
+        else
         {
-            case Spells.AllDirections:
-                if (m_data_Spells.AllDirections.Level != 0)
-                    UpgradeSpell(_spell);
-                else
-                {
-                    LearnAllDirections();
-                    spellUIScript.LearnNewSpell(Spells.AllDirections);
-                }
-                break;
-
-            case Spells.Aura:
-                if (m_data_Spells.Aura.Level != 0)
-                    UpgradeSpell(_spell);
-                else
-                {
-                    LearnAura();
-                    spellUIScript.LearnNewSpell(Spells.Aura);
-                }
-                break;
-
-            case Spells.BaseArcher:
-                if (m_data_Spells.BaseArcher.Level != 0)
-                    UpgradeSpell(_spell);
-                else
-                {
-                    LearnBaseArcher();
-                    spellUIScript.LearnNewSpell(Spells.BaseArcher);
-                }
-                break;
-
-            case Spells.NearPlayer:
-                if (m_data_Spells.NearPlayer.Level != 0)
-                    UpgradeSpell(_spell);
-                else
-                {
-                    LearnNearPlayer();
-                    spellUIScript.LearnNewSpell(Spells.NearPlayer);
-                }
-                break;
-
-            default:
-                return;
+            LearnSpell(_spell);
+            spellUIScript.LearnNewSpell(_spell);
         }
-
     }
-
-    #region Learn New Spells
 
     /// <summary>
     /// Learn the Spell "Base Archer" and show it in UI
     /// </summary>
     private void LearnSpell(Spells _spell)
     {
-        m_data_Spells.spellSO[(int)_spell].Level = 1;   // set Spell Level to 1
-        m_active[(int)_spell] = true;                   // set Spell as active
-        m_cd[(int)_spell] = m_data_Spells.spellSO[(int)_spell].Cd[m_data_Spells.spellSO[(int)_spell].Level];    // set Timer
+        SO_Spells spellSO = m_data_Spells.spellSO[(int)_spell];
+
+        spellSO.Level = 1;                                      // set Spell Level to 1
+        m_active[(int)_spell] = true;                           // set Spell as active
+        m_cd[(int)_spell] = spellSO.Cd[spellSO.Level - 1];      // set Timer
 
         GameObject obj = new GameObject();
 
         // create Object Pool for the Spell and its name
         switch (_spell)
         {
-
             case Spells.BaseArcher:
                 m_pool_BaseArcher = new ObjectPool<Spell_BaseArcher>(m_prefab_BaseArcher);
                 obj.name = "BaseArcher";
                 break;
-                
+
             case Spells.AllDirections:
                 m_pool_AllDirections = new ObjectPool<Spell_AllDirections>(m_prefab_AllDirections);
                 obj.name = "AllDirections";
                 break;
-                
+
             case Spells.NearPlayer:
                 m_pool_NearPlayer = new ObjectPool<Spell_NearPlayer>(m_prefab_NearPlayer);
                 obj.name = "NearPlayer";
                 break;
-                
+
             case Spells.Aura:
                 // Create Spell Parent GameObject 
                 GameObject auraObj = Instantiate(m_prefab_Aura, FindObjectOfType<PlayerController>().gameObject.transform);
                 auraObj.name = "Aura";
                 m_parent[(int)_spell] = auraObj.transform;
-                auraObj.transform.localScale = new Vector3(m_data_Spells.Aura.Radius, m_data_Spells.Aura.Radius, m_data_Spells.Aura.Radius);
-                auraObj.GetComponent<Spell_Aura>().OnSpawn(m_data_Spells.Aura);
+                auraObj.transform.localScale = new Vector3
+                    (spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1]);
+                m_parent[(int)_spell] = obj.transform;
+                auraObj.GetComponent<Spell_Aura>().OnSpawn(spellSO);
                 break;
 
         }
-        
+
         // Set Parent object for later use
         obj.transform.SetParent(m_parent_Spells.transform);
         m_parent[(int)_spell] = obj.transform;
     }
 
-    /// <summary>
-    /// Learn the Spell "Base Archer" and show it in UI
-    /// </summary>
-    private void LearnBaseArcher()
-    {
-        m_data_Spells.BaseArcher.Level = 1;
-        m_active[(int)Spells.BaseArcher] = true;
-
-        m_cd[(int)Spells.BaseArcher] = m_data_Spells.BaseArcher.Cd;
-
-        // Create ObjectPool
-        m_pool_BaseArcher = new ObjectPool<Spell_BaseArcher>(m_prefab_BaseArcher);
-
-        // Create Spell Parent GameObject 
-        GameObject obj = new GameObject();
-        obj.name = "BaseArcher";
-        obj.transform.SetParent(m_parent_Spells.transform);
-        m_parent[(int)Spells.BaseArcher] = obj.transform;#
-    }
-
-    /// <summary>
-    /// Learn the Spell "AllDirections" and show it in UI
-    /// </summary>
-    private void LearnAllDirections()
-    {
-        m_data_Spells.AllDirections.Level = 1;
-        m_active[(int)Spells.AllDirections] = true;
-
-        m_cd[(int)Spells.AllDirections] = m_data_Spells.AllDirections.Cd;
-
-        // Create ObjectPool
-        m_pool_AllDirections = new ObjectPool<Spell_AllDirections>(m_prefab_AllDirections);
-
-        // Create Spell Parent GameObject 
-        GameObject obj = new GameObject();
-        obj.name = "AllDirections";
-        obj.transform.SetParent(m_parent_Spells.transform);
-        m_parent[(int)Spells.AllDirections] = obj.transform;
-
-        // UI
-    }
-
-    /// <summary>
-    /// Learn the Spell "NearPlayer" and show it in UI
-    /// </summary>
-    private void LearnNearPlayer()
-    {
-        m_data_Spells.NearPlayer.Level = 1;
-        m_active[(int)Spells.NearPlayer] = true;
-
-        m_cd[(int)Spells.NearPlayer] = m_data_Spells.NearPlayer.Cd;
-
-        // Create ObjectPool
-        m_pool_NearPlayer = new ObjectPool<Spell_NearPlayer>(m_prefab_NearPlayer);
-
-        // Create Spell Parent GameObject 
-        GameObject obj = new GameObject();
-        obj.name = "NearPlayer";
-        obj.transform.SetParent(m_parent_Spells.transform);
-        m_parent[(int)Spells.NearPlayer] = obj.transform;
-
-        // UI
-    }
-
-    /// <summary>
-    /// Learn the Spell "Aura" and show it in UI
-    /// </summary>
-    private void LearnAura()
-    {
-        m_data_Spells.Aura.Level = 1;
-
-        m_cd[(int)Spells.Aura] = m_data_Spells.Aura.Cd;
-
-        // Create Spell Parent GameObject 
-        GameObject auraObj = Instantiate(m_prefab_Aura, FindObjectOfType<PlayerController>().gameObject.transform);
-        auraObj.name = "Aura";
-        m_parent[(int)Spells.Aura] = auraObj.transform;
-
-        auraObj.transform.localScale = new Vector3(m_data_Spells.Aura.Radius, m_data_Spells.Aura.Radius, m_data_Spells.Aura.Radius);
-
-        auraObj.GetComponent<Spell_Aura>().OnSpawn(m_data_Spells.Aura);
-
-        // UI
-    }
-
-    #endregion
 
     private void UpgradeSpell(Spells _spell)
     {
-        m_data_Spells.spellSO[(int)_spell].Level++;
+        SO_Spells spellSO = m_data_Spells.spellSO[(int)_spell];
+        spellSO.Level++;
 
-        switch (_spell)                  // check which spell it was and upgrade it
+        if(_spell == Spells.Aura)
         {
-            case Spells.AllDirections:
-                //m_data_Spells.AllDirections.Damage *= (1f + m_data_Upgrades.Damage[level]);
-                spellUIScript.ChangeCDofSpell(_spell, m_data_Spells.AllDirections.Cd);
-                m_data_Spells.AllDirections.Level++;
-                break;
-
-            case Spells.BaseArcher:
-
-                spellUIScript.ChangeCDofSpell(_spell, m_data_Spells.BaseArcher.Cd);
-                m_data_Spells.BaseArcher.Level++;
-                break;
-
-            case Spells.NearPlayer:
-                //m_data_Spells.NearPlayer.Damage *= (1f + m_data_Upgrades.Damage[level]);
-                spellUIScript.ChangeCDofSpell(_spell, m_data_Spells.NearPlayer.Cd);
-                m_data_Spells.NearPlayer.Level++;
-                break;
-
-            case Spells.Aura:
-                //m_data_Spells.Aura.Damage *= (1f + m_data_Upgrades.Damage[level]);
-                spellUIScript.ChangeCDofSpell(_spell, m_data_Spells.Aura.Cd);
-                m_data_Spells.Aura.Level++;
-                break;
+            m_parent[(int)_spell].transform.localScale = new Vector3
+                    (spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1]);
         }
     }
 }

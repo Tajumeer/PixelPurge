@@ -18,4 +18,9 @@ public class ChooseSpell : MonoBehaviour
         FindObjectOfType<SpellManager>().ChooseNewSpell(m_spell);
         FindObjectOfType<DungeonHUDManager>().UnloadLevelUp();
     }
+
+    public void ChooseGold()
+    {
+        FindObjectOfType<DungeonHUDManager>().UnloadLevelUp();
+    }
 }

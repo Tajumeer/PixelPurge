@@ -7,7 +7,7 @@ using UnityEngine;
 public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
 {
     private Rigidbody2D m_rb;
-    private SO_NearPlayer m_spellData;
+    private SO_Spells m_spellData;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -15,7 +15,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_NearPlayer _spellData)
+    public void OnSpawn(SO_Spells _spellData)
     {
         InitRigidbody();
 
@@ -33,7 +33,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     /// <param name="_spellIdx"></param>
     private void Move()
     {
-        m_rb.AddRelativeForce(Vector2.down * m_spellData.Speed, ForceMode2D.Impulse);
+        m_rb.AddRelativeForce(Vector2.down * m_spellData.Speed[m_spellData.Level-1], ForceMode2D.Impulse);
     }
 
     /// <summary>
@@ -53,7 +53,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
         // the enemy get damage on hit
-        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage);
+        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage[m_spellData.Level-1]);
     }
 
     /// <summary>
@@ -62,7 +62,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     /// <returns></returns>
     private IEnumerator DeleteTimer()
     {
-        yield return new WaitForSeconds(m_spellData.Lifetime);
+        yield return new WaitForSeconds(m_spellData.Lifetime[m_spellData.Level-1]);
 
         DeactivateSpell();
     }

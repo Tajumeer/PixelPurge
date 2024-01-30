@@ -7,7 +7,7 @@ using UnityEngine;
 public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
 {
     private Rigidbody2D m_rb;
-    private SO_BaseArcher m_spellData;
+    private SO_Spells m_spellData;
 
     private float m_health;
 
@@ -17,7 +17,7 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_BaseArcher _spellData)
+    public void OnSpawn(SO_Spells _spellData)
     {
         InitRigidbody();
 
@@ -25,7 +25,7 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
-        m_health = m_spellData.EnemyHitPoints;
+        m_health = m_spellData.EnemyHitPoints[m_spellData.Level - 1];
 
         /**** Sven Start ****/
 
@@ -49,7 +49,7 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
         Vector2 arrowDirection = (mousePosition - transform.position).normalized;
 
         Vector2 direction = new Vector2(arrowDirection.x, arrowDirection.y).normalized;
-        m_rb.AddRelativeForce(direction * m_spellData.Speed, ForceMode2D.Impulse);
+        m_rb.AddRelativeForce(direction * m_spellData.Speed[m_spellData.Level - 1], ForceMode2D.Impulse);
 
         transform.Rotate(0f, 0f, Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg);
     }
@@ -71,7 +71,7 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
         // the enemy get damage on hit
-        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage);
+        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage[m_spellData.Level - 1]);
 
         // and the spell loses duration or dies
         m_health -= 1;
@@ -84,7 +84,7 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
     /// <returns></returns>
     private IEnumerator DeleteTimer()
     {
-        yield return new WaitForSeconds(m_spellData.Lifetime);
+        yield return new WaitForSeconds(m_spellData.Lifetime[m_spellData.Level - 1]);
 
         DeactivateSpell();
     }
