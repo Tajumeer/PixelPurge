@@ -6,55 +6,60 @@ using UnityEngine;
 
 public class LevelPlayer : MonoBehaviour
 {
-    private CircleCollider2D m_col;
-    private PlayerController m_playerData;
-    private DungeonHUDManager m_hudManager;
+    private CircleCollider2D col;
+    private PlayerController playerData;
 
     [Header("Object Pool")]
-    [SerializeField] private GameObject m_xpPrefab;
-    private ObjectPool<LevelXP> m_xpPool;
-    private GameObject m_xpParent;
+    [SerializeField] private GameObject xpPrefab;
+    private ObjectPool<LevelXP> xpPool;
+    private GameObject xpParent;
 
-    private int m_level;
+    private int level;
 
     /// <summary>
     /// the current amount of xp
     /// </summary>
-    private float m_xpPoints;
-
-            //m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded);
-
+    private float xpPoints;
 
     /// <summary>
     /// the amount of xp needed to level up
     /// </summary>
-    private float m_xpPointsNeeded;
+    private float xpPointsNeeded;
 
     /// <summary>
     /// Increase the amount of XP needed to level up every Level by XX%
     /// </summary>
-    private float m_xpNeedMultiplier;
+    private float xpNeedMultiplier;
 
     /// <summary>
     /// Set values from playerData and create ObjectPool
     /// </summary>
     public void InitXP()
     {
-        m_col = GetComponent<CircleCollider2D>();
-        m_playerData = GetComponentInParent<PlayerController>();
-        m_hudManager = FindObjectOfType<DungeonHUDManager>();
+        col = GetComponent<CircleCollider2D>();
+        playerData = GetComponentInParent<PlayerController>();
 
         // Set values from playerData
-        m_level = 1;
-        m_xpPointsNeeded = m_playerData.XPNeeded;
-        m_xpPoints = 0f;
-        m_xpNeedMultiplier = m_playerData.XPNeededMultiplier;
-        IncreaseCollectionRadius(m_playerData.CollectionRadius);
+        level = 1;
+        xpPointsNeeded = playerData.XPNeeded;
+        xpNeedMultiplier = playerData.XPNeededMultiplier;
+        IncreaseCollectionRadius(playerData.CollectionRadius);
 
         // Create Object Pool and Parent
-        m_xpPool = new ObjectPool<LevelXP>(m_xpPrefab);
-        m_xpParent = new GameObject();
-        m_xpParent.name = "XP";
+        xpPool = new ObjectPool<LevelXP>(xpPrefab);
+        xpParent = new GameObject();
+        xpParent.name = "XP";
+
+      //  StartCoroutine(Spawn());
+    }
+
+    private IEnumerator Spawn()
+    {
+        for(int i = 0; i < 20; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            SpawnXP(new Vector3(Random.Range(-8, 8), Random.Range(-4, 4), 0f), 1f);
+        }
     }
 
     /// <summary>
@@ -64,21 +69,12 @@ public class LevelPlayer : MonoBehaviour
     /// <param name="_xpAmount">The amount of xp points the player gets when collecting this xp object</param>
     public void SpawnXP(Vector3 _position, float _xpAmount)
     {
-        LevelXP xp = m_xpPool.GetObject();
+        LevelXP xp = xpPool.GetObject();
 
-        xp.transform.SetParent(m_xpParent.transform);
+        xp.transform.SetParent(xpParent.transform);
         xp.ResetObj(_position, new Vector3(0f, 0f, 0f));
 
         xp.OnSpawn(_xpAmount, this);
-    }
-
-    /// <summary>
-    /// Increase the Radius of the Collection Trigger
-    /// </summary>
-    /// <param name="_radius"></param>
-    public void IncreaseCollectionRadius(float _radius)
-    {
-        m_col.radius = _radius; // + 0.1f
     }
 
     /// <summary>
@@ -87,20 +83,30 @@ public class LevelPlayer : MonoBehaviour
     /// <param name="_amount">The amount of XP the player gets</param>
     public void GetXP(float _amount)
     {
-        m_xpPoints += _amount * (1f + m_playerData.XPMultiplier);
+        Debug.Log("Get XP: " + _amount);
+        xpPoints += _amount * (1f + playerData.XPMultiplier);
 
         // if current xp = needed xp -> level up
-        if (m_xpPoints >= m_xpPointsNeeded)
+        if (xpPoints >= xpPointsNeeded)
             LevelUp();
+    }
+
+    /// <summary>
+    /// Increase the Radius of the Collection Trigger
+    /// </summary>
+    /// <param name="_radius"></param>
+    public void IncreaseCollectionRadius(float _radius)
+    {
+        col.radius = _radius; // + 0.1f
     }
 
     private void LevelUp()
     {
-        m_xpPoints = 0;                                   // reset current xp
-        m_xpPointsNeeded *= (1f + m_xpNeedMultiplier);      // increase needed amount of xp
+        xpPoints = 0;                                   // reset current xp
+        xpPointsNeeded *= (1f + xpNeedMultiplier);      // increase needed amount of xp
 
-        m_level++;
-        m_playerData.Level = m_level;
+        level++;
+        playerData.Level = level;
 
         FindObjectOfType<DungeonHUDManager>().LoadLevelUp();
     }

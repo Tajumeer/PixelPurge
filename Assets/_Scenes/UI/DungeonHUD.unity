@@ -354,7 +354,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ingameSpells: {fileID: 947582897}
-  m_xpBar: {fileID: 1222132696}
 --- !u!4 &73153118
 Transform:
   m_ObjectHideFlags: 0

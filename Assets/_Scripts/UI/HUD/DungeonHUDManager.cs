@@ -4,14 +4,12 @@ using System.Net;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
 // Maya
 
 public class DungeonHUDManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_ingameSpells;
-    [SerializeField] private Image m_xpBar;
 
     private void Update()
     {
@@ -56,12 +54,7 @@ public class DungeonHUDManager : MonoBehaviour
 
     #endregion
 
-    #region Level and XP
-
-    public void ShowXP(float _currentXP, float _maxXP)
-    {
-        m_xpBar.fillAmount = _currentXP / _maxXP;
-    }
+    #region Level Up
 
     public void LoadLevelUp()
     {
