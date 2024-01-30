@@ -32,6 +32,12 @@ public class LevelPlayer : MonoBehaviour
     /// </summary>
     private float m_xpNeedMultiplier;
 
+    IEnumerator SetXP()
+    {
+        yield return new WaitForSeconds(0.5f);
+        ChangeXPValue(0);
+    }
+
     /// <summary>
     /// Set values from playerData and create ObjectPool
     /// </summary>
@@ -39,12 +45,11 @@ public class LevelPlayer : MonoBehaviour
     {
         m_col = GetComponent<CircleCollider2D>();
         m_playerData = GetComponentInParent<PlayerController>();
-        m_hudManager = FindObjectOfType<DungeonHUDManager>();
 
         // Set values from playerData
         m_level = 1;
         m_xpPointsNeeded = m_playerData.XPNeeded;
-        ChangeXPValue(0);
+        StartCoroutine(SetXP());
         m_xpNeedMultiplier = m_playerData.XPNeededMultiplier;
         IncreaseCollectionRadius(m_playerData.CollectionRadius);
 
@@ -54,15 +59,6 @@ public class LevelPlayer : MonoBehaviour
         m_xpParent.name = "XP";
 
       //  StartCoroutine(Spawn());
-    }
-
-    private IEnumerator Spawn()
-    {
-        for(int i = 0; i < 20; i++)
-        {
-            yield return new WaitForSeconds(1f);
-            SpawnXP(new Vector3(Random.Range(-8, 8), Random.Range(-4, 4), 0f), 1f);
-        }
     }
 
     /// <summary>
@@ -116,6 +112,7 @@ public class LevelPlayer : MonoBehaviour
     private void ChangeXPValue(float _value)
     {
         m_xpPoints = _value;
+        if(m_hudManager == null) m_hudManager = FindObjectOfType<DungeonHUDManager>();
         m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded);
     }
 }

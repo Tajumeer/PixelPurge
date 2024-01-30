@@ -20,7 +20,8 @@ public enum Scenes
     Pause,
     Win,
     Death,
-    Alpha
+    Alpha,
+    Beta
 }
 
 public class MenuManager : MonoBehaviour
