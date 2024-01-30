@@ -355,6 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ingameSpells: {fileID: 947582897}
   m_xpBar: {fileID: 1222132696}
+  m_timerText: {fileID: 365375612}
 --- !u!4 &73153118
 Transform:
   m_ObjectHideFlags: 0
@@ -1928,7 +1929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1234
+  m_text: 0
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cbb002a5a79b126488d86707cdac1fe5, type: 2}
   m_sharedMaterial: {fileID: 2172117704210082173, guid: cbb002a5a79b126488d86707cdac1fe5, type: 2}

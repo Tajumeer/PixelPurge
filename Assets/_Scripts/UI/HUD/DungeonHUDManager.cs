@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -13,9 +14,14 @@ public class DungeonHUDManager : MonoBehaviour
     [SerializeField] private GameObject m_ingameSpells;
     [Space]
     [SerializeField] private Image m_xpBar;
+    [SerializeField] private TextMeshProUGUI m_timerText;
+    private float m_timer = 0f;
 
     private void Update()
     {
+        m_timer += Time.deltaTime;
+        m_timerText.text = m_timer.ToString("f0");
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // cannot open pausemenu if optionsmenu, win or death screen are open

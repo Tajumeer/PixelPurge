@@ -671,6 +671,7 @@ MonoBehaviour:
   - {fileID: 3829722149230229650}
   m_damageTakenClip: {fileID: 0}
   ClassIndex: 0
+  m_healthBar: {fileID: 2294293448755443649}
   MoveDirection: {x: 0, y: 0}
   PlayerClassName: 
   Level: 0

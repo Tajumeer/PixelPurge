@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamagable
 {
@@ -16,6 +17,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     private bool m_isAbleToDash;
     private bool m_isDashing;
 
+    [SerializeField] private Image m_healthBar;
 
     [Header("Components")]
     // [SerializeField] private SpriteRenderer m_spriteRenderer;
@@ -56,6 +58,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         Level = PlayerData[m_characterIndex].Level;
         MaxHealth = PlayerData[m_characterIndex].MaxHealth;
         CurrentHealth = MaxHealth;
+        m_healthBar.fillAmount = this.CurrentHealth / MaxHealth;
         MovementSpeed = PlayerData[m_characterIndex].MovementSpeed;
         DashAmount = PlayerData[m_characterIndex].DashAmount;
         DashSpeed = PlayerData[m_characterIndex].DashSpeed;
@@ -357,6 +360,8 @@ public class PlayerController : MonoBehaviour, IDamagable
         this.CurrentHealth -= _damageValue;
         AudioManager.Instance.PlaySound(m_damageTakenClip);
         StartCoroutine(FlashDamage());
+
+        m_healthBar.fillAmount = this.CurrentHealth / MaxHealth;
     }
     IEnumerator FlashDamage()
     {
