@@ -1569,21 +1569,66 @@ MonoBehaviour:
       EnemyCount: 10
       SpawnCount: 0
       EnemyPrefab: {fileID: 3626227658068341081, guid: 76c240a8cf54c8c448abbdd6392ec5df, type: 3}
-  - WaveName: Wave 1
+  - WaveName: Wave 2
     WaveQuota: 0
     SpawnInterval: 0.75
     SpawnCount: 0
     EnemyGroups:
     - EnemyName: Frost Ghost
-      EnemyCount: 175
+      EnemyCount: 80
       SpawnCount: 0
       EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
     - EnemyName: Frost Golem
       EnemyCount: 1
       SpawnCount: 0
       EnemyPrefab: {fileID: 7794670824351030394, guid: c8fc194ff74105b4a87f5986624bb17b, type: 3}
+    - EnemyName: Frost Ghost
+      EnemyCount: 80
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+    - EnemyName: Frost Ghost
+      EnemyCount: 80
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+    - EnemyName: Frost Ghost
+      EnemyCount: 80
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+  - WaveName: Wave 3
+    WaveQuota: 0
+    SpawnInterval: 0.5
+    SpawnCount: 0
+    EnemyGroups:
+    - EnemyName: Frost Ghost
+      EnemyCount: 80
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+    - EnemyName: Frost Golem
+      EnemyCount: 1
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 7794670824351030394, guid: c8fc194ff74105b4a87f5986624bb17b, type: 3}
+    - EnemyName: Frost Ghost
+      EnemyCount: 80
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+    - EnemyName: Frost Ghost
+      EnemyCount: 80
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+    - EnemyName: Frost Ghost
+      EnemyCount: 80
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 6dce5c900dd4c5e4a8af1a6ddfb41979, type: 3}
+    - EnemyName: Frost Crawler
+      EnemyCount: 15
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 76c240a8cf54c8c448abbdd6392ec5df, type: 3}
+    - EnemyName: Frost Crawler
+      EnemyCount: 15
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 3626227658068341081, guid: 76c240a8cf54c8c448abbdd6392ec5df, type: 3}
   m_waveInterval: 60
-  m_maxEnemies: 250
+  m_maxEnemies: 1000
   m_SpawnPoints:
   - {fileID: 707228060}
   - {fileID: 2140890334}
