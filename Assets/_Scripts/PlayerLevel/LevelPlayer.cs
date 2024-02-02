@@ -107,8 +107,12 @@ public class LevelPlayer : MonoBehaviour
         m_playerData.Level = m_level;
 
         if (m_hudManager == null)
+        {
             if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
                 m_hudManager.LoadLevelUp();
+            else Debug.LogWarning(m_hudManager.GetType() + " not found");
+        }
+        else m_hudManager.LoadLevelUp();
     }
 
     private void ChangeXPValue(float _value)
@@ -116,7 +120,11 @@ public class LevelPlayer : MonoBehaviour
         m_xpPoints = _value;
 
         if (m_hudManager == null)
+        {
             if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
                 m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded);
+            else Debug.LogWarning(m_hudManager.GetType() + " not found");
+        }
+        else m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded);
     }
 }
