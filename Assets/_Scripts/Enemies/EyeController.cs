@@ -3,13 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class FrostGhostController : MonoBehaviour, IDamagable
+public class EyeController : MonoBehaviour, IDamagable
 {
+
     public float EnemyDamage;
     public float EnemyHealth;
     [SerializeField] private float m_ExpOnDeath;
     [SerializeField] private int m_ScoreOnDeath;
+    [SerializeField] private LayerMask m_playerLayer;
+    [SerializeField] private float m_attackRange;
     [SerializeField] private List<ItemDrop> m_DropList;
+
+    [Header("Ability")]
+    [SerializeField] private GameObject m_laserPrefab;
+    [SerializeField] private Transform m_pivot;
+    [SerializeField] private float m_rotationSpeed;
+    [SerializeField] private float m_targetDetectionRadius;
+
+
+    private bool m_isAbilityActive;
 
     private NavMeshAgent m_agent;
     private Transform m_target;
@@ -17,14 +29,15 @@ public class FrostGhostController : MonoBehaviour, IDamagable
     private Collider2D m_collider;
     private Rigidbody2D m_rb;
     private SpriteRenderer m_spriteRenderer;
+
     private EnemySpawner m_enemySpawner;
     private LevelPlayer m_levelPlayer;
 
     private bool m_isDead;
     private enum AnimationState
     {
-        FrostGhostRun,
-        FrostGhostDeath,
+        EyeRun,
+        EyeDeath,
     }
     private AnimationState m_currentState;
 
@@ -51,15 +64,58 @@ public class FrostGhostController : MonoBehaviour, IDamagable
 
         m_agent.enabled = true;
 
-        //else
-        //{
-        //    m_agent.enabled = false;
-        //}
+        if (!m_isAbilityActive)
+        {
+            m_isAbilityActive = TargetIsInRange(m_target.position);
+
+            if (TargetIsInRange(m_target.position))
+            {
+
+                InstantiateLaser();
+
+            }
+        }
+        else
+        {
+            RotateLasers();
+        }
 
         if (m_agent.enabled && m_agent.isOnNavMesh)
         {
             m_agent.SetDestination(m_target.position);
         }
+    }
+
+    private void InstantiateLaser()
+    {
+        if (m_target.position.x - m_pivot.position.x < m_target.position.y - m_pivot.position.y)
+        {
+            Instantiate(m_laserPrefab, m_pivot.position, Quaternion.Euler(0f, 0f, m_pivot.rotation.eulerAngles.z + 90f), m_pivot);
+        }
+        else
+        {
+            Instantiate(m_laserPrefab, m_pivot.position, Quaternion.identity, m_pivot);
+        }
+    }
+
+    private void UpdateLaserPosition()
+    {
+        Vector3 laserPosition = transform.position + m_pivot.localPosition;
+        m_pivot.GetChild(0).position = laserPosition;
+    }
+
+    private void RotateLasers()
+    {
+        m_pivot.Rotate(Vector3.forward * m_rotationSpeed * Time.deltaTime);
+
+        UpdateLaserPosition();
+    }
+
+    private bool TargetIsInRange(Vector2 _targetPosition)
+    {
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, m_attackRange, Vector2.zero, 0f, m_playerLayer);
+
+        return hit.collider != null && hit.collider.CompareTag("Player");
     }
 
     private void LateUpdate()
@@ -89,15 +145,15 @@ public class FrostGhostController : MonoBehaviour, IDamagable
             }
         }
 
-        m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
         Destroy(m_agent);
         m_isDead = true;
-        ChangeAnimationState(AnimationState.FrostGhostDeath);
+        ChangeAnimationState(AnimationState.EyeDeath);
         Destroy(m_rb);
         Destroy(m_collider);
+        m_enemySpawner.OnEnemyKilled();
         m_spriteRenderer.sortingOrder = 0;
         GameManager.Instance.AddScore(m_ScoreOnDeath);
-        m_enemySpawner.OnEnemyKilled();
+        m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
         StartCoroutine(DestroyGameObject(5f));
     }
 
@@ -123,11 +179,11 @@ public class FrostGhostController : MonoBehaviour, IDamagable
         if (m_currentState == newState) return;
         switch (newState)
         {
-            case AnimationState.FrostGhostRun:
-                animationName = "FrostGhostRun";
+            case AnimationState.EyeRun:
+                animationName = "EyeRun";
                 break;
-            case AnimationState.FrostGhostDeath:
-                animationName = "FrostGhostDeath";
+            case AnimationState.EyeDeath:
+                animationName = "EyeDeath";
                 break;
         }
         m_animator.Play(animationName);
@@ -149,3 +205,4 @@ public class FrostGhostController : MonoBehaviour, IDamagable
         m_spriteRenderer.color = Color.white;
     }
 }
+

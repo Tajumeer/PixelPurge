@@ -84,8 +84,12 @@ public class FrostGolemController : MonoBehaviour, IDamagable
         if (m_isDead) { return; }
         // m_agent.SetDestination(this.m_target.position);
 
-        foreach (ItemDrop drop in m_DropList) {
-            drop.DropItem();
+        if (m_DropList != null)
+        {
+            foreach (ItemDrop drop in m_DropList)
+            {
+                drop.DropItem();
+            }
         }
 
         Destroy(m_agent);
