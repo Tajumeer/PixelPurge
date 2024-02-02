@@ -1008,6 +1008,10 @@ MonoBehaviour:
       EnemyCount: 10
       SpawnCount: 0
       EnemyPrefab: {fileID: 3626227658068341081, guid: 76c240a8cf54c8c448abbdd6392ec5df, type: 3}
+    - EnemyName: Eye Of Winter
+      EnemyCount: 1
+      SpawnCount: 0
+      EnemyPrefab: {fileID: 7794670824351030394, guid: fc6bd306963bc8944b7bd43ca4dea699, type: 3}
   - WaveName: Wave 1
     WaveQuota: 0
     SpawnInterval: 0.75

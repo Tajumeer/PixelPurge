@@ -32,7 +32,7 @@ public class RangedController : MonoBehaviour, IDamagable
     [SerializeField] private List<ItemDrop> m_DropList;
     private float m_attackFrequencyTimer;
 
-   
+
     private bool m_isDead;
 
     private enum AnimationState
@@ -116,9 +116,12 @@ public class RangedController : MonoBehaviour, IDamagable
     {
         if (m_isDead) { return; }
 
-        foreach (ItemDrop drop in m_DropList)
+        if (m_DropList != null)
         {
-            drop.DropItem();
+            foreach (ItemDrop drop in m_DropList)
+            {
+                drop.DropItem();
+            }
         }
 
         m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
@@ -144,6 +147,14 @@ public class RangedController : MonoBehaviour, IDamagable
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, m_attackRange, Vector2.zero, 0f, m_playerLayer);
 
         return hit.collider != null && hit.collider.CompareTag("Player");
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Debug.LogWarning("Hit Player!");
+            collision.GetComponent<IDamagable>().GetDamage(EnemyDamage);
+        }
     }
 
     private void ChangeAnimationState(AnimationState newState)
