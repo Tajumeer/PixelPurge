@@ -12,7 +12,7 @@ public enum Scenes
     VillageHUD,
     Credits,
     Options,
-    StatUpgrade,
+    Shop,
     Dungeon,
     DungeonHUD,
     DetailsHUD,

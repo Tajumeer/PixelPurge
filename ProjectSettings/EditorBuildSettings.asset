@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/_Scenes/UI/Options.unity
     guid: 38798f85beb968a4ca0a51ce16d4f1dc
   - enabled: 1
-    path: Assets/_Scenes/UI/StatUpgrade.unity
+    path: Assets/_Scenes/UI/Shop.unity
     guid: 5d98acf0e949f944c81ae49500231b8c
   - enabled: 1
     path: Assets/_Scenes/Game/Dungeon.unity

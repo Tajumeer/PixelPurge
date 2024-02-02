@@ -58,7 +58,7 @@ public class LevelPlayer : MonoBehaviour
         m_xpParent = new GameObject();
         m_xpParent.name = "XP";
 
-      //  StartCoroutine(Spawn());
+        //  StartCoroutine(Spawn());
     }
 
     /// <summary>
@@ -106,13 +106,17 @@ public class LevelPlayer : MonoBehaviour
         m_level++;
         m_playerData.Level = m_level;
 
-        FindObjectOfType<DungeonHUDManager>().LoadLevelUp();
+        if (m_hudManager == null)
+            if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
+                m_hudManager.LoadLevelUp();
     }
 
     private void ChangeXPValue(float _value)
     {
         m_xpPoints = _value;
-        if(m_hudManager == null) m_hudManager = FindObjectOfType<DungeonHUDManager>();
-        m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded);
+
+        if (m_hudManager == null)
+            if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
+                m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded);
     }
 }
