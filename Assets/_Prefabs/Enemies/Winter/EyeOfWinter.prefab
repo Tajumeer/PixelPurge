@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyDamage: 50
-  EnemyHealth: 12000
+  EnemyHealth: 120000
   m_ExpOnDeath: 0
   m_ScoreOnDeath: 2000
   m_playerLayer:

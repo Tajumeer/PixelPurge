@@ -60,6 +60,11 @@ public class KillDrop : MonoBehaviour
                 RangedController rangedController = enemy.GetComponent<RangedController>();
                 rangedController.SetDeathState();
             }
+            else if (enemy.GetComponent<EyeController>())
+            {
+                EyeController eyeController = enemy.GetComponent<EyeController>();
+                eyeController.gameObject.GetComponent<IDamagable>().GetDamage(1000);
+            }
         }
     }
 }

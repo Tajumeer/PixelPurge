@@ -23,6 +23,8 @@ public enum UpgradableStats
 
 public class ShopManager : MonoBehaviour
 {
+    [SerializeField] private ProgressionManager progressionManager;
+
     [System.Serializable]
     public class GoldAmount
     {

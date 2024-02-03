@@ -159,7 +159,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyDamage: 20
   EnemyHealth: 1200
-  m_ExpOnDeath: 5
+  m_ExpOnDeath: 2
   m_ScoreOnDeath: 500
   m_DropList:
   - {fileID: -5216834863397654387}
