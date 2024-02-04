@@ -42,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
     private bool m_isMaxEnemiesReached;
     private int m_currentWaveCount;
     private Transform m_player;
+    private bool m_isRunning;
 
     private void Start()
 
@@ -56,7 +57,10 @@ public class EnemySpawner : MonoBehaviour
     {
         if (m_currentWaveCount < m_waves.Count && m_waves[m_currentWaveCount].SpawnCount == 0)
         {
-            StartCoroutine(BeginNextWave());
+            if (!m_isRunning)
+            {
+                StartCoroutine(BeginNextWave());
+            }
         }
 
         if (TimeManager.Instance.GetElapsedTime("WaveSpawnTimer") > m_waves[m_currentWaveCount].SpawnInterval)
@@ -68,6 +72,8 @@ public class EnemySpawner : MonoBehaviour
 
     private IEnumerator BeginNextWave()
     {
+        m_isRunning = true;
+
         yield return new WaitForSeconds(m_waveInterval);
 
         if (m_currentWaveCount < m_waves.Count - 1)
@@ -76,6 +82,8 @@ public class EnemySpawner : MonoBehaviour
             GameManager.Instance.AddScore(m_scorePerWave * m_currentWaveCount);
             CalculateWaveQuota();
         }
+
+        m_isRunning = false;
     }
 
     private void CalculateWaveQuota()
@@ -116,7 +124,7 @@ public class EnemySpawner : MonoBehaviour
             }
         }
 
-        if(m_enemiesAlive < m_maxEnemies)
+        if (m_enemiesAlive < m_maxEnemies)
         {
             m_isMaxEnemiesReached = false;
         }
