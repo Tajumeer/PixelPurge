@@ -21,7 +21,6 @@ public class UsernameManager : MonoBehaviour
 
         // username in networking
 
-        MenuManager.Instance.LoadSceneAsync(Scenes.Village);
-        MenuManager.Instance.LoadSceneAsync(Scenes.VillageHUD, LoadSceneMode.Additive);
+        MenuManager.Instance.LoadVillage();
     }
 }

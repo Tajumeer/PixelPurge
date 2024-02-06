@@ -69,6 +69,11 @@ public class MenuManager : MonoBehaviour
         else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Death).isLoaded) UnloadSceneAsync(Scenes.Death);
 
         // load all scenes for the village
+        LoadVillage();
+    }
+
+    public void LoadVillage()
+    {
         LoadSceneAsync(Scenes.Village);
         LoadSceneAsync(Scenes.VillageHUD, LoadSceneMode.Additive);
     }
