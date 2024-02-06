@@ -8,11 +8,14 @@ using UnityEngine.SceneManagement;
 public enum Scenes
 {
     Start = 0,
+    UsernameInsertion,
     Village,
     VillageHUD,
     Credits,
     Options,
     Shop,
+    Scoreboard,
+    LoadingScreen,
     Dungeon,
     DungeonHUD,
     DetailsHUD,
