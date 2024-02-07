@@ -20,7 +20,7 @@ public class GameData
     //Graphics
     public int FullScreenMode;
     public int ResolutionValue;
-    public bool Toggled;
+  //public bool Toggled;
 
     public GameData()
     {
@@ -36,6 +36,6 @@ public class GameData
 
         this.FullScreenMode = 3;
         this.ResolutionValue = 2;
-        this.Toggled = false;
+        //this.Toggled = false;
     }
 }

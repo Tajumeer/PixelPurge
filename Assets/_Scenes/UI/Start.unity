@@ -376,6 +376,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 970633277}
   m_CullTransparentMesh: 1
+--- !u!1 &1009410043 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8362413127550658796, guid: 11a763bec71ef6048b457c119dcd1c81, type: 3}
+  m_PrefabInstance: {fileID: 1255513647}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1009410046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009410043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03610220d0eab0c40a5af8cb9a7497b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ResolutionValue: 0
+  FullscreenToggle: 0
+  FullscreenModeValue: 0
+  Fullscreen: 0
+  LoadOptionsOnce: 0
 --- !u!1 &1025267423
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +706,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6305347248834341630, guid: 11a763bec71ef6048b457c119dcd1c81, type: 3}
       propertyPath: m_isUsingEncryption
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8362413127550658796, guid: 11a763bec71ef6048b457c119dcd1c81, type: 3}
       propertyPath: m_Name
@@ -693,7 +715,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8362413127550658796, guid: 11a763bec71ef6048b457c119dcd1c81, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1009410046}
   m_SourcePrefab: {fileID: 100100000, guid: 11a763bec71ef6048b457c119dcd1c81, type: 3}
 --- !u!1 &1424340130
 GameObject:

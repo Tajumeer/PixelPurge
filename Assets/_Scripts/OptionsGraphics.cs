@@ -5,108 +5,75 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionsGraphics : MonoBehaviour, IDataPersistence
+public class OptionsGraphics : MonoBehaviour
 {
     [SerializeField] private TMP_Dropdown m_resolution;
     [SerializeField] private Toggle m_fullscreen;
 
-    private int m_value;
+
     private FullScreenMode m_fullscreenMode;
-    private int m_fullscreenValue;
-    private bool m_toggled;
 
+    private void Awake()
+    {
+        if (!UiData.Instance.LoadOptionsOnce)
+        {
+            m_resolution.value = UiData.Instance.ResolutionValue;
+            m_fullscreen.isOn = UiData.Instance.FullscreenToggle;
 
+            ChangeResolution();
 
+            Debug.LogError("Settings Loaded - Resolution: " + m_resolution.options[m_resolution.value].text + ", Fullscreen: " + UiData.Instance.FullscreenToggle);
+
+            UiData.Instance.LoadOptionsOnce = true;
+        }
+    }
 
     public void ChangeResolution()
     {
-        m_value = m_resolution.value;
-        switch (m_value)
+        UiData.Instance.ResolutionValue = m_resolution.value;
+        switch (UiData.Instance.ResolutionValue)
         {
             case 0:
-                Screen.SetResolution(800, 600, GetScreenMode());
+                Screen.SetResolution(800, 600, m_fullscreenMode);
                 break;
             case 1:
-                Screen.SetResolution(1280, 800, GetScreenMode());
+                Screen.SetResolution(1280, 800, m_fullscreenMode);
                 break;
             case 2:
-                Screen.SetResolution(1600, 900, GetScreenMode());
+                Screen.SetResolution(1600, 900, m_fullscreenMode);
                 break;
             case 3:
-                Screen.SetResolution(1920, 1080, GetScreenMode());
+                Screen.SetResolution(1920, 1080, m_fullscreenMode);
                 break;
             case 4:
-                Screen.SetResolution(2560, 1440, GetScreenMode());
+                Screen.SetResolution(2560, 1440, m_fullscreenMode);
                 break;
             case 5:
-                Screen.SetResolution(3440, 1440, GetScreenMode());
+                Screen.SetResolution(3440, 1440, m_fullscreenMode);
                 break;
             default:
                 break;
         }
-
     }
 
-    private void LoadSettings()
+    public void OnEnable()
     {
-        m_resolution.value = m_value;
-     
-        m_resolution.RefreshShownValue();
-
-        m_fullscreen.isOn = m_toggled;
-
-        ChangeResolution();
-
-
+        m_resolution.value = UiData.Instance.ResolutionValue;
+        m_fullscreen.isOn = UiData.Instance.FullscreenToggle;
     }
-    private FullScreenMode GetScreenMode()
+
+    public void ChangeWindowmode()
     {
-        if (m_fullscreen.isOn)
+        if (UiData.Instance.FullscreenToggle == true)
         {
-            m_toggled = m_fullscreen.isOn;
-            return FullScreenMode.ExclusiveFullScreen;
+            UiData.Instance.FullscreenToggle = false;
+            m_fullscreenMode = FullScreenMode.Windowed;
         }
         else
         {
-            m_toggled = m_fullscreen.isOn;
-            return FullScreenMode.Windowed;
+            UiData.Instance.FullscreenToggle = true;
+            m_fullscreenMode = FullScreenMode.ExclusiveFullScreen;
         }
-    }
-    public void ChangeWindowmode()
-    {
-        GetScreenMode();
         ChangeResolution();
-    }
-
-    private int FullscreenModeData(FullScreenMode _mode)
-    {
-        return m_fullscreenValue = (int)_mode;
-    }
-
-    private FullScreenMode GetFullScreenMode()
-    {
-        return (FullScreenMode)m_fullscreenValue;
-    }
-
-    public void LoadData(GameData _data)
-    {
-        this.m_value = _data.ResolutionValue;
-        this.m_resolution.value = m_value;
-
-        this.m_fullscreenValue = _data.FullScreenMode;
-        this.GetFullScreenMode();
-
-        this.m_toggled = _data.Toggled;
-
-        this.LoadSettings();
-    }
-
-    public void SaveData(ref GameData _data)
-    {
-        _data.ResolutionValue = this.m_value;
-        m_fullscreenValue = this.FullscreenModeData(m_fullscreenMode);
-        _data.FullScreenMode = this.m_fullscreenValue;
-
-        _data.Toggled = this.m_toggled;
     }
 }
