@@ -12,6 +12,11 @@ public class GameData
     public int HealthLevel;
     public int AttackSpeedLevel;
 
+    //Audio
+    public float MasterVolume;
+    public float MusicVolume;
+    public float EffectVolume;
+
     public GameData()
     {
         this.MovementSpeedLevel = 0;
