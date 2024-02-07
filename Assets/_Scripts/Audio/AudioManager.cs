@@ -76,17 +76,17 @@ public class AudioManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData _data)
     {
-        MasterVol = _data.MasterVolume;
-        MusicVol = _data.MusicVolume;
+        this.MasterVol = _data.MasterVolume;
+        this.MusicVol = _data.MusicVolume;
         SFXVol = _data.EffectVolume;
 
-        InitAudio();
+        this.InitAudio();
     }
 
     public void SaveData(ref GameData _data)
     {
-        _data.MasterVolume = MasterVol;
-        _data.MusicVolume = MusicVol;
-        _data.EffectVolume = SFXVol;
+        _data.MasterVolume = this.MasterVol;
+        _data.MusicVolume = this.MusicVol;
+        _data.EffectVolume = this.SFXVol;
     }
 }
