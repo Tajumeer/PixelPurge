@@ -12,6 +12,7 @@ public class GameData
     public int HealthLevel;
     public int AttackSpeedLevel;
 
+    //UIData Variables
     //Audio
     public float MasterVolume;
     public float MusicVolume;
@@ -20,7 +21,15 @@ public class GameData
     //Graphics
     public int FullScreenMode;
     public int ResolutionValue;
-  //public bool Toggled;
+    //public bool Toggled;
+
+    //Shop Variables
+    public int[] StatLevel;
+
+    //GameManager Variables
+    //Leaderboard 
+    public string UserName;
+    public int HighScore;
 
     public GameData()
     {
@@ -37,5 +46,7 @@ public class GameData
         this.FullScreenMode = 3;
         this.ResolutionValue = 2;
         //this.Toggled = false;
+
+        this.StatLevel = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
     }
 }

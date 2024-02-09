@@ -20,13 +20,15 @@ public class UiData : MonoBehaviour, IDataPersistence
             return m_instance;
         }
     }
-
+    //Options Menu
     [HideInInspector] public int ResolutionValue;
     [HideInInspector] public bool FullscreenToggle;
     [HideInInspector] public int FullscreenModeValue;
     [HideInInspector] public FullScreenMode Fullscreen;
     [HideInInspector] public bool LoadOptionsOnce;
-    [HideInInspector] public int[] StatLevel = new int[] { 1, 2, 3, 2, 1, 2, 4, 3 };
+
+    //Upgrade Menu
+    [HideInInspector] public int[] StatLevel;
 
     private void Awake()
     {
@@ -53,6 +55,7 @@ public class UiData : MonoBehaviour, IDataPersistence
     {
         ResolutionValue = _data.ResolutionValue;
         FullscreenModeValue = _data.FullScreenMode;
+        StatLevel = _data.StatLevel;
         GetFullScreenMode();
     }
 
@@ -68,9 +71,10 @@ public class UiData : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData _data)
     {
-        _data.ResolutionValue = UiData.Instance.ResolutionValue;
+        _data.ResolutionValue = this.ResolutionValue;
         FullscreenModeValue = this.FullscreenModeData(Fullscreen);
-        _data.FullScreenMode = FullscreenModeValue;
+        _data.FullScreenMode = this.FullscreenModeValue;
+        _data.StatLevel = this.StatLevel;
 
         Debug.Log("Saved Resolution value: " + _data.ResolutionValue);
     }
