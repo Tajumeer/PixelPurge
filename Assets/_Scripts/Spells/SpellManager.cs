@@ -18,6 +18,7 @@ public enum Spells
     NearPlayer,
     Aura,
     ActiveSpells,
+    MaxHealth,
     PassiveSpells,
     SpellAmount
 }
@@ -26,9 +27,11 @@ public class SpellManager : MonoBehaviour
 {
     SpellSpawner spawnScript;
     ShowSpells spellUIScript;
+    PlayerStats passiveData;
 
     [Header("Scriptable Objects")]
     [SerializeField] private SO_AllSpells m_data_Spells;
+    [SerializeField] private SO_PassiveData m_data_Passives;
     [Space]
     [SerializeField] private SO_Spells m_data_BaseArcher;
     [SerializeField] private SO_Spells m_data_AllDirections;
@@ -100,6 +103,11 @@ public class SpellManager : MonoBehaviour
 
         // Prototype
         LearnSpell(Spells.BaseArcher);
+    }
+
+    public void InitPassives(PlayerController _controller)
+    {
+        //passiveData = _controller.ActivePlayerData;
     }
 
     private void Update()
@@ -191,6 +199,12 @@ public class SpellManager : MonoBehaviour
                 auraObj.GetComponent<Spell_Aura>().OnSpawn(spellSO);
                 break;
 
+
+            case Spells.MaxHealth:
+                m_data_Passives.MaxHealth_Level = 1;
+                passiveData.MaxHealth += m_data_Passives.MaxHealth[m_data_Passives.MaxHealth_Level - 1];
+                break;
+
         }
 
         // Set Parent object for later use
@@ -204,10 +218,17 @@ public class SpellManager : MonoBehaviour
         SO_Spells spellSO = m_data_Spells.spellSO[(int)_spell];
         spellSO.Level++;
 
-        if(_spell == Spells.Aura)
+        switch (_spell)
         {
-            m_parent[(int)_spell].transform.localScale = new Vector3
-                    (spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1]);
+            case Spells.Aura:
+                m_parent[(int)_spell].transform.localScale = new Vector3
+                        (spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1]);
+                break;
+
+            case Spells.MaxHealth:
+                passiveData.MaxHealth += m_data_Passives.MaxHealth[m_data_Passives.MaxHealth_Level - 1];
+                m_data_Passives.MaxHealth_Level++;
+                break;
         }
     }
 }

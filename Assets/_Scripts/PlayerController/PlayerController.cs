@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         SetCharacterVisualsAndData(m_characterIndex);
 
         GetComponentInChildren<LevelPlayer>().InitXP();
-
+        FindObjectOfType<SpellManager>().InitPassives(this);
     }
 
     private void Update()
