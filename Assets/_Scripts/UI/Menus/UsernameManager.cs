@@ -9,15 +9,15 @@ using TMPro;
 
 public class UsernameManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI usernameInput;
-    [SerializeField] string defaultName;
+    [SerializeField] TextMeshProUGUI m_usernameInput;
+    [SerializeField] string m_defaultName;
 
     public void ConfirmName()
     {
         string username;
 
-        if (usernameInput == null) username = defaultName;
-        else username = usernameInput.text;
+        if (m_usernameInput == null) username = m_defaultName;
+        else username = m_usernameInput.text;
 
         // username in networking
 

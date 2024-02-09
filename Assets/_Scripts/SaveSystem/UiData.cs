@@ -26,6 +26,7 @@ public class UiData : MonoBehaviour, IDataPersistence
     [HideInInspector] public int FullscreenModeValue;
     [HideInInspector] public FullScreenMode Fullscreen;
     [HideInInspector] public bool LoadOptionsOnce;
+    [HideInInspector] public int[] StatLevel = new int[] { 1, 2, 3, 2, 1, 2, 4, 3 };
 
     private void Awake()
     {
