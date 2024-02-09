@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamagable
@@ -79,7 +80,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
         ActivePlayerData = Instantiate(PlayerData[m_characterIndex]);
         m_healthBar.fillAmount = this.ActivePlayerData.CurrentHealth / ActivePlayerData.MaxHealth;
-    } 
+    }
 
     #endregion
 
@@ -109,7 +110,7 @@ public class PlayerController : MonoBehaviour, IDamagable
             return;
         }
 
-        // ActivePlayerData = PlayerData[m_characterIndex];
+        ActivePlayerData = PlayerData[m_characterIndex];
         InitStats();
 
         ProgressionManager.Instance.InitMetaProgression();
@@ -141,8 +142,16 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_characterIndex = 0;
         SetCharacterVisualsAndData(m_characterIndex);
 
-        GetComponentInChildren<LevelPlayer>().InitXP();
-        if(FindObjectOfType<SpellManager>() != null) FindObjectOfType<SpellManager>().InitPassives(this);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Village"))
+        {
+            return;
+        }
+        else
+        {
+            GetComponentInChildren<LevelPlayer>().InitXP();
+            if (FindObjectOfType<SpellManager>() != null) FindObjectOfType<SpellManager>().InitPassives(this);
+
+        }
     }
 
     private void Update()
@@ -167,7 +176,7 @@ public class PlayerController : MonoBehaviour, IDamagable
             else ChangeAnimationState(AnimationState.player_run);
         }
 
-        if(Input.GetKeyDown(KeyCode.Alpha2))
+        if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             ProgressionManager.Instance.UpgradeHealth();
             ProgressionManager.Instance.UpgradeAttackSpeed();

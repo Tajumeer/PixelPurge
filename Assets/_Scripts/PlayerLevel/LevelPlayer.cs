@@ -48,8 +48,11 @@ public class LevelPlayer : MonoBehaviour
 
         // Set values from playerData
         m_level = 1;
+
         m_xpPointsNeeded = m_playerData.ActivePlayerData.XPNeeded;
+
         StartCoroutine(SetXP());
+
         m_xpNeedMultiplier = m_playerData.ActivePlayerData.XPNeededMultiplier;
         IncreaseCollectionRadius(m_playerData.ActivePlayerData.CollectionRadius);
 
