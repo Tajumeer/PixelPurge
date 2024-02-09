@@ -7,12 +7,12 @@ using UnityEngine;
 
 public class ScoreboardManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI playerRank;
-    [SerializeField] TextMeshProUGUI playerName;
-    [SerializeField] TextMeshProUGUI playerScore;
+    [SerializeField] TextMeshProUGUI m_playerRank;
+    [SerializeField] TextMeshProUGUI m_playerName;
+    [SerializeField] TextMeshProUGUI m_playerScore;
     [Space]
-    [SerializeField] TextMeshProUGUI[] allPlayerNames;
-    [SerializeField] TextMeshProUGUI[] allPlayerScores;
+    [SerializeField] TextMeshProUGUI[] m_allPlayerNames;
+    [SerializeField] TextMeshProUGUI[] m_allPlayerScores;
 
     public void UnloadScene()
     {
