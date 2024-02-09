@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_fileName: data.game
-  m_isUsingEncryption: 1
+  m_isUsingEncryption: 0

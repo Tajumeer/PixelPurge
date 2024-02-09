@@ -809,8 +809,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1381701546}
   m_HandleRect: {fileID: 1381701545}
   m_Direction: 2
-  m_Value: 1
-  m_Size: 0.5642225
+  m_Value: 0.9999999
+  m_Size: 0.41988656
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -1328,6 +1328,7 @@ GameObject:
   - component: {fileID: 429606181}
   - component: {fileID: 429606180}
   - component: {fileID: 429606179}
+  - component: {fileID: 429606183}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1420,6 +1421,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &429606183
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429606178}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bbcdd3f2594b4141ac774dc44fad515, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_exitClip: {fileID: 8300000, guid: 77ba0efd7058ff5459dadc0c30c0593e, type: 3}
 --- !u!1 &434730486
 GameObject:
   m_ObjectHideFlags: 0
@@ -2752,7 +2766,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
+  m_fontSize: 59.5
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2886,7 +2900,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 100
+  m_fontSize: 84.5
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -4299,10 +4313,14 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
@@ -4310,7 +4328,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 989245078}
     - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 429606183}
+    - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
@@ -4318,11 +4344,23 @@ PrefabInstance:
       value: UnloadScene
       objectReference: {fileID: 0}
     - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ExitAudio
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: ScoreboardManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: ScoreboardAudio, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2359947393985672543, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 3327148825120783076, guid: 1ff488791804885499ce61626ef6c1aa, type: 3}
@@ -5285,7 +5323,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
+  m_fontSize: 59.5
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -5886,7 +5924,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
+  m_fontSize: 59.5
   m_fontSizeBase: 70
   m_fontWeight: 400
   m_enableAutoSizing: 1
