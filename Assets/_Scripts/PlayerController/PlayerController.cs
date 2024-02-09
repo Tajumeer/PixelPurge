@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     public List<PlayerStats> PlayerData;
     public List<GameObject> PlayerVisual;
     [SerializeField] private AudioClip m_damageTakenClip;
-    //[HideInInspector] public PlayerStats ActivePlayerData;
+    [HideInInspector] public PlayerStats ActivePlayerData;
     [HideInInspector] public int ClassIndex;
 
     private int m_characterIndex;
@@ -29,55 +29,57 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     #region PlayerStats
     //   [Header("Player Stats")]
-    [HideInInspector] public string PlayerClassName;
-    [HideInInspector] public int Level;
-    [HideInInspector] public float MaxHealth;
-    [HideInInspector] public float CurrentHealth;
-    [HideInInspector] public float MovementSpeed;
-    [HideInInspector] public float DashAmount;
-    [HideInInspector] public float DashSpeed;
-    [HideInInspector] public float DashCooldown;
-    [HideInInspector] public float DashTime;
-    [HideInInspector] public float DamageMultiplier;
-    [HideInInspector] public float CritChance;
-    [HideInInspector] public float CritMultiplier;
-    [HideInInspector] public float AttackSpeedMultiplier;
-    [HideInInspector] public float AreaMultiplier;
-    [HideInInspector] public float ProjectileSpeed;
-    [HideInInspector] public float HealthRegenration;
-    [HideInInspector] public float DamageReductionPercentage;
-    [HideInInspector] public float CollectionRadius;
-    [HideInInspector] public float GoldMultiplier;
-    [HideInInspector] public float XPNeeded;
-    [HideInInspector] public float XPNeededMultiplier;
-    [HideInInspector] public float XPMultiplier;
+    //[HideInInspector] public string PlayerClassName;
+    //[HideInInspector] public int Level;
+    //[HideInInspector] public float MaxHealth;
+    //[HideInInspector] public float CurrentHealth;
+    //[HideInInspector] public float MovementSpeed;
+    //[HideInInspector] public float DashAmount;
+    //[HideInInspector] public float DashSpeed;
+    //[HideInInspector] public float DashCooldown;
+    //[HideInInspector] public float DashTime;
+    //[HideInInspector] public float DamageMultiplier;
+    //[HideInInspector] public float CritChance;
+    //[HideInInspector] public float CritMultiplier;
+    //[HideInInspector] public float AttackSpeedMultiplier;
+    //[HideInInspector] public float AreaMultiplier;
+    //[HideInInspector] public float ProjectileSpeed;
+    //[HideInInspector] public float HealthRegenration;
+    //[HideInInspector] public float DamageReductionPercentage;
+    //[HideInInspector] public float CollectionRadius;
+    //[HideInInspector] public float GoldMultiplier;
+    //[HideInInspector] public float XPNeeded;
+    //[HideInInspector] public float XPNeededMultiplier;
+    //[HideInInspector] public float XPMultiplier;
 
     public void InitStats()
     {
-        PlayerClassName = PlayerData[m_characterIndex].PlayerClassName;
-        Level = PlayerData[m_characterIndex].Level;
-        MaxHealth = PlayerData[m_characterIndex].MaxHealth;
-        CurrentHealth = MaxHealth;
-        m_healthBar.fillAmount = this.CurrentHealth / MaxHealth;
-        MovementSpeed = PlayerData[m_characterIndex].MovementSpeed;
-        DashAmount = PlayerData[m_characterIndex].DashAmount;
-        DashSpeed = PlayerData[m_characterIndex].DashSpeed;
-        DashCooldown = PlayerData[m_characterIndex].DashCooldown;
-        DashTime = PlayerData[m_characterIndex].DashTime;
-        DamageMultiplier = PlayerData[m_characterIndex].DamageMultiplier;
-        CritChance = PlayerData[m_characterIndex].CritChance;
-        CritMultiplier = PlayerData[m_characterIndex].CritMultiplier;
-        AttackSpeedMultiplier = PlayerData[m_characterIndex].AttackSpeed;
-        AreaMultiplier = PlayerData[m_characterIndex].AreaMultiplier;
-        ProjectileSpeed = PlayerData[m_characterIndex].ProjectileSpeed;
-        HealthRegenration = PlayerData[m_characterIndex].HealthRegeneration;
-        DamageReductionPercentage = PlayerData[m_characterIndex].DamageReductionPercentage;
-        CollectionRadius = PlayerData[m_characterIndex].CollectionRadius;
-        GoldMultiplier = PlayerData[m_characterIndex].GoldMultiplier;
-        XPNeeded = PlayerData[m_characterIndex].XPNeeded;
-        XPNeededMultiplier = PlayerData[m_characterIndex].XPNeededMultiplier;
-        XPMultiplier = PlayerData[m_characterIndex].XPMultiplier;
-    }
+        //PlayerClassName = PlayerData[m_characterIndex].PlayerClassName;
+        //Level = PlayerData[m_characterIndex].Level;
+        //MaxHealth = PlayerData[m_characterIndex].MaxHealth;
+        //CurrentHealth = MaxHealth;
+        //MovementSpeed = PlayerData[m_characterIndex].MovementSpeed;
+        //DashAmount = PlayerData[m_characterIndex].DashAmount;
+        //DashSpeed = PlayerData[m_characterIndex].DashSpeed;
+        //DashCooldown = PlayerData[m_characterIndex].DashCooldown;
+        //DashTime = PlayerData[m_characterIndex].DashTime;
+        //DamageMultiplier = PlayerData[m_characterIndex].DamageMultiplier;
+        //CritChance = PlayerData[m_characterIndex].CritChance;
+        //CritMultiplier = PlayerData[m_characterIndex].CritMultiplier;
+        //AttackSpeedMultiplier = PlayerData[m_characterIndex].AttackSpeed;
+        //AreaMultiplier = PlayerData[m_characterIndex].AreaMultiplier;
+        //ProjectileSpeed = PlayerData[m_characterIndex].ProjectileSpeed;
+        //HealthRegenration = PlayerData[m_characterIndex].HealthRegeneration;
+        //DamageReductionPercentage = PlayerData[m_characterIndex].DamageReductionPercentage;
+        //CollectionRadius = PlayerData[m_characterIndex].CollectionRadius;
+        //GoldMultiplier = PlayerData[m_characterIndex].GoldMultiplier;
+        //XPNeeded = PlayerData[m_characterIndex].XPNeeded;
+        //XPNeededMultiplier = PlayerData[m_characterIndex].XPNeededMultiplier;
+        //XPMultiplier = PlayerData[m_characterIndex].XPMultiplier;
+
+        ActivePlayerData = Instantiate(PlayerData[m_characterIndex]);
+        m_healthBar.fillAmount = this.ActivePlayerData.CurrentHealth / ActivePlayerData.MaxHealth;
+    } 
 
     #endregion
 
@@ -145,7 +147,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void Update()
     {
-        if (CurrentHealth <= 0)
+        if (ActivePlayerData.CurrentHealth <= 0)
         {
             SetDeathState();
         }
@@ -225,7 +227,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void Move()
     {
-        m_rigidbody.velocity = new Vector2(MoveDirection.x * MovementSpeed, MoveDirection.y * MovementSpeed);
+        m_rigidbody.velocity = new Vector2(MoveDirection.x * ActivePlayerData.MovementSpeed, MoveDirection.y * ActivePlayerData.MovementSpeed);
     }
 
     private IEnumerator Dash()
@@ -233,12 +235,12 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_isAbleToDash = false;
         m_isDashing = true;
 
-        m_rigidbody.velocity = new Vector2(MoveDirection.x * DashSpeed, MoveDirection.y * DashSpeed);
-        yield return new WaitForSeconds(DashTime);
+        m_rigidbody.velocity = new Vector2(MoveDirection.x * ActivePlayerData.DashSpeed, MoveDirection.y * ActivePlayerData.DashSpeed);
+        yield return new WaitForSeconds(ActivePlayerData.DashTime);
 
         m_isDashing = false;
 
-        yield return new WaitForSeconds(DashCooldown);
+        yield return new WaitForSeconds(ActivePlayerData.DashCooldown);
         m_isAbleToDash = true;
     }
 
@@ -357,11 +359,11 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     public void GetDamage(float _damageValue)
     {
-        this.CurrentHealth -= _damageValue;
+        this.ActivePlayerData.CurrentHealth -= _damageValue;
         AudioManager.Instance.PlaySound(m_damageTakenClip);
         StartCoroutine(FlashDamage());
 
-        m_healthBar.fillAmount = this.CurrentHealth / MaxHealth;
+        m_healthBar.fillAmount = this.ActivePlayerData.CurrentHealth / ActivePlayerData.MaxHealth;
     }
     IEnumerator FlashDamage()
     {

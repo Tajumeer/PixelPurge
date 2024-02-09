@@ -41,10 +41,10 @@ public class HealDrop : MonoBehaviour
 
     private void Heal()
     {
-        m_player.CurrentHealth += m_healAmount;
-        if (m_player.CurrentHealth > m_player.MaxHealth)
+        m_player.ActivePlayerData.CurrentHealth += m_healAmount;
+        if (m_player.ActivePlayerData.CurrentHealth > m_player.ActivePlayerData.MaxHealth)
         {
-            m_player.CurrentHealth = m_player.MaxHealth;
+            m_player.ActivePlayerData.CurrentHealth = m_player.ActivePlayerData.MaxHealth;
         }
     }
 }

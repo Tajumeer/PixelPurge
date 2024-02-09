@@ -48,10 +48,10 @@ public class LevelPlayer : MonoBehaviour
 
         // Set values from playerData
         m_level = 1;
-        m_xpPointsNeeded = m_playerData.XPNeeded;
+        m_xpPointsNeeded = m_playerData.ActivePlayerData.XPNeeded;
         StartCoroutine(SetXP());
-        m_xpNeedMultiplier = m_playerData.XPNeededMultiplier;
-        IncreaseCollectionRadius(m_playerData.CollectionRadius);
+        m_xpNeedMultiplier = m_playerData.ActivePlayerData.XPNeededMultiplier;
+        IncreaseCollectionRadius(m_playerData.ActivePlayerData.CollectionRadius);
 
         // Create Object Pool and Parent
         m_xpPool = new ObjectPool<LevelXP>(m_xpPrefab);
@@ -82,7 +82,7 @@ public class LevelPlayer : MonoBehaviour
     /// <param name="_amount">The amount of XP the player gets</param>
     public void GetXP(float _amount)
     {
-        ChangeXPValue(m_xpPoints + _amount * (1f + m_playerData.XPMultiplier));
+        ChangeXPValue(m_xpPoints + _amount * (1f + m_playerData.ActivePlayerData.XPMultiplier));
 
         // if current xp = needed xp -> level up
         if (m_xpPoints >= m_xpPointsNeeded)
@@ -104,7 +104,7 @@ public class LevelPlayer : MonoBehaviour
         m_xpPointsNeeded *= (1f + m_xpNeedMultiplier);      // increase needed amount of xp
 
         m_level++;
-        m_playerData.Level = m_level;
+        m_playerData.ActivePlayerData.Level = m_level;
 
         if (m_hudManager == null)
         {

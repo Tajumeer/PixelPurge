@@ -40,10 +40,10 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
     public void InitMetaProgression()
     {
         m_playerController = FindObjectOfType<PlayerController>();
-        m_defaultMaxHealth = m_playerController.MaxHealth;
-        m_defaultAttackSpeed = m_playerController.AttackSpeedMultiplier;
-        m_defaultCriticalDamage = m_playerController.CritMultiplier;
-        m_defaultMoveSpeed = m_playerController.MovementSpeed;
+        m_defaultMaxHealth = m_playerController.ActivePlayerData.MaxHealth;
+        m_defaultAttackSpeed = m_playerController.ActivePlayerData.AttackSpeed;
+        m_defaultCriticalDamage = m_playerController.ActivePlayerData.CritMultiplier;
+        m_defaultMoveSpeed = m_playerController.ActivePlayerData.MovementSpeed;
         UpdateMetaProgression();
     }
 
@@ -80,35 +80,35 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
             case 1:
                 if (!m_isHealthLevelOne)
                 {
-                    m_playerController.MaxHealth = m_defaultMaxHealth * 1.05f;
+                    m_playerController.ActivePlayerData.MaxHealth = m_defaultMaxHealth * 1.05f;
                     m_isHealthLevelOne = true;
                 }
                 break;
             case 2:
                 if (!m_isHealthLevelTwo)
                 {
-                    m_playerController.MaxHealth = m_defaultMaxHealth * 1.1f;
+                    m_playerController.ActivePlayerData.MaxHealth = m_defaultMaxHealth * 1.1f;
                     m_isHealthLevelTwo = true;
                 }
                 break;
             case 3:
                 if (!m_isHealthLevelThree)
                 {
-                    m_playerController.MaxHealth = m_defaultMaxHealth * 1.15f;
+                    m_playerController.ActivePlayerData.MaxHealth = m_defaultMaxHealth * 1.15f;
                     m_isHealthLevelTwo = true;
                 }
                 break;
             case 4:
                 if (!m_isHealthLevelFour)
                 {
-                    m_playerController.MaxHealth = m_defaultMaxHealth * 1.2f;
+                    m_playerController.ActivePlayerData.MaxHealth = m_defaultMaxHealth * 1.2f;
                     m_isHealthLevelFour = true;
                 }
                 break;
             case 5:
                 if (!m_isHealthLevelFive)
                 {
-                    m_playerController.MaxHealth = m_defaultMaxHealth * 1.25f;
+                    m_playerController.ActivePlayerData.MaxHealth = m_defaultMaxHealth * 1.25f;
                     m_isHealthLevelTwo = true;
                 }
                 break;
@@ -116,7 +116,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
-        Debug.Log(m_playerController.MaxHealth);
+        Debug.Log(m_playerController.ActivePlayerData.MaxHealth);
     }
 
     #endregion
@@ -149,35 +149,35 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
                 if (!m_isAttackSpeedLevelOne)
                 {
 
-                    m_playerController.AttackSpeedMultiplier = m_defaultAttackSpeed * .95f;
+                    m_playerController.ActivePlayerData.AttackSpeed = m_defaultAttackSpeed * .95f;
                     m_isHealthLevelOne = true;
                 }
                 break;
             case 2:
                 if (!m_isAttackSpeedLevelTwo)
                 {
-                    m_playerController.AttackSpeedMultiplier = m_defaultMaxHealth * .9f;
+                    m_playerController.ActivePlayerData.AttackSpeed = m_defaultMaxHealth * .9f;
                     m_isHealthLevelTwo = true;
                 }
                 break;
             case 3:
                 if (!m_isAttackSpeedLevelThree)
                 {
-                    m_playerController.AttackSpeedMultiplier = m_defaultMaxHealth * .85f;
+                    m_playerController.ActivePlayerData.AttackSpeed = m_defaultMaxHealth * .85f;
                     m_isHealthLevelThree = true;
                 }
                 break;
             case 4:
                 if (!m_isAttackSpeedLevelFour)
                 {
-                    m_playerController.AttackSpeedMultiplier = m_defaultMaxHealth * .8f;
+                    m_playerController.ActivePlayerData.AttackSpeed = m_defaultMaxHealth * .8f;
                     m_isHealthLevelFour = true;
                 }
                 break;
             case 5:
                 if (!m_isAttackSpeedLevelFive)
                 {
-                    m_playerController.AttackSpeedMultiplier = m_defaultMaxHealth * .75f;
+                    m_playerController.ActivePlayerData.AttackSpeed = m_defaultMaxHealth * .75f;
                     m_isAttackSpeedLevelFive = true;
                 }
                 break;
@@ -185,7 +185,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
-        Debug.Log(m_playerController.AttackSpeedMultiplier);
+        Debug.Log(m_playerController.ActivePlayerData.AttackSpeed);
     }
 
     #endregion
@@ -218,35 +218,35 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
                 if (!m_isCriticalDamageLevelOne)
                 {
 
-                    m_playerController.CritMultiplier = m_defaultCriticalDamage + .1f;
+                    m_playerController.ActivePlayerData.CritMultiplier = m_defaultCriticalDamage + .1f;
                     m_isCriticalDamageLevelOne = true;
                 }
                 break;
             case 2:
                 if (!m_isCriticalDamageLevelTwo)
                 {
-                    m_playerController.CritMultiplier = m_defaultMaxHealth + .2f;
+                    m_playerController.ActivePlayerData.CritMultiplier = m_defaultMaxHealth + .2f;
                     m_isCriticalDamageLevelTwo = true;
                 }
                 break;
             case 3:
                 if (!m_isCriticalDamageLevelThree)
                 {
-                    m_playerController.CritMultiplier = m_defaultMaxHealth + .3f;
+                    m_playerController.ActivePlayerData.CritMultiplier = m_defaultMaxHealth + .3f;
                     m_isCriticalDamageLevelThree = true;
                 }
                 break;
             case 4:
                 if (!m_isCriticalDamageLevelFour)
                 {
-                    m_playerController.CritMultiplier = m_defaultMaxHealth + .4f;
+                    m_playerController.ActivePlayerData.CritMultiplier = m_defaultMaxHealth + .4f;
                     m_isCriticalDamageLevelFour = true;
                 }
                 break;
             case 5:
                 if (!m_isCriticalDamageLevelFive)
                 {
-                    m_playerController.CritMultiplier = m_defaultMaxHealth + .5f;
+                    m_playerController.ActivePlayerData.CritMultiplier = m_defaultMaxHealth + .5f;
                     m_isCriticalDamageLevelFive = true;
                 }
                 break;
@@ -254,7 +254,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
-        Debug.Log(m_playerController.CritMultiplier);
+        Debug.Log(m_playerController.ActivePlayerData.CritMultiplier);
     }
 
     #endregion
@@ -287,35 +287,35 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
                 if (!m_isMoveSpeedLevelOne)
                 {
 
-                    m_playerController.MovementSpeed = m_defaultMoveSpeed * 1.02f;
+                    m_playerController.ActivePlayerData.MovementSpeed = m_defaultMoveSpeed * 1.02f;
                     m_isMoveSpeedLevelOne = true;
                 }
                 break;
             case 2:
                 if (!m_isMoveSpeedLevelTwo)
                 {
-                    m_playerController.MovementSpeed = m_defaultMoveSpeed * 1.04f;
+                    m_playerController.ActivePlayerData.MovementSpeed = m_defaultMoveSpeed * 1.04f;
                     m_isMoveSpeedLevelTwo = true;
                 }
                 break;
             case 3:
                 if (!m_isMoveSpeedLevelThree)
                 {
-                    m_playerController.MovementSpeed = m_defaultMoveSpeed * 1.06f;
+                    m_playerController.ActivePlayerData.MovementSpeed = m_defaultMoveSpeed * 1.06f;
                     m_isMoveSpeedLevelThree = true;
                 }
                 break;
             case 4:
                 if (!m_isMoveSpeedLevelFour)
                 {
-                    m_playerController.MovementSpeed = m_defaultMoveSpeed * 1.08f;
+                    m_playerController.ActivePlayerData.MovementSpeed = m_defaultMoveSpeed * 1.08f;
                     m_isMoveSpeedLevelFour = true;
                 }
                 break;
             case 5:
                 if (!m_isMoveSpeedLevelFive)
                 {
-                    m_playerController.MovementSpeed = m_defaultMoveSpeed * 1.1f;
+                    m_playerController.ActivePlayerData.MovementSpeed = m_defaultMoveSpeed * 1.1f;
                     m_isMoveSpeedLevelFive = true;
                 }
                 break;
@@ -323,7 +323,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
-        Debug.Log(m_playerController.MovementSpeed);
+        Debug.Log(m_playerController.ActivePlayerData.MovementSpeed);
     }
 
     #endregion
@@ -356,35 +356,35 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
                 if (!m_isCollectionRadiusLevelOne)
                 {
 
-                    m_playerController.CollectionRadius = m_defaultCollectionRadius * 1.1f;
+                    m_playerController.ActivePlayerData.CollectionRadius = m_defaultCollectionRadius * 1.1f;
                     m_isCollectionRadiusLevelOne = true;
                 }
                 break;
             case 2:
                 if (!m_isCollectionRadiusLevelTwo)
                 {
-                    m_playerController.CollectionRadius = m_defaultCollectionRadius * 1.2f;
+                    m_playerController.ActivePlayerData.CollectionRadius = m_defaultCollectionRadius * 1.2f;
                     m_isCollectionRadiusLevelTwo = true;
                 }
                 break;
             case 3:
                 if (!m_isCollectionRadiusLevelThree)
                 {
-                    m_playerController.CollectionRadius = m_defaultCollectionRadius * 1.06f;
+                    m_playerController.ActivePlayerData.CollectionRadius = m_defaultCollectionRadius * 1.06f;
                     m_isCollectionRadiusLevelThree = true;
                 }
                 break;
             case 4:
                 if (!m_isCollectionRadiusLevelFour)
                 {
-                    m_playerController.CollectionRadius = m_defaultCollectionRadius * 1.08f;
+                    m_playerController.ActivePlayerData.CollectionRadius = m_defaultCollectionRadius * 1.08f;
                     m_isCollectionRadiusLevelFour = true;
                 }
                 break;
             case 5:
                 if (!m_isCollectionRadiusLevelFive)
                 {
-                    m_playerController.CollectionRadius = m_defaultCollectionRadius * 1.1f;
+                    m_playerController.ActivePlayerData.CollectionRadius = m_defaultCollectionRadius * 1.1f;
                     m_isCollectionRadiusLevelFive = true;
                 }
                 break;
@@ -392,7 +392,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
                 break;
         }
 
-        Debug.Log(m_playerController.CollectionRadius);
+        Debug.Log(m_playerController.ActivePlayerData.CollectionRadius);
     }
 
     #endregion
