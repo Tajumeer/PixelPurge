@@ -11,8 +11,10 @@ public class StartManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            MenuManager.Instance.LoadSceneAsync(Scenes.Beta);
-            MenuManager.Instance.LoadSceneAsync(Scenes.DungeonHUD, LoadSceneMode.Additive);
+            Debug.Log("NAME: " + GameManager.Instance.UserName);
+            if (GameManager.Instance.UserName == null || GameManager.Instance.UserName == "")
+                MenuManager.Instance.LoadSceneAsync(Scenes.UsernameInsertion);
+            else MenuManager.Instance.LoadVillage();
         }
     }
 }
