@@ -26,6 +26,8 @@ public class ButtonTextMovement : MonoBehaviour
     /// </summary>
     public void OnButtonPressed()
     {
+        if (!GetComponentInParent<Button>().interactable) return;
+
         m_transf.anchoredPosition = new Vector2(0f, m_clickedPosition);
     }
 
@@ -34,6 +36,8 @@ public class ButtonTextMovement : MonoBehaviour
     /// </summary>
     public void OnButtonReleased()
     {
+        if (!GetComponentInParent<Button>().interactable) return;
+
         m_transf.anchoredPosition = new Vector2(0f, m_normalPosition);
     }
 }

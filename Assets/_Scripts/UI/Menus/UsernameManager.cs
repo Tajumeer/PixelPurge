@@ -10,16 +10,23 @@ using TMPro;
 public class UsernameManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI m_usernameInput;
+    [SerializeField] Button m_confirmButton;
     [SerializeField] string m_defaultName;
+
+    private void Update()
+    {
+        if (m_usernameInput.text.Length > 3)
+            m_confirmButton.interactable = true;
+        else 
+            m_confirmButton.interactable = false;
+    }
 
     public void ConfirmName()
     {
-        string username;
-
-        if (m_usernameInput == null) username = m_defaultName;
-        else username = m_usernameInput.text;
-
-        // username in networking
+        //if (m_usernameInput.text.Length < 3) 
+        //    GameManager.Instance.UserName = m_defaultName;
+        //else 
+            GameManager.Instance.UserName = m_usernameInput.text;
 
         MenuManager.Instance.LoadVillage();
     }

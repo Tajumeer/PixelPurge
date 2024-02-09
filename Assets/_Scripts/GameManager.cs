@@ -20,10 +20,23 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    [HideInInspector] public string UserName;
+    public string UserName;
     [HideInInspector] public int UserScore;
 
     private FirestoreRest m_firestore;
+
+    private void Awake()
+    {
+        if (m_instance == null)
+        {
+            m_instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void Start()
     {
