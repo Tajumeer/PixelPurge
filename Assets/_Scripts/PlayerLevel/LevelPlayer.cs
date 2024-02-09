@@ -113,7 +113,7 @@ public class LevelPlayer : MonoBehaviour
         {
             if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
                 m_hudManager.LoadLevelUp();
-            else Debug.LogWarning(m_hudManager.GetType() + " not found");
+            else Debug.LogWarning("HUD Manager not found");
         }
         else m_hudManager.LoadLevelUp();
     }
@@ -126,7 +126,7 @@ public class LevelPlayer : MonoBehaviour
         {
             if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
                 m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded);
-            else Debug.LogWarning(m_hudManager.GetType() + " not found");
+            else Debug.LogWarning("HUD Manager not found");
         }
         else m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded);
     }

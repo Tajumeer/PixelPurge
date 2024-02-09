@@ -149,8 +149,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         else
         {
             GetComponentInChildren<LevelPlayer>().InitXP();
-            if (FindObjectOfType<SpellManager>() != null) FindObjectOfType<SpellManager>().InitPassives(this);
-
+            FindObjectOfType<SpellManager>().InitPassiveData(this);
         }
     }
 

@@ -7,7 +7,7 @@ using UnityEngine;
 public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
 {
     private Rigidbody2D m_rb;
-    private SO_Spells m_spellData;
+    private SO_ActiveSpells m_spellData;
 
     private float m_health;
 
@@ -17,7 +17,7 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_Spells _spellData)
+    public void OnSpawn(SO_ActiveSpells _spellData)
     {
         InitRigidbody();
 

@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class ShowSpells : MonoBehaviour
 {
     [SerializeField] private SO_AllSpells m_dataSpells;
+    [SerializeField] private SO_PassiveSpells m_data_Passives;
 
     [Header("Active Spells")]
     [SerializeField] public Image[] m_sprites_active;
@@ -61,30 +62,30 @@ public class ShowSpells : MonoBehaviour
     /// <summary>
     /// Shows an Icon of a new learned spell in the HUD
     /// </summary>
-    public void LearnNewSpell(Spells _spell)
+    public void LearnActiveSpell(Spells _spell)
     {
-        SO_Spells spellSO = m_dataSpells.spellSO[(int)_spell];
+        SO_ActiveSpells spellSO = m_dataSpells.activeSpellSO[(int)_spell];
 
-        // check if its active or passive
-        if ((int)_spell < (int)Spells.ActiveSpells)
-        {
-            // activate and set sprite icon
-            m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-            m_sprites_active[m_learnedActiveSpells.Count].sprite = spellSO.SpellIcon;
+        // activate and set sprite icon
+        m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
+        m_sprites_active[m_learnedActiveSpells.Count].sprite = spellSO.SpellIcon;
 
-            m_learnedActiveSpells.Add(_spell);
+        m_learnedActiveSpells.Add(_spell);
 
-            // set cd values
-            m_cd.Add(spellSO.Cd[spellSO.Level - 1]);
-            m_timer.Add(0f);
-        }
-        else if ((int)_spell > (int)Spells.ActiveSpells && (int)_spell < (int)Spells.PassiveSpells)
-        {
-            // activate and set sprite icon
-            m_sprites_passive[m_learnedPassiveSpells.Count].gameObject.SetActive(true);
-            m_sprites_passive[m_learnedPassiveSpells.Count].sprite = spellSO.SpellIcon;
+        // set cd values
+        m_cd.Add(spellSO.Cd[spellSO.Level - 1]);
+        m_timer.Add(0f);
 
-            m_learnedPassiveSpells.Add(_spell);
-        }
+    }
+
+    public void LearnPassiveSpell(Spells _spell)
+    {
+        SO_PassiveSpells spellSO = m_dataSpells.passiveSpellSO[(int)_spell - ((int)Spells.ActiveSpells + 1)];
+
+        // activate and set sprite icon
+        m_sprites_passive[m_learnedPassiveSpells.Count].gameObject.SetActive(true);
+        m_sprites_passive[m_learnedPassiveSpells.Count].sprite = spellSO.SpellIcon;
+
+        m_learnedPassiveSpells.Add(_spell);
     }
 }

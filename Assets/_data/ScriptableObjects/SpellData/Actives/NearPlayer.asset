@@ -9,23 +9,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99313523997c32e43898a792b4eccf73, type: 3}
-  m_Name: BaseArcher
+  m_Script: {fileID: 11500000, guid: cba315fa26148b94d86d1d1857c6e60b, type: 3}
+  m_Name: NearPlayer
   m_EditorClassIdentifier: 
-  SpellName: Base Archer
+  SpellName: Near Player
   SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
-  SpellDescription: The Base Attack of the Archer. Shoots at mouse position.
+  SpellDescription: Shoots at enemys near the player.
   SpellSFX: []
   Level: 0
   MaxLevel: 1
   Damage:
-  - 100
+  - 50
   Lifetime:
-  - 6
+  - 5
   Speed:
   - 3
   Cd:
-  - 2
+  - 3
   Radius: []
   Amount: 01000000
   EnemyHitPoints:

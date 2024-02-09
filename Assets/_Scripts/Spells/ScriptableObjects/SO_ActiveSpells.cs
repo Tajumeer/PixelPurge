@@ -4,8 +4,8 @@ using UnityEngine;
 
 // Maya
 
-[CreateAssetMenu(fileName = "Spells", menuName = "PixelPurge/Spells/Spells", order = 1)]
-public class SO_Spells : ScriptableObject
+[CreateAssetMenu(fileName = "ActiveSpells", menuName = "PixelPurge/Spells/ActiveSpells", order = 2)]
+public class SO_ActiveSpells : ScriptableObject
 {
     [Header("UI Stuff")]
     public string SpellName;

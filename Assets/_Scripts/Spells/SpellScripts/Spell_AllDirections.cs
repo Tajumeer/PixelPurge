@@ -7,7 +7,7 @@ using UnityEngine;
 public class Spell_AllDirections : PoolObject<Spell_AllDirections>
 {
     private Rigidbody2D m_rb;
-    private SO_Spells m_spellData;
+    private SO_ActiveSpells m_spellData;
 
     private float m_health;
 
@@ -17,7 +17,7 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_Spells _spellData, int _spellIdx)
+    public void OnSpawn(SO_ActiveSpells _spellData, int _spellIdx)
     {
         InitRigidbody();
 

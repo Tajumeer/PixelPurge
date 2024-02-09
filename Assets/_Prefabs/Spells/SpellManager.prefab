@@ -46,10 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_data_Spells: {fileID: 11400000, guid: 22fd91090bafb824e98c940a99217f92, type: 2}
-  m_data_BaseArcher: {fileID: 11400000, guid: 41e64fe08b0d4234091460a9f4b79e60, type: 2}
-  m_data_AllDirections: {fileID: 11400000, guid: 2a50605f2860fcb4bb365c9caf810bc0, type: 2}
-  m_data_NearPlayer: {fileID: 11400000, guid: 7a8ca55820a823b40aed7af5a97bc63c, type: 2}
-  m_data_Aura: {fileID: 11400000, guid: 684841cbb660cc34fa7fed376a10896f, type: 2}
+  m_data_OriginalSpells: {fileID: 11400000, guid: 09adb0e8be4f81d4f8152782d80800f0, type: 2}
   m_prefab_AllDirections: {fileID: 1960888898802110764, guid: f288201a02c22134fbee2a0dab0cdb90, type: 3}
   m_prefab_NearPlayer: {fileID: 1960888898802110764, guid: 82023d0ce7f8b7a489ad6a607b5dbc0c, type: 3}
   m_prefab_BaseArcher: {fileID: 1960888898802110764, guid: ae79387ff636f2247ab98a06adb8fce6, type: 3}

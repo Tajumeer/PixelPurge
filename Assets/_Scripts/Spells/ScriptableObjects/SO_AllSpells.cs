@@ -7,5 +7,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "AllSpellSO", menuName = "PixelPurge/Spells/AllSpellSO", order = 0)]
 public class SO_AllSpells : ScriptableObject
 {
-    public SO_Spells[] spellSO;
+    public SO_ActiveSpells[] activeSpellSO;
+    public SO_PassiveSpells[] passiveSpellSO;
 }
