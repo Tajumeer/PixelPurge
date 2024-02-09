@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistence
 {
     private static GameManager m_instance;
 
@@ -22,8 +22,10 @@ public class GameManager : MonoBehaviour
 
     public string UserName;
     [HideInInspector] public int UserScore;
+    [HideInInspector] public int HighestScore;
 
     private FirestoreRest m_firestore;
+
 
     private void Awake()
     {
@@ -50,12 +52,28 @@ public class GameManager : MonoBehaviour
 
     private void UpdateLeaderboard()
     {
-        m_firestore.SaveUserData("Leaderboard", UserName, UserScore);
+        if(UserScore < HighestScore)
+        {
+            UserScore = HighestScore;
+            m_firestore.SaveUserData("Leaderboard", UserName, UserScore);
+        }
     }
 
     public void EndGameRound()
     {
         UpdateLeaderboard();
         UserScore = 0;
+    }
+
+    public void LoadData(GameData _data)
+    {
+        HighestScore = _data.HighScore;
+        UserName = _data.UserName;  
+    }
+
+    public void SaveData(ref GameData _data)
+    {
+        _data.HighScore = this.HighestScore;
+        _data.UserName = this.UserName;
     }
 }

@@ -31,7 +31,7 @@ public class DataPersistanceManager : MonoBehaviour
     private void Start()
     {
         m_fileHandler = new FileDataHandler(Application.persistentDataPath, m_fileName, m_isUsingEncryption);
-        this.m_persistenceObjects = FindAllPersistanceObjects();
+        this.m_persistenceObjects = FindAllPersistenceObjects();
         LoadGame();
     }
 
@@ -72,7 +72,7 @@ public class DataPersistanceManager : MonoBehaviour
         SaveGame();
     }
 
-    private List<IDataPersistence> FindAllPersistanceObjects()
+    private List<IDataPersistence> FindAllPersistenceObjects()
     {
         IEnumerable<IDataPersistence> persistenceObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
 
