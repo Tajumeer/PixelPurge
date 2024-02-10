@@ -12,16 +12,26 @@ using UnityEngine.UI;
 public class DungeonHUDManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_ingameSpells;
-    [Space]
+
+    [Header("XP and Level")]
     [SerializeField] private Image m_xpBar;
+    [SerializeField] private TextMeshProUGUI m_levelText;
+
+    [Header("Timer")]
     [SerializeField] private TextMeshProUGUI m_timerText;
     private float m_timer = 0f;
+    private int minutes;
+    private int seconds;
 
     private void Update()
     {
+        // Timer
         m_timer += Time.deltaTime;
-        m_timerText.text = m_timer.ToString("f0");
+        minutes = Mathf.FloorToInt(m_timer / 60f);
+        seconds = Mathf.FloorToInt(m_timer % 60f);
+        m_timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
 
+        // Open/Close Pausemenu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // cannot open pausemenu if optionsmenu, win or death screen are open
@@ -65,9 +75,10 @@ public class DungeonHUDManager : MonoBehaviour
 
     #region Level and XP
 
-    public void ShowXP(float _currentXP, float _neededXP)
+    public void ShowXP(float _currentXP, float _neededXP, int _level)
     {
         m_xpBar.fillAmount = _currentXP / _neededXP;
+        m_levelText.text = "LV. " + _level.ToString();
     }
 
     public void LoadLevelUp()

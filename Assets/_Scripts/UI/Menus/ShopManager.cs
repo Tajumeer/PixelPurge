@@ -92,5 +92,6 @@ public class ShopManager : MonoBehaviour
     public void UnloadShop()
     {
         MenuManager.Instance.UnloadSceneAsync(Scenes.Shop);
+        Time.timeScale = 1f;
     }
 }

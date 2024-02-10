@@ -13,20 +13,59 @@ public class LevelUpManager : MonoBehaviour
     [SerializeField] private GameObject m_prefab_spellCardGold;
     [SerializeField] private Transform m_spellCardParent;
 
+    [Tooltip("How many Active / passive spells can be learned in one run")]
+    [SerializeField] private int m_spellSlots = 4;
+
     private void OnEnable()
     {
         RandomizeSpellsToShow(GetAvailableSpells());
     }
 
+    #region GetAvailableSpells
+
     /// <summary>
-    /// Go through every active and passive Spell and add it to the list if its not on max level
+    /// Makes a List of all available Spells to learn/upgrade 
+    /// (dont show new active or passive spells when there are no free slots)
     /// </summary>
-    /// <returns></returns>
     private List<Spells> GetAvailableSpells()
     {
         List<Spells> availableSpells = new List<Spells>();
 
-        // check if active spells are full
+        // lists of all active/passive spells that can be learned or upgraded
+        (List<Spells> availablePassiveSpells, bool newPassiveSpells) = GetAvailablePassiveSpells();
+        (List<Spells> availableActiveSpells, bool newActiveSpells) = GetAvailableActiveSpells();
+
+
+        // only add active spells to the list when there are free slots for active spells
+        if (newActiveSpells)
+        {
+            foreach (Spells spell in availableActiveSpells)
+            {
+                availableSpells.Add(spell);
+            }
+        }
+
+        // only add passive spells to the list when there are free slots for passive spells
+        if (newPassiveSpells)
+        {
+            foreach (Spells spell in availablePassiveSpells)
+            {
+                availableSpells.Add(spell);
+            }
+        }
+
+        return availableSpells;
+    }
+
+    /// <summary>
+    /// Go through every activeSpell and add it to the list if its not on max level
+    /// </summary>
+    /// <returns>List of all available Active Spells || true: active spell slots are not full</returns>
+    private (List<Spells>, bool) GetAvailableActiveSpells()
+    {
+        List<Spells> availableActiveSpells = new List<Spells>();
+
+        int takenActiveSpells = 0;
 
         for (int i = 0; i < (int)Spells.ActiveSpells; i++)
         {
@@ -36,10 +75,24 @@ public class LevelUpManager : MonoBehaviour
             // if spell is already at max level, its not available for choosing
             if (m_dataSpells.activeSpellSO[i].Level >= m_dataSpells.activeSpellSO[i].MaxLevel) continue;
 
-            availableSpells.Add((Spells)i);
+            // count how many spells are already learned (> level 0)
+            if (m_dataSpells.activeSpellSO[i].Level > 0) takenActiveSpells++;
+
+            availableActiveSpells.Add((Spells)i);
         }
 
-        // check if passive spells are full
+        return (availableActiveSpells, takenActiveSpells < m_spellSlots);
+    }
+
+    /// <summary>
+    /// Go through every passive Spell and add it to the list if its not on max level
+    /// </summary>
+    /// <returns>List of all available Passive Spells || true: passive spell slots are not full</returns>
+    private (List<Spells>, bool) GetAvailablePassiveSpells()
+    {
+        List<Spells> availablePassiveSpells = new List<Spells>();
+
+        int takenPassiveSpells = 0;
 
         for (int i = (int)Spells.ActiveSpells + 1; i < (int)Spells.PassiveSpells; i++)
         {
@@ -52,11 +105,16 @@ public class LevelUpManager : MonoBehaviour
             // if spell is already at max level, its not available for choosing
             if (m_dataSpells.passiveSpellSO[idx].Level >= m_dataSpells.passiveSpellSO[idx].MaxLevel) continue;
 
-            availableSpells.Add((Spells)i);
+            // count how many spells are already learned (> level 0)
+            if (m_dataSpells.passiveSpellSO[idx].Level > 0) takenPassiveSpells++;
+
+            availablePassiveSpells.Add((Spells)i);
         }
 
-        return availableSpells;
+        return (availablePassiveSpells, takenPassiveSpells < m_spellSlots);
     }
+
+    #endregion
 
     /// <summary>
     /// Random choose 3 Spells from the List and show them in the UI
@@ -89,6 +147,8 @@ public class LevelUpManager : MonoBehaviour
             _availableSpells.RemoveAt(randomSpell);  // remove spell from list because its already in the HUD
         }
     }
+
+    #region Cards
 
     /// <summary>
     /// Creates a Active Spell Card from the Prefab and set the values to the specific spell (icon, name, description, etc.)
@@ -162,4 +222,6 @@ public class LevelUpManager : MonoBehaviour
         GameObject spellCard = Instantiate(m_prefab_spellCardGold);
         spellCard.transform.SetParent(m_spellCardParent);
     }
+
+    #endregion
 }

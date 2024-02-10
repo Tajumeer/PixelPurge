@@ -9,5 +9,6 @@ public class CreditsManager : MonoBehaviour
     public void UnloadScene()
     {
         MenuManager.Instance.UnloadSceneAsync(Scenes.Credits);
+        Time.timeScale = 1f;
     }
 }

@@ -28,6 +28,6 @@ public class UsernameManager : MonoBehaviour
         //else 
             GameManager.Instance.UserName = m_usernameInput.text;
 
-        MenuManager.Instance.LoadVillage();
+        MenuManager.Instance.LoadSceneAsync(Scenes.Village);
     }
 }

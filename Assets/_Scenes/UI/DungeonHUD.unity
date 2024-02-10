@@ -355,6 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ingameSpells: {fileID: 947582897}
   m_xpBar: {fileID: 1222132696}
+  m_levelText: {fileID: 17914291}
   m_timerText: {fileID: 365375612}
 --- !u!4 &73153118
 Transform:
@@ -384,6 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_dataSpells: {fileID: 11400000, guid: 22fd91090bafb824e98c940a99217f92, type: 2}
+  m_data_Passives: {fileID: 0}
   m_sprites_active:
   - {fileID: 1602929022}
   - {fileID: 612699892}

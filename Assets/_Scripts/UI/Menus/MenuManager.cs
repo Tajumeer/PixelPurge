@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,12 @@ using UnityEngine.SceneManagement;
 
 // Script: Maya
 
+[Serializable]
 public enum Scenes
 {
     Start = 0,
     UsernameInsertion,
     Village,
-    VillageHUD,
     Credits,
     Options,
     Shop,
@@ -52,29 +53,31 @@ public class MenuManager : MonoBehaviour
         SceneManager.UnloadSceneAsync((int)scene);
     }
 
+    /// <summary>
+    /// Load All necessary Scenes for the Dungeon (Dungeon and HUD)
+    /// </summary>
     public void LoadDungeon()
     {
-        LoadSceneAsync(Scenes.Dungeon);
+        LoadSceneAsync(Scenes.Beta);
         LoadSceneAsync(Scenes.DungeonHUD, LoadSceneMode.Additive);
     }
 
+    /// <summary>
+    /// Unload all scenes that could be open in the Dungeon and Load Village
+    /// </summary>
     public void UnloadDungeon()
     {
-        // unload all scenes
-        UnloadSceneAsync(Scenes.Dungeon);
-        UnloadSceneAsync(Scenes.DungeonHUD);
-        // check if pause menu/win screen/death screen was an open scene, then close it
+        // check if pause menu, win screen, death screen, DetailsHUD was an open scene, then close it
         if (SceneManager.GetSceneByBuildIndex((int)Scenes.Pause).isLoaded) UnloadSceneAsync(Scenes.Pause);
         else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Win).isLoaded) UnloadSceneAsync(Scenes.Win);
         else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Death).isLoaded) UnloadSceneAsync(Scenes.Death);
+        if (SceneManager.GetSceneByBuildIndex((int)Scenes.DetailsHUD).isLoaded) UnloadSceneAsync(Scenes.DetailsHUD);
 
-        // load all scenes for the village
-        LoadVillage();
-    }
+        // unload all dungeon scenes
+        UnloadSceneAsync(Scenes.Dungeon);
+        UnloadSceneAsync(Scenes.DungeonHUD);
 
-    public void LoadVillage()
-    {
+        // load village
         LoadSceneAsync(Scenes.Village);
-        LoadSceneAsync(Scenes.VillageHUD, LoadSceneMode.Additive);
     }
 }

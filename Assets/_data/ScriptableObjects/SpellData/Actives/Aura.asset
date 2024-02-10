@@ -22,7 +22,8 @@ MonoBehaviour:
   - 10
   Lifetime: []
   Speed: []
-  Cd: []
+  Cd:
+  - 0.5
   Radius:
   - 2
   Amount: 

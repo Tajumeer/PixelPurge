@@ -14,7 +14,7 @@ public class StartManager : MonoBehaviour
             Debug.Log("NAME: " + GameManager.Instance.UserName);
             if (GameManager.Instance.UserName == null || GameManager.Instance.UserName == "")
                 MenuManager.Instance.LoadSceneAsync(Scenes.UsernameInsertion);
-            else MenuManager.Instance.LoadVillage();
+            else MenuManager.Instance.LoadSceneAsync(Scenes.Village);
         }
     }
 }

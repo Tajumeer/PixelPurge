@@ -103,11 +103,11 @@ public class LevelPlayer : MonoBehaviour
 
     private void LevelUp()
     {
-        ChangeXPValue(0);                                   // reset current xp
-        m_xpPointsNeeded *= (1f + m_xpNeedMultiplier);      // increase needed amount of xp
-
         m_level++;
         m_playerData.ActivePlayerData.Level = m_level;
+
+        ChangeXPValue(0);                                   // reset current xp
+        m_xpPointsNeeded *= (1f + m_xpNeedMultiplier);      // increase needed amount of xp
 
         if (m_hudManager == null)
         {
@@ -125,9 +125,9 @@ public class LevelPlayer : MonoBehaviour
         if (m_hudManager == null)
         {
             if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
-                m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded);
+                m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded, m_level);
             else Debug.LogWarning("HUD Manager not found");
         }
-        else m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded);
+        else m_hudManager.ShowXP(m_xpPoints, m_xpPointsNeeded, m_level);
     }
 }
