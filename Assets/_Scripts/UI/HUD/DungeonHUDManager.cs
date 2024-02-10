@@ -12,8 +12,12 @@ using UnityEngine.UI;
 public class DungeonHUDManager : MonoBehaviour
 {
     [SerializeField] private GameObject m_ingameSpells;
-    [Space]
+
+    [Header("XP and Level")]
     [SerializeField] private Image m_xpBar;
+    [SerializeField] private TextMeshProUGUI m_levelText;
+
+    [Header("Timer")]
     [SerializeField] private TextMeshProUGUI m_timerText;
     private float m_timer = 0f;
     private int minutes;
@@ -71,9 +75,10 @@ public class DungeonHUDManager : MonoBehaviour
 
     #region Level and XP
 
-    public void ShowXP(float _currentXP, float _neededXP)
+    public void ShowXP(float _currentXP, float _neededXP, int _level)
     {
         m_xpBar.fillAmount = _currentXP / _neededXP;
+        m_levelText.text = "LV. " + _level.ToString();
     }
 
     public void LoadLevelUp()
