@@ -12,7 +12,16 @@ public class PauseManager : MonoBehaviour
 
     public void UnloadPause()
     {
-        FindObjectOfType<DungeonHUDManager>().UnloadPause();
+        // if we are in the dungeon
+        if (FindObjectOfType<DungeonHUDManager>() != null)
+            FindObjectOfType<DungeonHUDManager>().UnloadPause();
+
+        // or in the village
+        else
+        {
+            MenuManager.Instance.UnloadSceneAsync(Scenes.Pause);
+            Time.timeScale = 1f;
+        }
     }
 
     public void UnloadDungeon()
