@@ -16,12 +16,18 @@ public class DungeonHUDManager : MonoBehaviour
     [SerializeField] private Image m_xpBar;
     [SerializeField] private TextMeshProUGUI m_timerText;
     private float m_timer = 0f;
+    private int minutes;
+    private int seconds;
 
     private void Update()
     {
+        // Timer
         m_timer += Time.deltaTime;
-        m_timerText.text = m_timer.ToString("f0");
+        minutes = Mathf.FloorToInt(m_timer / 60f);
+        seconds = Mathf.FloorToInt(m_timer % 60f);
+        m_timerText.text = minutes.ToString("00") + ":" + seconds.ToString("00");
 
+        // Open/Close Pausemenu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             // cannot open pausemenu if optionsmenu, win or death screen are open
