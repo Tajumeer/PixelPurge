@@ -71,7 +71,7 @@ public class MenuManager : MonoBehaviour
         if (SceneManager.GetSceneByBuildIndex((int)Scenes.Pause).isLoaded) UnloadSceneAsync(Scenes.Pause);
         else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Win).isLoaded) UnloadSceneAsync(Scenes.Win);
         else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Death).isLoaded) UnloadSceneAsync(Scenes.Death);
-        if (SceneManager.GetSceneByBuildIndex((int)Scenes.DetailsHUD).isLoaded) UnloadSceneAsync(Scenes.Pause);
+        if (SceneManager.GetSceneByBuildIndex((int)Scenes.DetailsHUD).isLoaded) UnloadSceneAsync(Scenes.DetailsHUD);
 
         // unload all dungeon scenes
         UnloadSceneAsync(Scenes.Dungeon);

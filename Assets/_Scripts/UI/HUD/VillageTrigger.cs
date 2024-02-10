@@ -1,20 +1,28 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class VillageTrigger : MonoBehaviour
 {
     [SerializeField] private Scenes m_sceneToLoad;
-    [SerializeField] private GameObject m_button;
     private bool m_canLoadScene = false;
+
+    [Header("Text Movement")]
+    [SerializeField] private TextMeshProUGUI m_sceneText;
+    [SerializeField] private float m_textMoveTime;
+    [SerializeField] private float m_textMoveYPosUp;
+    private float m_textYPosition;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.CompareTag("Player")) return;
 
         m_canLoadScene = true;
-        if (m_button != null) m_button.SetActive(true);
+
+        m_textYPosition = m_sceneText.transform.position.y;
+        MoveTextUp();
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -22,7 +30,19 @@ public class VillageTrigger : MonoBehaviour
         if (!collision.CompareTag("Player")) return;
 
         m_canLoadScene = false;
-        if (m_button != null) m_button.SetActive(false);
+    }
+
+    private void MoveTextUp()
+    {
+        LeanTween.moveLocalY(m_sceneText.gameObject, m_textYPosition + m_textMoveYPosUp, m_textMoveTime).setEaseOutCirc().setOnComplete(MoveTextDown);
+    }
+
+    private void MoveTextDown()
+    {
+        if (m_canLoadScene)
+            LeanTween.moveLocalY(m_sceneText.gameObject, m_textYPosition, m_textMoveTime).setEaseInCirc().setOnComplete(MoveTextUp);
+        else
+            LeanTween.moveLocalY(m_sceneText.gameObject, m_textYPosition, m_textMoveTime).setEaseInCirc();
     }
 
     private void Update()
