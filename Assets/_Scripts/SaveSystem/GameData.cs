@@ -6,11 +6,14 @@ using UnityEngine;
 public class GameData
 {
     //stats to save here
-    public int MovementSpeedLevel;
-    public int CollectionRadiusLevel;
-    public int CriticalDamageLevel;
     public int HealthLevel;
-    public int AttackSpeedLevel;
+    public int HealthRegenLevel;
+    public int DamageLevel;
+    public int CriticalChanceLevel;
+    public int CollectionRadiusLevel;
+    public int MovementSpeedLevel;
+    public int GoldLevel;
+    public int XPLevel;
 
     //UIData Variables
     //Audio
@@ -33,11 +36,14 @@ public class GameData
 
     public GameData()
     {
-        this.MovementSpeedLevel = 0;
-        this.CollectionRadiusLevel = 0;
-        this.CriticalDamageLevel = 0;
         this.HealthLevel = 0;
-        this.AttackSpeedLevel = 0;
+        this.HealthRegenLevel = 0;
+        this.DamageLevel = 0;
+        this.CriticalChanceLevel = 0;
+        this.CollectionRadiusLevel = 0;
+        this.MovementSpeedLevel = 0;
+        this.GoldLevel = 0;
+        this.XPLevel = 0;
 
         this.MasterVolume = 0;
         this.EffectVolume = 0;

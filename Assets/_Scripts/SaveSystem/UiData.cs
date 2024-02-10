@@ -28,6 +28,7 @@ public class UiData : MonoBehaviour, IDataPersistence
     [HideInInspector] public bool LoadOptionsOnce;
 
     //Upgrade Menu
+    //visual
     [HideInInspector] public int[] StatLevel;
 
     private void Awake()
@@ -41,8 +42,6 @@ public class UiData : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
-
-
     }
 
     private void Update()

@@ -113,9 +113,9 @@ public class PlayerController : MonoBehaviour, IDamagable
         ActivePlayerData = PlayerData[m_characterIndex];
         InitStats();
 
-        ProgressionManager.Instance.InitMetaProgression();
-
-        m_spriteRenderer = null;
+        ProgressionManager.Instance.InitMetaProgression(this);
+        ProgressionManager.Instance.UpdateMetaProgression();
+       m_spriteRenderer = null;
         m_animator = null;
 
         for (int i = 0; i < PlayerVisual.Count; ++i)
@@ -173,12 +173,6 @@ public class PlayerController : MonoBehaviour, IDamagable
             SetCharacterVisualsAndData(m_characterIndex);
             if (MoveDirection.x == 0 && MoveDirection.y == 0) ChangeAnimationState(AnimationState.player_idle);
             else ChangeAnimationState(AnimationState.player_run);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            ProgressionManager.Instance.UpgradeHealth();
-            ProgressionManager.Instance.UpgradeAttackSpeed();
         }
 
         SetAnimation();

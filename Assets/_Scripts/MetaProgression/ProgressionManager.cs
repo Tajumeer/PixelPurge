@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class ProgressionManager : MonoBehaviour, IDataPersistence
@@ -22,8 +23,6 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     private PlayerController m_playerController;
 
-    //TODO:: player cash check? SO restructure?
-
     private void Awake()
     {
         if (m_instance == null)
@@ -37,33 +36,19 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
         }
     }
 
-    public void InitMetaProgression()
+    public void InitMetaProgression(PlayerController _player)
     {
-        m_playerController = FindObjectOfType<PlayerController>();
-        m_defaultMaxHealth = m_playerController.ActivePlayerData.MaxHealth;
-        m_defaultAttackSpeed = m_playerController.ActivePlayerData.AttackSpeed;
-        m_defaultCriticalDamage = m_playerController.ActivePlayerData.CritMultiplier;
-        m_defaultMoveSpeed = m_playerController.ActivePlayerData.MovementSpeed;
-        UpdateMetaProgression();
+  
+        m_playerController = _player;
     }
 
-    private void UpdateMetaProgression()
+    public void UpdateMetaProgression()
     {
-        HealthUpgrade();
-        AttackSpeedUpgrade();
-    }
 
-    #region Health
+    }
 
     private int m_healthLevel;
-
-    private bool m_isHealthLevelOne;
-    private bool m_isHealthLevelTwo;
-    private bool m_isHealthLevelThree;
-    private bool m_isHealthLevelFour;
-    private bool m_isHealthLevelFive;
-
-    private float m_defaultMaxHealth;
+    [SerializeField] private float[] m_healthStats;
 
     public void UpgradeHealth()
     {
@@ -73,352 +58,153 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     private void HealthUpgrade()
     {
-        switch (m_healthLevel)
+        for (int i = 0; i < m_healthLevel; i++)
         {
-            case 0:
-                break;
-            case 1:
-                if (!m_isHealthLevelOne)
-                {
-                    m_playerController.ActivePlayerData.MaxHealth = m_defaultMaxHealth * 1.05f;
-                    m_isHealthLevelOne = true;
-                }
-                break;
-            case 2:
-                if (!m_isHealthLevelTwo)
-                {
-                    m_playerController.ActivePlayerData.MaxHealth = m_defaultMaxHealth * 1.1f;
-                    m_isHealthLevelTwo = true;
-                }
-                break;
-            case 3:
-                if (!m_isHealthLevelThree)
-                {
-                    m_playerController.ActivePlayerData.MaxHealth = m_defaultMaxHealth * 1.15f;
-                    m_isHealthLevelTwo = true;
-                }
-                break;
-            case 4:
-                if (!m_isHealthLevelFour)
-                {
-                    m_playerController.ActivePlayerData.MaxHealth = m_defaultMaxHealth * 1.2f;
-                    m_isHealthLevelFour = true;
-                }
-                break;
-            case 5:
-                if (!m_isHealthLevelFive)
-                {
-                    m_playerController.ActivePlayerData.MaxHealth = m_defaultMaxHealth * 1.25f;
-                    m_isHealthLevelTwo = true;
-                }
-                break;
-            default:
-                break;
+            m_playerController.ActivePlayerData.MaxHealth = m_healthStats[i];
         }
-
-        Debug.Log(m_playerController.ActivePlayerData.MaxHealth);
     }
 
-    #endregion
+    private int m_healthRegenLevel;
+    [SerializeField] private float[] m_healthRegenStats;
 
-    #region Attack Speed
-
-    private int m_attackSpeedLevel;
-
-    private bool m_isAttackSpeedLevelOne;
-    private bool m_isAttackSpeedLevelTwo;
-    private bool m_isAttackSpeedLevelThree;
-    private bool m_isAttackSpeedLevelFour;
-    private bool m_isAttackSpeedLevelFive;
-
-    private float m_defaultAttackSpeed;
-
-    public void UpgradeAttackSpeed()
+    public void UpgradeHealthRegen()
     {
-        m_attackSpeedLevel++;
-        AttackSpeedUpgrade();
+        m_healthLevel++;
+        HealthRegenUpgrade();
     }
 
-    private void AttackSpeedUpgrade()
+    private void HealthRegenUpgrade()
     {
-        switch (m_attackSpeedLevel)
+        for (int i = 0; i < m_healthRegenLevel; i++)
         {
-            case 0:
-                break;
-            case 1:
-                if (!m_isAttackSpeedLevelOne)
-                {
-
-                    m_playerController.ActivePlayerData.AttackSpeed = m_defaultAttackSpeed * .95f;
-                    m_isHealthLevelOne = true;
-                }
-                break;
-            case 2:
-                if (!m_isAttackSpeedLevelTwo)
-                {
-                    m_playerController.ActivePlayerData.AttackSpeed = m_defaultMaxHealth * .9f;
-                    m_isHealthLevelTwo = true;
-                }
-                break;
-            case 3:
-                if (!m_isAttackSpeedLevelThree)
-                {
-                    m_playerController.ActivePlayerData.AttackSpeed = m_defaultMaxHealth * .85f;
-                    m_isHealthLevelThree = true;
-                }
-                break;
-            case 4:
-                if (!m_isAttackSpeedLevelFour)
-                {
-                    m_playerController.ActivePlayerData.AttackSpeed = m_defaultMaxHealth * .8f;
-                    m_isHealthLevelFour = true;
-                }
-                break;
-            case 5:
-                if (!m_isAttackSpeedLevelFive)
-                {
-                    m_playerController.ActivePlayerData.AttackSpeed = m_defaultMaxHealth * .75f;
-                    m_isAttackSpeedLevelFive = true;
-                }
-                break;
-            default:
-                break;
+            m_playerController.ActivePlayerData.HealthRegeneration = m_healthRegenStats[i];
         }
-
-        Debug.Log(m_playerController.ActivePlayerData.AttackSpeed);
     }
 
-    #endregion
+    private int m_damageMultiLevel;
+    [SerializeField] private float[] m_damageStats;
 
-    #region CritDamage
-
-    private int m_criticalDamageLevel;
-
-    private bool m_isCriticalDamageLevelOne;
-    private bool m_isCriticalDamageLevelTwo;
-    private bool m_isCriticalDamageLevelThree;
-    private bool m_isCriticalDamageLevelFour;
-    private bool m_isCriticalDamageLevelFive;
-
-    private float m_defaultCriticalDamage;
-
-    public void UpgradeCriticalDamage()
+    public void UpgradeDamage()
     {
-        m_criticalDamageLevel++;
-        CriticalDamageUpgrade();
+        m_healthLevel++;
+        DamageUpgrade();
     }
 
-    private void CriticalDamageUpgrade()
+    private void DamageUpgrade()
     {
-        switch (m_criticalDamageLevel)
+        for (int i = 0; i < m_damageMultiLevel; i++)
         {
-            case 0:
-                break;
-            case 1:
-                if (!m_isCriticalDamageLevelOne)
-                {
-
-                    m_playerController.ActivePlayerData.CritMultiplier = m_defaultCriticalDamage + .1f;
-                    m_isCriticalDamageLevelOne = true;
-                }
-                break;
-            case 2:
-                if (!m_isCriticalDamageLevelTwo)
-                {
-                    m_playerController.ActivePlayerData.CritMultiplier = m_defaultMaxHealth + .2f;
-                    m_isCriticalDamageLevelTwo = true;
-                }
-                break;
-            case 3:
-                if (!m_isCriticalDamageLevelThree)
-                {
-                    m_playerController.ActivePlayerData.CritMultiplier = m_defaultMaxHealth + .3f;
-                    m_isCriticalDamageLevelThree = true;
-                }
-                break;
-            case 4:
-                if (!m_isCriticalDamageLevelFour)
-                {
-                    m_playerController.ActivePlayerData.CritMultiplier = m_defaultMaxHealth + .4f;
-                    m_isCriticalDamageLevelFour = true;
-                }
-                break;
-            case 5:
-                if (!m_isCriticalDamageLevelFive)
-                {
-                    m_playerController.ActivePlayerData.CritMultiplier = m_defaultMaxHealth + .5f;
-                    m_isCriticalDamageLevelFive = true;
-                }
-                break;
-            default:
-                break;
+            m_playerController.ActivePlayerData.DamageMultiplier = m_damageStats[i];
         }
-
-        Debug.Log(m_playerController.ActivePlayerData.CritMultiplier);
     }
 
-    #endregion
+    private int m_critChanceLevel;
+    [SerializeField] private float[] m_critChanceStats;
 
-    #region MoveSpeed
+    public void UpgradeCritChance()
+    {
+        m_healthLevel++;
+        CritChanceUpgrade();
+    }
+
+    private void CritChanceUpgrade()
+    {
+        for (int i = 0; i < m_critChanceLevel; i++)
+        {
+            m_playerController.ActivePlayerData.CritChance = m_critChanceStats[i];
+        }
+    }
+
+    private int m_collectionLevel;
+    [SerializeField] private float[] m_collectionStats;
+
+    public void UpgradeCollectionRadius()
+    {
+        m_healthLevel++;
+        CollectionUpgrade();
+    }
+
+    private void CollectionUpgrade()
+    {
+        for (int i = 0; i < m_collectionLevel; i++)
+        {
+            m_playerController.ActivePlayerData.CollectionRadius = m_collectionStats[i];
+        }
+    }
 
     private int m_moveSpeedLevel;
+    [SerializeField] private float[] m_moveSpeedStats;
 
-    private bool m_isMoveSpeedLevelOne;
-    private bool m_isMoveSpeedLevelTwo;
-    private bool m_isMoveSpeedLevelThree;
-    private bool m_isMoveSpeedLevelFour;
-    private bool m_isMoveSpeedLevelFive;
-
-    private float m_defaultMoveSpeed;
-
-    public void UpgradeMoveSpeed()
+    public void UpgradeMovementSpeed()
     {
-        m_moveSpeedLevel++;
+        m_healthLevel++;
         MoveSpeedUpgrade();
     }
 
     private void MoveSpeedUpgrade()
     {
-        switch (m_moveSpeedLevel)
+        for (int i = 0; i < m_moveSpeedLevel; i++)
         {
-            case 0:
-                break;
-            case 1:
-                if (!m_isMoveSpeedLevelOne)
-                {
-
-                    m_playerController.ActivePlayerData.MovementSpeed = m_defaultMoveSpeed * 1.02f;
-                    m_isMoveSpeedLevelOne = true;
-                }
-                break;
-            case 2:
-                if (!m_isMoveSpeedLevelTwo)
-                {
-                    m_playerController.ActivePlayerData.MovementSpeed = m_defaultMoveSpeed * 1.04f;
-                    m_isMoveSpeedLevelTwo = true;
-                }
-                break;
-            case 3:
-                if (!m_isMoveSpeedLevelThree)
-                {
-                    m_playerController.ActivePlayerData.MovementSpeed = m_defaultMoveSpeed * 1.06f;
-                    m_isMoveSpeedLevelThree = true;
-                }
-                break;
-            case 4:
-                if (!m_isMoveSpeedLevelFour)
-                {
-                    m_playerController.ActivePlayerData.MovementSpeed = m_defaultMoveSpeed * 1.08f;
-                    m_isMoveSpeedLevelFour = true;
-                }
-                break;
-            case 5:
-                if (!m_isMoveSpeedLevelFive)
-                {
-                    m_playerController.ActivePlayerData.MovementSpeed = m_defaultMoveSpeed * 1.1f;
-                    m_isMoveSpeedLevelFive = true;
-                }
-                break;
-            default:
-                break;
+            m_playerController.ActivePlayerData.MovementSpeed = m_moveSpeedStats[i];
         }
-
-        Debug.Log(m_playerController.ActivePlayerData.MovementSpeed);
     }
 
-    #endregion
+    private int m_goldLevel;
+    [SerializeField] private float[] m_goldStats;
 
-    #region CollectionRadius
-
-    private int m_collectionRadiusLevel;
-
-    private bool m_isCollectionRadiusLevelOne;
-    private bool m_isCollectionRadiusLevelTwo;
-    private bool m_isCollectionRadiusLevelThree;
-    private bool m_isCollectionRadiusLevelFour;
-    private bool m_isCollectionRadiusLevelFive;
-
-    private float m_defaultCollectionRadius;
-
-    public void UpgradeCollectionRadius()
+    public void UpgradeGoldMulti()
     {
-        m_collectionRadiusLevel++;
-        CollectionRadiusUpgrade();
+        m_healthLevel++;
+        GoldMultiUpgrade();
     }
 
-    private void CollectionRadiusUpgrade()
+    private void GoldMultiUpgrade()
     {
-        switch (m_collectionRadiusLevel)
+        for (int i = 0; i < m_goldLevel; i++)
         {
-            case 0:
-                break;
-            case 1:
-                if (!m_isCollectionRadiusLevelOne)
-                {
-
-                    m_playerController.ActivePlayerData.CollectionRadius = m_defaultCollectionRadius * 1.1f;
-                    m_isCollectionRadiusLevelOne = true;
-                }
-                break;
-            case 2:
-                if (!m_isCollectionRadiusLevelTwo)
-                {
-                    m_playerController.ActivePlayerData.CollectionRadius = m_defaultCollectionRadius * 1.2f;
-                    m_isCollectionRadiusLevelTwo = true;
-                }
-                break;
-            case 3:
-                if (!m_isCollectionRadiusLevelThree)
-                {
-                    m_playerController.ActivePlayerData.CollectionRadius = m_defaultCollectionRadius * 1.06f;
-                    m_isCollectionRadiusLevelThree = true;
-                }
-                break;
-            case 4:
-                if (!m_isCollectionRadiusLevelFour)
-                {
-                    m_playerController.ActivePlayerData.CollectionRadius = m_defaultCollectionRadius * 1.08f;
-                    m_isCollectionRadiusLevelFour = true;
-                }
-                break;
-            case 5:
-                if (!m_isCollectionRadiusLevelFive)
-                {
-                    m_playerController.ActivePlayerData.CollectionRadius = m_defaultCollectionRadius * 1.1f;
-                    m_isCollectionRadiusLevelFive = true;
-                }
-                break;
-            default:
-                break;
+            m_playerController.ActivePlayerData.GoldMultiplier = m_goldStats[i];
         }
-
-        Debug.Log(m_playerController.ActivePlayerData.CollectionRadius);
     }
 
-    #endregion
+    private int m_xpLevel;
+    [SerializeField] private float[] m_xpStats;
 
-    #region IDataPersistence
+    public void UpgradeXP()
+    {
+        m_healthLevel++;
+        XPUpgrade();
+    }
+
+    private void XPUpgrade()
+    {
+        for (int i = 0; i < m_xpLevel; i++)
+        {
+            m_playerController.ActivePlayerData.XPMultiplier = m_xpStats[i];
+        }
+    }
+
 
     public void LoadData(GameData _data)
     {
-        this.m_attackSpeedLevel = _data.AttackSpeedLevel;
-        this.m_collectionRadiusLevel = _data.CollectionRadiusLevel;
-        this.m_criticalDamageLevel = _data.CriticalDamageLevel;
         this.m_healthLevel = _data.HealthLevel;
+        this.m_healthRegenLevel = _data.HealthRegenLevel;
+        this.m_damageMultiLevel = _data.DamageLevel;
+        this.m_critChanceLevel = _data.CriticalChanceLevel;
+        this.m_collectionLevel = _data.CollectionRadiusLevel;
         this.m_moveSpeedLevel = _data.MovementSpeedLevel;
+        this.m_goldLevel = _data.GoldLevel;
+        this.m_xpLevel = _data.XPLevel;
     }
 
     public void SaveData(ref GameData _data)
     {
-        //Debug.Log("Data To Save: " + m_healthLevel);
-        _data.AttackSpeedLevel = this.m_attackSpeedLevel;
-        _data.CollectionRadiusLevel = this.m_collectionRadiusLevel;
-        _data.CriticalDamageLevel = this.m_criticalDamageLevel;
         _data.HealthLevel = this.m_healthLevel;
+        _data.HealthRegenLevel = this.m_healthRegenLevel;
+        _data.DamageLevel = this.m_damageMultiLevel;
+        _data.CriticalChanceLevel = this.m_critChanceLevel;
+        _data.CollectionRadiusLevel = this.m_collectionLevel;
         _data.MovementSpeedLevel = this.m_moveSpeedLevel;
-       
+        _data.GoldLevel = this.m_goldLevel;
+        _data.XPLevel = this.m_xpLevel;
     }
-
-    #endregion
-
 }

@@ -598,6 +598,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2121073920036682721, guid: 2fe95a1a02ce86c4da89ed517691df0a, type: 3}
+      propertyPath: m_healthStats.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121073920036682721, guid: 2fe95a1a02ce86c4da89ed517691df0a, type: 3}
+      propertyPath: m_healthStats.Array.data[0]
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121073920036682721, guid: 2fe95a1a02ce86c4da89ed517691df0a, type: 3}
+      propertyPath: m_healthStats.Array.data[1]
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121073920036682721, guid: 2fe95a1a02ce86c4da89ed517691df0a, type: 3}
+      propertyPath: m_healthStats.Array.data[2]
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121073920036682721, guid: 2fe95a1a02ce86c4da89ed517691df0a, type: 3}
+      propertyPath: m_healthStats.Array.data[3]
+      value: 1.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2121073920036682721, guid: 2fe95a1a02ce86c4da89ed517691df0a, type: 3}
+      propertyPath: m_healthStats.Array.data[4]
+      value: 1.05
+      objectReference: {fileID: 0}
     - target: {fileID: 5368413840131973186, guid: 2fe95a1a02ce86c4da89ed517691df0a, type: 3}
       propertyPath: m_Name
       value: ProgressionManager
