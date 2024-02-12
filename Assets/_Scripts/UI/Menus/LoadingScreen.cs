@@ -31,6 +31,9 @@ public class LoadingScreen : MonoBehaviour
 
     public IEnumerator StartLoadTheScene()
     {
+        loadingBar.fillAmount = 0f;
+        enemy.position = new Vector2(barLeft.position.x, enemy.position.y);
+
         yield return new WaitForSeconds(loadDelay);
 
         AsyncOperation loadOperation = SceneManager.LoadSceneAsync((int)m_sceneToLoad);  // load scene 
@@ -44,7 +47,6 @@ public class LoadingScreen : MonoBehaviour
 
         loadOperation.allowSceneActivation = false;     // Scene is not allowed to load (fake loadingBar)
 
-        loadingBar.fillAmount = 0f;
         var fakeBarTimer = 0f;     // for fake bar
 
         while (loadOperation.progress < 0.9f || fakeBarTimer <= minLoadingTime)

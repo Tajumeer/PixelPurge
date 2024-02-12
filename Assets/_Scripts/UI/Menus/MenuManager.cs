@@ -58,8 +58,7 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     public void LoadDungeon()
     {
-        LoadSceneAsync(Scenes.Beta);
-        LoadSceneAsync(Scenes.DungeonHUD, LoadSceneMode.Additive);
+        LoadSceneAsync(Scenes.LoadingScreen);
     }
 
     /// <summary>
