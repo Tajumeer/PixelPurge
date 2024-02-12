@@ -11,13 +11,18 @@ public class LoadingScreen : MonoBehaviour
 {
     [SerializeField] private Scenes m_sceneToLoad;
 
-    [Header("Loading Screen")]
+    [Header("Timings")]
     [SerializeField] private float loadDelay = 1f;
     [SerializeField] private float minLoadingTime;
+
+    [Header("Bar and Image")]
     [SerializeField] private Image loadingBar;
-    [SerializeField] private Transform barLeft;
-    [SerializeField] private Transform barRight;
+    [Space]
     [SerializeField] private Transform enemy;
+    [Tooltip("Where the Enemy starts moving")]
+    [SerializeField] private Transform barLeft;
+    [Tooltip("Where the Enemy ends moving")]
+    [SerializeField] private Transform barRight;
 
     private void OnEnable()
     {
@@ -35,47 +40,34 @@ public class LoadingScreen : MonoBehaviour
 
     private IEnumerator LoadingBar(AsyncOperation loadOperation)
     {
-        float playerPosition = 0f;
+        float enemyPosition = 0f;
 
         loadOperation.allowSceneActivation = false;     // Scene is not allowed to load (fake loadingBar)
 
-        buttons.SetActive(false);
-        newGameQuestion.SetActive(false);
-        loading.SetActive(true);
-
         loadingBar.fillAmount = 0f;
-        var counter = 0f;     // for fake bar
+        var fakeBarTimer = 0f;     // for fake bar
 
-        while (loadOperation.progress < 0.9f || counter <= minLoadingTime)
+        while (loadOperation.progress < 0.9f || fakeBarTimer <= minLoadingTime)
         {
             yield return null;
-            counter += Time.unscaledDeltaTime;
+            fakeBarTimer += Time.unscaledDeltaTime;
 
-            var waitProgress = counter / minLoadingTime;
-            var loadingProgress = loadOperation.progress / 0.9f;
-            loadingBar.fillAmount = Mathf.Min(loadingProgress, waitProgress); // loading bar from 0 to 1
+            var waitProgress = fakeBarTimer / minLoadingTime;       // fake bar
+            var loadingProgress = loadOperation.progress / 0.9f;    // real loading bar
+            loadingBar.fillAmount = Mathf.Min(loadingProgress, waitProgress); // show the bar that is slower
 
-            // head move with bar progress
-            playerPosition = Mathf.Lerp(barLeft.position.x, barRight.position.x, loadingBar.fillAmount);
-            enemy.position = new Vector2(playerPosition, enemy.position.y);
+            // enemy move with bar progress
+            enemyPosition = Mathf.Lerp(barLeft.position.x, barRight.position.x, loadingBar.fillAmount);
+            enemy.position = new Vector2(enemyPosition, enemy.position.y);
         }
 
         loadOperation.allowSceneActivation = true;      // load Scene
 
         yield return new WaitUntil(() => loadOperation.isDone);
         loadingBar.fillAmount = 1f;
-        loading.SetActive(false);
-        buttons.SetActive(true);
-    }
 
-    private void LoadTheScene()
-    {
+        // add HUD scene
         if (m_sceneToLoad == Scenes.Dungeon)
-        {
-            MenuManager.Instance.LoadSceneAsync(Scenes.Beta);
             MenuManager.Instance.LoadSceneAsync(Scenes.DungeonHUD, LoadSceneMode.Additive);
-        }
-        else
-            MenuManager.Instance.LoadSceneAsync(m_sceneToLoad);
     }
 }
