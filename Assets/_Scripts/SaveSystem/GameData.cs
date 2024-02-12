@@ -34,6 +34,9 @@ public class GameData
     public string UserName;
     public int HighScore;
 
+    //Currency
+    public int Gold;
+
     public GameData()
     {
         this.HealthLevel = 0;
@@ -55,6 +58,8 @@ public class GameData
 
         this.UserName = "";
         this.HighScore = 0;
+
+        this.Gold = 0;
 
         this.StatLevel = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
     }

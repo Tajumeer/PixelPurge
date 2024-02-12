@@ -23,6 +23,8 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     private PlayerController m_playerController;
 
+
+
     private void Awake()
     {
         if (m_instance == null)
@@ -36,15 +38,26 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
         }
     }
 
+    private void Update()
+    {
+        
+    }
+
     public void InitMetaProgression(PlayerController _player)
     {
-  
         m_playerController = _player;
     }
 
     public void UpdateMetaProgression()
     {
-
+        HealthUpgrade();
+        HealthRegenUpgrade();
+        DamageUpgrade();
+        UpgradeCritChance();
+        CollectionUpgrade();
+        MoveSpeedUpgrade();
+        GoldMultiUpgrade();
+        XPUpgrade();
     }
 
     private int m_healthLevel;
@@ -60,7 +73,9 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < m_healthLevel; i++)
         {
-            m_playerController.ActivePlayerData.MaxHealth = m_healthStats[i];
+            m_playerController.ActivePlayerData.MaxHealth += m_healthStats[i];
+            Debug.Log("Health upgraded " + i);
+            Debug.Log("Health = " + m_playerController.ActivePlayerData.MaxHealth);
         }
     }
 
@@ -77,7 +92,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < m_healthRegenLevel; i++)
         {
-            m_playerController.ActivePlayerData.HealthRegeneration = m_healthRegenStats[i];
+            m_playerController.ActivePlayerData.HealthRegeneration += m_healthRegenStats[i];
         }
     }
 
@@ -94,7 +109,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < m_damageMultiLevel; i++)
         {
-            m_playerController.ActivePlayerData.DamageMultiplier = m_damageStats[i];
+            m_playerController.ActivePlayerData.DamageMultiplier += m_damageStats[i];
         }
     }
 
@@ -111,7 +126,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < m_critChanceLevel; i++)
         {
-            m_playerController.ActivePlayerData.CritChance = m_critChanceStats[i];
+            m_playerController.ActivePlayerData.CritChance += m_critChanceStats[i];
         }
     }
 
@@ -128,7 +143,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < m_collectionLevel; i++)
         {
-            m_playerController.ActivePlayerData.CollectionRadius = m_collectionStats[i];
+            m_playerController.ActivePlayerData.CollectionRadius += m_collectionStats[i];
         }
     }
 
@@ -145,7 +160,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < m_moveSpeedLevel; i++)
         {
-            m_playerController.ActivePlayerData.MovementSpeed = m_moveSpeedStats[i];
+            m_playerController.ActivePlayerData.MovementSpeed += m_moveSpeedStats[i];
         }
     }
 
@@ -162,7 +177,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < m_goldLevel; i++)
         {
-            m_playerController.ActivePlayerData.GoldMultiplier = m_goldStats[i];
+            m_playerController.ActivePlayerData.GoldMultiplier += m_goldStats[i];
         }
     }
 
@@ -179,7 +194,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
     {
         for (int i = 0; i < m_xpLevel; i++)
         {
-            m_playerController.ActivePlayerData.XPMultiplier = m_xpStats[i];
+            m_playerController.ActivePlayerData.XPMultiplier += m_xpStats[i];
         }
     }
 
@@ -194,6 +209,10 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
         this.m_moveSpeedLevel = _data.MovementSpeedLevel;
         this.m_goldLevel = _data.GoldLevel;
         this.m_xpLevel = _data.XPLevel;
+
+
+
+      
     }
 
     public void SaveData(ref GameData _data)
@@ -206,5 +225,6 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
         _data.MovementSpeedLevel = this.m_moveSpeedLevel;
         _data.GoldLevel = this.m_goldLevel;
         _data.XPLevel = this.m_xpLevel;
+
     }
 }

@@ -456,6 +456,66 @@ MonoBehaviour:
   Fullscreen: 0
   LoadOptionsOnce: 0
   StatLevel: 0100000002000000030000000200000001000000020000000400000003000000
+--- !u!114 &1009410049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009410043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b999810562d423740ab930f89506f478, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_healthStats:
+  - 10
+  - 10
+  - 10
+  - 10
+  - 10
+  m_healthRegenStats:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  m_damageStats:
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
+  m_critChanceStats:
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  - 0.05
+  m_collectionStats:
+  - 1
+  - 1
+  - 1
+  - 1
+  - 1
+  m_moveSpeedStats:
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
+  m_goldStats:
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  m_xpStats:
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
 --- !u!1 &1025267423
 GameObject:
   m_ObjectHideFlags: 0
@@ -777,6 +837,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8362413127550658796, guid: 11a763bec71ef6048b457c119dcd1c81, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1009410046}
+    - targetCorrespondingSourceObject: {fileID: 8362413127550658796, guid: 11a763bec71ef6048b457c119dcd1c81, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1009410049}
   m_SourcePrefab: {fileID: 100100000, guid: 11a763bec71ef6048b457c119dcd1c81, type: 3}
 --- !u!1 &1424340130
 GameObject:

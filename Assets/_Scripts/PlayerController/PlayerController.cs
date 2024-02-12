@@ -100,6 +100,12 @@ public class PlayerController : MonoBehaviour, IDamagable
     /// the Int is the index for the List on the PlayerController to choose which Data and Visual is to be used
     /// </summary>
     /// <param name="_newIndex"></param>
+
+    private void OnEnable()
+    {
+     
+    }
+
     public void SetCharacterVisualsAndData(int _newIndex)
     {
         m_characterIndex = _newIndex;

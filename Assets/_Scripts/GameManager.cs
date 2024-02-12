@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public string UserName;
     [HideInInspector] public int UserScore;
     [HideInInspector] public int HighestScore;
+    public int Gold;
 
     private FirestoreRest m_firestore;
 
@@ -67,13 +68,15 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void LoadData(GameData _data)
     {
-        HighestScore = _data.HighScore;
-        UserName = _data.UserName;  
+        this.HighestScore = _data.HighScore;
+        this.UserName = _data.UserName;  
+        this.Gold = _data.Gold;
     }
 
     public void SaveData(ref GameData _data)
     {
         _data.HighScore = this.HighestScore;
         _data.UserName = this.UserName;
+        _data.Gold = this.Gold;
     }
 }
