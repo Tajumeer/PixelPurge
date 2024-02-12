@@ -16,6 +16,7 @@ public class ChooseStat : MonoBehaviour
 
     private void OnEnable()
     {
+        // search for ShopManager if null and InitStat()
         if (m_manager == null)
         {
             if (m_manager = FindObjectOfType<ShopManager>())
@@ -27,6 +28,7 @@ public class ChooseStat : MonoBehaviour
 
     public void ChooseThisStat()
     {
+        // search for ShopManager if null and UpgradeStat()
         if (m_manager == null)
         {
             if (m_manager = FindObjectOfType<ShopManager>())

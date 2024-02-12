@@ -32,15 +32,25 @@ public class ShopManager : MonoBehaviour
 
     [Tooltip("A List of All Costs of all stats upgrades")]
     [SerializeField] private GoldAmount[] m_cost;
+
     [Space]
+
     [Tooltip("The image of the indicator when is has this level")]
     public Sprite m_indicatorImageUpgraded;
 
     private UiData m_data;
 
+    /// <summary>
+    /// Increase the Level of the Stat by 1 and change the UI (Level Indicator increase and Needed Gold to next level)
+    /// (Gets called when the Player clicks on a Stat to upgrade it)
+    /// </summary>
+    /// <param name="_statScript"></param>
     public void UpgradeStat(ChooseStat _statScript)
     {
         int stat = (int)_statScript.m_stat;
+
+        // HIER CHECK OB PLAYER GENUG GOLD HAT
+        // m_cost[stat].m_cost[m_data.StatLevel[stat] - 1] ist das Gold was benötigt wird zum Kaufen
 
         // set the level indicator image
         _statScript.m_levelIndicator[m_data.StatLevel[stat]].sprite = m_indicatorImageUpgraded;
