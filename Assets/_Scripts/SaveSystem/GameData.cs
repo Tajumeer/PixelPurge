@@ -53,6 +53,9 @@ public class GameData
         this.ResolutionValue = 2;
         //this.Toggled = false;
 
+        this.UserName = "";
+        this.HighScore = 0;
+
         this.StatLevel = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
     }
 }
