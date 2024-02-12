@@ -20,41 +20,41 @@ public class ShopClicks : MonoBehaviour
     public void ClickHealthUpgrade()
     {
     
-        m_progressionManager.UpgradeHealth();
+    
     }
 
     public void ClickHealthRegenerationUpgrade()
     {
-        m_progressionManager.UpgradeHealthRegen();
+     
     }
 
     public void ClickDamageUpgrade()
     {
-        m_progressionManager.UpgradeDamage();
+    
     }
 
     public void ClickCritChanceUpgrade()
     {
-        m_progressionManager.UpgradeCritChance();
+       
     }
 
     public void ClickCollectionRadiusUpgrade()
     {
-        m_progressionManager.UpgradeCollectionRadius();
+     
     }
 
     public void ClickMovementSpeedUpgrade()
     {
-        m_progressionManager.UpgradeMovementSpeed();
+     
     }
     
     public void ClickGoldMultiplierUpgrade()
     {
-        m_progressionManager.UpgradeGoldMulti();
+    
     }
 
     public void ClickXPUpgrade()
     {
-        m_progressionManager.UpgradeXP();
+    
     }
 }

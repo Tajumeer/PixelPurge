@@ -38,7 +38,24 @@ public class ShopManager : MonoBehaviour
     [Tooltip("The image of the indicator when is has this level")]
     public Sprite m_indicatorImageUpgraded;
 
+    [Space]
+
+    [Header("Audio")]
+    [SerializeField] private AudioClip m_exitClip;
+    [SerializeField] private AudioClip m_boughtClip;
+    [SerializeField] private AudioClip m_noGoldClip;
+
+    private AudioManager m_audioManager;
+    private ProgressionManager m_progressionManager;
+    private GameManager m_gameManager;
     private UiData m_data;
+
+    private void OnEnable()
+    {
+        m_progressionManager = FindObjectOfType<ProgressionManager>();
+        m_gameManager = FindObjectOfType<GameManager>();
+        m_audioManager = FindObjectOfType<AudioManager>();
+    }
 
     /// <summary>
     /// Increase the Level of the Stat by 1 and change the UI (Level Indicator increase and Needed Gold to next level)
@@ -51,6 +68,10 @@ public class ShopManager : MonoBehaviour
 
         // HIER CHECK OB PLAYER GENUG GOLD HAT
         // m_cost[stat].m_cost[m_data.StatLevel[stat] - 1] ist das Gold was benötigt wird zum Kaufen
+        if(!GoldCheck(stat, m_cost[stat].m_cost[m_data.StatLevel[stat] - 1]))
+        {
+            return;
+        }
 
         // set the level indicator image
         _statScript.m_levelIndicator[m_data.StatLevel[stat]].sprite = m_indicatorImageUpgraded;
@@ -74,7 +95,7 @@ public class ShopManager : MonoBehaviour
 
     public void InitStat(ChooseStat _statScript)
     {
-        if(m_data == null)
+        if (m_data == null)
             m_data = UiData.Instance;
 
         int stat = (int)_statScript.m_stat;
@@ -103,5 +124,111 @@ public class ShopManager : MonoBehaviour
     {
         MenuManager.Instance.UnloadSceneAsync(Scenes.Shop);
         Time.timeScale = 1f;
+    }
+
+    private bool GoldCheck(int _stat, int _cost)
+    {
+        switch (_stat)
+        {
+            case (int)UpgradableStats.MaxHealth:
+                if (m_gameManager.Gold >= _cost)
+                {
+                    m_audioManager.PlaySound(m_boughtClip);
+                    m_progressionManager.UpgradeHealth();
+                    return true;
+                }
+                else
+                {
+                    m_audioManager.PlaySound(m_noGoldClip);
+                    return false;
+                }
+            case (int)UpgradableStats.HealthRegeneration:
+                if (m_gameManager.Gold >= _cost)
+                {
+                    m_audioManager.PlaySound(m_boughtClip);
+                    m_progressionManager.UpgradeHealthRegen();
+                    return true;
+                }
+                else
+                {
+                    m_audioManager.PlaySound(m_noGoldClip);
+                    return false;
+                }
+            case (int)UpgradableStats.DamageMultiplier:
+                if (m_gameManager.Gold >= _cost)
+                {
+                    m_audioManager.PlaySound(m_boughtClip);
+                    m_progressionManager.UpgradeDamage();
+                    return true;
+                }
+                else
+                {
+                    m_audioManager.PlaySound(m_noGoldClip);
+                    return false;
+                }
+            case (int)UpgradableStats.CritChance:
+                if (m_gameManager.Gold >= _cost)
+                {
+                    m_audioManager.PlaySound(m_boughtClip);
+                    m_progressionManager.UpgradeCritChance();
+                    return true;
+                }
+                else
+                {
+                    m_audioManager.PlaySound(m_noGoldClip);
+                    return false;
+                }
+            case (int)UpgradableStats.CollectionRadius:
+                if (m_gameManager.Gold >= _cost)
+                {
+                    m_audioManager.PlaySound(m_boughtClip);
+                    m_progressionManager.UpgradeCollectionRadius();
+                    return true;
+                }
+                else
+                {
+                    m_audioManager.PlaySound(m_noGoldClip);
+                    return false;
+                }
+            case (int)UpgradableStats.MovementSpeed:
+                if (m_gameManager.Gold >= _cost)
+                {
+                    m_audioManager.PlaySound(m_boughtClip);
+                    m_progressionManager.UpgradeMovementSpeed();
+                    return true;
+                }
+                else
+                {
+                    m_audioManager.PlaySound(m_noGoldClip);
+                    return false;
+                }
+            case (int)UpgradableStats.GoldMultiplier:
+                if (m_gameManager.Gold >= _cost)
+                {
+                    m_audioManager.PlaySound(m_boughtClip);
+                    m_progressionManager.UpgradeGoldMulti();
+                    return true;
+                }
+                else
+                {
+                    m_audioManager.PlaySound(m_noGoldClip);
+                    return false;
+                }
+            case (int)UpgradableStats.XPMultiplier:
+                if (m_gameManager.Gold >= _cost)
+                {
+                    m_audioManager.PlaySound(m_boughtClip);
+                    m_progressionManager.UpgradeXP();
+                    return true;
+                }
+                else
+                {
+                    m_audioManager.PlaySound(m_noGoldClip);
+                    return false;
+                }
+            default:
+                return false;
+
+        }
     }
 }

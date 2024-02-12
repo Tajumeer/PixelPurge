@@ -2363,6 +2363,9 @@ MonoBehaviour:
   - m_cost: 00000000000000000000000000000000
   - m_cost: 00000000000000000000000000000000
   m_indicatorImageUpgraded: {fileID: 21300000, guid: 1aad936e181b75f4f90558afe6ac8cbf, type: 3}
+  m_exitClip: {fileID: 8300000, guid: 5e93705122c8cc540a5fe32fff6bf491, type: 3}
+  m_boughtClip: {fileID: 8300000, guid: b18bb5c499254434eb0b19cf472c584e, type: 3}
+  m_noGoldClip: {fileID: 8300000, guid: da5f4796a24c92549a8943b34a70a142, type: 3}
 --- !u!4 &1237929459
 Transform:
   m_ObjectHideFlags: 0
