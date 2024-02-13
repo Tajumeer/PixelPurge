@@ -161,6 +161,7 @@ MonoBehaviour:
   EnemyHealth: 1200
   m_ExpOnDeath: 2
   m_ScoreOnDeath: 500
+  m_goldOnDeath: 5
   m_DropList:
   - {fileID: -5216834863397654387}
   - {fileID: -5859689590659176673}

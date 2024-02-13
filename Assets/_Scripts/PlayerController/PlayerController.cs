@@ -200,6 +200,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_isDead = true;
         m_spriteRenderer.sortingOrder = 0;
         MoveDirection = Vector3.zero;
+        GameManager.Instance.Lose();
         //Time.timeScale = 0f;
     }
 

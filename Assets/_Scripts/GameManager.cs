@@ -24,7 +24,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [HideInInspector] public int UserScore;
     [HideInInspector] public int HighestScore;
     public int Gold;
-
     private FirestoreRest m_firestore;
 
 
@@ -41,6 +40,12 @@ public class GameManager : MonoBehaviour, IDataPersistence
         }
     }
 
+
+    private void ResetGame()
+    {
+
+    }
+
     private void Start()
     {
         m_firestore = GetComponent<FirestoreRest>();
@@ -51,9 +56,25 @@ public class GameManager : MonoBehaviour, IDataPersistence
         Debug.Log("Current UserScore = " + UserScore);
     }
 
+    public void AddGold(int _gold)
+    {
+        UserScore += _gold;
+        Debug.Log("Current Gold = " + Gold);
+    }
+
+    public void Win()
+    {
+        MenuManager.Instance.LoadSceneAsync(Scenes.Win, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+    }
+
+    public void Lose()
+    {
+        MenuManager.Instance.LoadSceneAsync(Scenes.Death, UnityEngine.SceneManagement.LoadSceneMode.Additive);
+    }
+
     private void UpdateLeaderboard()
     {
-        if(UserScore < HighestScore)
+        if (UserScore < HighestScore)
         {
             UserScore = HighestScore;
             m_firestore.SaveUserData("Leaderboard", UserName, UserScore);
@@ -69,7 +90,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void LoadData(GameData _data)
     {
         this.HighestScore = _data.HighScore;
-        this.UserName = _data.UserName;  
+        this.UserName = _data.UserName;
         this.Gold = _data.Gold;
     }
 

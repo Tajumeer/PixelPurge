@@ -190,6 +190,7 @@ MonoBehaviour:
   EnemyHealth: 120000
   m_ExpOnDeath: 0
   m_ScoreOnDeath: 2000
+  m_goldOnDeath: 1000
   m_playerLayer:
     serializedVersion: 2
     m_Bits: 8

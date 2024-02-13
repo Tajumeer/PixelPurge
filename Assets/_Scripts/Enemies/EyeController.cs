@@ -10,6 +10,7 @@ public class EyeController : MonoBehaviour, IDamagable
     public float EnemyHealth;
     [SerializeField] private float m_ExpOnDeath;
     [SerializeField] private int m_ScoreOnDeath;
+    [SerializeField] private int m_goldOnDeath;
     [SerializeField] private LayerMask m_playerLayer;
     [SerializeField] private float m_attackRange;
     [SerializeField] private List<ItemDrop> m_DropList;
@@ -153,7 +154,9 @@ public class EyeController : MonoBehaviour, IDamagable
         m_enemySpawner.OnEnemyKilled();
         m_spriteRenderer.sortingOrder = 0;
         GameManager.Instance.AddScore(m_ScoreOnDeath);
+        GameManager.Instance.AddGold(m_goldOnDeath);
         m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
+        GameManager.Instance.Win();
         StartCoroutine(DestroyGameObject(5f));
     }
 

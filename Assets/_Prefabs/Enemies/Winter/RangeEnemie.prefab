@@ -142,6 +142,7 @@ MonoBehaviour:
   EnemyHealth: 125
   m_ExpOnDeath: 1
   m_ScoreOnDeath: 150
+  m_goldOnDeath: 2
   m_attackFrequency: 2.5
   m_projectileSpeed: 4
   m_attackRange: 5

@@ -9,6 +9,7 @@ public class FrostGhostController : MonoBehaviour, IDamagable
     public float EnemyHealth;
     [SerializeField] private float m_ExpOnDeath;
     [SerializeField] private int m_ScoreOnDeath;
+    [SerializeField] private int m_goldOnDeath;
     [SerializeField] private List<ItemDrop> m_DropList;
 
     private NavMeshAgent m_agent;
@@ -97,6 +98,7 @@ public class FrostGhostController : MonoBehaviour, IDamagable
         Destroy(m_collider);
         m_spriteRenderer.sortingOrder = 0;
         GameManager.Instance.AddScore(m_ScoreOnDeath);
+        GameManager.Instance.AddGold(m_goldOnDeath);
         m_enemySpawner.OnEnemyKilled();
         StartCoroutine(DestroyGameObject(5f));
     }
