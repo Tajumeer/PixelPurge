@@ -68,7 +68,7 @@ public class ShopManager : MonoBehaviour
 
         // HIER CHECK OB PLAYER GENUG GOLD HAT
         // m_cost[stat].m_cost[m_data.StatLevel[stat] - 1] ist das Gold was benötigt wird zum Kaufen
-        if(!GoldCheck(stat, m_cost[stat].m_cost[m_data.StatLevel[stat] - 1]))
+        if(!GoldCheck(stat, m_cost[stat].m_cost[m_data.StatLevel[stat]]))
         {
             return;
         }
@@ -89,7 +89,7 @@ public class ShopManager : MonoBehaviour
         else
         {
             // set gold text to the amount of gold needed for the next level of this stat
-            _statScript.m_gold.text = m_cost[stat].m_cost[m_data.StatLevel[stat] - 1].ToString();
+            _statScript.m_gold.text = m_cost[stat].m_cost[m_data.StatLevel[stat]].ToString();
         }
     }
 
@@ -116,7 +116,7 @@ public class ShopManager : MonoBehaviour
         else
         {
             // set gold text to the amount of gold needed for the next level of this stat
-            _statScript.m_gold.text = m_cost[stat].m_cost[m_data.StatLevel[stat] - 1].ToString();
+            _statScript.m_gold.text = m_cost[stat].m_cost[m_data.StatLevel[stat]].ToString();
         }
     }
 
