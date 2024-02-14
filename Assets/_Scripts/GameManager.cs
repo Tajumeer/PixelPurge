@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void AddGold(int _gold)
     {
-        UserScore += _gold;
+        Gold += _gold;
         Debug.Log("Current Gold = " + Gold);
     }
 
