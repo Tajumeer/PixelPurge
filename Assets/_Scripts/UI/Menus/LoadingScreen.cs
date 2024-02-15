@@ -65,11 +65,12 @@ public class LoadingScreen : MonoBehaviour
 
         loadOperation.allowSceneActivation = true;      // load Scene
 
-        yield return new WaitUntil(() => loadOperation.isDone);
-        loadingBar.fillAmount = 1f;
-
         // add HUD scene
         if (m_sceneToLoad == Scenes.Dungeon)
             MenuManager.Instance.LoadSceneAsync(Scenes.DungeonHUD, LoadSceneMode.Additive);
+
+        yield return new WaitUntil(() => loadOperation.isDone);
+        loadingBar.fillAmount = 1f;
+
     }
 }
