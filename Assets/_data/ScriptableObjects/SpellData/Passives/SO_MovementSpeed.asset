@@ -15,6 +15,7 @@ MonoBehaviour:
   SpellName: Movement Speed
   SpellIcon: {fileID: 21300000, guid: 1aad936e181b75f4f90558afe6ac8cbf, type: 3}
   SpellDescription: The Player moves faster.
+  SpellUpgradeDescription: Speed
   Level: 0
   MaxLevel: 4
   Stat:

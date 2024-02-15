@@ -25,7 +25,7 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
-        m_health = m_spellData.EnemyHitPoints[m_spellData.Level - 1];
+        m_health = m_spellData.Pierce[m_spellData.Level - 1];
 
         Move(_spellIdx);
     }

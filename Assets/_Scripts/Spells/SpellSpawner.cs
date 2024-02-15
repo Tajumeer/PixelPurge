@@ -15,7 +15,7 @@ public class SpellSpawner : MonoBehaviour
 
     public void SpawnBaseArcher(SO_ActiveSpells _data, ObjectPool<Spell_BaseArcher> _pool, Transform _parent)
     {
-        for (int i = 0; i < _data.Amount[_data.Level-1]; i++)
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level-1]; i++)
         {
             Spell_BaseArcher spellObj = _pool.GetObject();
 
@@ -36,7 +36,7 @@ public class SpellSpawner : MonoBehaviour
     /// </summary>
     public void SpawnAllDirections(SO_ActiveSpells _data, ObjectPool<Spell_AllDirections> _pool, Transform _parent)
     {
-        for (int i = 0; i < _data.Amount[_data.Level-1]; i++)
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level-1]; i++)
         {
             Spell_AllDirections spellObj = _pool.GetObject();
 
@@ -57,7 +57,7 @@ public class SpellSpawner : MonoBehaviour
     /// </summary>
     public void SpawnNearPlayer(SO_ActiveSpells _data, ObjectPool<Spell_NearPlayer> _pool, Transform _parent)
     {
-        for (int i = 0; i < _data.Amount[_data.Level-1]; i++)
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level-1]; i++)
         {
             Spell_NearPlayer spellObj = _pool.GetObject();
 

@@ -12,4 +12,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f54bc552094f9864e98089de0b0628f2, type: 3}
   m_Name: SO_AllSpells
   m_EditorClassIdentifier: 
-  spellSO: []
+  activeSpellSO:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  passiveSpellSO:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  nameSpellSO: {fileID: 11400000, guid: 1ce1a0cb8d3e3d541a9d50833386d7a7, type: 2}

@@ -15,6 +15,7 @@ MonoBehaviour:
   SpellName: Damage Increase
   SpellIcon: {fileID: 21300000, guid: 1aad936e181b75f4f90558afe6ac8cbf, type: 3}
   SpellDescription: Increases player Damage
+  SpellUpgradeDescription: Damage
   Level: 0
   MaxLevel: 4
   Stat:

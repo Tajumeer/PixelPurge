@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 // Maya
@@ -156,6 +157,9 @@ public class LevelUpManager : MonoBehaviour
     /// <param name="_spell"></param>
     private void CardActiveSpell(Spells _spell)
     {
+        // get the Scriptable Object of this spell
+        SO_ActiveSpells spellSO = m_dataSpells.activeSpellSO[(int)_spell];
+
         // create new GameObject
         GameObject spellCard = Instantiate(m_prefab_spellCardActive);
 
@@ -164,19 +168,19 @@ public class LevelUpManager : MonoBehaviour
         // set spell, icon, name
         ChooseSpell values = spellCard.GetComponent<ChooseSpell>();
         values.m_spell = _spell;
-        values.m_icon.sprite = m_dataSpells.activeSpellSO[(int)_spell].SpellIcon;
-        values.m_name.text = m_dataSpells.activeSpellSO[(int)_spell].SpellName;
+        values.m_icon.sprite = spellSO.SpellIcon;
+        values.m_name.text = spellSO.SpellName;
 
         // if its not already learned, show spell description
-        if (m_dataSpells.activeSpellSO[(int)_spell].Level == 0 && m_dataSpells.activeSpellSO[(int)_spell].MaxLevel != 0)
+        if (spellSO.Level == 0 && spellSO.MaxLevel != 0)
         {
             values.m_description.alignment = TMPro.TextAlignmentOptions.Center;
-            values.m_description.text = m_dataSpells.activeSpellSO[(int)_spell].SpellDescription;
+            values.m_description.text = spellSO.SpellDescription;
         }
         // else show upgrades
         else
         {
-            values.m_description.text = "Upgrades incoming";
+            values.m_description.text = PrintActiveUpgrades(spellSO);
         }
     }
 
@@ -202,35 +206,15 @@ public class LevelUpManager : MonoBehaviour
         values.m_icon.sprite = spellSO.SpellIcon;
         values.m_name.text = spellSO.SpellName;
 
-        // if its not already learned, show spell description
-        if (spellSO.Level == 0 && spellSO.MaxLevel != 0)
-        {
-            values.m_description.alignment = TMPro.TextAlignmentOptions.Center;
-            values.m_description.text = spellSO.SpellDescription;
-        }
-        // else show upgrades
+        // Show upgrade in the spell description
+        (float upgrade, bool percent) = CheckUpgrade(spellSO.Stat[spellSO.Level + 1]);
+
+        if (upgrade == 0f) values.m_description.text = "Hidden Upgrade :)";  // safety check 
+
+        if (percent)
+            values.m_description.text = "+ " + upgrade + "% " + m_dataSpells.nameSpellSO.Damage;
         else
-        {
-            // if Stat is a positive integer -> is is no % but its value is added (e.g. 20)
-            if(spellSO.Stat[spellSO.Level] >= 1 && spellSO.Stat[spellSO.Level] % 1 == 0)
-            {
-                values.m_description.text = "+ " + spellSO.Stat[spellSO.Level] + " " + spellSO.SpellUpgradeDescription;
-            }
-            // if Stat is greater than 1 but is a decimal number -> it is a % value (e.g. 1.4)
-            else if(spellSO.Stat[spellSO.Level] > 1 && spellSO.Stat[spellSO.Level] % 1 != 0)
-            {
-                float percent = (spellSO.Stat[spellSO.Level] - 1) * 100;
-                values.m_description.text = "+ " + percent + "% " + spellSO.SpellUpgradeDescription;
-            }
-            // if Stat is between 0 and 1 -> it is a % value (e.g. 0.6)
-            else if(spellSO.Stat[spellSO.Level] < 1 && spellSO.Stat[spellSO.Level] > 0)
-            {
-                float percent = (1 - spellSO.Stat[spellSO.Level]) * 100;
-                values.m_description.text = "+ " + percent + "% " + spellSO.SpellUpgradeDescription;
-            }
-            else
-                values.m_description.text = "Hidden Upgrade :)";
-        }
+            values.m_description.text = "+ " + upgrade + " " + spellSO.SpellUpgradeDescription;
     }
 
     /// <summary>
@@ -241,6 +225,116 @@ public class LevelUpManager : MonoBehaviour
         // create new GameObject
         GameObject spellCard = Instantiate(m_prefab_spellCardGold);
         spellCard.transform.SetParent(m_spellCardParent);
+    }
+
+    #endregion
+
+    #region Upgrades and Descriptions
+
+    private string PrintActiveUpgrades(SO_ActiveSpells _spellSO)
+    {
+        string description = "";
+
+        // Damage
+        if (_spellSO.Damage.Length == _spellSO.MaxLevel)
+            description +=
+                GetSpellDescription(_spellSO.Damage[_spellSO.Level - 1], _spellSO.Damage[_spellSO.Level], m_dataSpells.nameSpellSO.Damage);
+
+        // Lifetime
+        if (_spellSO.Lifetime.Length == _spellSO.MaxLevel)
+            description +=
+            GetSpellDescription(_spellSO.Lifetime[_spellSO.Level - 1], _spellSO.Lifetime[_spellSO.Level], m_dataSpells.nameSpellSO.Lifetime);
+
+        // Speed
+        if (_spellSO.Speed.Length == _spellSO.MaxLevel)
+            description +=
+            GetSpellDescription(_spellSO.Speed[_spellSO.Level - 1], _spellSO.Speed[_spellSO.Level], m_dataSpells.nameSpellSO.Speed);
+
+        // Cd
+        if (_spellSO.Cd.Length == _spellSO.MaxLevel)
+            description +=
+            GetSpellDescription(_spellSO.Cd[_spellSO.Level - 1], _spellSO.Cd[_spellSO.Level], m_dataSpells.nameSpellSO.Cd);
+
+        // Radius
+        if (_spellSO.Radius.Length == _spellSO.MaxLevel)
+            description +=
+            GetSpellDescription(_spellSO.Radius[_spellSO.Level - 1], _spellSO.Radius[_spellSO.Level], m_dataSpells.nameSpellSO.Radius);
+
+        // ProjectileAmount
+        if (_spellSO.ProjectileAmount.Length == _spellSO.MaxLevel)
+            description +=
+            GetSpellDescription(_spellSO.ProjectileAmount[_spellSO.Level - 1], _spellSO.ProjectileAmount[_spellSO.Level],
+                                m_dataSpells.nameSpellSO.ProjectileAmount);
+
+        // Bounce
+        if (_spellSO.Bounce.Length == _spellSO.MaxLevel)
+            description +=
+            GetSpellDescription(_spellSO.Bounce[_spellSO.Level - 1], _spellSO.Bounce[_spellSO.Level], m_dataSpells.nameSpellSO.Bounce);
+
+        // Pierce
+        if (_spellSO.Pierce.Length == _spellSO.MaxLevel)
+            description +=
+            GetSpellDescription(_spellSO.Pierce[_spellSO.Level - 1], _spellSO.Pierce[_spellSO.Level], m_dataSpells.nameSpellSO.Pierce);
+
+        return description;
+    }
+
+    private string GetSpellDescription(float _activeLevel, float nextLevel, string statName)
+    {
+        string description = "";
+
+        // check if this stat would be upgraded on the next level
+        if (_activeLevel != nextLevel)
+        {
+            // check what kind of upgrade it is
+            (float upgrade, bool percent) = CheckUpgrade(nextLevel);
+
+            if (upgrade == 0f) description += "Hidden Upgrade :)";  // safety check 
+
+            // and set description
+            if (percent)
+                description += "+ " + upgrade + "% " + statName + "\n";
+            else
+            {
+                float subtraction = upgrade - _activeLevel;
+                if (subtraction < 0) subtraction *= -1f;    // e.g. for cd reduction the upgrade would be -1
+                description += "+ " + subtraction + " " + statName + "\n";
+            }
+        }
+
+        return description;
+    }
+
+    /// <summary>
+    /// Checks if the Upgrade is a percent value or a whole number 
+    /// </summary>
+    /// <param name="_stat"></param>
+    /// <returns>float: the upgrade || bool: true if its a percent value</returns>
+    private (float, bool) CheckUpgrade(float _stat)
+    {
+        float upgrade = 0f;
+        bool percent = false; ;
+
+        // if Stat is a positive integer -> is is no % but its value is added (e.g. 20)
+        if (_stat >= 1 && _stat % 1 == 0)
+        {
+            upgrade = _stat;
+            percent = false;
+        }
+        // if Stat is greater than 1 but is a decimal number -> it is a % value (e.g. 1.4)
+        else if (_stat > 1 && _stat % 1 != 0)
+        {
+            upgrade = (_stat - 1) * 100;
+            percent = true;
+        }
+        // if Stat is between 0 and 1 -> it is a % value (e.g. 0.6)
+        else if (_stat < 1 && _stat > 0)
+        {
+            upgrade = (1 - _stat) * 100;
+            percent = true;
+        }
+
+        return (upgrade, percent);
     }
 
     #endregion

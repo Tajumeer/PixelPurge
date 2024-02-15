@@ -17,16 +17,22 @@ MonoBehaviour:
   SpellDescription: Shoots at enemys near the player.
   SpellSFX: []
   Level: 0
-  MaxLevel: 1
+  MaxLevel: 2
   Damage:
   - 50
+  - 80
   Lifetime:
+  - 5
   - 5
   Speed:
   - 3
+  - 4
   Cd:
   - 3
+  - 3
   Radius: []
-  Amount: 01000000
-  EnemyHitPoints:
+  ProjectileAmount: 0100000002000000
+  Pierce:
   - 1
+  - 1
+  Bounce: []

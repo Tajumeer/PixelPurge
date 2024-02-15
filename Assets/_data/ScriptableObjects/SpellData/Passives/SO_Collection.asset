@@ -15,6 +15,7 @@ MonoBehaviour:
   SpellName: Collection Radius
   SpellIcon: {fileID: 21300000, guid: 1aad936e181b75f4f90558afe6ac8cbf, type: 3}
   SpellDescription: Increase Player Collection Radius
+  SpellUpgradeDescription: Collection Radius
   Level: 0
   MaxLevel: 4
   Stat:

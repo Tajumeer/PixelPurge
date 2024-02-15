@@ -15,6 +15,7 @@ MonoBehaviour:
   SpellName: Critical Chance
   SpellIcon: {fileID: 21300000, guid: 1aad936e181b75f4f90558afe6ac8cbf, type: 3}
   SpellDescription: Increases players Critical Chance
+  SpellUpgradeDescription: Critical Chance
   Level: 0
   MaxLevel: 4
   Stat:

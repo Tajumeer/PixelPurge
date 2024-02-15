@@ -342,8 +342,9 @@ public class SpellManager : MonoBehaviour
         switch (_spell)
         {
             case Spells.Aura:
-                m_parent[(int)_spell].transform.localScale = new Vector3
-                        (spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1]);
+                if (spellSO.Radius.Length >= spellSO.Level)
+                    m_parent[(int)_spell].transform.localScale = new Vector3
+                            (spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1]);
                 break;
         }
     }

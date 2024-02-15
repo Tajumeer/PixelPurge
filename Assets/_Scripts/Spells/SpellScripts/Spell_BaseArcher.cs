@@ -25,7 +25,7 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
-        m_health = m_spellData.EnemyHitPoints[m_spellData.Level - 1];
+        m_health = m_spellData.Pierce[m_spellData.Level - 1];
 
         /**** Sven Start ****/
 

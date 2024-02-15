@@ -7,6 +7,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ActiveSpells", menuName = "PixelPurge/Spells/ActiveSpells", order = 2)]
 public class SO_ActiveSpells : ScriptableObject
 {
+    /** if something is added/removed from here, it also has to be removed from:
+     *  the Scriptable Object "SO_ActiveSpellNames" 
+     *  and the Script "LevelUpManager" in the Function for the Active Spell Cards
+     */
+
     [Header("UI Stuff")]
     public string SpellName;
     public Sprite SpellIcon;
@@ -26,9 +31,10 @@ public class SO_ActiveSpells : ScriptableObject
     public float[] Radius;
 
     [Header("Projectile Stats")]
-    public int[] Amount;
+    public int[] ProjectileAmount;
     /// <summary>
-    /// How many Enemys can the spell hit until it dies
+    /// How many Enemys can the spell pass trough it dies
     /// </summary>
-    public float[] EnemyHitPoints;
+    public float[] Pierce;
+    public float[] Bounce;
 }

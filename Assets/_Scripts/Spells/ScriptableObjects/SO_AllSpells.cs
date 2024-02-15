@@ -9,4 +9,6 @@ public class SO_AllSpells : ScriptableObject
 {
     public SO_ActiveSpells[] activeSpellSO;
     public SO_PassiveSpells[] passiveSpellSO;
+    [Space]
+    public SO_ActiveSpellNames nameSpellSO;
 }

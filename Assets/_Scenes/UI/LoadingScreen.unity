@@ -632,7 +632,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_sceneToLoad: 8
-  loadDelay: 1
+  loadDelay: 0.3
   minLoadingTime: 3
   loadingBar: {fileID: 1872044466}
   enemy: {fileID: 391466312}

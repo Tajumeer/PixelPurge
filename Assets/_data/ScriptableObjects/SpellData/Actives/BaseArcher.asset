@@ -17,16 +17,26 @@ MonoBehaviour:
   SpellDescription: Shoots at mouse direction.
   SpellSFX: []
   Level: 0
-  MaxLevel: 1
+  MaxLevel: 3
   Damage:
   - 100
+  - 150
+  - 200
   Lifetime:
   - 5
+  - 6
+  - 6
   Speed:
   - 5
+  - 5
+  - 6
   Cd:
   - 1
-  Radius: []
-  Amount: 01000000
-  EnemyHitPoints:
   - 1
+  - 0.8
+  Radius: []
+  ProjectileAmount: 0100000001000000
+  Pierce:
+  - 1
+  - 2
+  Bounce: []
