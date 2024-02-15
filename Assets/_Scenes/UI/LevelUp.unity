@@ -289,9 +289,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_dataSpells: {fileID: 11400000, guid: 22fd91090bafb824e98c940a99217f92, type: 2}
   m_prefab_spellCardActive: {fileID: 4652599780296313819, guid: 24f4f346c9ceab24aa917aa5cc777ae4, type: 3}
-  m_prefab_spellCardPassive: {fileID: 8164334777945018022, guid: 3d946c616b7d61d4490797168042e83b, type: 3}
-  m_prefab_spellCardGold: {fileID: 4652599780296313819, guid: 5b11d357bb6b77a41a80df2f5d8fc4ea, type: 3}
+  m_prefab_spellCardPassive: {fileID: 4652599780296313819, guid: 1534a50b7bb17104a806fcbb2d84a878, type: 3}
+  m_prefab_spellCardGold: {fileID: 4652599780296313819, guid: a8ef8c50d19740741a64bc00dae36de1, type: 3}
   m_spellCardParent: {fileID: 974205999}
+  m_spellSlots: 4
 --- !u!4 &1259787517
 Transform:
   m_ObjectHideFlags: 0

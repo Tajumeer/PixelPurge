@@ -7,7 +7,7 @@ public class EndDungeonManager : MonoBehaviour
 {
     public void ReloadDungeon()
     {
-        MenuManager.Instance.UnloadDungeon();
+        MenuManager.Instance.UnloadDungeon(false);
         MenuManager.Instance.LoadDungeon();
         Time.timeScale = 1f;
     }

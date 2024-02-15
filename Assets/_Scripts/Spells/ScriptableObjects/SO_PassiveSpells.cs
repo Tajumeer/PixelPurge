@@ -10,7 +10,10 @@ public class SO_PassiveSpells : ScriptableObject
     [Header("UI Stuff")]
     public string SpellName;
     public Sprite SpellIcon;
+    [Tooltip("Is shown when the Spell can be learned")]
     public string SpellDescription;
+    [Tooltip("Is shown when the Spell can be upgraded e.g. +5% Value")]
+    public string SpellUpgradeDescription;
 
     [Space]
 

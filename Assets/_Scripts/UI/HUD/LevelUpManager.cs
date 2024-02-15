@@ -189,27 +189,47 @@ public class LevelUpManager : MonoBehaviour
         // get the index of the passive spell ("delete" active Spells for index)
         int idx = (int)_spell - ((int)Spells.ActiveSpells + 1);
 
+        // get the Scriptable Object of this spell
+        SO_PassiveSpells spellSO = m_dataSpells.passiveSpellSO[idx];
+
         // create new GameObject
         GameObject spellCard = Instantiate(m_prefab_spellCardPassive);
-
         spellCard.transform.SetParent(m_spellCardParent);
 
         // set spell, icon, name
         ChooseSpell values = spellCard.GetComponent<ChooseSpell>();
         values.m_spell = _spell;
-        values.m_icon.sprite = m_dataSpells.passiveSpellSO[idx].SpellIcon;
-        values.m_name.text = m_dataSpells.passiveSpellSO[idx].SpellName;
+        values.m_icon.sprite = spellSO.SpellIcon;
+        values.m_name.text = spellSO.SpellName;
 
         // if its not already learned, show spell description
-        if (m_dataSpells.passiveSpellSO[idx].Level == 0 && m_dataSpells.passiveSpellSO[idx].MaxLevel != 0)
+        if (spellSO.Level == 0 && spellSO.MaxLevel != 0)
         {
             values.m_description.alignment = TMPro.TextAlignmentOptions.Center;
-            values.m_description.text = m_dataSpells.passiveSpellSO[idx].SpellDescription;
+            values.m_description.text = spellSO.SpellDescription;
         }
         // else show upgrades
         else
         {
-            values.m_description.text = "Upgrades incoming";
+            // if Stat is a positive integer -> is is no % but its value is added (e.g. 20)
+            if(spellSO.Stat[spellSO.Level] >= 1 && spellSO.Stat[spellSO.Level] % 1 == 0)
+            {
+                values.m_description.text = "+ " + spellSO.Stat[spellSO.Level] + " " + spellSO.SpellUpgradeDescription;
+            }
+            // if Stat is greater than 1 but is a decimal number -> it is a % value (e.g. 1.4)
+            else if(spellSO.Stat[spellSO.Level] > 1 && spellSO.Stat[spellSO.Level] % 1 != 0)
+            {
+                float percent = (spellSO.Stat[spellSO.Level] - 1) * 100;
+                values.m_description.text = "+ " + percent + "% " + spellSO.SpellUpgradeDescription;
+            }
+            // if Stat is between 0 and 1 -> it is a % value (e.g. 0.6)
+            else if(spellSO.Stat[spellSO.Level] < 1 && spellSO.Stat[spellSO.Level] > 0)
+            {
+                float percent = (1 - spellSO.Stat[spellSO.Level]) * 100;
+                values.m_description.text = "+ " + percent + "% " + spellSO.SpellUpgradeDescription;
+            }
+            else
+                values.m_description.text = "Hidden Upgrade :)";
         }
     }
 

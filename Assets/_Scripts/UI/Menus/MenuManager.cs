@@ -64,7 +64,7 @@ public class MenuManager : MonoBehaviour
     /// <summary>
     /// Unload all scenes that could be open in the Dungeon and Load Village
     /// </summary>
-    public void UnloadDungeon()
+    public void UnloadDungeon(bool _loadVillage = true)
     {
         // check if pause menu, win screen, death screen, DetailsHUD was an open scene, then close it
         if (SceneManager.GetSceneByBuildIndex((int)Scenes.Pause).isLoaded) UnloadSceneAsync(Scenes.Pause);
@@ -77,6 +77,9 @@ public class MenuManager : MonoBehaviour
         UnloadSceneAsync(Scenes.DungeonHUD);
 
         // load village
-        LoadSceneAsync(Scenes.Village);
+        if (_loadVillage)
+            LoadSceneAsync(Scenes.Village);
+
+        Time.timeScale = 1f;
     }
 }
