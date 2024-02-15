@@ -64,11 +64,13 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void Win()
     {
+        Time.timeScale = 0f;
         MenuManager.Instance.LoadSceneAsync(Scenes.Win, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
     public void Lose()
     {
+        Time.timeScale = 0f;
         MenuManager.Instance.LoadSceneAsync(Scenes.Death, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 

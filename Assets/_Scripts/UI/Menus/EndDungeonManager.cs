@@ -9,10 +9,12 @@ public class EndDungeonManager : MonoBehaviour
     {
         MenuManager.Instance.UnloadDungeon();
         MenuManager.Instance.LoadDungeon();
+        Time.timeScale = 1f;
     }
 
     public void LoadVillage()
     {
         MenuManager.Instance.UnloadDungeon();
+        Time.timeScale = 1f;
     }
 }

@@ -197,6 +197,8 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void SetDeathState()
     {
+        if (m_isDead) return;
+
         m_isDead = true;
         m_spriteRenderer.sortingOrder = 0;
         MoveDirection = Vector3.zero;
