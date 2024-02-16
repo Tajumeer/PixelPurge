@@ -206,13 +206,15 @@ public class LevelUpManager : MonoBehaviour
         values.m_icon.sprite = spellSO.SpellIcon;
         values.m_name.text = spellSO.SpellName;
 
+        //values.m_description.text = GetSpellDescription(spellSO.Stat[spellSO.Level], spellSO.Stat[spellSO.Level + 1], spellSO.SpellUpgradeDescription);
+
         // Show upgrade in the spell description
         (float upgrade, bool percent) = CheckUpgrade(spellSO.Stat[spellSO.Level + 1]);
 
         if (upgrade == 0f) values.m_description.text = "Hidden Upgrade :)";  // safety check 
 
         if (percent)
-            values.m_description.text = "+ " + upgrade + "% " + m_dataSpells.nameSpellSO.Damage;
+            values.m_description.text = "+ " + upgrade + "% " + spellSO.SpellUpgradeDescription;
         else
             values.m_description.text = "+ " + upgrade + " " + spellSO.SpellUpgradeDescription;
     }

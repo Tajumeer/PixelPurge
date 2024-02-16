@@ -17,6 +17,9 @@ public enum Spells
     AllDirections,
     NearPlayer,
     Aura,
+    NewSpell1,
+    NewSpell2,
+    NewSpell3,
     /// <summary> Indicator: End of Active Spells </summary>
     ActiveSpells,
 
@@ -54,11 +57,17 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject m_prefab_NearPlayer;
     [SerializeField] private GameObject m_prefab_BaseArcher;
     [SerializeField] private GameObject m_prefab_Aura;
+    [SerializeField] private GameObject m_prefab_NewSpell1;
+    [SerializeField] private GameObject m_prefab_NewSpell2;
+    [SerializeField] private GameObject m_prefab_NewSpell3;
 
     [Header("Pools")]
     private ObjectPool<Spell_AllDirections> m_pool_AllDirections;
     private ObjectPool<Spell_NearPlayer> m_pool_NearPlayer;
     private ObjectPool<Spell_BaseArcher> m_pool_BaseArcher;
+    private ObjectPool<Spell_NewSpell1> m_pool_NewSpell1;
+    private ObjectPool<Spell_NewSpell2> m_pool_NewSpell2;
+    private ObjectPool<Spell_NewSpell3> m_pool_NewSpell3;
 
     [Header("Parent Objects")]
     private Transform[] m_parent = new Transform[(int)Spells.ActiveSpells];
@@ -90,6 +99,9 @@ public class SpellManager : MonoBehaviour
 
         // Prototype
         LearnActiveSpell(Spells.BaseArcher);
+        LearnActiveSpell(Spells.NewSpell1);
+        //LearnActiveSpell(Spells.NewSpell2);
+        //LearnActiveSpell(Spells.NewSpell3);
     }
 
     /// <summary>
@@ -119,6 +131,18 @@ public class SpellManager : MonoBehaviour
 
                 case Spells.Aura:
                     m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Aura);
+                    break;
+
+                case Spells.NewSpell1:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_NewSpell1);
+                    break;
+
+                case Spells.NewSpell2:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_NewSpell2);
+                    break;
+
+                case Spells.NewSpell3:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_NewSpell3);
                     break;
             }
         }
@@ -214,8 +238,20 @@ public class SpellManager : MonoBehaviour
                         break;
 
                     case (int)Spells.Aura:
-
                         break;
+                        
+                    case (int)Spells.NewSpell1:
+                        m_spawnScript.SpawnNewSpell1(m_data_Spells.activeSpellSO[(int)Spells.NewSpell1], m_pool_NewSpell1, m_parent[(int)Spells.NewSpell1]);
+                        break;
+                        
+                    case (int)Spells.NewSpell2:
+                        m_spawnScript.SpawnNewSpell2(m_data_Spells.activeSpellSO[(int)Spells.NewSpell2], m_pool_NewSpell2, m_parent[(int)Spells.NewSpell2]);
+                        break;
+                        
+                    case (int)Spells.NewSpell3:
+                        m_spawnScript.SpawnNewSpell3(m_data_Spells.activeSpellSO[(int)Spells.NewSpell3], m_pool_NewSpell3, m_parent[(int)Spells.NewSpell3]);
+                        break;
+
                 }
                 m_timer[i] = 0;             // reset the timer
             }
@@ -306,6 +342,22 @@ public class SpellManager : MonoBehaviour
                 m_parent[(int)_spell] = obj.transform;
                 auraObj.GetComponent<Spell_Aura>().OnSpawn(spellSO);
                 break;
+
+            case Spells.NewSpell1:
+                m_pool_NewSpell1 = new ObjectPool<Spell_NewSpell1>(m_prefab_NewSpell1);
+                obj.name = "NewSpell1";
+                break;
+
+            case Spells.NewSpell2:
+                m_pool_NewSpell2 = new ObjectPool<Spell_NewSpell2>(m_prefab_NewSpell2);
+                obj.name = "NewSpell2";
+                break;
+
+            case Spells.NewSpell3:
+                m_pool_NewSpell3 = new ObjectPool<Spell_NewSpell3>(m_prefab_NewSpell3);
+                obj.name = "NewSpell3";
+                break;
+
         }
 
         // Set Parent object for later use

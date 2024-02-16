@@ -72,4 +72,67 @@ public class SpellSpawner : MonoBehaviour
             spellObj.OnSpawn(_data);
         }
     }
+
+    /// <summary>
+    /// Spawn the Spell "NearPlayer"
+    /// </summary>
+    public void SpawnNewSpell1(SO_ActiveSpells _data, ObjectPool<Spell_NewSpell1> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
+        {
+            Spell_NewSpell1 spellObj = _pool.GetObject();
+
+            if (spellObj.tag != "PlayerSpell")
+            {
+                spellObj.transform.SetParent(_parent);
+                spellObj.tag = "PlayerSpell";
+            }
+
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+            spellObj.OnSpawn(_data);
+        }
+    }
+    
+    /// <summary>
+    /// Spawn the Spell "NearPlayer"
+    /// </summary>
+    public void SpawnNewSpell2(SO_ActiveSpells _data, ObjectPool<Spell_NewSpell2> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
+        {
+            Spell_NewSpell2 spellObj = _pool.GetObject();
+
+            if (spellObj.tag != "PlayerSpell")
+            {
+                spellObj.transform.SetParent(_parent);
+                spellObj.tag = "PlayerSpell";
+            }
+
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+            spellObj.OnSpawn(_data);
+        }
+    }
+    
+    /// <summary>
+    /// Spawn the Spell "NearPlayer"
+    /// </summary>
+    public void SpawnNewSpell3(SO_ActiveSpells _data, ObjectPool<Spell_NewSpell3> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
+        {
+            Spell_NewSpell3 spellObj = _pool.GetObject();
+
+            if (spellObj.tag != "PlayerSpell")
+            {
+                spellObj.transform.SetParent(_parent);
+                spellObj.tag = "PlayerSpell";
+            }
+
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+            spellObj.OnSpawn(_data);
+        }
+    }
 }

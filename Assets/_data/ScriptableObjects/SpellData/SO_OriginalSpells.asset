@@ -16,6 +16,9 @@ MonoBehaviour:
   Data_AllDirections: {fileID: 11400000, guid: 2a50605f2860fcb4bb365c9caf810bc0, type: 2}
   Data_NearPlayer: {fileID: 11400000, guid: 7a8ca55820a823b40aed7af5a97bc63c, type: 2}
   Data_Aura: {fileID: 11400000, guid: 684841cbb660cc34fa7fed376a10896f, type: 2}
+  Data_NewSpell1: {fileID: 11400000, guid: 2f364e49725b9d646b79f18e15d886ca, type: 2}
+  Data_NewSpell2: {fileID: 11400000, guid: d86ce357fdf03cf458386e13c1de442f, type: 2}
+  Data_NewSpell3: {fileID: 11400000, guid: 5add668795ed30f4193cd1feaa288d93, type: 2}
   Data_MovementSpeed: {fileID: 11400000, guid: d633753aed622064ea8408fca49f7bb7, type: 2}
   Data_DamageMultiplier: {fileID: 11400000, guid: e22bd9e4f1a703740b2af402157863c4, type: 2}
   Data_CritChance: {fileID: 11400000, guid: 1c560d766741aa541ab250d1e476ab70, type: 2}

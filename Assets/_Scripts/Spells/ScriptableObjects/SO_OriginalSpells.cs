@@ -12,6 +12,9 @@ public class SO_OriginalSpells : ScriptableObject
     public SO_ActiveSpells Data_AllDirections;
     public SO_ActiveSpells Data_NearPlayer;
     public SO_ActiveSpells Data_Aura;
+    public SO_ActiveSpells Data_NewSpell1;
+    public SO_ActiveSpells Data_NewSpell2;
+    public SO_ActiveSpells Data_NewSpell3;
 
     [Header("Original Passive Spell ScriptableObjects")]
     public SO_PassiveSpells Data_MovementSpeed;

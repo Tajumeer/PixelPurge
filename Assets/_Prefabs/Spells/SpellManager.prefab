@@ -51,6 +51,9 @@ MonoBehaviour:
   m_prefab_NearPlayer: {fileID: 1960888898802110764, guid: 82023d0ce7f8b7a489ad6a607b5dbc0c, type: 3}
   m_prefab_BaseArcher: {fileID: 1960888898802110764, guid: ae79387ff636f2247ab98a06adb8fce6, type: 3}
   m_prefab_Aura: {fileID: 1960888898802110764, guid: 10c47cb03c1b37e4bb2bbe7c0d201d56, type: 3}
+  m_prefab_NewSpell1: {fileID: 1960888898802110764, guid: 21fc769d154749b4d86418f523efffb1, type: 3}
+  m_prefab_NewSpell2: {fileID: 1960888898802110764, guid: 43e89e08e7a061640bebc2f094acab60, type: 3}
+  m_prefab_NewSpell3: {fileID: 1960888898802110764, guid: 9b682303520d4704a9fe4bc6e109ca99, type: 3}
 --- !u!114 &2556516342377364200
 MonoBehaviour:
   m_ObjectHideFlags: 0
