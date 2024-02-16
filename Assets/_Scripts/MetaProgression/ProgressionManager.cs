@@ -40,7 +40,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     private void Update()
     {
-        
+
     }
 
     public void InitMetaProgression(PlayerController _player)
@@ -53,7 +53,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
         HealthUpgrade();
         HealthRegenUpgrade();
         DamageUpgrade();
-        UpgradeCritChance();
+        CritChanceUpgrade();
         CollectionUpgrade();
         MoveSpeedUpgrade();
         GoldMultiUpgrade();
@@ -65,8 +65,12 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     public void UpgradeHealth()
     {
-        m_healthLevel++;
+      
+            m_healthLevel++;
+            m_healthLevel = 5;
+        
         HealthUpgrade();
+
     }
 
     private void HealthUpgrade()
@@ -84,7 +88,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     public void UpgradeHealthRegen()
     {
-        m_healthLevel++;
+        m_healthRegenLevel++;
         HealthRegenUpgrade();
     }
 
@@ -101,7 +105,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     public void UpgradeDamage()
     {
-        m_healthLevel++;
+        m_damageMultiLevel++;
         DamageUpgrade();
     }
 
@@ -118,7 +122,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     public void UpgradeCritChance()
     {
-        m_healthLevel++;
+        m_critChanceLevel++;
         CritChanceUpgrade();
     }
 
@@ -135,7 +139,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     public void UpgradeCollectionRadius()
     {
-        m_healthLevel++;
+        m_collectionLevel++;
         CollectionUpgrade();
     }
 
@@ -152,7 +156,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     public void UpgradeMovementSpeed()
     {
-        m_healthLevel++;
+        m_moveSpeedLevel++;
         MoveSpeedUpgrade();
     }
 
@@ -169,7 +173,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     public void UpgradeGoldMulti()
     {
-        m_healthLevel++;
+        m_goldLevel++;
         GoldMultiUpgrade();
     }
 
@@ -186,7 +190,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     public void UpgradeXP()
     {
-        m_healthLevel++;
+        m_xpLevel++;
         XPUpgrade();
     }
 
@@ -212,7 +216,7 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
 
 
-      
+
     }
 
     public void SaveData(ref GameData _data)
