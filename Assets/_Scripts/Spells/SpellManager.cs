@@ -98,7 +98,7 @@ public class SpellManager : MonoBehaviour
         InitScriptableObject();
 
         // Prototype
-        LearnActiveSpell(Spells.BaseArcher);
+       // LearnActiveSpell(Spells.BaseArcher);
         LearnActiveSpell(Spells.NewSpell1);
         //LearnActiveSpell(Spells.NewSpell2);
         //LearnActiveSpell(Spells.NewSpell3);

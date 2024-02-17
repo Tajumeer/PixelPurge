@@ -8,6 +8,13 @@ public class Spell_NewSpell1 : PoolObject<Spell_NewSpell1>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
+    private enum States { Shooting, Returning, Finished }
+    private States m_currentState;
+
+    [SerializeField] private float m_travelDistance;
+    private Vector2 m_initialPosition;
+
+    private PlayerController m_playerController;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -18,13 +25,64 @@ public class Spell_NewSpell1 : PoolObject<Spell_NewSpell1>
     public void OnSpawn(SO_ActiveSpells _spellData)
     {
         InitRigidbody();
-
         m_spellData = _spellData;
+        m_playerController = FindObjectOfType<PlayerController>();
 
         // Start Lifetime
-        StartCoroutine(DeleteTimer());
+       // StartCoroutine(DeleteTimer());
 
-        m_rb.AddRelativeForce(Vector2.down * m_spellData.Speed[m_spellData.Level - 1], ForceMode2D.Impulse);
+        m_initialPosition = m_rb.position;
+        m_currentState = States.Shooting;
+        Shoot();
+    }
+
+    private void Update()
+    {
+        switch (m_currentState)
+        {
+            case States.Shooting:
+                ShootingState();
+                break;
+            case States.Returning:
+                ReturningState();
+                break;
+        }
+    }
+
+    public void Shoot()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 projectileDirection = (mousePosition - transform.position).normalized;
+
+        Vector2 direction = new Vector2(projectileDirection.x, projectileDirection.y).normalized;
+
+        m_rb.AddForce(direction * m_spellData.Speed[m_spellData.Level - 1], ForceMode2D.Impulse);
+    }
+
+    private void ShootingState()
+    {
+        if (Vector2.Distance(m_initialPosition, m_rb.position) >= m_travelDistance)
+        {
+            m_currentState = States.Returning;
+        }
+    }
+
+    private void ReturningState()
+    {
+        Vector2 returnDirection = ((Vector2)m_playerController.transform.position - m_rb.position).normalized;
+
+        float remainingDistance = Vector2.Distance((Vector2)m_playerController.transform.position, m_rb.position);
+
+        float accelerationFactor = 2f;
+
+        float returnSpeed = m_spellData.Speed[m_spellData.Level - 1] + accelerationFactor / remainingDistance;
+
+        m_rb.velocity = returnDirection * returnSpeed;
+
+        if (Vector2.Distance((Vector2)m_playerController.transform.position, m_rb.position) <= .5f)
+        {
+           DeactivateSpell();
+        }
     }
 
     /// <summary>
