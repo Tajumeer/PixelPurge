@@ -111,7 +111,7 @@ public class SpellSpawner : MonoBehaviour
 
             spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
 
-            spellObj.OnSpawn(_data);
+            spellObj.OnSpawn(_data, i);
         }
     }
     

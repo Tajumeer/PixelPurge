@@ -17,16 +17,32 @@ MonoBehaviour:
   SpellDescription: xxx
   SpellSFX: []
   Level: 0
-  MaxLevel: 1
+  MaxLevel: 4
   Damage:
-  - 50
+  - 15
+  - 30
+  - 45
+  - 60
   Lifetime:
-  - 5
+  - 4
+  - 4
+  - 4
+  - 4
   Speed:
-  - 3
+  - 20
+  - 40
+  - 60
+  - 80
   Cd:
+  - 16
+  - 12
+  - 8
+  - 4
+  Radius:
   - 2
-  Radius: []
-  ProjectileAmount: 01000000
+  - 2
+  - 2
+  - 2
+  ProjectileAmount: 02000000040000000600000008000000
   Pierce: []
   Bounce: []

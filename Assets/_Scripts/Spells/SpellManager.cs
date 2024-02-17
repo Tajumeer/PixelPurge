@@ -99,8 +99,8 @@ public class SpellManager : MonoBehaviour
 
         // Prototype
        // LearnActiveSpell(Spells.BaseArcher);
-        LearnActiveSpell(Spells.NewSpell1);
-        //LearnActiveSpell(Spells.NewSpell2);
+       // LearnActiveSpell(Spells.NewSpell1);
+        LearnActiveSpell(Spells.NewSpell2);
         //LearnActiveSpell(Spells.NewSpell3);
     }
 
@@ -310,7 +310,7 @@ public class SpellManager : MonoBehaviour
     {
         SO_ActiveSpells spellSO = m_data_Spells.activeSpellSO[(int)_spell];
 
-        spellSO.Level = 1;                                      // set Spell Level to 1
+        spellSO.Level = 4;                                      // set Spell Level to 1
         m_active[(int)_spell] = true;                           // set Spell as active
         m_cd[(int)_spell] = spellSO.Cd[spellSO.Level - 1];      // set Timer
 
