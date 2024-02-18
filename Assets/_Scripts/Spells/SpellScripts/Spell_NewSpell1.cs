@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 // Maya, Sven
 
@@ -8,10 +9,10 @@ public class Spell_NewSpell1 : PoolObject<Spell_NewSpell1>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
-    private enum States { Shooting, Returning, Finished }
+    private enum States { Shooting, Returning }
     private States m_currentState;
-
     [SerializeField] private float m_travelDistance;
+    [SerializeField] private float m_rotationSpeed;
     private Vector2 m_initialPosition;
 
     private PlayerController m_playerController;
@@ -22,7 +23,7 @@ public class Spell_NewSpell1 : PoolObject<Spell_NewSpell1>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_ActiveSpells _spellData)
+    public void OnSpawn(SO_ActiveSpells _spellData, int _objIndex)
     {
         InitRigidbody();
         m_spellData = _spellData;
@@ -65,6 +66,8 @@ public class Spell_NewSpell1 : PoolObject<Spell_NewSpell1>
         {
             m_currentState = States.Returning;
         }
+
+        RotateBoomerang();
     }
 
     private void ReturningState()
@@ -83,6 +86,14 @@ public class Spell_NewSpell1 : PoolObject<Spell_NewSpell1>
         {
            DeactivateSpell();
         }
+
+        RotateBoomerang();
+    }
+
+    private void RotateBoomerang()
+    {
+        float rotationAmount = m_rotationSpeed * Time.deltaTime;
+        m_rb.MoveRotation(m_rb.rotation + rotationAmount);
     }
 
     /// <summary>

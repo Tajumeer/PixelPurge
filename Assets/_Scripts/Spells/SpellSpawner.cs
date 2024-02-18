@@ -78,6 +78,11 @@ public class SpellSpawner : MonoBehaviour
     /// </summary>
     public void SpawnNewSpell1(SO_ActiveSpells _data, ObjectPool<Spell_NewSpell1> _pool, Transform _parent)
     {
+        StartCoroutine(SpawnProjectilesWithDelay(_data, _pool, _parent));
+    }
+
+    private IEnumerator SpawnProjectilesWithDelay(SO_ActiveSpells _data, ObjectPool<Spell_NewSpell1> _pool, Transform _parent)
+    {
         for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
         {
             Spell_NewSpell1 spellObj = _pool.GetObject();
@@ -90,10 +95,12 @@ public class SpellSpawner : MonoBehaviour
 
             spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
 
-            spellObj.OnSpawn(_data);
+            spellObj.OnSpawn(_data, i);
+
+            yield return new WaitForSeconds(_data.Cd[_data.Level - 1] / _data.ProjectileAmount[_data.Level - 1]);
         }
     }
-    
+
     /// <summary>
     /// Spawn the Spell "NearPlayer"
     /// </summary>

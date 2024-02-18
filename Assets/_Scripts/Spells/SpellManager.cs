@@ -99,8 +99,8 @@ public class SpellManager : MonoBehaviour
 
         // Prototype
        // LearnActiveSpell(Spells.BaseArcher);
-       // LearnActiveSpell(Spells.NewSpell1);
-        LearnActiveSpell(Spells.NewSpell2);
+        LearnActiveSpell(Spells.NewSpell1);
+        //LearnActiveSpell(Spells.NewSpell2);
         //LearnActiveSpell(Spells.NewSpell3);
     }
 

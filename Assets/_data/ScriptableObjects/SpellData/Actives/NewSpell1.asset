@@ -34,11 +34,11 @@ MonoBehaviour:
   - 5
   - 5
   Cd:
+  - 3
   - 2
-  - 2
-  - 2
-  - 2
+  - 1.5
+  - 0.75
   Radius: []
-  ProjectileAmount: 01000000010000000200000002000000
+  ProjectileAmount: 01000000010000000100000001000000
   Pierce: []
   Bounce: []
