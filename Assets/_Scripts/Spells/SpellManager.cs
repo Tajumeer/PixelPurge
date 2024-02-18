@@ -46,7 +46,6 @@ public class SpellManager : MonoBehaviour
 {
     SpellSpawner m_spawnScript;
     ShowSpells m_spellUIScript;
-    PlayerStats m_passiveData;
 
     [Header("Scriptable Objects")]
     [SerializeField] private SO_AllSpells m_data_Spells;
@@ -98,8 +97,8 @@ public class SpellManager : MonoBehaviour
         InitScriptableObject();
 
         // Prototype
-       // LearnActiveSpell(Spells.BaseArcher);
-        LearnActiveSpell(Spells.NewSpell1);
+        LearnActiveSpell(Spells.BaseArcher);
+        //LearnActiveSpell(Spells.NewSpell1);
         //LearnActiveSpell(Spells.NewSpell2);
         //LearnActiveSpell(Spells.NewSpell3);
     }
@@ -206,11 +205,7 @@ public class SpellManager : MonoBehaviour
                     break;
             }
         }
-    }
 
-    public void InitPassiveData(PlayerController _controller)
-    {
-        m_passiveData = _controller.ActivePlayerData;
     }
 
     private void Update()
@@ -310,9 +305,10 @@ public class SpellManager : MonoBehaviour
     {
         SO_ActiveSpells spellSO = m_data_Spells.activeSpellSO[(int)_spell];
 
-        spellSO.Level = 4;                                      // set Spell Level to 1
+        spellSO.Level = 1;                                      // set Spell Level to 1
         m_active[(int)_spell] = true;                           // set Spell as active
-        m_cd[(int)_spell] = spellSO.Cd[spellSO.Level - 1];      // set Timer
+        m_cd[(int)_spell] = spellSO.Cd[spellSO.Level - 1];      // set Cooldown
+        m_timer[(int)_spell] = m_cd[(int)_spell] - 0.1f;               // set Timer to finish, to instantly fire it 
 
         GameObject obj = new GameObject();
 
@@ -414,51 +410,51 @@ public class SpellManager : MonoBehaviour
         switch (_spell)
         {
             case Spells.MovementSpeed:
-                m_passiveData.MovementSpeed += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.MovementSpeed += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.DamageMultiplier:
-                m_passiveData.DamageMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.DamageMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.CritChance:
-                m_passiveData.CritChance += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.CritChance += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.CritMultiplier:
-                m_passiveData.CritMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.CritMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.AttackSpeed:
-                m_passiveData.AttackSpeed += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.AttackSpeed += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.AreaMultiplier:
-                m_passiveData.AreaMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.AreaMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.MaxHealth:
-                m_passiveData.MaxHealth += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.MaxHealth += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.RecastTimeMultiplier:
-                m_passiveData.RecastTimeMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.RecastTimeMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.HealthRegeneration:
-                m_passiveData.HealthRegeneration += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.HealthRegeneration += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.DamageReductionPercentage:
-                m_passiveData.DamageReductionPercentage += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.DamageReductionPercentage += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.CollectionRadius:
-                m_passiveData.CollectionRadius += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.CollectionRadius += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.XPMultiplier:
-                m_passiveData.XPMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.XPMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
         }
     }

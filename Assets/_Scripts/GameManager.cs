@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public int Gold;
     private FirestoreRest m_firestore;
 
+    private DungeonHUDManager m_hudManager;
+
 
     private void Awake()
     {
@@ -54,12 +56,18 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         UserScore += _score;
         Debug.Log("Current UserScore = " + UserScore);
+
+        if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
+            m_hudManager.ShowScore(UserScore);
     }
 
     public void AddGold(int _gold)
     {
         Gold += _gold;
         Debug.Log("Current Gold = " + Gold);
+
+        if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
+            m_hudManager.ShowGold(Gold);
     }
 
     public void Win()

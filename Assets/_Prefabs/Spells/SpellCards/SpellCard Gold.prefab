@@ -110,6 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_spell: 6
+  m_newText: {fileID: 0}
   m_icon: {fileID: 8195677012544769141}
   m_name: {fileID: 1288897696758692926}
   m_description: {fileID: 4047258261333584399}
@@ -296,10 +297,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1999948787155542231}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.125, y: 0.53748953}
-  m_AnchorMax: {x: 0.87250054, y: 0.67300004}
-  m_AnchoredPosition: {x: 0.5, y: 0}
-  m_SizeDelta: {x: 1, y: 0}
+  m_AnchorMin: {x: 0.125, y: 0.485}
+  m_AnchorMax: {x: 0.87250054, y: 0.62048954}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6978828675371092896
 CanvasRenderer:

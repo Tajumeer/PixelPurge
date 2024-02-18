@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-// Maya
+// Maya, Sven
 
 public enum UpgradableStats
 {
@@ -38,6 +38,8 @@ public class ShopManager : MonoBehaviour
     [Tooltip("The image of the indicator when is has this level")]
     public Sprite m_indicatorImageUpgraded;
 
+    [SerializeField] private TextMeshProUGUI m_goldAmountText;
+
     [Space]
 
     [Header("Audio")]
@@ -55,6 +57,8 @@ public class ShopManager : MonoBehaviour
         m_progressionManager = FindObjectOfType<ProgressionManager>();
         m_gameManager = FindObjectOfType<GameManager>();
         m_audioManager = FindObjectOfType<AudioManager>();
+
+        m_goldAmountText.text = m_gameManager.Gold.ToString();
     }
 
     /// <summary>
@@ -66,12 +70,15 @@ public class ShopManager : MonoBehaviour
     {
         int stat = (int)_statScript.m_stat;
 
-        // HIER CHECK OB PLAYER GENUG GOLD HAT
-        // m_cost[stat].m_cost[m_data.StatLevel[stat] - 1] ist das Gold was benötigt wird zum Kaufen
+        // m_cost[stat].m_cost[m_data.StatLevel[stat] - 1] = gold needed to buy stat
         if(!GoldCheck(stat, m_cost[stat].m_cost[m_data.StatLevel[stat]]))
         {
             return;
         }
+
+        // reduce gold by the amount needed to buy stat and show it in UI
+        m_gameManager.AddGold(-m_cost[stat].m_cost[m_data.StatLevel[stat]]);
+        m_goldAmountText.text = m_gameManager.Gold.ToString();
 
         // set the level indicator image
         _statScript.m_levelIndicator[m_data.StatLevel[stat]].sprite = m_indicatorImageUpgraded;
@@ -126,6 +133,12 @@ public class ShopManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
+    /// <summary>
+    /// check if player has enough gold to buy that stat
+    /// </summary>
+    /// <param name="_stat"></param>
+    /// <param name="_cost"></param>
+    /// <returns></returns>
     private bool GoldCheck(int _stat, int _cost)
     {
         switch (_stat)

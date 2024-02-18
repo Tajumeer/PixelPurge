@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour, IDamagable
 {
+    [SerializeField] private SO_AllSpells m_allSpellsSO;
     public List<PlayerStats> PlayerData;
     public List<GameObject> PlayerVisual;
     [SerializeField] private AudioClip m_damageTakenClip;
@@ -79,6 +80,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         //XPMultiplier = PlayerData[m_characterIndex].XPMultiplier;
 
         ActivePlayerData = Instantiate(PlayerData[m_characterIndex]);
+        m_allSpellsSO.statSO = ActivePlayerData;
         m_healthBar.fillAmount = this.ActivePlayerData.CurrentHealth / ActivePlayerData.MaxHealth;
     }
 
@@ -155,7 +157,6 @@ public class PlayerController : MonoBehaviour, IDamagable
         else
         {
             GetComponentInChildren<LevelPlayer>().InitXP();
-            FindObjectOfType<SpellManager>().InitPassiveData(this);
         }
     }
 
