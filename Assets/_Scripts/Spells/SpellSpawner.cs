@@ -15,7 +15,7 @@ public class SpellSpawner : MonoBehaviour
 
     public void SpawnBaseArcher(SO_ActiveSpells _data, ObjectPool<Spell_BaseArcher> _pool, Transform _parent)
     {
-        for (int i = 0; i < _data.ProjectileAmount[_data.Level-1]; i++)
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
         {
             Spell_BaseArcher spellObj = _pool.GetObject();
 
@@ -36,7 +36,7 @@ public class SpellSpawner : MonoBehaviour
     /// </summary>
     public void SpawnAllDirections(SO_ActiveSpells _data, ObjectPool<Spell_AllDirections> _pool, Transform _parent)
     {
-        for (int i = 0; i < _data.ProjectileAmount[_data.Level-1]; i++)
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
         {
             Spell_AllDirections spellObj = _pool.GetObject();
 
@@ -122,7 +122,7 @@ public class SpellSpawner : MonoBehaviour
             spellObj.OnSpawn(_data, i);
         }
     }
-    
+
     public void SpawnGroundMine(SO_ActiveSpells _data, ObjectPool<Spell_GroundMine> _pool, Transform _parent)
     {
         for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
@@ -143,20 +143,17 @@ public class SpellSpawner : MonoBehaviour
 
     public void SpawnShockwave(SO_ActiveSpells _data, ObjectPool<Spell_Shockwave> _pool, Transform _parent)
     {
-        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
+        Spell_Shockwave spellObj = _pool.GetObject();
+
+        if (spellObj.tag != "PlayerSpell")
         {
-            Spell_Shockwave spellObj = _pool.GetObject();
-
-            if (spellObj.tag != "PlayerSpell")
-            {
-                spellObj.transform.SetParent(_parent);
-                spellObj.tag = "PlayerSpell";
-            }
-
-            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
-
-            spellObj.OnSpawn(_data);
+            spellObj.transform.SetParent(_parent);
+            spellObj.tag = "PlayerSpell";
         }
+
+        spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+        spellObj.OnSpawn(_data);
     }
 
     public void SpawnBomb(SO_ActiveSpells _data, ObjectPool<Spell_Bomb> _pool, Transform _parent)
@@ -173,7 +170,7 @@ public class SpellSpawner : MonoBehaviour
 
             spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
 
-            spellObj.OnSpawn(_data);
+            spellObj.OnSpawn(_data, m_player.gameObject.transform);
         }
     }
 
@@ -191,7 +188,7 @@ public class SpellSpawner : MonoBehaviour
 
             spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
 
-            spellObj.OnSpawn(_data);
+            spellObj.OnSpawn(_data, m_player.gameObject.transform);
         }
     }
 

@@ -30,13 +30,12 @@ public class Spell_Aura : MonoBehaviour
     private void Update()
     {
         m_activeCD += Time.deltaTime;
-        if (m_activeCD >= m_spellData.Cd[m_spellData.Level - 1])
+        if (m_activeCD >= m_spellData.InternalCd[m_spellData.Level - 1])
         {
             DealDamage();
             m_activeCD = 0;
         }
 
-        //transform.position = Vector3.zero;
     }
 
     private void DealDamage()
@@ -66,9 +65,6 @@ public class Spell_Aura : MonoBehaviour
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
         m_enemysInAura.Enqueue(_collision.gameObject.GetComponent<IDamagable>());
-
-        // the enemy get damage on hit
-        //_collision.gameObject.GetComponent<IDamagable>().GetDamage(spellData.Damage);
     }
 
     private void OnTriggerExit2D(Collider2D _collision)

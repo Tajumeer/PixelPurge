@@ -17,12 +17,29 @@ MonoBehaviour:
   SpellDescription: Explodes anywhere on the map.
   SpellSFX: []
   Level: 0
-  MaxLevel: 0
-  Damage: []
-  Lifetime: []
+  MaxLevel: 4
+  Damage:
+  - 30
+  - 40
+  - 50
+  - 60
+  Lifetime:
+  - 0.2
+  - 0.2
+  - 0.2
+  - 0.2
   Speed: []
-  Cd: []
-  Radius: []
-  ProjectileAmount: 
+  Cd:
+  - 4
+  - 3
+  - 3
+  - 2
+  InternalCd: []
+  Radius:
+  - 3
+  - 4
+  - 4
+  - 5
+  ProjectileAmount: 01000000010000000200000003000000
   Pierce: []
   Bounce: []

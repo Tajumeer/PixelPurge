@@ -17,12 +17,33 @@ MonoBehaviour:
   SpellDescription: Creates an Area on the Map that deals damage to enemys in it.
   SpellSFX: []
   Level: 0
-  MaxLevel: 0
-  Damage: []
-  Lifetime: []
+  MaxLevel: 4
+  Damage:
+  - 10
+  - 20
+  - 30
+  - 30
+  Lifetime:
+  - 2
+  - 3
+  - 4
+  - 5
   Speed: []
-  Cd: []
-  Radius: []
-  ProjectileAmount: 
+  Cd:
+  - 5
+  - 4
+  - 3
+  - 3
+  InternalCd:
+  - 0.4
+  - 0.4
+  - 0.3
+  - 0.3
+  Radius:
+  - 2
+  - 2
+  - 3
+  - 4
+  ProjectileAmount: 01000000010000000200000003000000
   Pierce: []
   Bounce: []

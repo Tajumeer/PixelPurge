@@ -27,7 +27,6 @@ public class Spell_GroundMine : PoolObject<Spell_GroundMine>
         // Start Lifetime
         StartCoroutine(DeleteTimer());
 
-        // AB HIER KANNST DU WAS MACHEN
     }
 
     /// <summary>

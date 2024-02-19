@@ -22,7 +22,9 @@ public class Spell_Shockwave : PoolObject<Spell_Shockwave>
         // Start Lifetime
         StartCoroutine(DeleteTimer());
 
-        // AB HIER KANNST DU WAS MACHEN
+        // Set Radius
+        transform.localScale = new Vector3
+            (m_spellData.Radius[m_spellData.Level - 1], m_spellData.Radius[m_spellData.Level - 1], m_spellData.Radius[m_spellData.Level - 1]);
     }
 
     /// <summary>
@@ -43,7 +45,6 @@ public class Spell_Shockwave : PoolObject<Spell_Shockwave>
 
         // the enemy get damage on hit
         _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage[m_spellData.Level - 1]);
-
     }
 
     /// <summary>

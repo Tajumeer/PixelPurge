@@ -15,17 +15,17 @@ using static UnityEngine.Rendering.DebugUI;
 public enum Spells
 {
     BaseArcher = 0,
-    AllDirections,
-    NearPlayer,
     Aura,
-    Boomerang,
-    ProtectiveOrbs,
-    GroundMine,
     Shockwave,
     Bomb,
     PoisonArea,
-    ChainLightning,
+    GroundMine,
+    ProtectiveOrbs,
     ArrowVolley,
+    AllDirections,
+    NearPlayer,
+    ChainLightning,
+    Boomerang,
     Shield,
     /// <summary> Indicator: End of Active Spells </summary>
     ActiveSpells,
@@ -117,6 +117,7 @@ public class SpellManager : MonoBehaviour
 
         // Prototype
         LearnActiveSpell(Spells.BaseArcher);
+        LearnActiveSpell(Spells.PoisonArea);
     }
 
     /// <summary>
@@ -371,7 +372,7 @@ public class SpellManager : MonoBehaviour
         spellSO.Level = 1;                                      // set Spell Level to 1
         m_active[(int)_spell] = true;                           // set Spell as active
         m_cd[(int)_spell] = spellSO.Cd[spellSO.Level - 1];      // set Cooldown
-        m_timer[(int)_spell] = m_cd[(int)_spell] - 0.1f;               // set Timer to finish, to instantly fire it 
+        m_timer[(int)_spell] = m_cd[(int)_spell] - 0.2f;        // set Timer to finish, to instantly fire it 
 
         GameObject obj = new GameObject();
 
@@ -395,11 +396,10 @@ public class SpellManager : MonoBehaviour
             case Spells.Aura:
                 GameObject auraObj = Instantiate(m_prefab_Aura, FindObjectOfType<PlayerController>().gameObject.transform);
                 auraObj.name = "Aura";
-                m_parent[(int)_spell] = auraObj.transform;
                 auraObj.transform.localScale = new Vector3
                     (spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1]);
-                m_parent[(int)_spell] = obj.transform;
-                auraObj.GetComponent<Spell_Aura>().OnSpawn(spellSO);
+                m_parent[(int)_spell] = auraObj.transform;
+                m_parent[(int)_spell].GetComponent<Spell_Aura>().OnSpawn(spellSO);
                 break;
 
             case Spells.Boomerang:

@@ -23,7 +23,6 @@ public class Spell_Shield : PoolObject<Spell_Shield>
         // Start Lifetime
         StartCoroutine(DeleteTimer());
 
-        // AB HIER KANNST DU WAS MACHEN
     }
 
     /// <summary>

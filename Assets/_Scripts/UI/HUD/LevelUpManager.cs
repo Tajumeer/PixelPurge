@@ -286,6 +286,11 @@ public class LevelUpManager : MonoBehaviour
             description +=
             GetSpellDescription(_spellSO.Cd[_spellSO.Level - 1], _spellSO.Cd[_spellSO.Level], m_dataSpells.nameSpellSO.Cd);
 
+        // InternalCd
+        if (_spellSO.Cd.Length == _spellSO.MaxLevel)
+            description +=
+            GetSpellDescription(_spellSO.InternalCd[_spellSO.Level - 1], _spellSO.InternalCd[_spellSO.Level], m_dataSpells.nameSpellSO.InternalCd);
+
         // Radius
         if (_spellSO.Radius.Length == _spellSO.MaxLevel)
             description +=

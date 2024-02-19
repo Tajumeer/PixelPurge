@@ -13,7 +13,7 @@ public class Spell_Bomb : PoolObject<Spell_Bomb>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_ActiveSpells _spellData)
+    public void OnSpawn(SO_ActiveSpells _spellData, Transform _playerTransf)
     {
         InitRigidbody();
 
@@ -22,7 +22,25 @@ public class Spell_Bomb : PoolObject<Spell_Bomb>
         // Start Lifetime
         StartCoroutine(DeleteTimer());
 
-        // AB HIER KANNST DU WAS MACHEN
+        SpawnAtRandomPosition(_playerTransf);
+    }
+
+    private void SpawnAtRandomPosition(Transform _playerTransf)
+    {
+        // set Radius
+        transform.localScale = new Vector3
+            (m_spellData.Radius[m_spellData.Level - 1], m_spellData.Radius[m_spellData.Level - 1], m_spellData.Radius[m_spellData.Level - 1]);
+
+        float radiusToSpawn = FindObjectOfType<Camera>().orthographicSize;      // can spawn within the bounds of the camera
+        radiusToSpawn -= (m_spellData.Radius[m_spellData.Level - 1] / 2);       //and with a little space to the bounds
+
+        // randomize position in camera view
+        float xPos = Random.Range(-radiusToSpawn, radiusToSpawn);
+        float yPos = Random.Range(-radiusToSpawn, radiusToSpawn);
+
+        Vector3 positionToSpawn = new Vector3(_playerTransf.position.x + xPos, _playerTransf.position.y + yPos, _playerTransf.position.z);
+
+        transform.position = positionToSpawn;
     }
 
     /// <summary>
@@ -43,7 +61,6 @@ public class Spell_Bomb : PoolObject<Spell_Bomb>
 
         // the enemy get damage on hit
         _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage[m_spellData.Level - 1]);
-
     }
 
     /// <summary>
