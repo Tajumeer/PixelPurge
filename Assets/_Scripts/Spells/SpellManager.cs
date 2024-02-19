@@ -121,7 +121,6 @@ public class SpellManager : MonoBehaviour
         //LearnActiveSpell(Spells.Aura);
         //LearnActiveSpell(Spells.Bomb);
         //LearnActiveSpell(Spells.PoisonArea);
-        //LearnActiveSpell(Spells.GroundMine);
         //LearnActiveSpell(Spells.Shockwave);
     }
 

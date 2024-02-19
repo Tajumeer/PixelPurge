@@ -36,10 +36,10 @@ MonoBehaviour:
   - 0.4
   - 0.4
   Radius:
-  - 2
-  - 3
-  - 4
-  - 5
+  - 0.7
+  - 0.9
+  - 1.2
+  - 1.5
   ProjectileAmount: 
   Pierce: []
   Bounce: []

@@ -57,6 +57,9 @@ TagManager:
   - name: Ground
     uniqueID: 1606310687
     locked: 0
+  - name: Spells
+    uniqueID: 2104640153
+    locked: 0
   - name: Obstacles
     uniqueID: 2623107153
     locked: 0
