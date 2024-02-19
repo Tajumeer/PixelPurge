@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 // Maya, Sven
 
-public class Spell_NewSpell1 : PoolObject<Spell_NewSpell1>
+public class Spell_Boomerang : PoolObject<Spell_Boomerang>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;

@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cba315fa26148b94d86d1d1857c6e60b, type: 3}
-  m_Name: NewSpell2
+  m_Name: ProtectiveOrbs
   m_EditorClassIdentifier: 
-  SpellName: NewSpell
+  SpellName: Protective Orbs
   SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
-  SpellDescription: xxx
+  SpellDescription: Spawns rotating orbs around the Player
   SpellSFX: []
   Level: 0
   MaxLevel: 4

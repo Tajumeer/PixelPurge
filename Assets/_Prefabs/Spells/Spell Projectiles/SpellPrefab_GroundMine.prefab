@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6735219912861677153}
   - component: {fileID: 4739980847773344426}
   - component: {fileID: 3242440780474736521}
-  - component: {fileID: 9011500288550558586}
+  - component: {fileID: 1085111596630568184}
   m_Layer: 8
-  m_Name: SpellPrefab_NewSpell1
+  m_Name: SpellPrefab_GroundMine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: -1232874407
   m_SortingLayer: 4
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 73e1252d962553047a5f2f00047bf061, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Color: {r: 0.8, g: 0.43912122, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &9011500288550558586
+--- !u!114 &1085111596630568184
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,8 +158,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1960888898802110764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 844dd4b4b3a3855479c12a1db1d4fcf2, type: 3}
+  m_Script: {fileID: 11500000, guid: 514d5cd9b4a9d3a4790a78c905ed7e63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_travelDistance: 5
-  m_rotationSpeed: 15000

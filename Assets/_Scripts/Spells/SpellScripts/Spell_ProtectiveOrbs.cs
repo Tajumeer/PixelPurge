@@ -5,7 +5,7 @@ using UnityEngine;
 
 // Maya, Sven
 
-public class Spell_NewSpell2 : PoolObject<Spell_NewSpell2>
+public class Spell_ProtectiveOrbs : PoolObject<Spell_ProtectiveOrbs>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;

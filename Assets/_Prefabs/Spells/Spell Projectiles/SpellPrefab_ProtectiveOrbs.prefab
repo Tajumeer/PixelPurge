@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6735219912861677153}
   - component: {fileID: 4739980847773344426}
   - component: {fileID: 3242440780474736521}
-  - component: {fileID: 1085111596630568184}
+  - component: {fileID: 3650087382074673446}
   m_Layer: 8
-  m_Name: SpellPrefab_NewSpell3
+  m_Name: SpellPrefab_ProtectiveOrbs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.8, g: 0.43912122, b: 0, a: 1}
+  m_Color: {r: 0, g: 0.8, b: 0.6977009, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &1085111596630568184
+--- !u!114 &3650087382074673446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,6 +158,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1960888898802110764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 514d5cd9b4a9d3a4790a78c905ed7e63, type: 3}
+  m_Script: {fileID: 11500000, guid: 7add5be7ee82d184fa049a68cf8df36a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

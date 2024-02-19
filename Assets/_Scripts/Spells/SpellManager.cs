@@ -17,9 +17,9 @@ public enum Spells
     AllDirections,
     NearPlayer,
     Aura,
-    NewSpell1,
-    NewSpell2,
-    NewSpell3,
+    Boomerang,
+    ProtectiveOrbs,
+    GroundMine,
     /// <summary> Indicator: End of Active Spells </summary>
     ActiveSpells,
 
@@ -56,17 +56,17 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject m_prefab_NearPlayer;
     [SerializeField] private GameObject m_prefab_BaseArcher;
     [SerializeField] private GameObject m_prefab_Aura;
-    [SerializeField] private GameObject m_prefab_NewSpell1;
-    [SerializeField] private GameObject m_prefab_NewSpell2;
-    [SerializeField] private GameObject m_prefab_NewSpell3;
+    [SerializeField] private GameObject m_prefab_Boomerang;
+    [SerializeField] private GameObject m_prefab_ProtectiveOrbs;
+    [SerializeField] private GameObject m_prefab_GroundMine;
 
     [Header("Pools")]
     private ObjectPool<Spell_AllDirections> m_pool_AllDirections;
     private ObjectPool<Spell_NearPlayer> m_pool_NearPlayer;
     private ObjectPool<Spell_BaseArcher> m_pool_BaseArcher;
-    private ObjectPool<Spell_NewSpell1> m_pool_NewSpell1;
-    private ObjectPool<Spell_NewSpell2> m_pool_NewSpell2;
-    private ObjectPool<Spell_NewSpell3> m_pool_NewSpell3;
+    private ObjectPool<Spell_Boomerang> m_pool_Boomerang;
+    private ObjectPool<Spell_ProtectiveOrbs> m_pool_ProtectiveOrbs;
+    private ObjectPool<Spell_GroundMine> m_pool_GroundMine;
 
     [Header("Parent Objects")]
     private Transform[] m_parent = new Transform[(int)Spells.ActiveSpells];
@@ -98,9 +98,6 @@ public class SpellManager : MonoBehaviour
 
         // Prototype
         LearnActiveSpell(Spells.BaseArcher);
-        //LearnActiveSpell(Spells.NewSpell1);
-        //LearnActiveSpell(Spells.NewSpell2);
-        //LearnActiveSpell(Spells.NewSpell3);
     }
 
     /// <summary>
@@ -132,16 +129,16 @@ public class SpellManager : MonoBehaviour
                     m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Aura);
                     break;
 
-                case Spells.NewSpell1:
-                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_NewSpell1);
+                case Spells.Boomerang:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Boomerang);
                     break;
 
-                case Spells.NewSpell2:
-                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_NewSpell2);
+                case Spells.ProtectiveOrbs:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_ProtectiveOrbs);
                     break;
 
-                case Spells.NewSpell3:
-                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_NewSpell3);
+                case Spells.GroundMine:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_GroundMine);
                     break;
             }
         }
@@ -235,16 +232,16 @@ public class SpellManager : MonoBehaviour
                     case (int)Spells.Aura:
                         break;
                         
-                    case (int)Spells.NewSpell1:
-                        m_spawnScript.SpawnNewSpell1(m_data_Spells.activeSpellSO[(int)Spells.NewSpell1], m_pool_NewSpell1, m_parent[(int)Spells.NewSpell1]);
+                    case (int)Spells.Boomerang:
+                        m_spawnScript.SpawnBoomerang(m_data_Spells.activeSpellSO[(int)Spells.Boomerang], m_pool_Boomerang, m_parent[(int)Spells.Boomerang]);
                         break;
                         
-                    case (int)Spells.NewSpell2:
-                        m_spawnScript.SpawnNewSpell2(m_data_Spells.activeSpellSO[(int)Spells.NewSpell2], m_pool_NewSpell2, m_parent[(int)Spells.NewSpell2]);
+                    case (int)Spells.ProtectiveOrbs:
+                        m_spawnScript.SpawnProtectiveOrbs(m_data_Spells.activeSpellSO[(int)Spells.ProtectiveOrbs], m_pool_ProtectiveOrbs, m_parent[(int)Spells.ProtectiveOrbs]);
                         break;
                         
-                    case (int)Spells.NewSpell3:
-                        m_spawnScript.SpawnNewSpell3(m_data_Spells.activeSpellSO[(int)Spells.NewSpell3], m_pool_NewSpell3, m_parent[(int)Spells.NewSpell3]);
+                    case (int)Spells.GroundMine:
+                        m_spawnScript.SpawnGroundMine(m_data_Spells.activeSpellSO[(int)Spells.GroundMine], m_pool_GroundMine, m_parent[(int)Spells.GroundMine]);
                         break;
 
                 }
@@ -339,18 +336,18 @@ public class SpellManager : MonoBehaviour
                 auraObj.GetComponent<Spell_Aura>().OnSpawn(spellSO);
                 break;
 
-            case Spells.NewSpell1:
-                m_pool_NewSpell1 = new ObjectPool<Spell_NewSpell1>(m_prefab_NewSpell1);
+            case Spells.Boomerang:
+                m_pool_Boomerang = new ObjectPool<Spell_Boomerang>(m_prefab_Boomerang);
                 obj.name = "NewSpell1";
                 break;
 
-            case Spells.NewSpell2:
-                m_pool_NewSpell2 = new ObjectPool<Spell_NewSpell2>(m_prefab_NewSpell2);
+            case Spells.ProtectiveOrbs:
+                m_pool_ProtectiveOrbs = new ObjectPool<Spell_ProtectiveOrbs>(m_prefab_ProtectiveOrbs);
                 obj.name = "NewSpell2";
                 break;
 
-            case Spells.NewSpell3:
-                m_pool_NewSpell3 = new ObjectPool<Spell_NewSpell3>(m_prefab_NewSpell3);
+            case Spells.GroundMine:
+                m_pool_GroundMine = new ObjectPool<Spell_GroundMine>(m_prefab_GroundMine);
                 obj.name = "NewSpell3";
                 break;
 

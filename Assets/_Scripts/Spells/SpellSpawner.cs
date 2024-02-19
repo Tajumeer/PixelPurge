@@ -57,7 +57,12 @@ public class SpellSpawner : MonoBehaviour
     /// </summary>
     public void SpawnNearPlayer(SO_ActiveSpells _data, ObjectPool<Spell_NearPlayer> _pool, Transform _parent)
     {
-        for (int i = 0; i < _data.ProjectileAmount[_data.Level-1]; i++)
+        StartCoroutine(SpawnNearPlayerWithDelay(_data, _pool, _parent));
+    }
+
+    private IEnumerator SpawnNearPlayerWithDelay(SO_ActiveSpells _data, ObjectPool<Spell_NearPlayer> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
         {
             Spell_NearPlayer spellObj = _pool.GetObject();
 
@@ -70,22 +75,24 @@ public class SpellSpawner : MonoBehaviour
             spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
 
             spellObj.OnSpawn(_data);
+
+            yield return new WaitForSeconds(_data.Cd[_data.Level - 1] / _data.ProjectileAmount[_data.Level - 1]);
         }
     }
 
     /// <summary>
     /// Spawn the Spell "NearPlayer"
     /// </summary>
-    public void SpawnNewSpell1(SO_ActiveSpells _data, ObjectPool<Spell_NewSpell1> _pool, Transform _parent)
+    public void SpawnBoomerang(SO_ActiveSpells _data, ObjectPool<Spell_Boomerang> _pool, Transform _parent)
     {
-        StartCoroutine(SpawnProjectilesWithDelay(_data, _pool, _parent));
+        StartCoroutine(SpawnBoomerangWithDelay(_data, _pool, _parent));
     }
 
-    private IEnumerator SpawnProjectilesWithDelay(SO_ActiveSpells _data, ObjectPool<Spell_NewSpell1> _pool, Transform _parent)
+    private IEnumerator SpawnBoomerangWithDelay(SO_ActiveSpells _data, ObjectPool<Spell_Boomerang> _pool, Transform _parent)
     {
         for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
         {
-            Spell_NewSpell1 spellObj = _pool.GetObject();
+            Spell_Boomerang spellObj = _pool.GetObject();
 
             if (spellObj.tag != "PlayerSpell")
             {
@@ -104,11 +111,11 @@ public class SpellSpawner : MonoBehaviour
     /// <summary>
     /// Spawn the Spell "NearPlayer"
     /// </summary>
-    public void SpawnNewSpell2(SO_ActiveSpells _data, ObjectPool<Spell_NewSpell2> _pool, Transform _parent)
+    public void SpawnProtectiveOrbs(SO_ActiveSpells _data, ObjectPool<Spell_ProtectiveOrbs> _pool, Transform _parent)
     {
         for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
         {
-            Spell_NewSpell2 spellObj = _pool.GetObject();
+            Spell_ProtectiveOrbs spellObj = _pool.GetObject();
 
             if (spellObj.tag != "PlayerSpell")
             {
@@ -125,11 +132,11 @@ public class SpellSpawner : MonoBehaviour
     /// <summary>
     /// Spawn the Spell "NearPlayer"
     /// </summary>
-    public void SpawnNewSpell3(SO_ActiveSpells _data, ObjectPool<Spell_NewSpell3> _pool, Transform _parent)
+    public void SpawnGroundMine(SO_ActiveSpells _data, ObjectPool<Spell_GroundMine> _pool, Transform _parent)
     {
         for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
         {
-            Spell_NewSpell3 spellObj = _pool.GetObject();
+            Spell_GroundMine spellObj = _pool.GetObject();
 
             if (spellObj.tag != "PlayerSpell")
             {

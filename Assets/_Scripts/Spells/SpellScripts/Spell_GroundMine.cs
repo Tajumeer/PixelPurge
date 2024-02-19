@@ -4,10 +4,12 @@ using UnityEngine;
 
 // Maya, Sven
 
-public class Spell_NewSpell3 : PoolObject<Spell_NewSpell3>
+public class Spell_GroundMine : PoolObject<Spell_GroundMine>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
+
+    private float m_health;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -20,6 +22,7 @@ public class Spell_NewSpell3 : PoolObject<Spell_NewSpell3>
         InitRigidbody();
 
         m_spellData = _spellData;
+        m_health = m_spellData.Pierce[m_spellData.Level - 1];
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
@@ -45,6 +48,10 @@ public class Spell_NewSpell3 : PoolObject<Spell_NewSpell3>
 
         // the enemy get damage on hit
         _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage[m_spellData.Level - 1]);
+
+        // and the spell loses duration or dies
+        m_health -= 1;
+        if (m_health <= 0) DeactivateSpell();
     }
 
     /// <summary>
