@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Maya
+
 public class Spell_Shockwave : PoolObject<Spell_Shockwave>
 {
     private Rigidbody2D m_rb;

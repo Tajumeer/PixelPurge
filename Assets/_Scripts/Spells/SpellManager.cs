@@ -117,7 +117,8 @@ public class SpellManager : MonoBehaviour
 
         // Prototype
         LearnActiveSpell(Spells.BaseArcher);
-        LearnActiveSpell(Spells.PoisonArea);
+        LearnActiveSpell(Spells.Shield);
+        LearnActiveSpell(Spells.Aura);
     }
 
     /// <summary>
@@ -309,7 +310,8 @@ public class SpellManager : MonoBehaviour
                         break;
                         
                     case (int)Spells.Shield:
-                        m_spawnScript.SpawnShield(m_data_Spells.activeSpellSO[(int)Spells.Shield], m_pool_Shield, m_parent[(int)Spells.Shield]);
+                        m_parent[(int)Spells.Shield].gameObject.SetActive(true);
+                        m_parent[(int)Spells.Shield].GetComponent<Spell_Shield>().OnSpawn(m_data_Spells.activeSpellSO[(int)Spells.Shield]);
                         break;
                 }
                 m_timer[i] = 0;             // reset the timer
@@ -400,7 +402,7 @@ public class SpellManager : MonoBehaviour
                     (spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1]);
                 m_parent[(int)_spell] = auraObj.transform;
                 m_parent[(int)_spell].GetComponent<Spell_Aura>().OnSpawn(spellSO);
-                break;
+                return;
 
             case Spells.Boomerang:
                 m_pool_Boomerang = new ObjectPool<Spell_Boomerang>(m_prefab_Boomerang);
@@ -443,13 +445,14 @@ public class SpellManager : MonoBehaviour
                 break;
                 
             case Spells.Shield:
-                m_pool_Shield = new ObjectPool<Spell_Shield>(m_prefab_Shield);
-                obj.name = "Shield";
-                break;
-
+                GameObject shieldObj = Instantiate(m_prefab_Shield, FindObjectOfType<PlayerController>().gameObject.transform);
+                shieldObj.name = "Shield";
+                shieldObj.transform.localScale = new Vector3(1f, 1f, 1f);
+                m_parent[(int)_spell] = shieldObj.transform;
+                return;
         }
 
-        // Set Parent object for later use
+        // Set Parent object 
         obj.transform.SetParent(m_parent_Spells.transform);
         m_parent[(int)_spell] = obj.transform;
     }

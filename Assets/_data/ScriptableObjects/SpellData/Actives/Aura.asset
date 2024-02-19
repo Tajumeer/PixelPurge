@@ -25,7 +25,11 @@ MonoBehaviour:
   - 60
   Lifetime: []
   Speed: []
-  Cd: []
+  Cd:
+  - 0
+  - 0
+  - 0
+  - 0
   InternalCd:
   - 0.5
   - 0.5

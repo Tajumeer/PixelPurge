@@ -227,22 +227,4 @@ public class SpellSpawner : MonoBehaviour
             spellObj.OnSpawn(_data);
         }
     }
-
-    public void SpawnShield(SO_ActiveSpells _data, ObjectPool<Spell_Shield> _pool, Transform _parent)
-    {
-        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
-        {
-            Spell_Shield spellObj = _pool.GetObject();
-
-            if (spellObj.tag != "PlayerSpell")
-            {
-                spellObj.transform.SetParent(_parent);
-                spellObj.tag = "PlayerSpell";
-            }
-
-            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
-
-            spellObj.OnSpawn(_data);
-        }
-    }
 }

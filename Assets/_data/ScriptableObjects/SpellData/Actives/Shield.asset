@@ -14,14 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellName: Shield
   SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
-  SpellDescription: protects the Player for a few seconds.
+  SpellDescription: Protects the Player for a few seconds.
   SpellSFX: []
   Level: 0
-  MaxLevel: 0
-  Damage: []
-  Lifetime: []
+  MaxLevel: 4
+  Damage:
+  - 10
+  - 20
+  - 35
+  - 50
+  Lifetime:
+  - 3
+  - 4
+  - 5
+  - 6
   Speed: []
-  Cd: []
+  Cd:
+  - 6
+  - 5
+  - 4
+  - 4
+  InternalCd: []
   Radius: []
   ProjectileAmount: 
   Pierce: []

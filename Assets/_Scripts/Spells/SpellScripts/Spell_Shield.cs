@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Spell_Shield : PoolObject<Spell_Shield>
 {
+    [SerializeField] private SO_AllSpells m_data_allSpells;
+    [SerializeField] private float m_damageReductionPercentage = 20f;
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
-
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -19,6 +20,8 @@ public class Spell_Shield : PoolObject<Spell_Shield>
         InitRigidbody();
 
         m_spellData = _spellData;
+
+        m_data_allSpells.statSO.DamageReductionPercentage += m_damageReductionPercentage;
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
@@ -61,6 +64,6 @@ public class Spell_Shield : PoolObject<Spell_Shield>
     {
         StopAllCoroutines();
 
-        Deactivate();
+        gameObject.SetActive(false);
     }
 }

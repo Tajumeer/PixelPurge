@@ -16,6 +16,7 @@ MonoBehaviour:
   Lifetime: Duration
   Speed: Speed
   Cd: CD Reduction
+  InternalCd: Tick Rate
   Radius: Radius
   ProjectileAmount: Projectile Amount
   Bounce: Bounce
