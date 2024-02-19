@@ -54,6 +54,12 @@ MonoBehaviour:
   m_prefab_Boomerang: {fileID: 1960888898802110764, guid: 21fc769d154749b4d86418f523efffb1, type: 3}
   m_prefab_ProtectiveOrbs: {fileID: 1960888898802110764, guid: 43e89e08e7a061640bebc2f094acab60, type: 3}
   m_prefab_GroundMine: {fileID: 1960888898802110764, guid: 9b682303520d4704a9fe4bc6e109ca99, type: 3}
+  m_prefab_Shockwave: {fileID: 1960888898802110764, guid: 784fc9db76f94c046b7713008d8d7cf0, type: 3}
+  m_prefab_Bomb: {fileID: 1960888898802110764, guid: 928209e11e5e58c478347ba56dee31c0, type: 3}
+  m_prefab_PoisonArea: {fileID: 1960888898802110764, guid: a5e9feb324dc5ca4faa3ec1a9a2cf486, type: 3}
+  m_prefab_ChainLightning: {fileID: 1960888898802110764, guid: 2f7b711adea4dca4aa221f2317ae782a, type: 3}
+  m_prefab_ArrowVolley: {fileID: 1960888898802110764, guid: 7a396c36875f29d4e9c9721936ee9953, type: 3}
+  m_prefab_Shield: {fileID: 1960888898802110764, guid: 874575f78971e0f4f8ee6ab4800d9552, type: 3}
 --- !u!114 &2556516342377364200
 MonoBehaviour:
   m_ObjectHideFlags: 0

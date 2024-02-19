@@ -80,9 +80,6 @@ public class SpellSpawner : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Spawn the Spell "NearPlayer"
-    /// </summary>
     public void SpawnBoomerang(SO_ActiveSpells _data, ObjectPool<Spell_Boomerang> _pool, Transform _parent)
     {
         StartCoroutine(SpawnBoomerangWithDelay(_data, _pool, _parent));
@@ -108,9 +105,6 @@ public class SpellSpawner : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Spawn the Spell "NearPlayer"
-    /// </summary>
     public void SpawnProtectiveOrbs(SO_ActiveSpells _data, ObjectPool<Spell_ProtectiveOrbs> _pool, Transform _parent)
     {
         for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
@@ -129,14 +123,119 @@ public class SpellSpawner : MonoBehaviour
         }
     }
     
-    /// <summary>
-    /// Spawn the Spell "NearPlayer"
-    /// </summary>
     public void SpawnGroundMine(SO_ActiveSpells _data, ObjectPool<Spell_GroundMine> _pool, Transform _parent)
     {
         for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
         {
             Spell_GroundMine spellObj = _pool.GetObject();
+
+            if (spellObj.tag != "PlayerSpell")
+            {
+                spellObj.transform.SetParent(_parent);
+                spellObj.tag = "PlayerSpell";
+            }
+
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+            spellObj.OnSpawn(_data);
+        }
+    }
+
+    public void SpawnShockwave(SO_ActiveSpells _data, ObjectPool<Spell_Shockwave> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
+        {
+            Spell_Shockwave spellObj = _pool.GetObject();
+
+            if (spellObj.tag != "PlayerSpell")
+            {
+                spellObj.transform.SetParent(_parent);
+                spellObj.tag = "PlayerSpell";
+            }
+
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+            spellObj.OnSpawn(_data);
+        }
+    }
+
+    public void SpawnBomb(SO_ActiveSpells _data, ObjectPool<Spell_Bomb> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
+        {
+            Spell_Bomb spellObj = _pool.GetObject();
+
+            if (spellObj.tag != "PlayerSpell")
+            {
+                spellObj.transform.SetParent(_parent);
+                spellObj.tag = "PlayerSpell";
+            }
+
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+            spellObj.OnSpawn(_data);
+        }
+    }
+
+    public void SpawnPoisonArea(SO_ActiveSpells _data, ObjectPool<Spell_PoisonArea> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
+        {
+            Spell_PoisonArea spellObj = _pool.GetObject();
+
+            if (spellObj.tag != "PlayerSpell")
+            {
+                spellObj.transform.SetParent(_parent);
+                spellObj.tag = "PlayerSpell";
+            }
+
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+            spellObj.OnSpawn(_data);
+        }
+    }
+
+    public void SpawnChainLightning(SO_ActiveSpells _data, ObjectPool<Spell_ChainLightning> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
+        {
+            Spell_ChainLightning spellObj = _pool.GetObject();
+
+            if (spellObj.tag != "PlayerSpell")
+            {
+                spellObj.transform.SetParent(_parent);
+                spellObj.tag = "PlayerSpell";
+            }
+
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+            spellObj.OnSpawn(_data);
+        }
+    }
+
+    public void SpawnArrowVolley(SO_ActiveSpells _data, ObjectPool<Spell_ArrowVolley> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
+        {
+            Spell_ArrowVolley spellObj = _pool.GetObject();
+
+            if (spellObj.tag != "PlayerSpell")
+            {
+                spellObj.transform.SetParent(_parent);
+                spellObj.tag = "PlayerSpell";
+            }
+
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+            spellObj.OnSpawn(_data);
+        }
+    }
+
+    public void SpawnShield(SO_ActiveSpells _data, ObjectPool<Spell_Shield> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _data.ProjectileAmount[_data.Level - 1]; i++)
+        {
+            Spell_Shield spellObj = _pool.GetObject();
 
             if (spellObj.tag != "PlayerSpell")
             {

@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6735219912861677153}
   - component: {fileID: 4739980847773344426}
   - component: {fileID: 3242440780474736521}
-  - component: {fileID: 5835941132251244570}
+  - component: {fileID: 5355565263669618818}
   m_Layer: 8
-  m_Name: SpellPrefab_BaseArcher
+  m_Name: ArrowVolley
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.7320633, g: 0, b: 0.8, a: 1}
+  m_Color: {r: 0.122641504, g: 0.122641504, b: 0.122641504, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5835941132251244570
+--- !u!114 &5355565263669618818
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,6 +158,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 1960888898802110764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 001fe3e667d41d84da8fd62e01352096, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d38a4de4ddb7724aa0f69f32e341ede, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

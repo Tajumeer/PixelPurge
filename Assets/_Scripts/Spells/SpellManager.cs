@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 // Maya
 
@@ -20,6 +21,12 @@ public enum Spells
     Boomerang,
     ProtectiveOrbs,
     GroundMine,
+    Shockwave,
+    Bomb,
+    PoisonArea,
+    ChainLightning,
+    ArrowVolley,
+    Shield,
     /// <summary> Indicator: End of Active Spells </summary>
     ActiveSpells,
 
@@ -59,6 +66,12 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject m_prefab_Boomerang;
     [SerializeField] private GameObject m_prefab_ProtectiveOrbs;
     [SerializeField] private GameObject m_prefab_GroundMine;
+    [SerializeField] private GameObject m_prefab_Shockwave;
+    [SerializeField] private GameObject m_prefab_Bomb;
+    [SerializeField] private GameObject m_prefab_PoisonArea;
+    [SerializeField] private GameObject m_prefab_ChainLightning;
+    [SerializeField] private GameObject m_prefab_ArrowVolley;
+    [SerializeField] private GameObject m_prefab_Shield;
 
     [Header("Pools")]
     private ObjectPool<Spell_AllDirections> m_pool_AllDirections;
@@ -67,6 +80,12 @@ public class SpellManager : MonoBehaviour
     private ObjectPool<Spell_Boomerang> m_pool_Boomerang;
     private ObjectPool<Spell_ProtectiveOrbs> m_pool_ProtectiveOrbs;
     private ObjectPool<Spell_GroundMine> m_pool_GroundMine;
+    private ObjectPool<Spell_Shockwave> m_pool_Shockwave;
+    private ObjectPool<Spell_Bomb> m_pool_Bomb;
+    private ObjectPool<Spell_PoisonArea> m_pool_PoisonArea;
+    private ObjectPool<Spell_ChainLightning> m_pool_ChainLightning;
+    private ObjectPool<Spell_ArrowVolley> m_pool_ArrowVolley;
+    private ObjectPool<Spell_Shield> m_pool_Shield;
 
     [Header("Parent Objects")]
     private Transform[] m_parent = new Transform[(int)Spells.ActiveSpells];
@@ -139,6 +158,30 @@ public class SpellManager : MonoBehaviour
 
                 case Spells.GroundMine:
                     m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_GroundMine);
+                    break;
+                    
+                case Spells.Shockwave:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Shockwave);
+                    break;
+                    
+                case Spells.Bomb:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Bomb);
+                    break;
+                    
+                case Spells.PoisonArea:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_PoisonArea);
+                    break;
+                    
+                case Spells.ChainLightning:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_ChainLightning);
+                    break;
+                    
+                case Spells.ArrowVolley:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_ArrowVolley);
+                    break;
+                    
+                case Spells.Shield:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Shield);
                     break;
             }
         }
@@ -243,7 +286,30 @@ public class SpellManager : MonoBehaviour
                     case (int)Spells.GroundMine:
                         m_spawnScript.SpawnGroundMine(m_data_Spells.activeSpellSO[(int)Spells.GroundMine], m_pool_GroundMine, m_parent[(int)Spells.GroundMine]);
                         break;
-
+                        
+                    case (int)Spells.Shockwave:
+                        m_spawnScript.SpawnShockwave(m_data_Spells.activeSpellSO[(int)Spells.Shockwave], m_pool_Shockwave, m_parent[(int)Spells.Shockwave]);
+                        break;
+                        
+                    case (int)Spells.Bomb:
+                        m_spawnScript.SpawnBomb(m_data_Spells.activeSpellSO[(int)Spells.Bomb], m_pool_Bomb, m_parent[(int)Spells.Bomb]);
+                        break;
+                        
+                    case (int)Spells.PoisonArea:
+                        m_spawnScript.SpawnPoisonArea(m_data_Spells.activeSpellSO[(int)Spells.PoisonArea], m_pool_PoisonArea, m_parent[(int)Spells.PoisonArea]);
+                        break;
+                        
+                    case (int)Spells.ChainLightning:
+                        m_spawnScript.SpawnChainLightning(m_data_Spells.activeSpellSO[(int)Spells.ChainLightning], m_pool_ChainLightning, m_parent[(int)Spells.ChainLightning]);
+                        break;
+                        
+                    case (int)Spells.ArrowVolley:
+                        m_spawnScript.SpawnArrowVolley(m_data_Spells.activeSpellSO[(int)Spells.ArrowVolley], m_pool_ArrowVolley, m_parent[(int)Spells.ArrowVolley]);
+                        break;
+                        
+                    case (int)Spells.Shield:
+                        m_spawnScript.SpawnShield(m_data_Spells.activeSpellSO[(int)Spells.Shield], m_pool_Shield, m_parent[(int)Spells.Shield]);
+                        break;
                 }
                 m_timer[i] = 0;             // reset the timer
             }
@@ -338,17 +404,47 @@ public class SpellManager : MonoBehaviour
 
             case Spells.Boomerang:
                 m_pool_Boomerang = new ObjectPool<Spell_Boomerang>(m_prefab_Boomerang);
-                obj.name = "NewSpell1";
+                obj.name = "Boomerang";
                 break;
 
             case Spells.ProtectiveOrbs:
                 m_pool_ProtectiveOrbs = new ObjectPool<Spell_ProtectiveOrbs>(m_prefab_ProtectiveOrbs);
-                obj.name = "NewSpell2";
+                obj.name = "ProtectiveOrbs";
                 break;
 
             case Spells.GroundMine:
                 m_pool_GroundMine = new ObjectPool<Spell_GroundMine>(m_prefab_GroundMine);
-                obj.name = "NewSpell3";
+                obj.name = "GroundMine";
+                break;
+                
+            case Spells.Shockwave:
+                m_pool_Shockwave = new ObjectPool<Spell_Shockwave>(m_prefab_Shockwave);
+                obj.name = "Shockwave";
+                break;
+                
+            case Spells.Bomb:
+                m_pool_Bomb = new ObjectPool<Spell_Bomb>(m_prefab_Bomb);
+                obj.name = "Bomb";
+                break;
+                
+            case Spells.PoisonArea:
+                m_pool_PoisonArea = new ObjectPool<Spell_PoisonArea>(m_prefab_PoisonArea);
+                obj.name = "PoisonArea";
+                break;
+                
+            case Spells.ChainLightning:
+                m_pool_ChainLightning = new ObjectPool<Spell_ChainLightning>(m_prefab_ChainLightning);
+                obj.name = "ChainLightning";
+                break;
+                
+            case Spells.ArrowVolley:
+                m_pool_ArrowVolley = new ObjectPool<Spell_ArrowVolley>(m_prefab_ArrowVolley);
+                obj.name = "ArrowVolley";
+                break;
+                
+            case Spells.Shield:
+                m_pool_Shield = new ObjectPool<Spell_Shield>(m_prefab_Shield);
+                obj.name = "Shield";
                 break;
 
         }
