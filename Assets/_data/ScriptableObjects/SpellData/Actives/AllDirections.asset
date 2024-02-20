@@ -17,22 +17,33 @@ MonoBehaviour:
   SpellDescription: Shoots at all directions.
   SpellSFX: []
   Level: 0
-  MaxLevel: 2
+  MaxLevel: 4
   Damage:
   - 100
   - 150
+  - 200
+  - 250
   Lifetime:
+  - 5
+  - 5
   - 5
   - 5
   Speed:
   - 3
   - 3
+  - 3
+  - 3
   Cd:
   - 4
   - 3
+  - 2
+  - 1
+  InternalCd: []
   Radius: []
-  ProjectileAmount: 0400000006000000
+  ProjectileAmount: 0400000006000000080000000c000000
   Pierce:
   - 1
   - 1
+  - 2
+  - 2
   Bounce: []

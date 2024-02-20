@@ -47,15 +47,10 @@ public class Spell_ProtectiveOrbs : PoolObject<Spell_ProtectiveOrbs>
     {
         m_angleOffset = 360f / m_spellData.ProjectileAmount[m_spellData.Level - 1];
 
+        Vector2 initialDirection = m_player.transform.position - this.transform.position;
+        float initialRotationAngle = Mathf.Atan2(initialDirection.y, initialDirection.x) * Mathf.Rad2Deg;
 
-        //        float angle = m_orbIndex * m_angleOffset;
-        //        Vector2 spawnPosition = new Vector2(
-        //            transform.position.x + m_spellData.Radius[m_spellData.Level - 1] * Mathf.Cos(angle * Mathf.Deg2Rad),
-        //            transform.position.y + m_spellData.Radius[m_spellData.Level - 1] * Mathf.Sin(angle * Mathf.Deg2Rad)
-        //        );
-
-        //       this.transform.position = spawnPosition;
-        //}
+        this.transform.rotation = Quaternion.Euler(0, 0, initialRotationAngle);
     }
     private void Update()
     {
@@ -67,6 +62,12 @@ public class Spell_ProtectiveOrbs : PoolObject<Spell_ProtectiveOrbs>
            );
 
             this.transform.position = (Vector2)m_player.transform.position + spawnPosition;
+
+        Vector2 direction = m_player.transform.position - this.transform.position;
+        float rotationAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // Apply the rotation to the projectile
+        this.transform.rotation = Quaternion.Euler(0, 0, rotationAngle + 180f);
     }
 
     public void OnTriggerEnter2D(Collider2D _collision)

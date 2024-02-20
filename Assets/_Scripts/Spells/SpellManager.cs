@@ -116,7 +116,9 @@ public class SpellManager : MonoBehaviour
         InitScriptableObject();
 
         // Learn Base Spell
-        LearnActiveSpell(Spells.BaseArcher);
+        LearnActiveSpell(Spells.ProtectiveOrbs);
+        //LearnActiveSpell(Spells.AllDirections);
+        //LearnActiveSpell(Spells.BaseArcher);
         //LearnActiveSpell(Spells.Shield);
         //LearnActiveSpell(Spells.Aura);
         //LearnActiveSpell(Spells.Bomb);
@@ -374,7 +376,7 @@ public class SpellManager : MonoBehaviour
     {
         SO_ActiveSpells spellSO = m_data_Spells.activeSpellSO[(int)_spell];
 
-        spellSO.Level = 1;                                      // set Spell Level to 1
+        spellSO.Level = 4;                                      // set Spell Level to 1
         m_active[(int)_spell] = true;                           // set Spell as active
         m_cd[(int)_spell] = spellSO.Cd[spellSO.Level - 1];      // set Cooldown
         m_timer[(int)_spell] = m_cd[(int)_spell] - 0.2f;        // set Timer to finish, to instantly fire it 

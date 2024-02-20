@@ -8,6 +8,7 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
+    [SerializeField] private float m_rotationSpeed;
 
     private float m_health;
 
@@ -36,25 +37,19 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
     /// <param name="_spellIdx"></param>
     private void Move(int _spellIdx)
     {
-        Vector2 direction = Vector2.up;
+        Vector2 direction = Quaternion.Euler(0, 0, _spellIdx * (360f / m_spellData.ProjectileAmount[m_spellData.Level - 1])) * Vector2.up;
 
-        switch (_spellIdx)
-        {
-            case 0:
-                direction = Vector2.up;
-                break;
-            case 1:
-                direction = Vector2.right;
-                break;
-            case 2:
-                direction = Vector2.down;
-                break;
-            case 3:
-                direction = Vector2.left;
-                break;
-        }
+        float currentAngle = _spellIdx * (360f / m_spellData.ProjectileAmount[m_spellData.Level - 1]);
 
-        m_rb.AddRelativeForce(direction * m_spellData.Speed[m_spellData.Level - 1], ForceMode2D.Impulse);
+        Vector2 offset = new Vector2(Mathf.Cos(Mathf.Deg2Rad * currentAngle), Mathf.Sin(Mathf.Deg2Rad * currentAngle));
+
+        m_rb.AddRelativeForce((direction + offset) * m_spellData.Speed[m_spellData.Level - 1], ForceMode2D.Impulse);
+    }
+
+    private void Update()
+    {
+        float rotationAmount = m_rotationSpeed * Time.deltaTime;
+        m_rb.MoveRotation(m_rb.rotation + rotationAmount);
     }
 
     /// <summary>
