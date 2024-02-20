@@ -661,6 +661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1165b2add14fe414abfad99f3e133c86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_allSpellsSO: {fileID: 11400000, guid: 22fd91090bafb824e98c940a99217f92, type: 2}
   PlayerData:
   - {fileID: 11400000, guid: df91bc8c82c2ea84f838aeb3c9daf98b, type: 2}
   - {fileID: 11400000, guid: 2d61830ac2557624f9291a0050c3c8e3, type: 2}
@@ -670,31 +671,10 @@ MonoBehaviour:
   - {fileID: 8432697436482157852}
   - {fileID: 3829722149230229650}
   m_damageTakenClip: {fileID: 0}
+  ActivePlayerData: {fileID: 0}
   ClassIndex: 0
   m_healthBar: {fileID: 2294293448755443649}
   MoveDirection: {x: 0, y: 0}
-  PlayerClassName: 
-  Level: 0
-  MaxHealth: 0
-  CurrentHealth: 0
-  MovementSpeed: 0
-  DashAmount: 0
-  DashSpeed: 0
-  DashCooldown: 0
-  DashTime: 0
-  DamageMultiplier: 0
-  CritChance: 0
-  CritMultiplier: 0
-  AttackSpeedMultiplier: 0
-  AreaMultiplier: 0
-  ProjectileSpeed: 0
-  HealthRegenration: 0
-  DamageReductionPercentage: 0
-  CollectionRadius: 0
-  GoldMultiplier: 0
-  XPNeeded: 0
-  XPNeededMultiplier: 0
-  XPMultiplier: 0
 --- !u!50 &6995192994167844590
 Rigidbody2D:
   serializedVersion: 4

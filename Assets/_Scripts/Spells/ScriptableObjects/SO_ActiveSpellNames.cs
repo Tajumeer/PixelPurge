@@ -14,6 +14,7 @@ public class SO_ActiveSpellNames : ScriptableObject
     public string Lifetime;
     public string Speed;
     public string Cd;
+    public string InternalCd;
     public string Radius;
 
     [Header("Projectile Stats")]

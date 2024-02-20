@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class ShowSpells : MonoBehaviour
 {
     [SerializeField] private SO_AllSpells m_dataSpells;
-    [SerializeField] private SO_PassiveSpells m_data_Passives;
 
     [Header("Active Spells")]
     [SerializeField] public Image[] m_sprites_active;
@@ -26,16 +25,16 @@ public class ShowSpells : MonoBehaviour
     /// </summary>
     private List<float> m_timer;
 
-    private List<Spells> m_learnedActiveSpells;
-    private List<Spells> m_learnedPassiveSpells;
+    public List<Spells> LearnedActiveSpells;
+    public List<Spells> LearnedPassiveSpells;
 
     private void OnEnable()
     {
         m_cd = new List<float>();
         m_timer = new List<float>();
 
-        m_learnedActiveSpells = new List<Spells>();
-        m_learnedPassiveSpells = new List<Spells>();
+        LearnedActiveSpells = new List<Spells>();
+        LearnedPassiveSpells = new List<Spells>();
 
         for (int i = 0; i < m_sprites_active.Length; i++)
         {
@@ -46,7 +45,7 @@ public class ShowSpells : MonoBehaviour
 
     private void Update()
     {
-        for (int i = 0; i < m_learnedActiveSpells.Count; i++)
+        for (int i = 0; i < LearnedActiveSpells.Count; i++)
         {
             m_timer[i] += Time.deltaTime;                               // cd of the spells
             m_cdImage[i].fillAmount = 1f - (m_timer[i] / m_cd[i]);      // set cd image in HUD inverted (1->0)
@@ -67,10 +66,10 @@ public class ShowSpells : MonoBehaviour
         SO_ActiveSpells spellSO = m_dataSpells.activeSpellSO[(int)_spell];
 
         // activate and set sprite icon
-        m_sprites_active[m_learnedActiveSpells.Count].gameObject.SetActive(true);
-        m_sprites_active[m_learnedActiveSpells.Count].sprite = spellSO.SpellIcon;
+        m_sprites_active[LearnedActiveSpells.Count].gameObject.SetActive(true);
+        m_sprites_active[LearnedActiveSpells.Count].sprite = spellSO.SpellIcon;
 
-        m_learnedActiveSpells.Add(_spell);
+        LearnedActiveSpells.Add(_spell);
 
         // set cd values
         m_cd.Add(spellSO.Cd[spellSO.Level - 1]);
@@ -83,9 +82,9 @@ public class ShowSpells : MonoBehaviour
         SO_PassiveSpells spellSO = m_dataSpells.passiveSpellSO[(int)_spell - ((int)Spells.ActiveSpells + 1)];
 
         // activate and set sprite icon
-        m_sprites_passive[m_learnedPassiveSpells.Count].gameObject.SetActive(true);
-        m_sprites_passive[m_learnedPassiveSpells.Count].sprite = spellSO.SpellIcon;
+        m_sprites_passive[LearnedPassiveSpells.Count].gameObject.SetActive(true);
+        m_sprites_passive[LearnedPassiveSpells.Count].sprite = spellSO.SpellIcon;
 
-        m_learnedPassiveSpells.Add(_spell);
+        LearnedPassiveSpells.Add(_spell);
     }
 }

@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba315fa26148b94d86d1d1857c6e60b, type: 3}
+  m_Name: GroundMine
+  m_EditorClassIdentifier: 
+  SpellName: Ground Mine
+  SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
+  SpellDescription: Spawns Damage Zones behind the player
+  SpellSFX: []
+  Level: 0
+  MaxLevel: 1
+  Damage:
+  - 10
+  - 30
+  - 50
+  - 50
+  Lifetime:
+  - 2
+  - 3
+  - 4
+  - 5
+  Speed: []
+  Cd:
+  - 4
+  - 4
+  - 3
+  - 2
+  Radius: []
+  ProjectileAmount: 01000000010000000100000001000000
+  Pierce:
+  - 1
+  - 1
+  - 1
+  - 1
+  Bounce: []

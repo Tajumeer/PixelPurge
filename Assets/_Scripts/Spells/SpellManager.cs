@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 // Maya
 
@@ -14,12 +15,18 @@ using UnityEngine.UIElements;
 public enum Spells
 {
     BaseArcher = 0,
+    Aura,
+    Shockwave,
+    Bomb,
+    PoisonArea,
+    GroundMine,
+    ProtectiveOrbs,
+    ArrowVolley,
     AllDirections,
     NearPlayer,
-    Aura,
-    NewSpell1,
-    NewSpell2,
-    NewSpell3,
+    ChainLightning,
+    Boomerang,
+    Shield,
     /// <summary> Indicator: End of Active Spells </summary>
     ActiveSpells,
 
@@ -46,7 +53,6 @@ public class SpellManager : MonoBehaviour
 {
     SpellSpawner m_spawnScript;
     ShowSpells m_spellUIScript;
-    PlayerStats m_passiveData;
 
     [Header("Scriptable Objects")]
     [SerializeField] private SO_AllSpells m_data_Spells;
@@ -57,17 +63,29 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject m_prefab_NearPlayer;
     [SerializeField] private GameObject m_prefab_BaseArcher;
     [SerializeField] private GameObject m_prefab_Aura;
-    [SerializeField] private GameObject m_prefab_NewSpell1;
-    [SerializeField] private GameObject m_prefab_NewSpell2;
-    [SerializeField] private GameObject m_prefab_NewSpell3;
+    [SerializeField] private GameObject m_prefab_Boomerang;
+    [SerializeField] private GameObject m_prefab_ProtectiveOrbs;
+    [SerializeField] private GameObject m_prefab_GroundMine;
+    [SerializeField] private GameObject m_prefab_Shockwave;
+    [SerializeField] private GameObject m_prefab_Bomb;
+    [SerializeField] private GameObject m_prefab_PoisonArea;
+    [SerializeField] private GameObject m_prefab_ChainLightning;
+    [SerializeField] private GameObject m_prefab_ArrowVolley;
+    [SerializeField] private GameObject m_prefab_Shield;
 
     [Header("Pools")]
     private ObjectPool<Spell_AllDirections> m_pool_AllDirections;
     private ObjectPool<Spell_NearPlayer> m_pool_NearPlayer;
     private ObjectPool<Spell_BaseArcher> m_pool_BaseArcher;
-    private ObjectPool<Spell_NewSpell1> m_pool_NewSpell1;
-    private ObjectPool<Spell_NewSpell2> m_pool_NewSpell2;
-    private ObjectPool<Spell_NewSpell3> m_pool_NewSpell3;
+    private ObjectPool<Spell_Boomerang> m_pool_Boomerang;
+    private ObjectPool<Spell_ProtectiveOrbs> m_pool_ProtectiveOrbs;
+    private ObjectPool<Spell_GroundMine> m_pool_GroundMine;
+    private ObjectPool<Spell_Shockwave> m_pool_Shockwave;
+    private ObjectPool<Spell_Bomb> m_pool_Bomb;
+    private ObjectPool<Spell_PoisonArea> m_pool_PoisonArea;
+    private ObjectPool<Spell_ChainLightning> m_pool_ChainLightning;
+    private ObjectPool<Spell_ArrowVolley> m_pool_ArrowVolley;
+    private ObjectPool<Spell_Shield> m_pool_Shield;
 
     [Header("Parent Objects")]
     private Transform[] m_parent = new Transform[(int)Spells.ActiveSpells];
@@ -97,11 +115,13 @@ public class SpellManager : MonoBehaviour
 
         InitScriptableObject();
 
-        // Prototype
-       // LearnActiveSpell(Spells.BaseArcher);
-        LearnActiveSpell(Spells.NewSpell1);
-        //LearnActiveSpell(Spells.NewSpell2);
-        //LearnActiveSpell(Spells.NewSpell3);
+        // Learn Base Spell
+        LearnActiveSpell(Spells.BaseArcher);
+        //LearnActiveSpell(Spells.Shield);
+        //LearnActiveSpell(Spells.Aura);
+        //LearnActiveSpell(Spells.Bomb);
+        //LearnActiveSpell(Spells.PoisonArea);
+        //LearnActiveSpell(Spells.Shockwave);
     }
 
     /// <summary>
@@ -133,16 +153,40 @@ public class SpellManager : MonoBehaviour
                     m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Aura);
                     break;
 
-                case Spells.NewSpell1:
-                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_NewSpell1);
+                case Spells.Boomerang:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Boomerang);
                     break;
 
-                case Spells.NewSpell2:
-                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_NewSpell2);
+                case Spells.ProtectiveOrbs:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_ProtectiveOrbs);
                     break;
 
-                case Spells.NewSpell3:
-                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_NewSpell3);
+                case Spells.GroundMine:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_GroundMine);
+                    break;
+                    
+                case Spells.Shockwave:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Shockwave);
+                    break;
+                    
+                case Spells.Bomb:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Bomb);
+                    break;
+                    
+                case Spells.PoisonArea:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_PoisonArea);
+                    break;
+                    
+                case Spells.ChainLightning:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_ChainLightning);
+                    break;
+                    
+                case Spells.ArrowVolley:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_ArrowVolley);
+                    break;
+                    
+                case Spells.Shield:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_Shield);
                     break;
             }
         }
@@ -206,11 +250,7 @@ public class SpellManager : MonoBehaviour
                     break;
             }
         }
-    }
 
-    public void InitPassiveData(PlayerController _controller)
-    {
-        m_passiveData = _controller.ActivePlayerData;
     }
 
     private void Update()
@@ -240,18 +280,42 @@ public class SpellManager : MonoBehaviour
                     case (int)Spells.Aura:
                         break;
                         
-                    case (int)Spells.NewSpell1:
-                        m_spawnScript.SpawnNewSpell1(m_data_Spells.activeSpellSO[(int)Spells.NewSpell1], m_pool_NewSpell1, m_parent[(int)Spells.NewSpell1]);
+                    case (int)Spells.Boomerang:
+                        m_spawnScript.SpawnBoomerang(m_data_Spells.activeSpellSO[(int)Spells.Boomerang], m_pool_Boomerang, m_parent[(int)Spells.Boomerang]);
                         break;
                         
-                    case (int)Spells.NewSpell2:
-                        m_spawnScript.SpawnNewSpell2(m_data_Spells.activeSpellSO[(int)Spells.NewSpell2], m_pool_NewSpell2, m_parent[(int)Spells.NewSpell2]);
+                    case (int)Spells.ProtectiveOrbs:
+                        m_spawnScript.SpawnProtectiveOrbs(m_data_Spells.activeSpellSO[(int)Spells.ProtectiveOrbs], m_pool_ProtectiveOrbs, m_parent[(int)Spells.ProtectiveOrbs]);
                         break;
                         
-                    case (int)Spells.NewSpell3:
-                        m_spawnScript.SpawnNewSpell3(m_data_Spells.activeSpellSO[(int)Spells.NewSpell3], m_pool_NewSpell3, m_parent[(int)Spells.NewSpell3]);
+                    case (int)Spells.GroundMine:
+                        m_spawnScript.SpawnGroundMine(m_data_Spells.activeSpellSO[(int)Spells.GroundMine], m_pool_GroundMine, m_parent[(int)Spells.GroundMine]);
                         break;
-
+                        
+                    case (int)Spells.Shockwave:
+                        m_spawnScript.SpawnShockwave(m_data_Spells.activeSpellSO[(int)Spells.Shockwave], m_pool_Shockwave, m_parent[(int)Spells.Shockwave]);
+                        break;
+                        
+                    case (int)Spells.Bomb:
+                        m_spawnScript.SpawnBomb(m_data_Spells.activeSpellSO[(int)Spells.Bomb], m_pool_Bomb, m_parent[(int)Spells.Bomb]);
+                        break;
+                        
+                    case (int)Spells.PoisonArea:
+                        m_spawnScript.SpawnPoisonArea(m_data_Spells.activeSpellSO[(int)Spells.PoisonArea], m_pool_PoisonArea, m_parent[(int)Spells.PoisonArea]);
+                        break;
+                        
+                    case (int)Spells.ChainLightning:
+                        m_spawnScript.SpawnChainLightning(m_data_Spells.activeSpellSO[(int)Spells.ChainLightning], m_pool_ChainLightning, m_parent[(int)Spells.ChainLightning]);
+                        break;
+                        
+                    case (int)Spells.ArrowVolley:
+                        m_spawnScript.SpawnArrowVolley(m_data_Spells.activeSpellSO[(int)Spells.ArrowVolley], m_pool_ArrowVolley, m_parent[(int)Spells.ArrowVolley]);
+                        break;
+                        
+                    case (int)Spells.Shield:
+                        m_parent[(int)Spells.Shield].gameObject.SetActive(true);
+                        m_parent[(int)Spells.Shield].GetComponent<Spell_Shield>().OnSpawn(m_data_Spells.activeSpellSO[(int)Spells.Shield]);
+                        break;
                 }
                 m_timer[i] = 0;             // reset the timer
             }
@@ -310,9 +374,10 @@ public class SpellManager : MonoBehaviour
     {
         SO_ActiveSpells spellSO = m_data_Spells.activeSpellSO[(int)_spell];
 
-        spellSO.Level = 4;                                      // set Spell Level to 1
+        spellSO.Level = 1;                                      // set Spell Level to 1
         m_active[(int)_spell] = true;                           // set Spell as active
-        m_cd[(int)_spell] = spellSO.Cd[spellSO.Level - 1];      // set Timer
+        m_cd[(int)_spell] = spellSO.Cd[spellSO.Level - 1];      // set Cooldown
+        m_timer[(int)_spell] = m_cd[(int)_spell] - 0.2f;        // set Timer to finish, to instantly fire it 
 
         GameObject obj = new GameObject();
 
@@ -336,31 +401,61 @@ public class SpellManager : MonoBehaviour
             case Spells.Aura:
                 GameObject auraObj = Instantiate(m_prefab_Aura, FindObjectOfType<PlayerController>().gameObject.transform);
                 auraObj.name = "Aura";
-                m_parent[(int)_spell] = auraObj.transform;
                 auraObj.transform.localScale = new Vector3
                     (spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1]);
-                m_parent[(int)_spell] = obj.transform;
-                auraObj.GetComponent<Spell_Aura>().OnSpawn(spellSO);
+                m_parent[(int)_spell] = auraObj.transform;
+                m_parent[(int)_spell].GetComponent<Spell_Aura>().OnSpawn(spellSO);
+                return;
+
+            case Spells.Boomerang:
+                m_pool_Boomerang = new ObjectPool<Spell_Boomerang>(m_prefab_Boomerang);
+                obj.name = "Boomerang";
                 break;
 
-            case Spells.NewSpell1:
-                m_pool_NewSpell1 = new ObjectPool<Spell_NewSpell1>(m_prefab_NewSpell1);
-                obj.name = "NewSpell1";
+            case Spells.ProtectiveOrbs:
+                m_pool_ProtectiveOrbs = new ObjectPool<Spell_ProtectiveOrbs>(m_prefab_ProtectiveOrbs);
+                obj.name = "ProtectiveOrbs";
                 break;
 
-            case Spells.NewSpell2:
-                m_pool_NewSpell2 = new ObjectPool<Spell_NewSpell2>(m_prefab_NewSpell2);
-                obj.name = "NewSpell2";
+            case Spells.GroundMine:
+                m_pool_GroundMine = new ObjectPool<Spell_GroundMine>(m_prefab_GroundMine);
+                obj.name = "GroundMine";
                 break;
-
-            case Spells.NewSpell3:
-                m_pool_NewSpell3 = new ObjectPool<Spell_NewSpell3>(m_prefab_NewSpell3);
-                obj.name = "NewSpell3";
+                
+            case Spells.Shockwave:
+                m_pool_Shockwave = new ObjectPool<Spell_Shockwave>(m_prefab_Shockwave);
+                obj.name = "Shockwave";
                 break;
-
+                
+            case Spells.Bomb:
+                m_pool_Bomb = new ObjectPool<Spell_Bomb>(m_prefab_Bomb);
+                obj.name = "Bomb";
+                break;
+                
+            case Spells.PoisonArea:
+                m_pool_PoisonArea = new ObjectPool<Spell_PoisonArea>(m_prefab_PoisonArea);
+                obj.name = "PoisonArea";
+                break;
+                
+            case Spells.ChainLightning:
+                m_pool_ChainLightning = new ObjectPool<Spell_ChainLightning>(m_prefab_ChainLightning);
+                obj.name = "ChainLightning";
+                break;
+                
+            case Spells.ArrowVolley:
+                m_pool_ArrowVolley = new ObjectPool<Spell_ArrowVolley>(m_prefab_ArrowVolley);
+                obj.name = "ArrowVolley";
+                break;
+                
+            case Spells.Shield:
+                GameObject shieldObj = Instantiate(m_prefab_Shield, FindObjectOfType<PlayerController>().gameObject.transform);
+                shieldObj.name = "Shield";
+                shieldObj.transform.localScale = new Vector3(1f, 1f, 1f);
+                m_parent[(int)_spell] = shieldObj.transform;
+                return;
         }
 
-        // Set Parent object for later use
+        // Set Parent object 
         obj.transform.SetParent(m_parent_Spells.transform);
         m_parent[(int)_spell] = obj.transform;
     }
@@ -414,51 +509,51 @@ public class SpellManager : MonoBehaviour
         switch (_spell)
         {
             case Spells.MovementSpeed:
-                m_passiveData.MovementSpeed += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.MovementSpeed += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.DamageMultiplier:
-                m_passiveData.DamageMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.DamageMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.CritChance:
-                m_passiveData.CritChance += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.CritChance += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.CritMultiplier:
-                m_passiveData.CritMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.CritMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.AttackSpeed:
-                m_passiveData.AttackSpeed += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.AttackSpeed += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.AreaMultiplier:
-                m_passiveData.AreaMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.AreaMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.MaxHealth:
-                m_passiveData.MaxHealth += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.MaxHealth += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.RecastTimeMultiplier:
-                m_passiveData.RecastTimeMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.RecastTimeMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.HealthRegeneration:
-                m_passiveData.HealthRegeneration += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.HealthRegeneration += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.DamageReductionPercentage:
-                m_passiveData.DamageReductionPercentage += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.DamageReductionPercentage += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.CollectionRadius:
-                m_passiveData.CollectionRadius += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.CollectionRadius += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.XPMultiplier:
-                m_passiveData.XPMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.XPMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
         }
     }

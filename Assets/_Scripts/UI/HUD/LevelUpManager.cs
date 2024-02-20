@@ -33,26 +33,19 @@ public class LevelUpManager : MonoBehaviour
         List<Spells> availableSpells = new List<Spells>();
 
         // lists of all active/passive spells that can be learned or upgraded
-        (List<Spells> availablePassiveSpells, bool newPassiveSpells) = GetAvailablePassiveSpells();
-        (List<Spells> availableActiveSpells, bool newActiveSpells) = GetAvailableActiveSpells();
+        List<Spells> availableActiveSpells = GetAvailableActiveSpells();
+        List<Spells> availablePassiveSpells = GetAvailablePassiveSpells();
 
+        // combine the lists of active and passive spells
 
-        // only add active spells to the list when there are free slots for active spells
-        if (newActiveSpells)
+        foreach (Spells spell in availableActiveSpells)
         {
-            foreach (Spells spell in availableActiveSpells)
-            {
-                availableSpells.Add(spell);
-            }
+            availableSpells.Add(spell);
         }
 
-        // only add passive spells to the list when there are free slots for passive spells
-        if (newPassiveSpells)
+        foreach (Spells spell in availablePassiveSpells)
         {
-            foreach (Spells spell in availablePassiveSpells)
-            {
-                availableSpells.Add(spell);
-            }
+            availableSpells.Add(spell);
         }
 
         return availableSpells;
@@ -62,11 +55,11 @@ public class LevelUpManager : MonoBehaviour
     /// Go through every activeSpell and add it to the list if its not on max level
     /// </summary>
     /// <returns>List of all available Active Spells || true: active spell slots are not full</returns>
-    private (List<Spells>, bool) GetAvailableActiveSpells()
+    private List<Spells> GetAvailableActiveSpells()
     {
         List<Spells> availableActiveSpells = new List<Spells>();
-
-        int takenActiveSpells = 0;
+        List<Spells> availableNewActiveSpells = new List<Spells>();
+        List<Spells> availableOldActiveSpells = new List<Spells>();
 
         for (int i = 0; i < (int)Spells.ActiveSpells; i++)
         {
@@ -76,24 +69,40 @@ public class LevelUpManager : MonoBehaviour
             // if spell is already at max level, its not available for choosing
             if (m_dataSpells.activeSpellSO[i].Level >= m_dataSpells.activeSpellSO[i].MaxLevel) continue;
 
-            // count how many spells are already learned (> level 0)
-            if (m_dataSpells.activeSpellSO[i].Level > 0) takenActiveSpells++;
-
-            availableActiveSpells.Add((Spells)i);
+            // put the spell in the list of the learned or new ones
+            if (m_dataSpells.activeSpellSO[i].Level > 0)
+                availableOldActiveSpells.Add((Spells)i);
+            else
+                availableNewActiveSpells.Add((Spells)i);
         }
 
-        return (availableActiveSpells, takenActiveSpells < m_spellSlots);
+        // if we can learn new Spells, add them to the list
+        if (availableOldActiveSpells.Count < m_spellSlots)   // m_spellSlots + 1 because of Base Spell
+        {
+            foreach (Spells spell in availableNewActiveSpells)
+            {
+                availableActiveSpells.Add(spell);
+            }
+        }
+
+        // add all spells that can be upgraded
+        foreach (Spells spell in availableOldActiveSpells)
+        {
+            availableActiveSpells.Add(spell);
+        }
+
+        return availableActiveSpells;
     }
 
     /// <summary>
     /// Go through every passive Spell and add it to the list if its not on max level
     /// </summary>
     /// <returns>List of all available Passive Spells || true: passive spell slots are not full</returns>
-    private (List<Spells>, bool) GetAvailablePassiveSpells()
+    private List<Spells> GetAvailablePassiveSpells()
     {
         List<Spells> availablePassiveSpells = new List<Spells>();
-
-        int takenPassiveSpells = 0;
+        List<Spells> availableNewPassiveSpells = new List<Spells>();
+        List<Spells> availableOldPassiveSpells = new List<Spells>();
 
         for (int i = (int)Spells.ActiveSpells + 1; i < (int)Spells.PassiveSpells; i++)
         {
@@ -106,13 +115,29 @@ public class LevelUpManager : MonoBehaviour
             // if spell is already at max level, its not available for choosing
             if (m_dataSpells.passiveSpellSO[idx].Level >= m_dataSpells.passiveSpellSO[idx].MaxLevel) continue;
 
-            // count how many spells are already learned (> level 0)
-            if (m_dataSpells.passiveSpellSO[idx].Level > 0) takenPassiveSpells++;
-
-            availablePassiveSpells.Add((Spells)i);
+            // put the spell in the list of the learned or new ones
+            if (m_dataSpells.passiveSpellSO[idx].Level > 0)
+                availableOldPassiveSpells.Add((Spells)i);
+            else
+                availableNewPassiveSpells.Add((Spells)i);
         }
 
-        return (availablePassiveSpells, takenPassiveSpells < m_spellSlots);
+        // if we can learn new Spells, add them to the list
+        if (availableOldPassiveSpells.Count < m_spellSlots)   // takenSpells + 1 because of Base Spell
+        {
+            foreach (Spells spell in availableNewPassiveSpells)
+            {
+                availablePassiveSpells.Add(spell);
+            }
+        }
+
+        // add all spells that can be upgraded
+        foreach (Spells spell in availableOldPassiveSpells)
+        {
+            availablePassiveSpells.Add(spell);
+        }
+
+        return availablePassiveSpells;
     }
 
     #endregion
@@ -170,6 +195,8 @@ public class LevelUpManager : MonoBehaviour
         values.m_spell = _spell;
         values.m_icon.sprite = spellSO.SpellIcon;
         values.m_name.text = spellSO.SpellName;
+        if (spellSO.Level == 0) values.m_newText.SetActive(true);
+        else values.m_newText.SetActive(false);
 
         // if its not already learned, show spell description
         if (spellSO.Level == 0 && spellSO.MaxLevel != 0)
@@ -205,6 +232,8 @@ public class LevelUpManager : MonoBehaviour
         values.m_spell = _spell;
         values.m_icon.sprite = spellSO.SpellIcon;
         values.m_name.text = spellSO.SpellName;
+        if (spellSO.Level == 0) values.m_newText.SetActive(true);
+        else values.m_newText.SetActive(false);
 
         //values.m_description.text = GetSpellDescription(spellSO.Stat[spellSO.Level], spellSO.Stat[spellSO.Level + 1], spellSO.SpellUpgradeDescription);
 
@@ -256,6 +285,11 @@ public class LevelUpManager : MonoBehaviour
         if (_spellSO.Cd.Length == _spellSO.MaxLevel)
             description +=
             GetSpellDescription(_spellSO.Cd[_spellSO.Level - 1], _spellSO.Cd[_spellSO.Level], m_dataSpells.nameSpellSO.Cd);
+
+        // InternalCd
+        if (_spellSO.Cd.Length == _spellSO.MaxLevel)
+            description +=
+            GetSpellDescription(_spellSO.InternalCd[_spellSO.Level - 1], _spellSO.InternalCd[_spellSO.Level], m_dataSpells.nameSpellSO.InternalCd);
 
         // Radius
         if (_spellSO.Radius.Length == _spellSO.MaxLevel)

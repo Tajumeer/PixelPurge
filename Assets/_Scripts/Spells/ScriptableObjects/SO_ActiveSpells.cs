@@ -28,6 +28,7 @@ public class SO_ActiveSpells : ScriptableObject
     public float[] Lifetime;
     public float[] Speed;
     public float[] Cd;
+    public float[] InternalCd;
     public float[] Radius;
 
     [Header("Projectile Stats")]

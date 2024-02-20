@@ -23,6 +23,10 @@ public class DungeonHUDManager : MonoBehaviour
     private int minutes;
     private int seconds;
 
+    [Header("Score Points")]
+    [SerializeField] private TextMeshProUGUI m_userScoreText;
+    [SerializeField] private TextMeshProUGUI m_goldAmountText;
+
     private void Update()
     {
         // Timer
@@ -43,6 +47,26 @@ public class DungeonHUDManager : MonoBehaviour
         }
     }
 
+    #region HUD
+
+    private void OnEnable()
+    {
+        ShowGold(0);
+        ShowScore(0);
+    }
+
+    public void ShowGold(int _goldAmount)
+    {
+        m_goldAmountText.text = _goldAmount.ToString();
+    }
+
+    public void ShowScore(int _score)
+    {
+        m_userScoreText.text = _score.ToString();
+    }
+
+    #endregion
+
     #region Details HUD
 
     /// <summary>
@@ -56,6 +80,7 @@ public class DungeonHUDManager : MonoBehaviour
         Time.timeScale = 0f;
         if (m_ingameSpells != null) m_ingameSpells.SetActive(false);
         MenuManager.Instance.LoadSceneAsync(Scenes.DetailsHUD, LoadSceneMode.Additive);
+
     }
 
     /// <summary>

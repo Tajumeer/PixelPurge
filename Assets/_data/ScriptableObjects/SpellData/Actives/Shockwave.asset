@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cba315fa26148b94d86d1d1857c6e60b, type: 3}
+  m_Name: Shockwave
+  m_EditorClassIdentifier: 
+  SpellName: Shockwave
+  SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
+  SpellDescription: Deals damage near the Player
+  SpellSFX: []
+  Level: 0
+  MaxLevel: 4
+  Damage:
+  - 30
+  - 40
+  - 50
+  - 60
+  Lifetime:
+  - 0.4
+  - 0.4
+  - 0.4
+  - 0.4
+  Speed: []
+  Cd:
+  - 5
+  - 4
+  - 4
+  - 3
+  InternalCd: []
+  Radius:
+  - 1.3
+  - 1.6
+  - 2
+  - 2.3
+  ProjectileAmount: 
+  Pierce: []
+  Bounce: []
