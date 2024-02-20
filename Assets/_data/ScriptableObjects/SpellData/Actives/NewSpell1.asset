@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: NewSpell1
   m_EditorClassIdentifier: 
   SpellName: NewSpell
-  SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
+  SpellIcon: {fileID: 21300000, guid: c62db846d2e497045876d6d349535cee, type: 3}
   SpellDescription: xxx
   SpellSFX: []
   Level: 0
