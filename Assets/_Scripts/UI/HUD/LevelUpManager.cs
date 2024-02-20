@@ -38,16 +38,21 @@ public class LevelUpManager : MonoBehaviour
 
         // combine the lists of active and passive spells
 
-        foreach (Spells spell in availableActiveSpells)
+        if (availableActiveSpells.Count > 0)    // safety check
         {
-            availableSpells.Add(spell);
+            foreach (Spells spell in availableActiveSpells)
+            {
+                availableSpells.Add(spell);
+            }
         }
 
-        foreach (Spells spell in availablePassiveSpells)
+        if (availablePassiveSpells.Count > 0)   // safety check
         {
-            availableSpells.Add(spell);
+            foreach (Spells spell in availablePassiveSpells)
+            {
+                availableSpells.Add(spell);
+            }
         }
-
         return availableSpells;
     }
 
@@ -76,8 +81,9 @@ public class LevelUpManager : MonoBehaviour
                 availableNewActiveSpells.Add((Spells)i);
         }
 
-        // if we can learn new Spells, add them to the list
-        if (availableOldActiveSpells.Count < m_spellSlots)   // m_spellSlots + 1 because of Base Spell
+        // if we can learn new Spells (the list of old spells is not full), add them to the list
+        if (availableNewActiveSpells.Count > 0 
+            && availableOldActiveSpells.Count < m_spellSlots + 1)   // m_spellSlots + 1 because of Base Spell
         {
             foreach (Spells spell in availableNewActiveSpells)
             {
@@ -85,11 +91,14 @@ public class LevelUpManager : MonoBehaviour
             }
         }
 
-        // add all spells that can be upgraded
-        foreach (Spells spell in availableOldActiveSpells)
+        if (availableOldActiveSpells.Count > 0)     // safety check
         {
-            availableActiveSpells.Add(spell);
+            foreach (Spells spell in availableOldActiveSpells)
+            {
+                availableActiveSpells.Add(spell);
+            }
         }
+        // add all spells that can be upgraded
 
         return availableActiveSpells;
     }
@@ -104,6 +113,7 @@ public class LevelUpManager : MonoBehaviour
         List<Spells> availableNewPassiveSpells = new List<Spells>();
         List<Spells> availableOldPassiveSpells = new List<Spells>();
 
+        // go through all passive Spells
         for (int i = (int)Spells.ActiveSpells + 1; i < (int)Spells.PassiveSpells; i++)
         {
             // get the index of the passive spell ("delete" active Spells for index)
@@ -123,7 +133,7 @@ public class LevelUpManager : MonoBehaviour
         }
 
         // if we can learn new Spells, add them to the list
-        if (availableOldPassiveSpells.Count < m_spellSlots)   // takenSpells + 1 because of Base Spell
+        if (availableNewPassiveSpells.Count > 0 && availableOldPassiveSpells.Count < m_spellSlots)
         {
             foreach (Spells spell in availableNewPassiveSpells)
             {
@@ -132,9 +142,12 @@ public class LevelUpManager : MonoBehaviour
         }
 
         // add all spells that can be upgraded
-        foreach (Spells spell in availableOldPassiveSpells)
+        if (availableOldPassiveSpells.Count > 0)    // safety check
         {
-            availablePassiveSpells.Add(spell);
+            foreach (Spells spell in availableOldPassiveSpells)
+            {
+                availablePassiveSpells.Add(spell);
+            }
         }
 
         return availablePassiveSpells;
