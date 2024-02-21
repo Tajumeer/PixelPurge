@@ -13,30 +13,41 @@ MonoBehaviour:
   m_Name: BaseArcher
   m_EditorClassIdentifier: 
   SpellName: Base Archer
-  SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
+  SpellIcon: {fileID: 21300000, guid: 89b494ee50ae9224cbb793da2e62b7de, type: 3}
   SpellDescription: Shoots at mouse direction.
   SpellSFX: []
   Level: 0
-  MaxLevel: 3
+  MaxLevel: 4
   Damage:
-  - 100
-  - 150
-  - 200
+  - 10
+  - 20
+  - 40
+  - 80
   Lifetime:
-  - 5
-  - 6
-  - 6
+  - 0.5
+  - 0.75
+  - 1
+  - 1.25
   Speed:
   - 5
   - 5
   - 6
+  - 6
   Cd:
-  - 1
-  - 1
-  - 0.8
-  Radius: []
-  ProjectileAmount: 0100000001000000
-  Pierce:
-  - 1
+  - 3
+  - 2.5
   - 2
+  - 1.5
+  InternalCd: []
+  Radius:
+  - 1.1
+  - 1.1
+  - 1.1
+  - 1.1
+  ProjectileAmount: 01000000010000000100000001000000
+  Pierce:
+  - 8
+  - 16
+  - 24
+  - 32
   Bounce: []
