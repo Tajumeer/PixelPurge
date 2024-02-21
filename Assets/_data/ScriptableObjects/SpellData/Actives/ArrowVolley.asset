@@ -17,12 +17,33 @@ MonoBehaviour:
   SpellDescription: Shoots a volley of arrows across the screen.
   SpellSFX: []
   Level: 0
-  MaxLevel: 0
-  Damage: []
-  Lifetime: []
-  Speed: []
-  Cd: []
-  Radius: []
-  ProjectileAmount: 
+  MaxLevel: 4
+  Damage:
+  - 15
+  - 30
+  - 45
+  - 60
+  Lifetime:
+  - 15
+  - 15
+  - 15
+  - 15
+  Speed:
+  - 10
+  - 10
+  - 10
+  - 10
+  Cd:
+  - 8
+  - 6
+  - 4
+  - 2
+  InternalCd: []
+  Radius:
+  - 1
+  - 1
+  - 1
+  - 1
+  ProjectileAmount: 0400000006000000080000000a000000
   Pierce: []
   Bounce: []

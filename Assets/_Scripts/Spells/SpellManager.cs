@@ -116,7 +116,8 @@ public class SpellManager : MonoBehaviour
         InitScriptableObject();
 
         // Learn Base Spell
-        LearnActiveSpell(Spells.ProtectiveOrbs);
+        LearnActiveSpell(Spells.ArrowVolley);
+        //LearnActiveSpell(Spells.ProtectiveOrbs);
         //LearnActiveSpell(Spells.AllDirections);
         //LearnActiveSpell(Spells.BaseArcher);
         //LearnActiveSpell(Spells.Shield);

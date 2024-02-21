@@ -6,7 +6,9 @@ public class Spell_ArrowVolley : PoolObject<Spell_ArrowVolley>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
-
+    private PlayerController m_playerController;
+    [SerializeField] private float m_angleBetweenProjectiles;
+    private int m_spellIndex;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -14,16 +16,18 @@ public class Spell_ArrowVolley : PoolObject<Spell_ArrowVolley>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_ActiveSpells _spellData)
+    public void OnSpawn(SO_ActiveSpells _spellData, int _spellIdx)
     {
         InitRigidbody();
 
         m_spellData = _spellData;
-
+        m_spellIndex = _spellIdx;
+        m_playerController = FindObjectOfType<PlayerController>();
         // Start Lifetime
         StartCoroutine(DeleteTimer());
 
         // AB HIER KANNST DU WAS MACHEN
+        Shoot();
     }
 
     /// <summary>
@@ -36,6 +40,11 @@ public class Spell_ArrowVolley : PoolObject<Spell_ArrowVolley>
         m_rb.position = new Vector2(transform.position.x, transform.position.y);
         m_rb.rotation = transform.localRotation.z;
     }
+
+    private void Shoot()
+    {
+
+     }
 
     public void OnTriggerEnter2D(Collider2D _collision)
     {
