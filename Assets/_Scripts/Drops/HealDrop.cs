@@ -46,5 +46,7 @@ public class HealDrop : MonoBehaviour
         {
             m_player.ActivePlayerData.CurrentHealth = m_player.ActivePlayerData.MaxHealth;
         }
+
+        m_player.UpdateHealthbar();
     }
 }

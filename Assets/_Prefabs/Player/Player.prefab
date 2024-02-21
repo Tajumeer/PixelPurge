@@ -72,7 +72,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1232874407
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -329,7 +329,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1232874407
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -673,6 +673,7 @@ MonoBehaviour:
   m_damageTakenClip: {fileID: 0}
   ActivePlayerData: {fileID: 0}
   ClassIndex: 0
+  InternalHealthRegCD: 1
   m_healthBar: {fileID: 2294293448755443649}
   MoveDirection: {x: 0, y: 0}
 --- !u!50 &6995192994167844590
@@ -809,7 +810,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1232874407
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
