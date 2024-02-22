@@ -27,9 +27,8 @@ public class SO_OriginalSpells : ScriptableObject
     public SO_PassiveSpells Data_DamageMultiplier;
     public SO_PassiveSpells Data_CritChance;
     public SO_PassiveSpells Data_CritMultiplier;
-    public SO_PassiveSpells Data_AttackSpeed;
     public SO_PassiveSpells Data_AreaMultiplier;
-    public SO_PassiveSpells Data_RecastTimeMultiplier;
+    public SO_PassiveSpells Data_CdReduction;
     public SO_PassiveSpells Data_MaxHealth;
     public SO_PassiveSpells Data_HealthRegeneration;
     public SO_PassiveSpells Data_DamageReductionPercentage;

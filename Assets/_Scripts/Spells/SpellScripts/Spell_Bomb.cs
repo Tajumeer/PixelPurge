@@ -8,6 +8,7 @@ public class Spell_Bomb : PoolObject<Spell_Bomb>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
+    private PlayerStats m_playerData;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -15,11 +16,16 @@ public class Spell_Bomb : PoolObject<Spell_Bomb>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_ActiveSpells _spellData, Transform _playerTransf)
+    public void OnSpawn(PlayerStats _playerData, SO_ActiveSpells _spellData, Transform _playerTransf)
     {
         InitRigidbody();
 
         m_spellData = _spellData;
+        m_playerData = _playerData;
+
+        // set Radius
+        float radius = m_spellData.Radius[m_spellData.Level - 1] * m_playerData.AreaMultiplier;
+        transform.localScale = new Vector3(radius, radius, radius);
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
@@ -61,8 +67,14 @@ public class Spell_Bomb : PoolObject<Spell_Bomb>
         // only an enemy can get hit by the spell
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
+        // Calculate Damage
+        float damage = m_spellData.Damage[m_spellData.Level - 1];       // the damage of the spell
+        damage *= m_playerData.DamageMultiplier;                        // + the damage of the player
+        if (Random.Range(1, 101) <= m_playerData.CritChance * 100)      // if it crits
+            damage *= m_playerData.CritMultiplier;                      // + crit damage
+
         // the enemy get damage on hit
-        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage[m_spellData.Level - 1]);
+        _collision.gameObject.GetComponent<IDamagable>().GetDamage(damage);
     }
 
     /// <summary>

@@ -34,9 +34,8 @@ public enum Spells
     DamageMultiplier,
     CritChance,
     CritMultiplier,
-    AttackSpeed,
     AreaMultiplier,
-    RecastTimeMultiplier,
+    CdReduction,
     MaxHealth,
     HealthRegeneration,
     DamageReductionPercentage,
@@ -95,7 +94,7 @@ public class SpellManager : MonoBehaviour
 
     private float[] m_timer = new float[(int)Spells.ActiveSpells];
 
-    private float[] m_cd = new float[(int)Spells.ActiveSpells];
+    //private float[] m_cd = new float[(int)Spells.ActiveSpells];
 
     private void OnEnable()
     {
@@ -220,16 +219,12 @@ public class SpellManager : MonoBehaviour
                     m_data_Spells.passiveSpellSO[idx] = Instantiate(m_data_OriginalSpells.Data_CritMultiplier);
                     break;
 
-                case Spells.AttackSpeed:
-                    m_data_Spells.passiveSpellSO[idx] = Instantiate(m_data_OriginalSpells.Data_AttackSpeed);
-                    break;
-
                 case Spells.AreaMultiplier:
                     m_data_Spells.passiveSpellSO[idx] = Instantiate(m_data_OriginalSpells.Data_AreaMultiplier);
                     break;
 
-                case Spells.RecastTimeMultiplier:
-                    m_data_Spells.passiveSpellSO[idx] = Instantiate(m_data_OriginalSpells.Data_RecastTimeMultiplier);
+                case Spells.CdReduction:
+                    m_data_Spells.passiveSpellSO[idx] = Instantiate(m_data_OriginalSpells.Data_CdReduction);
                     break;
 
                 case Spells.MaxHealth:
@@ -260,64 +255,66 @@ public class SpellManager : MonoBehaviour
     {
         for (int i = 0; i < (int)Spells.ActiveSpells; i++)
         {
-            if (m_data_Spells.activeSpellSO[i] == null) continue;   // safety check if its a spell
+            SO_ActiveSpells spellSO = m_data_Spells.activeSpellSO[i];
+
+            if (spellSO == null) continue;   // safety check if its a spell
             if (!m_active[i]) continue;     // skip if spell is not learned
 
             m_timer[i] += Time.deltaTime;
-            if (m_timer[i] >= m_cd[i])      // if spell is ready
+            if (m_timer[i] >= spellSO.Cd[spellSO.Level - 1] * m_data_Spells.statSO.CdReduction)      // if spell is ready
             {
                 switch (i)                  // check which spell it was and spawn it
                 {
                     case (int)Spells.AllDirections:
-                        m_spawnScript.SpawnAllDirections(m_data_Spells.activeSpellSO[(int)Spells.AllDirections], m_pool_AllDirections, m_parent[(int)Spells.AllDirections]);
+                        m_spawnScript.SpawnAllDirections(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.AllDirections], m_pool_AllDirections, m_parent[(int)Spells.AllDirections]);
                         break;
 
                     case (int)Spells.BaseArcher:
-                        m_spawnScript.SpawnBaseArcher(m_data_Spells.activeSpellSO[(int)Spells.BaseArcher], m_pool_BaseArcher, m_parent[(int)Spells.BaseArcher]);
+                        m_spawnScript.SpawnBaseArcher(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.BaseArcher], m_pool_BaseArcher, m_parent[(int)Spells.BaseArcher]);
                         break;
 
                     case (int)Spells.NearPlayer:
-                        m_spawnScript.SpawnNearPlayer(m_data_Spells.activeSpellSO[(int)Spells.NearPlayer], m_pool_NearPlayer, m_parent[(int)Spells.NearPlayer]);
+                        m_spawnScript.SpawnNearPlayer(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.NearPlayer], m_pool_NearPlayer, m_parent[(int)Spells.NearPlayer]);
                         break;
 
                     case (int)Spells.Aura:
                         break;
                         
                     case (int)Spells.Boomerang:
-                        m_spawnScript.SpawnBoomerang(m_data_Spells.activeSpellSO[(int)Spells.Boomerang], m_pool_Boomerang, m_parent[(int)Spells.Boomerang]);
+                        m_spawnScript.SpawnBoomerang(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.Boomerang], m_pool_Boomerang, m_parent[(int)Spells.Boomerang]);
                         break;
                         
                     case (int)Spells.ProtectiveOrbs:
-                        m_spawnScript.SpawnProtectiveOrbs(m_data_Spells.activeSpellSO[(int)Spells.ProtectiveOrbs], m_pool_ProtectiveOrbs, m_parent[(int)Spells.ProtectiveOrbs]);
+                        m_spawnScript.SpawnProtectiveOrbs(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.ProtectiveOrbs], m_pool_ProtectiveOrbs, m_parent[(int)Spells.ProtectiveOrbs]);
                         break;
                         
                     case (int)Spells.GroundMine:
-                        m_spawnScript.SpawnGroundMine(m_data_Spells.activeSpellSO[(int)Spells.GroundMine], m_pool_GroundMine, m_parent[(int)Spells.GroundMine]);
+                        m_spawnScript.SpawnGroundMine(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.GroundMine], m_pool_GroundMine, m_parent[(int)Spells.GroundMine]);
                         break;
                         
                     case (int)Spells.Shockwave:
-                        m_spawnScript.SpawnShockwave(m_data_Spells.activeSpellSO[(int)Spells.Shockwave], m_pool_Shockwave, m_parent[(int)Spells.Shockwave]);
+                        m_spawnScript.SpawnShockwave(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.Shockwave], m_pool_Shockwave, m_parent[(int)Spells.Shockwave]);
                         break;
                         
                     case (int)Spells.Bomb:
-                        m_spawnScript.SpawnBomb(m_data_Spells.activeSpellSO[(int)Spells.Bomb], m_pool_Bomb, m_parent[(int)Spells.Bomb]);
+                        m_spawnScript.SpawnBomb(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.Bomb], m_pool_Bomb, m_parent[(int)Spells.Bomb]);
                         break;
                         
                     case (int)Spells.PoisonArea:
-                        m_spawnScript.SpawnPoisonArea(m_data_Spells.activeSpellSO[(int)Spells.PoisonArea], m_pool_PoisonArea, m_parent[(int)Spells.PoisonArea]);
+                        m_spawnScript.SpawnPoisonArea(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.PoisonArea], m_pool_PoisonArea, m_parent[(int)Spells.PoisonArea]);
                         break;
                         
                     case (int)Spells.ChainLightning:
-                        m_spawnScript.SpawnChainLightning(m_data_Spells.activeSpellSO[(int)Spells.ChainLightning], m_pool_ChainLightning, m_parent[(int)Spells.ChainLightning]);
+                        m_spawnScript.SpawnChainLightning(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.ChainLightning], m_pool_ChainLightning, m_parent[(int)Spells.ChainLightning]);
                         break;
                         
                     case (int)Spells.ArrowVolley:
-                        m_spawnScript.SpawnArrowVolley(m_data_Spells.activeSpellSO[(int)Spells.ArrowVolley], m_pool_ArrowVolley, m_parent[(int)Spells.ArrowVolley]);
+                        m_spawnScript.SpawnArrowVolley(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.ArrowVolley], m_pool_ArrowVolley, m_parent[(int)Spells.ArrowVolley]);
                         break;
                         
                     case (int)Spells.Shield:
                         m_parent[(int)Spells.Shield].gameObject.SetActive(true);
-                        m_parent[(int)Spells.Shield].GetComponent<Spell_Shield>().OnSpawn(m_data_Spells.activeSpellSO[(int)Spells.Shield]);
+                        m_parent[(int)Spells.Shield].GetComponent<Spell_Shield>().OnSpawn(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.Shield]);
                         break;
                 }
                 m_timer[i] = 0;             // reset the timer
@@ -377,10 +374,9 @@ public class SpellManager : MonoBehaviour
     {
         SO_ActiveSpells spellSO = m_data_Spells.activeSpellSO[(int)_spell];
 
-        spellSO.Level = 1;                                      // set Spell Level to 1
-        m_active[(int)_spell] = true;                           // set Spell as active
-        m_cd[(int)_spell] = spellSO.Cd[spellSO.Level - 1];      // set Cooldown
-        m_timer[(int)_spell] = m_cd[(int)_spell] - 0.2f;        // set Timer to finish, to instantly fire it 
+        spellSO.Level = 1;                                              // set Spell Level to 1
+        m_active[(int)_spell] = true;                                   // set Spell as active
+        m_timer[(int)_spell] = spellSO.Cd[spellSO.Level - 1] - 0.2f;    // set Timer to nearly finish, to instantly fire it 
 
         GameObject obj = new GameObject();
 
@@ -407,7 +403,7 @@ public class SpellManager : MonoBehaviour
                 auraObj.transform.localScale = new Vector3
                     (spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1], spellSO.Radius[spellSO.Level - 1]);
                 m_parent[(int)_spell] = auraObj.transform;
-                m_parent[(int)_spell].GetComponent<Spell_Aura>().OnSpawn(spellSO);
+                m_parent[(int)_spell].GetComponent<Spell_Aura>().OnSpawn(m_data_Spells.statSO, spellSO);
                 return;
 
             case Spells.Boomerang:
@@ -527,10 +523,6 @@ public class SpellManager : MonoBehaviour
                 m_data_Spells.statSO.CritMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
 
-            case Spells.AttackSpeed:
-                m_data_Spells.statSO.AttackSpeed += spellSO.Stat[spellSO.Level - 1];
-                break;
-
             case Spells.AreaMultiplier:
                 m_data_Spells.statSO.AreaMultiplier += spellSO.Stat[spellSO.Level - 1];
                 break;
@@ -539,8 +531,8 @@ public class SpellManager : MonoBehaviour
                 m_data_Spells.statSO.MaxHealth += spellSO.Stat[spellSO.Level - 1];
                 break;
 
-            case Spells.RecastTimeMultiplier:
-                m_data_Spells.statSO.RecastTimeMultiplier += spellSO.Stat[spellSO.Level - 1];
+            case Spells.CdReduction:
+                m_data_Spells.statSO.CdReduction += spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.HealthRegeneration:
@@ -553,6 +545,7 @@ public class SpellManager : MonoBehaviour
 
             case Spells.CollectionRadius:
                 m_data_Spells.statSO.CollectionRadius += spellSO.Stat[spellSO.Level - 1];
+                FindObjectOfType<LevelPlayer>().UpdateCollectionRadius();
                 break;
 
             case Spells.XPMultiplier:

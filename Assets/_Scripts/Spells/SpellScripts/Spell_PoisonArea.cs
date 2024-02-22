@@ -8,6 +8,7 @@ public class Spell_PoisonArea : PoolObject<Spell_PoisonArea>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
+    private PlayerStats m_playerData;
 
     private float m_activeCD = 0f;
     private Queue<IDamagable> m_enemysInAura;
@@ -18,11 +19,16 @@ public class Spell_PoisonArea : PoolObject<Spell_PoisonArea>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_ActiveSpells _spellData, Transform _playerTransf)
+    public void OnSpawn(PlayerStats _playerData, SO_ActiveSpells _spellData, Transform _playerTransf)
     {
         InitRigidbody();
 
         m_spellData = _spellData;
+        m_playerData = _playerData;
+
+        // set Radius
+        float radius = m_spellData.Radius[m_spellData.Level - 1] * m_playerData.AreaMultiplier;
+        transform.localScale = new Vector3(radius, radius, radius);
 
         m_enemysInAura = new Queue<IDamagable>();
 
@@ -77,7 +83,13 @@ public class Spell_PoisonArea : PoolObject<Spell_PoisonArea>
 
         foreach (IDamagable enemy in m_enemysInAura)
         {
-            enemy.GetDamage(m_spellData.Damage[m_spellData.Level - 1]);
+            // Calculate Damage
+            float damage = m_spellData.Damage[m_spellData.Level - 1];       // the damage of the spell
+            damage *= m_playerData.DamageMultiplier;                        // + the damage of the player
+            if (Random.Range(1, 101) <= m_playerData.CritChance * 100)      // if it crits
+                damage *= m_playerData.CritMultiplier;                      // + crit damage
+
+            enemy.GetDamage(damage);
         }
     }
 

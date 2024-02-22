@@ -88,7 +88,6 @@ public class DetailsHUDManager : MonoBehaviour
         m_statAmount_goldMultiplier.text = m_data_Spells.statSO.GoldMultiplier.ToString() + "%";
         m_statAmount_damage.text = m_data_Spells.statSO.DamageMultiplier.ToString() + "%";
         m_statAmount_critChance.text = m_data_Spells.statSO.CritChance.ToString() + "%";
-        m_statAmount_attackSpeed.text = m_data_Spells.statSO.AttackSpeed.ToString();
         m_statAmount_projectileSpeed.text = m_data_Spells.statSO.ProjectileSpeed.ToString();
     }
 }

@@ -54,7 +54,7 @@ public class LevelPlayer : MonoBehaviour
         StartCoroutine(SetXP());
 
         m_xpNeedMultiplier = m_playerData.ActivePlayerData.XPNeededMultiplier;
-        IncreaseCollectionRadius(m_playerData.ActivePlayerData.CollectionRadius);
+        UpdateCollectionRadius();
 
         // Create Object Pool and Parent
         m_xpPool = new ObjectPool<LevelXP>(m_xpPrefab);
@@ -96,9 +96,9 @@ public class LevelPlayer : MonoBehaviour
     /// Increase the Radius of the Collection Trigger
     /// </summary>
     /// <param name="_radius"></param>
-    public void IncreaseCollectionRadius(float _radius)
+    public void UpdateCollectionRadius()
     {
-        m_col.radius = _radius; // + 0.1f
+        m_col.radius = m_playerData.ActivePlayerData.CollectionRadius;
     }
 
     private void LevelUp()

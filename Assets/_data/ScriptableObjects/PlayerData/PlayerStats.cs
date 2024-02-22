@@ -20,25 +20,33 @@ public class PlayerStats : ScriptableObject
     public float DashTime;
 
     [Header("Offensive Stats")]
+    [Tooltip("1.XX %")]
     public float DamageMultiplier;
+    [Tooltip("0.XX %")]
     public float CritChance;
+    [Tooltip("1.XX %")]
     public float CritMultiplier;
-    public float AttackSpeed;
+    [Tooltip("1.XX %")]
     public float AreaMultiplier;
     public float ProjectileSpeed;
-    public float RecastTimeMultiplier;
+    [Tooltip("0.XX % - 1 is no CD and 0 is whole CD")]
+    public float CdReduction;
 
     [Header("Defensive Stats")]
     public float MaxHealth;
     public float HealthRegeneration;
+    [Tooltip("0.XX %")]
     public float DamageReductionPercentage;
 
     [Header("Utility Stats")]
     public float CollectionRadius;
+    [Tooltip("1.XX %")]
     public float GoldMultiplier;
 
     [Header("XP Stats")]
     public float XPNeeded;
+    [Tooltip("0.XX %")]
     public float XPNeededMultiplier;
+    [Tooltip("1.XX %")]
     public float XPMultiplier;
 }

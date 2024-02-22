@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Spell_Shield : PoolObject<Spell_Shield>
 {
-    [SerializeField] private SO_AllSpells m_data_allSpells;
     [SerializeField] private float m_damageReductionPercentage = 20f;
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
+    private PlayerStats m_playerData;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -15,13 +15,18 @@ public class Spell_Shield : PoolObject<Spell_Shield>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(SO_ActiveSpells _spellData)
+    public void OnSpawn(PlayerStats _playerData, SO_ActiveSpells _spellData)
     {
         InitRigidbody();
 
         m_spellData = _spellData;
+        m_playerData = _playerData;
 
-        m_data_allSpells.statSO.DamageReductionPercentage += m_damageReductionPercentage;
+        // set Radius
+        float radius = m_spellData.Radius[m_spellData.Level - 1] * m_playerData.AreaMultiplier;
+        transform.localScale = new Vector3(radius, radius, radius);
+
+        _playerData.DamageReductionPercentage += m_damageReductionPercentage;
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
@@ -44,8 +49,14 @@ public class Spell_Shield : PoolObject<Spell_Shield>
         // only an enemy can get hit by the spell
         if (!_collision.gameObject.CompareTag("Enemy")) return;
 
+        // Calculate Damage
+        float damage = m_spellData.Damage[m_spellData.Level - 1];       // the damage of the spell
+        damage *= m_playerData.DamageMultiplier;                        // + the damage of the player
+        if (Random.Range(1, 101) <= m_playerData.CritChance * 100)      // if it crits
+            damage *= m_playerData.CritMultiplier;                      // + crit damage
+
         // the enemy get damage on hit
-        _collision.gameObject.GetComponent<IDamagable>().GetDamage(m_spellData.Damage[m_spellData.Level - 1]);
+        _collision.gameObject.GetComponent<IDamagable>().GetDamage(damage);
 
     }
 
@@ -64,7 +75,7 @@ public class Spell_Shield : PoolObject<Spell_Shield>
     {
         StopAllCoroutines();
 
-        m_data_allSpells.statSO.DamageReductionPercentage -= m_damageReductionPercentage;
+        m_playerData.DamageReductionPercentage -= m_damageReductionPercentage;
 
         gameObject.SetActive(false);
     }
