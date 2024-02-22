@@ -8,7 +8,7 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
-
+    [SerializeField] private Transform m_pivot;
     private float m_health;
 
     /// <summary>
@@ -48,10 +48,14 @@ public class Spell_BaseArcher : PoolObject<Spell_BaseArcher>
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 arrowDirection = (mousePosition - transform.position).normalized;
 
+        float angle = Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg;
+
+
         Vector2 direction = new Vector2(arrowDirection.x, arrowDirection.y).normalized;
         m_rb.AddRelativeForce(direction * m_spellData.Speed[m_spellData.Level - 1], ForceMode2D.Impulse);
 
-        transform.Rotate(0f, 0f, Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg);
+        m_pivot.rotation = Quaternion.Euler(0, 0, angle - 90f);
+       // transform.Rotate(0f, 0f, Mathf.Atan2(arrowDirection.y, arrowDirection.x) * Mathf.Rad2Deg);
     }
 
     /// <summary>

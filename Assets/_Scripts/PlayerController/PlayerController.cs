@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] private AudioClip m_damageTakenClip;
     [HideInInspector] public PlayerStats ActivePlayerData;
     [HideInInspector] public int ClassIndex;
+    [SerializeField] private float InternalHealthRegCD;
 
     private int m_characterIndex;
 
@@ -105,7 +106,12 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private void OnEnable()
     {
-     
+
+    }
+
+    public void UpdateHealthbar()
+    {
+        m_healthBar.fillAmount = this.ActivePlayerData.CurrentHealth / ActivePlayerData.MaxHealth;
     }
 
     public void SetCharacterVisualsAndData(int _newIndex)
@@ -123,7 +129,7 @@ public class PlayerController : MonoBehaviour, IDamagable
 
         ProgressionManager.Instance.InitMetaProgression(this);
         ProgressionManager.Instance.UpdateMetaProgression();
-       m_spriteRenderer = null;
+        m_spriteRenderer = null;
         m_animator = null;
 
         for (int i = 0; i < PlayerVisual.Count; ++i)
@@ -158,6 +164,8 @@ public class PlayerController : MonoBehaviour, IDamagable
         {
             GetComponentInChildren<LevelPlayer>().InitXP();
         }
+
+        TimeManager.Instance.StartTimer("HealthRegInternalTimer");
     }
 
     private void Update()
@@ -185,6 +193,12 @@ public class PlayerController : MonoBehaviour, IDamagable
         SetAnimation();
 
         if (m_isDead) { return; }
+
+        if (TimeManager.Instance.GetElapsedTime("HealthRegInternalTimer") > InternalHealthRegCD)
+        {
+            RegenerateHealth();
+        }
+
         if (m_isDashing) { return; }
 
         Inputs();
@@ -196,6 +210,19 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     }
 
+    private void RegenerateHealth()
+    {
+        ActivePlayerData.CurrentHealth += ActivePlayerData.HealthRegeneration;
+
+        if(ActivePlayerData.CurrentHealth > ActivePlayerData.MaxHealth)
+        {
+            ActivePlayerData.CurrentHealth = ActivePlayerData.MaxHealth;
+        }
+
+        UpdateHealthbar();
+        TimeManager.Instance.SetTimer("HealthRegInternalTimer", 0f);
+    }
+
     private void SetDeathState()
     {
         if (m_isDead) return;
@@ -204,6 +231,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_spriteRenderer.sortingOrder = 0;
         MoveDirection = Vector3.zero;
         GameManager.Instance.Lose();
+        TimeManager.Instance.StopTimer("HealthRegInternalTimer");
         //Time.timeScale = 0f;
     }
 
@@ -371,11 +399,24 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     public void GetDamage(float _damageValue)
     {
-        this.ActivePlayerData.CurrentHealth -= _damageValue;
+        this.ActivePlayerData.CurrentHealth -= CalculateReducedDamage(_damageValue);
         AudioManager.Instance.PlaySound(m_damageTakenClip);
         StartCoroutine(FlashDamage());
 
         m_healthBar.fillAmount = this.ActivePlayerData.CurrentHealth / ActivePlayerData.MaxHealth;
+    }
+
+    private float CalculateReducedDamage(float _rawDamage)
+    {
+        Debug.Log("Incoming Damage: " + _rawDamage);
+        float reductionAmount = _rawDamage * (ActivePlayerData.DamageReductionPercentage / 100f);
+        float reducedDamage = _rawDamage - reductionAmount;
+
+        reducedDamage = Mathf.Max(reducedDamage, 0f);
+
+        Debug.Log("Reduced Damage: " + reducedDamage);
+
+        return reducedDamage;
     }
     IEnumerator FlashDamage()
     {

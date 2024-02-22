@@ -673,6 +673,7 @@ MonoBehaviour:
   m_damageTakenClip: {fileID: 0}
   ActivePlayerData: {fileID: 0}
   ClassIndex: 0
+  InternalHealthRegCD: 1
   m_healthBar: {fileID: 2294293448755443649}
   MoveDirection: {x: 0, y: 0}
 --- !u!50 &6995192994167844590

@@ -14,12 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellName: Damage Reduction
   SpellIcon: {fileID: 21300000, guid: 1aad936e181b75f4f90558afe6ac8cbf, type: 3}
-  SpellDescription: The Player gets less Damage.
   SpellUpgradeDescription: Reduction
   Level: 0
   MaxLevel: 4
   Stat:
-  - 1.1
-  - 1.1
-  - 1.1
-  - 1.1
+  - 5
+  - 5
+  - 5
+  - 5
