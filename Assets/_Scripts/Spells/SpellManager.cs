@@ -270,7 +270,7 @@ public class SpellManager : MonoBehaviour
                         break;
 
                     case (int)Spells.AirWave:
-                        m_spawnScript.SpawnBaseArcher(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.AirWave], m_pool_AirWave, m_parent[(int)Spells.AirWave]);
+                        m_spawnScript.SpawnAirWave(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.AirWave], m_pool_AirWave, m_parent[(int)Spells.AirWave]);
                         break;
 
                     case (int)Spells.NearPlayer:
@@ -384,7 +384,7 @@ public class SpellManager : MonoBehaviour
         {
             case Spells.AirWave:
                 m_pool_AirWave = new ObjectPool<Spell_AirWave>(m_prefab_AirWave);
-                obj.name = "BaseArcher";
+                obj.name = "AirWave";
                 break;
 
             case Spells.AllDirections:
