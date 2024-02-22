@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cba315fa26148b94d86d1d1857c6e60b, type: 3}
-  m_Name: BaseArcher
+  m_Name: AirWave
   m_EditorClassIdentifier: 
   SpellName: Base Archer
   SpellIcon: {fileID: 21300000, guid: 89b494ee50ae9224cbb793da2e62b7de, type: 3}

@@ -24,9 +24,17 @@ public class Spell_ChainLightning : PoolObject<Spell_ChainLightning>
         m_health = m_spellData.Bounce[m_spellData.Level - 1];
         m_playerData = _playerData;
 
-        // set Radius
-        float radius = m_spellData.Radius[m_spellData.Level - 1] * m_playerData.AreaMultiplier;
-        transform.localScale = new Vector3(radius, radius, radius);
+        // set Radius depending on own radius and player multiplier
+        if (m_spellData.Radius.Length >= m_spellData.Level)
+        {
+            float radius = m_spellData.Radius[m_spellData.Level - 1] * m_playerData.AreaMultiplier;
+            transform.localScale = new Vector3(radius, radius, radius);
+        }
+        else
+            transform.localScale = new Vector3(
+                transform.localScale.x * m_playerData.AreaMultiplier,
+                transform.localScale.y * m_playerData.AreaMultiplier,
+                transform.localScale.z * m_playerData.AreaMultiplier);
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());

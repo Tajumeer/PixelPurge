@@ -13,11 +13,11 @@ public class SpellSpawner : MonoBehaviour
         m_player = FindObjectOfType<PlayerController>();
     }
 
-    public void SpawnBaseArcher(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_BaseArcher> _pool, Transform _parent)
+    public void SpawnBaseArcher(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_AirWave> _pool, Transform _parent)
     {
         for (int i = 0; i < _spellData.ProjectileAmount[_spellData.Level - 1]; i++)
         {
-            Spell_BaseArcher spellObj = _pool.GetObject();
+            Spell_AirWave spellObj = _pool.GetObject();
 
             if (spellObj.tag != "PlayerSpell")
             {

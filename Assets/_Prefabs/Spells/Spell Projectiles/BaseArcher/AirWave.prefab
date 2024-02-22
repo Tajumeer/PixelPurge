@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7908252591099743249}
   - component: {fileID: 1962848720555467599}
   m_Layer: 8
-  m_Name: BaseArcher
+  m_Name: AirWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -49,7 +49,7 @@ MonoBehaviour:
   m_data_OriginalSpells: {fileID: 11400000, guid: 09adb0e8be4f81d4f8152782d80800f0, type: 2}
   m_prefab_AllDirections: {fileID: 1960888898802110764, guid: f288201a02c22134fbee2a0dab0cdb90, type: 3}
   m_prefab_NearPlayer: {fileID: 1960888898802110764, guid: 82023d0ce7f8b7a489ad6a607b5dbc0c, type: 3}
-  m_prefab_BaseArcher: {fileID: 1960888898802110764, guid: ae79387ff636f2247ab98a06adb8fce6, type: 3}
+  m_prefab_AirWave: {fileID: 1960888898802110764, guid: ae79387ff636f2247ab98a06adb8fce6, type: 3}
   m_prefab_Aura: {fileID: 1960888898802110764, guid: 10c47cb03c1b37e4bb2bbe7c0d201d56, type: 3}
   m_prefab_Boomerang: {fileID: 1960888898802110764, guid: 21fc769d154749b4d86418f523efffb1, type: 3}
   m_prefab_ProtectiveOrbs: {fileID: 1960888898802110764, guid: 43e89e08e7a061640bebc2f094acab60, type: 3}

@@ -29,9 +29,8 @@ MonoBehaviour:
   Data_DamageMultiplier: {fileID: 11400000, guid: e22bd9e4f1a703740b2af402157863c4, type: 2}
   Data_CritChance: {fileID: 11400000, guid: 1c560d766741aa541ab250d1e476ab70, type: 2}
   Data_CritMultiplier: {fileID: 11400000, guid: 561a843369745b44096925bac1573b4c, type: 2}
-  Data_AttackSpeed: {fileID: 11400000, guid: d6c0dfbc7338e344c874484a9cbd7b67, type: 2}
   Data_AreaMultiplier: {fileID: 11400000, guid: 40029c3e4de218f46856bb50cd9b06a7, type: 2}
-  Data_RecastTimeMultiplier: {fileID: 11400000, guid: c4a2eae383bc9e344bec5d46222fb38e, type: 2}
+  Data_CdReduction: {fileID: 11400000, guid: c4a2eae383bc9e344bec5d46222fb38e, type: 2}
   Data_MaxHealth: {fileID: 11400000, guid: ae9d6246d2eb02049999560edaf8c417, type: 2}
   Data_HealthRegeneration: {fileID: 11400000, guid: 6d7105d110e7b8d469efe5af61968274, type: 2}
   Data_DamageReductionPercentage: {fileID: 11400000, guid: 4344f40f962c50e47b5607caab29f07d, type: 2}

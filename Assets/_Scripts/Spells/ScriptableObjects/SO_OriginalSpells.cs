@@ -8,7 +8,7 @@ using UnityEngine;
 public class SO_OriginalSpells : ScriptableObject
 {
     [Header("Original Active Spell ScriptableObjects")]
-    public SO_ActiveSpells Data_BaseArcher;
+    public SO_ActiveSpells Data_AirWave;
     public SO_ActiveSpells Data_AllDirections;
     public SO_ActiveSpells Data_NearPlayer;
     public SO_ActiveSpells Data_Aura;

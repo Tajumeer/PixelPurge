@@ -29,7 +29,7 @@ public class PlayerStats : ScriptableObject
     [Tooltip("1.XX %")]
     public float AreaMultiplier;
     public float ProjectileSpeed;
-    [Tooltip("0.XX % - 1 is no CD and 0 is whole CD")]
+    [Tooltip("0.XX % - 1 is full CD and 0 is no CD")]
     public float CdReduction;
 
     [Header("Defensive Stats")]

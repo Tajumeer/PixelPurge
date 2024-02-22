@@ -53,6 +53,8 @@ public class DungeonHUDManager : MonoBehaviour
     {
         ShowGold(0);
         ShowScore(0);
+
+        StartCoroutine(LoadLevelUpFirstTime());
     }
 
     public void ShowGold(int _goldAmount)
@@ -63,6 +65,12 @@ public class DungeonHUDManager : MonoBehaviour
     public void ShowScore(int _score)
     {
         m_userScoreText.text = _score.ToString();
+    }
+
+    private IEnumerator LoadLevelUpFirstTime()
+    {
+        yield return new WaitForSeconds(1f);
+        LoadLevelUp();
     }
 
     #endregion

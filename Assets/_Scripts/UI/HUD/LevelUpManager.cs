@@ -34,7 +34,9 @@ public class LevelUpManager : MonoBehaviour
 
         // lists of all active/passive spells that can be learned or upgraded
         List<Spells> availableActiveSpells = GetAvailableActiveSpells();
-        List<Spells> availablePassiveSpells = GetAvailablePassiveSpells();
+        // dont list passives if its the first "levelup", because then we only want actives 
+        List<Spells> availablePassiveSpells = new List<Spells>(); ;
+        if (m_dataSpells.statSO.Level > 1) availablePassiveSpells = GetAvailablePassiveSpells();
 
         // combine the lists of active and passive spells
 
@@ -83,7 +85,7 @@ public class LevelUpManager : MonoBehaviour
 
         // if we can learn new Spells (the list of old spells is not full), add them to the list
         if (availableNewActiveSpells.Count > 0 
-            && availableOldActiveSpells.Count < m_spellSlots + 1)   // m_spellSlots + 1 because of Base Spell
+            && availableOldActiveSpells.Count < m_spellSlots)
         {
             foreach (Spells spell in availableNewActiveSpells)
             {
@@ -300,7 +302,7 @@ public class LevelUpManager : MonoBehaviour
             GetSpellDescription(_spellSO.Cd[_spellSO.Level - 1], _spellSO.Cd[_spellSO.Level], m_dataSpells.nameSpellSO.Cd);
 
         // InternalCd
-        if (_spellSO.Cd.Length == _spellSO.MaxLevel)
+        if (_spellSO.InternalCd.Length == _spellSO.MaxLevel)
             description +=
             GetSpellDescription(_spellSO.InternalCd[_spellSO.Level - 1], _spellSO.InternalCd[_spellSO.Level], m_dataSpells.nameSpellSO.InternalCd);
 
