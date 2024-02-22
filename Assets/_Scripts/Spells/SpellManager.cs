@@ -115,7 +115,7 @@ public class SpellManager : MonoBehaviour
         InitScriptableObject();
 
         // Prototyping
-        //LearnActiveSpell(Spells.ArrowVolley);
+        LearnActiveSpell(Spells.ArrowVolley);
         //LearnActiveSpell(Spells.ProtectiveOrbs);
         //LearnActiveSpell(Spells.AllDirections);
         LearnActiveSpell(Spells.AirWave);

@@ -34,15 +34,15 @@ MonoBehaviour:
   - 10
   - 10
   Cd:
-  - 8
-  - 6
-  - 4
-  - 2
+  - 0.5
+  - 0.5
+  - 0.5
+  - 0.5
   InternalCd: []
   Radius:
-  - 1
-  - 1
-  - 1
+  - 0.5
+  - 0.6
+  - 0.8
   - 1
   ProjectileAmount: 0400000006000000080000000a000000
   Pierce: []
