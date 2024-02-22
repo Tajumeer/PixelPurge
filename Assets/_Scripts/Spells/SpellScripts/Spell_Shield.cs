@@ -64,6 +64,8 @@ public class Spell_Shield : PoolObject<Spell_Shield>
     {
         StopAllCoroutines();
 
+        m_data_allSpells.statSO.DamageReductionPercentage -= m_damageReductionPercentage;
+
         gameObject.SetActive(false);
     }
 }

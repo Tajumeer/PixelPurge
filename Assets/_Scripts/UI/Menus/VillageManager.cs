@@ -12,12 +12,12 @@ public class VillageManager : MonoBehaviour
         // Open/Close Pausemenu
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            // cannot open pausemenu if options, credits, scoreboard or shop are open
+            // open pausemenu or close credits, scoreboard, shop
             if (SceneManager.GetSceneByBuildIndex((int)Scenes.Options).isLoaded) return;
-            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Pause).isLoaded) UnloadPause();
-            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Credits).isLoaded) return;
-            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Scoreboard).isLoaded) return;
-            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Shop).isLoaded) return;
+            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Pause).isLoaded) UnloadScene(Scenes.Pause);
+            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Credits).isLoaded) UnloadScene(Scenes.Credits);
+            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Scoreboard).isLoaded) UnloadScene(Scenes.Scoreboard);
+            else if (SceneManager.GetSceneByBuildIndex((int)Scenes.Shop).isLoaded) UnloadScene(Scenes.Shop);
             else LoadPause();
         }
     }
@@ -28,9 +28,9 @@ public class VillageManager : MonoBehaviour
         MenuManager.Instance.LoadSceneAsync(Scenes.Pause, LoadSceneMode.Additive);
     }
 
-    public void UnloadPause()
+    public void UnloadScene(Scenes _scene)
     {
-        MenuManager.Instance.UnloadSceneAsync(Scenes.Pause);
+        MenuManager.Instance.UnloadSceneAsync(_scene);
         Time.timeScale = 1f;
     }
 }
