@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: bf5a74c1a30b3ea4c8586e3b4e457cac
+guid: 81937c795e0c4674391ac750f54dfdb7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 64
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -123,7 +123,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ForceWave-Sheet_0
+      name: ForceWave-Sheet-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
@@ -131,20 +131,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1304ba2a6fa0a27419db2a33aaaeb719
-      internalID: -1494460756
+      spriteID: 47141917024135b4781d72b4a6d61f8d
+      internalID: 1314767165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForceWave-Sheet_1
+      name: ForceWave-Sheet-Sheet_1
       rect:
         serializedVersion: 2
         x: 0
@@ -152,20 +152,20 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7487be7296e16d54c8be45cf9bdb2655
-      internalID: -206033353
+      spriteID: 3804855743c905141a793e778bc44fcc
+      internalID: -1450683802
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: ForceWave-Sheet_2
+      name: ForceWave-Sheet-Sheet_2
       rect:
         serializedVersion: 2
         x: 0
@@ -173,14 +173,14 @@ TextureImporter:
         width: 64
         height: 64
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c147b6a31bb03b04694163982f3f2945
-      internalID: -160383727
+      spriteID: 7d947bf08b06525409334513245db0b5
+      internalID: 1070897593
       vertices: []
       indices: 
       edges: []
@@ -196,9 +196,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      ForceWave-Sheet_0: -1494460756
-      ForceWave-Sheet_1: -206033353
-      ForceWave-Sheet_2: -160383727
+      ForceWave-Sheet-Sheet_0: 1314767165
+      ForceWave-Sheet-Sheet_1: -1450683802
+      ForceWave-Sheet-Sheet_2: 1070897593
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
