@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: GroundMine
   m_EditorClassIdentifier: 
   SpellName: Ground Mine
-  SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
+  SpellIcon: {fileID: 21300000, guid: ac07ca62bcb58104c9406e31a448b796, type: 3}
   SpellDescription: Spawns Damage Zones behind the player
   SpellSFX: []
   Level: 0
@@ -34,6 +34,7 @@ MonoBehaviour:
   - 4
   - 3
   - 2
+  InternalCd: []
   Radius: []
   ProjectileAmount: 01000000010000000100000001000000
   Pierce:

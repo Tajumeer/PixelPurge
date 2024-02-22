@@ -84,7 +84,6 @@ public class SpellManager : MonoBehaviour
     private ObjectPool<Spell_PoisonArea> m_pool_PoisonArea;
     private ObjectPool<Spell_ChainLightning> m_pool_ChainLightning;
     private ObjectPool<Spell_ArrowVolley> m_pool_ArrowVolley;
-    private ObjectPool<Spell_Shield> m_pool_Shield;
 
     [Header("Parent Objects")]
     private Transform[] m_parent = new Transform[(int)Spells.ActiveSpells];
@@ -93,8 +92,6 @@ public class SpellManager : MonoBehaviour
     private bool[] m_active = new bool[(int)Spells.ActiveSpells];
 
     private float[] m_timer = new float[(int)Spells.ActiveSpells];
-
-    //private float[] m_cd = new float[(int)Spells.ActiveSpells];
 
     private void OnEnable()
     {
@@ -118,7 +115,7 @@ public class SpellManager : MonoBehaviour
         //LearnActiveSpell(Spells.ArrowVolley);
         //LearnActiveSpell(Spells.ProtectiveOrbs);
         //LearnActiveSpell(Spells.AllDirections);
-        LearnActiveSpell(Spells.AirWave);
+        //LearnActiveSpell(Spells.AirWave);
         //LearnActiveSpell(Spells.Shield);
         //LearnActiveSpell(Spells.Aura);
         //LearnActiveSpell(Spells.Bomb);

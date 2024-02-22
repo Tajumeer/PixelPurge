@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: SO_HealthRegen
   m_EditorClassIdentifier: 
   SpellName: Health Regeneration
-  SpellIcon: {fileID: 21300000, guid: 1aad936e181b75f4f90558afe6ac8cbf, type: 3}
-  SpellDescription: Increase player Health Regeneration 1/s
+  SpellIcon: {fileID: 21300000, guid: b30d3ed1a8561214b904c1adfb6bfb55, type: 3}
   SpellUpgradeDescription: Health Regeneration
   Level: 0
   MaxLevel: 4

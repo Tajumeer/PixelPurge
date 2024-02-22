@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ProtectiveOrbs
   m_EditorClassIdentifier: 
   SpellName: Protective Orbs
-  SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
+  SpellIcon: {fileID: 21300000, guid: ac07ca62bcb58104c9406e31a448b796, type: 3}
   SpellDescription: Spawns rotating orbs around the Player
   SpellSFX: []
   Level: 0
@@ -38,6 +38,7 @@ MonoBehaviour:
   - 12
   - 8
   - 4
+  InternalCd: []
   Radius:
   - 2
   - 2
