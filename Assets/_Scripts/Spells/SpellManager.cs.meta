@@ -3,7 +3,22 @@ guid: 57b41a42f9d144540b95c6f3cdd02809
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - m_data_Spells: {instanceID: 0}
+  - m_data_OriginalSpells: {instanceID: 0}
+  - m_prefab_AllDirections: {fileID: 1960888898802110764, guid: f288201a02c22134fbee2a0dab0cdb90, type: 3}
+  - m_prefab_NearPlayer: {fileID: 1960888898802110764, guid: 82023d0ce7f8b7a489ad6a607b5dbc0c, type: 3}
+  - m_prefab_AirWave: {fileID: 1960888898802110764, guid: ae79387ff636f2247ab98a06adb8fce6, type: 3}
+  - m_prefab_Aura: {fileID: 1960888898802110764, guid: 10c47cb03c1b37e4bb2bbe7c0d201d56, type: 3}
+  - m_prefab_Boomerang: {fileID: 1960888898802110764, guid: 21fc769d154749b4d86418f523efffb1, type: 3}
+  - m_prefab_ProtectiveOrbs: {fileID: 1960888898802110764, guid: 43e89e08e7a061640bebc2f094acab60, type: 3}
+  - m_prefab_GroundMine: {fileID: 1960888898802110764, guid: 9b682303520d4704a9fe4bc6e109ca99, type: 3}
+  - m_prefab_Shockwave: {fileID: 1960888898802110764, guid: 784fc9db76f94c046b7713008d8d7cf0, type: 3}
+  - m_prefab_Bomb: {fileID: 1960888898802110764, guid: 928209e11e5e58c478347ba56dee31c0, type: 3}
+  - m_prefab_PoisonArea: {instanceID: 0}
+  - m_prefab_ChainLightning: {instanceID: 0}
+  - m_prefab_ArrowVolley: {instanceID: 0}
+  - m_prefab_Shield: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -23,13 +23,12 @@ MonoBehaviour:
   DamageMultiplier: 1
   CritChance: 0
   CritMultiplier: 1.5
-  AttackSpeed: 1
   AreaMultiplier: 1
   ProjectileSpeed: 25
-  RecastTimeMultiplier: 1
+  CdReduction: 0
   MaxHealth: 100
-  HealthRegeneration: 0
-  DamageReductionPercentage: 0
+  HealthRegeneration: 100
+  DamageReductionPercentage: 100
   CollectionRadius: 2
   GoldMultiplier: 1
   XPNeeded: 5
