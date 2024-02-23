@@ -25,11 +25,7 @@ MonoBehaviour:
   CritMultiplier: 1.5
   AreaMultiplier: 1
   ProjectileSpeed: 25
-<<<<<<< HEAD
-  CdReduction: 0
-=======
   CdReduction: 1
->>>>>>> a1754272ec104321f9f7709728bc6ab823dc6bbd
   MaxHealth: 100
   HealthRegeneration: 100
   DamageReductionPercentage: 100

@@ -110,11 +110,7 @@ public class SpellManager : MonoBehaviour
 
         // Prototyping
         //LearnActiveSpell(Spells.ArrowVolley);
-<<<<<<< HEAD
-        //LearnActiveSpell(Spells.ProtectiveOrbs);
-=======
         //LearnActiveSpell(Spells.SwordVortex);
->>>>>>> a1754272ec104321f9f7709728bc6ab823dc6bbd
         //LearnActiveSpell(Spells.AllDirections);
         //LearnActiveSpell(Spells.AirWave);
         //LearnActiveSpell(Spells.Shield);
