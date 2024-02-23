@@ -105,11 +105,11 @@ public class SpellSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnProtectiveOrbs(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_ProtectiveOrbs> _pool, Transform _parent)
+    public void SpawnSwordVortex(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_SwordVortex> _pool, Transform _parent)
     {
         for (int i = 0; i < _spellData.ProjectileAmount[_spellData.Level - 1]; i++)
         {
-            Spell_ProtectiveOrbs spellObj = _pool.GetObject();
+            Spell_SwordVortex spellObj = _pool.GetObject();
 
             if (spellObj.tag != "PlayerSpell")
             {
@@ -189,24 +189,6 @@ public class SpellSpawner : MonoBehaviour
             spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
 
             spellObj.OnSpawn(_playerData, _spellData, m_player.gameObject.transform);
-        }
-    }
-
-    public void SpawnChainLightning(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_ChainLightning> _pool, Transform _parent)
-    {
-        for (int i = 0; i < _spellData.ProjectileAmount[_spellData.Level - 1]; i++)
-        {
-            Spell_ChainLightning spellObj = _pool.GetObject();
-
-            if (spellObj.tag != "PlayerSpell")
-            {
-                spellObj.transform.SetParent(_parent);
-                spellObj.tag = "PlayerSpell";
-            }
-
-            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
-
-            spellObj.OnSpawn(_playerData, _spellData);
         }
     }
 

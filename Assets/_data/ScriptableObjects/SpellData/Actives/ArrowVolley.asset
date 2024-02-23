@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SpellName: Arrow Volley
   SpellIcon: {fileID: 1819835292, guid: 46d5baaeb8d0aa749a00378066ce080a, type: 3}
-  SpellDescription: Shoots a volley of arrows across the screen.
+  SpellDescription: A Trail behind the player.
   SpellSFX: []
   Level: 0
   MaxLevel: 4

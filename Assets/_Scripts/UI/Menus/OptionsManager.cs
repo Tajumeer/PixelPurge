@@ -17,7 +17,6 @@ public class OptionsManager : MonoBehaviour
         m_activeTab = 0;
         ActivateTab(0);
         DeactivateTab(1);
-        DeactivateTab(2);
     }
 
     private void Update()

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PoisonArea
   m_EditorClassIdentifier: 
   SpellName: Poison Area
-  SpellIcon: {fileID: 21300000, guid: ac07ca62bcb58104c9406e31a448b796, type: 3}
+  SpellIcon: {fileID: 21300000, guid: b14eb5d2b62cd5245a73ec82ae740060, type: 3}
   SpellDescription: Creates an Area on the Map that deals damage to enemys in it.
   SpellSFX: []
   Level: 0
@@ -41,9 +41,9 @@ MonoBehaviour:
   - 0.3
   Radius:
   - 2
-  - 2
+  - 2.5
   - 3
-  - 4
+  - 3.5
   ProjectileAmount: 01000000010000000200000003000000
   Pierce: []
   Bounce: []
