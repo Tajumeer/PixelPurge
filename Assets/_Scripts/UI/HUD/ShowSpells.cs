@@ -25,8 +25,8 @@ public class ShowSpells : MonoBehaviour
     /// </summary>
     private List<float> m_timer;
 
-    public List<Spells> LearnedActiveSpells;
-    public List<Spells> LearnedPassiveSpells;
+    [HideInInspector] public List<Spells> LearnedActiveSpells;
+    [HideInInspector] public List<Spells> LearnedPassiveSpells;
 
     private void OnEnable()
     {

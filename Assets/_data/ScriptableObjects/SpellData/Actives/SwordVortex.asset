@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cba315fa26148b94d86d1d1857c6e60b, type: 3}
-  m_Name: ProtectiveOrbs
+  m_Name: SwordVortex
   m_EditorClassIdentifier: 
-  SpellName: Protective Orbs
+  SpellName: Sword Vortex
   SpellIcon: {fileID: 21300000, guid: 1615217f125325842a6d3db6aec397db, type: 3}
-  SpellDescription: Spawns rotating orbs around the Player
+  SpellDescription: Spawns rotating swords around the Player
   SpellSFX: []
   Level: 0
   MaxLevel: 4

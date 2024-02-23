@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cba315fa26148b94d86d1d1857c6e60b, type: 3}
   m_Name: AirWave
   m_EditorClassIdentifier: 
-  SpellName: Base Archer
+  SpellName: Air Wave
   SpellIcon: {fileID: 1314767165, guid: 81937c795e0c4674391ac750f54dfdb7, type: 3}
   SpellDescription: Shoots at mouse direction.
   SpellSFX: []
   Level: 0
   MaxLevel: 4
   Damage:
-  - 10
-  - 20
+  - 30
   - 40
+  - 60
   - 80
   Lifetime:
   - 0.5
@@ -40,10 +40,10 @@ MonoBehaviour:
   - 1.5
   InternalCd: []
   Radius:
-  - 1.1
-  - 1.1
-  - 1.1
-  - 1.1
+  - 2
+  - 2.5
+  - 3
+  - 3.5
   ProjectileAmount: 01000000010000000100000001000000
   Pierce:
   - 8

@@ -13,12 +13,11 @@ public class SO_OriginalSpells : ScriptableObject
     public SO_ActiveSpells Data_NearPlayer;
     public SO_ActiveSpells Data_Aura;
     public SO_ActiveSpells Data_Boomerang;
-    public SO_ActiveSpells Data_ProtectiveOrbs;
+    public SO_ActiveSpells Data_SwordVortex;
     public SO_ActiveSpells Data_GroundMine;
     public SO_ActiveSpells Data_Shockwave;
     public SO_ActiveSpells Data_Bomb;
     public SO_ActiveSpells Data_PoisonArea;
-    public SO_ActiveSpells Data_ChainLightning;
     public SO_ActiveSpells Data_ArrowVolley;
     public SO_ActiveSpells Data_Shield;
 
