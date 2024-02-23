@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour, IDataPersistence
 {
+    private const float F_SCALING_FACTOR = 1.5f;
+
     private static GameManager m_instance;
 
     public static GameManager Instance
@@ -25,7 +27,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     [HideInInspector] public int HighestScore;
     public int Gold;
     private FirestoreRest m_firestore;
-
+    private float m_scalingMulti;
     private DungeonHUDManager m_hudManager;
 
 
@@ -42,6 +44,20 @@ public class GameManager : MonoBehaviour, IDataPersistence
         }
     }
 
+    public float GetScaledHP(float _currentHP)
+    {
+        for(int i = 0; i < m_scalingMulti; i++)
+        {
+            _currentHP *= F_SCALING_FACTOR;
+        }
+
+        return _currentHP;
+    }
+
+    public void SetScalingFactor(int _scalingMulti)
+    {
+        m_scalingMulti = _scalingMulti;
+    }
 
     private void ResetGame()
     {

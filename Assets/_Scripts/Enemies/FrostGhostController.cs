@@ -39,8 +39,10 @@ public class FrostGhostController : MonoBehaviour, IDamagable
         m_levelPlayer = FindObjectOfType<LevelPlayer>();
         m_enemySpawner = FindObjectOfType<EnemySpawner>();
 
+        EnemyHealth = GameManager.Instance.GetScaledHP(EnemyHealth);
     }
 
+   
     void Update()
     {
         if (m_isDead)
