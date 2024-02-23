@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 162116ec68385134a862e6949ed5afc1, type: 3}
   m_Name: SO_OriginalSpells
   m_EditorClassIdentifier: 
-  Data_BaseArcher: {fileID: 11400000, guid: 41e64fe08b0d4234091460a9f4b79e60, type: 2}
+  Data_AirWave: {fileID: 11400000, guid: 41e64fe08b0d4234091460a9f4b79e60, type: 2}
   Data_AllDirections: {fileID: 11400000, guid: 2a50605f2860fcb4bb365c9caf810bc0, type: 2}
   Data_NearPlayer: {fileID: 11400000, guid: 7a8ca55820a823b40aed7af5a97bc63c, type: 2}
   Data_Aura: {fileID: 11400000, guid: 684841cbb660cc34fa7fed376a10896f, type: 2}

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AllDirections
   m_EditorClassIdentifier: 
   SpellName: All DIrections
-  SpellIcon: {fileID: 21300000, guid: f262689fb96337b4a8e45bc96ee0d79b, type: 3}
+  SpellIcon: {fileID: 21300000, guid: 3c01142d1a1692242980627a48d24a36, type: 3}
   SpellDescription: Shoots at all directions.
   SpellSFX: []
   Level: 0
