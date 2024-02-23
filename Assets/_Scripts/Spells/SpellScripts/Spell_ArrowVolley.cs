@@ -58,7 +58,7 @@ public class Spell_ArrowVolley : PoolObject<Spell_ArrowVolley>
 
     private void Shoot()
     {
-
+      this.transform.position = m_playerController.transform.position; 
     }
 
     public void OnTriggerEnter2D(Collider2D _collision)

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: AirWave
   m_EditorClassIdentifier: 
   SpellName: Base Archer
-  SpellIcon: {fileID: 21300000, guid: 89b494ee50ae9224cbb793da2e62b7de, type: 3}
+  SpellIcon: {fileID: 1314767165, guid: 81937c795e0c4674391ac750f54dfdb7, type: 3}
   SpellDescription: Shoots at mouse direction.
   SpellSFX: []
   Level: 0

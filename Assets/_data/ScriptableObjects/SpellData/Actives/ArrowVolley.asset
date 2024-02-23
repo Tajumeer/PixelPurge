@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: ArrowVolley
   m_EditorClassIdentifier: 
   SpellName: Arrow Volley
-  SpellIcon: {fileID: 21300000, guid: ac07ca62bcb58104c9406e31a448b796, type: 3}
+  SpellIcon: {fileID: 1819835292, guid: 46d5baaeb8d0aa749a00378066ce080a, type: 3}
   SpellDescription: Shoots a volley of arrows across the screen.
   SpellSFX: []
   Level: 0
@@ -24,25 +24,25 @@ MonoBehaviour:
   - 45
   - 60
   Lifetime:
-  - 15
-  - 15
-  - 15
-  - 15
+  - 0.5
+  - 0.75
+  - 1
+  - 1.25
   Speed:
   - 10
   - 10
   - 10
   - 10
   Cd:
-  - 8
-  - 6
-  - 4
+  - 2
+  - 2
+  - 2
   - 2
   InternalCd: []
   Radius:
-  - 1
-  - 1
-  - 1
+  - 0.5
+  - 0.6
+  - 0.8
   - 1
   ProjectileAmount: 0400000006000000080000000a000000
   Pierce: []

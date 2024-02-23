@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 // Maya
 
@@ -9,6 +11,8 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
     private PlayerStats m_playerData;
+    private Transform m_target;
+    [SerializeField] private float m_rotationSpeed;
 
     /// <summary>
     /// Get & reset Rigidbody, 
@@ -22,6 +26,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
 
         m_spellData = _spellData;
         m_playerData = _playerData;
+
 
         // set Radius depending on own radius and player multiplier
         if (m_spellData.Radius.Length >= m_spellData.Level)
@@ -38,17 +43,54 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
         // Start Lifetime
         StartCoroutine(DeleteTimer());
 
-        Move();
+        SetTarget();
+    }
+
+    private void Update()
+    {
+        if (m_target != null)
+        {
+            Vector2 direction = (Vector2)m_target.position - (Vector2)transform.position;
+            direction.Normalize();
+
+            float rotateAmount = Vector3.Cross(direction, transform.up).z;
+            GetComponent<Rigidbody2D>().angularVelocity = -rotateAmount * m_rotationSpeed;
+
+            transform.Translate(Vector2.up * m_spellData.Speed[m_spellData.Level - 1] * Time.deltaTime);
+        }
+        else if (m_target == null)
+        {
+            SetTarget();
+        }
     }
 
     /// <summary>
     /// Move away from the player in the given direction for this projecitle
     /// </summary>
     /// <param name="_spellIdx"></param>
-    private void Move()
+    private void SetTarget()
     {
-        m_rb.AddRelativeForce(Vector2.down * m_spellData.Speed[m_spellData.Level-1], ForceMode2D.Impulse);
-    }
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        if (enemies.Length > 0)
+        {
+            Transform nearestEnemy = enemies[0].transform;
+
+            foreach (GameObject enemy in enemies)
+            {
+                float distance = Vector2.Distance(transform.position, enemy.transform.position);
+                float nearestDistance = Vector2.Distance(transform.position, nearestEnemy.position);
+
+                if (distance < nearestDistance)
+                {
+                    nearestEnemy = enemy.transform;
+                }
+            }
+
+            m_target = nearestEnemy;
+        }
+
+    } 
 
     /// <summary>
     /// Get and reset rigidbody
@@ -82,7 +124,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     /// <returns></returns>
     private IEnumerator DeleteTimer()
     {
-        yield return new WaitForSeconds(m_spellData.Lifetime[m_spellData.Level-1]);
+        yield return new WaitForSeconds(m_spellData.Lifetime[m_spellData.Level - 1]);
 
         DeactivateSpell();
     }
