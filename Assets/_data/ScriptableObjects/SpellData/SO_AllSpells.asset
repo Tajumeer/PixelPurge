@@ -17,6 +17,14 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   passiveSpellSO:
   - {fileID: 0}
   - {fileID: 0}
@@ -29,6 +37,5 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  statSO: {fileID: 0}
   nameSpellSO: {fileID: 11400000, guid: 1ce1a0cb8d3e3d541a9d50833386d7a7, type: 2}

@@ -65,12 +65,8 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     public void UpgradeHealth()
     {
-      
-            m_healthLevel++;
-            m_healthLevel = 5;
-        
+        m_healthLevel++;
         HealthUpgrade();
-
     }
 
     private void HealthUpgrade()
