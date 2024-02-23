@@ -14,6 +14,8 @@ public class ChooseSpell : MonoBehaviour
     public TextMeshProUGUI m_name;
     public TextMeshProUGUI m_description;
 
+    [SerializeField] private int m_goldAmount;
+
     public void ChooseThisSpell()
     {
         FindObjectOfType<SpellManager>().ChooseNewSpell(m_spell);
@@ -23,5 +25,6 @@ public class ChooseSpell : MonoBehaviour
     public void ChooseGold()
     {
         FindObjectOfType<DungeonHUDManager>().UnloadLevelUp();
+        GameManager.Instance.AddGold(m_goldAmount);
     }
 }

@@ -1,9 +1,18 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+
+[Serializable]
+public enum Characters
+{
+    Archer = 0,
+    Swordsman = 1,
+    Mage = 2
+}
 
 public class PlayerController : MonoBehaviour, IDamagable
 {
@@ -114,9 +123,9 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_healthBar.fillAmount = this.ActivePlayerData.CurrentHealth / ActivePlayerData.MaxHealth;
     }
 
-    public void SetCharacterVisualsAndData(int _newIndex)
+    public void SetCharacterVisualsAndData(Characters _newCharacter)
     {
-        m_characterIndex = _newIndex;
+        m_characterIndex = (int)_newCharacter;
 
         if (m_characterIndex > PlayerData.Count)
         {
@@ -154,7 +163,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         m_rigidbody = GetComponent<Rigidbody2D>();
 
         m_characterIndex = 0;
-        SetCharacterVisualsAndData(m_characterIndex);
+        SetCharacterVisualsAndData((Characters)m_characterIndex);
 
         if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Village"))
         {
@@ -185,7 +194,7 @@ public class PlayerController : MonoBehaviour, IDamagable
             if (m_characterIndex == 0) Debug.Log("Archer");
             else if (m_characterIndex == 1) Debug.Log("Swordsman");
             else if (m_characterIndex == 2) Debug.Log("Mage");
-            SetCharacterVisualsAndData(m_characterIndex);
+            SetCharacterVisualsAndData((Characters)m_characterIndex);
             if (MoveDirection.x == 0 && MoveDirection.y == 0) ChangeAnimationState(AnimationState.player_idle);
             else ChangeAnimationState(AnimationState.player_run);
         }

@@ -583,7 +583,7 @@ MonoBehaviour:
   m_statAmount_goldMultiplier: {fileID: 850033172}
   m_statAmount_damage: {fileID: 804883820}
   m_statAmount_critChance: {fileID: 1195127753}
-  m_statAmount_attackSpeed: {fileID: 1347600475}
+  m_statAmount_cdReduction: {fileID: 0}
   m_statAmount_projectileSpeed: {fileID: 111475060}
 --- !u!4 &121783267
 Transform:
@@ -6064,7 +6064,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Attack Speed
+  m_text: CD Reduction
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: cbb002a5a79b126488d86707cdac1fe5, type: 2}
   m_sharedMaterial: {fileID: 2172117704210082173, guid: cbb002a5a79b126488d86707cdac1fe5, type: 2}

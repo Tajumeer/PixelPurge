@@ -184,11 +184,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21420190e04831844a8d51c91d7c0c14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_spell: 6
+  m_spell: 25
   m_newText: {fileID: 0}
   m_icon: {fileID: 8195677012544769141}
   m_name: {fileID: 1288897696758692926}
   m_description: {fileID: 4047258261333584399}
+  m_goldAmount: 10
 --- !u!1 &5003681477480498928
 GameObject:
   m_ObjectHideFlags: 0

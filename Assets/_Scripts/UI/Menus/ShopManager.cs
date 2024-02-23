@@ -79,6 +79,7 @@ public class ShopManager : MonoBehaviour
         // reduce gold by the amount needed to buy stat and show it in UI
         m_gameManager.AddGold(-m_cost[stat].m_cost[m_data.StatLevel[stat]]);
         m_goldAmountText.text = m_gameManager.Gold.ToString();
+        if (FindObjectOfType<VillageManager>()) FindObjectOfType<VillageManager>().ShowCoins();
 
         // set the level indicator image
         _statScript.m_levelIndicator[m_data.StatLevel[stat]].sprite = m_indicatorImageUpgraded;
