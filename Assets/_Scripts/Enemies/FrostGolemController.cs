@@ -41,6 +41,7 @@ public class FrostGolemController : MonoBehaviour, IDamagable
         m_levelPlayer = FindObjectOfType<LevelPlayer>();
         m_enemySpawner = FindObjectOfType<EnemySpawner>();
 
+        EnemyHealth = GameManager.Instance.GetScaledHP(EnemyHealth);
     }
 
     void Update()

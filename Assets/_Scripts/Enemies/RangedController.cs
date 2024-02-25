@@ -54,6 +54,7 @@ public class RangedController : MonoBehaviour, IDamagable
         m_enemySpawner = FindObjectOfType<EnemySpawner>();
 
         m_attackFrequencyTimer = 0f;
+        EnemyHealth = GameManager.Instance.GetScaledHP(EnemyHealth);
     }
 
     void Update()

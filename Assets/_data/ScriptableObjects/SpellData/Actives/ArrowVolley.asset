@@ -34,10 +34,10 @@ MonoBehaviour:
   - 10
   - 10
   Cd:
-  - 2
-  - 2
-  - 2
-  - 2
+  - 0.1
+  - 0.1
+  - 0.1
+  - 0.1
   InternalCd: []
   Radius:
   - 0.5

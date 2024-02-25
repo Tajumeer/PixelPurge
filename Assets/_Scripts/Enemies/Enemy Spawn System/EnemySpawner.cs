@@ -79,6 +79,7 @@ public class EnemySpawner : MonoBehaviour
         if (m_currentWaveCount < m_waves.Count - 1)
         {
             m_currentWaveCount++;
+            GameManager.Instance.SetScalingFactor(m_currentWaveCount);
             GameManager.Instance.AddScore(m_scorePerWave * m_currentWaveCount);
             CalculateWaveQuota();
         }
@@ -116,10 +117,12 @@ public class EnemySpawner : MonoBehaviour
 
                     GameObject enemy = Instantiate(enemyGroup.EnemyPrefab, m_player.position + m_SpawnPoints[Random.Range(0, m_SpawnPoints.Count)].position, Quaternion.identity, this.transform);
                     CreateAgent(enemy);
-
+                    
                     enemyGroup.SpawnCount++;
                     m_waves[m_currentWaveCount].SpawnCount++;
                     m_enemiesAlive++;
+
+                 
                 }
             }
         }
@@ -137,18 +140,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void CreateAgent(GameObject _target)
     {
-
-        //if (!_target.GetComponent<NavMeshAgent>())
-        //{
-        //    _target.AddComponent<NavMeshAgent>();
-        //}
-
         _target.GetComponent<NavMeshAgent>().enabled = false;
         _target.GetComponent<NavMeshAgent>().updateRotation = false;
         _target.GetComponent<NavMeshAgent>().updateUpAxis = false;
-
-        //_target.GetComponent<NavMeshAgent>().baseOffset = .45f;
-        //_target.GetComponent<NavMeshAgent>().radius = .4f;
-        //_target.GetComponent<NavMeshAgent>().height = .7f;
     }
 }

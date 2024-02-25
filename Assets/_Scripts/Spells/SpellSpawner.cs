@@ -209,4 +209,29 @@ public class SpellSpawner : MonoBehaviour
             spellObj.OnSpawn(_playerData, _spellData, i);
         }
     }
+
+    public void SpawnArrowVolley(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_Boomerang> _pool, Transform _parent)
+    {
+        StartCoroutine(SpawnArrowVolleyDelay(_playerData, _spellData, _pool, _parent));
+    }
+
+    private IEnumerator SpawnArrowVolleyDelay(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_Boomerang> _pool, Transform _parent)
+    {
+        for (int i = 0; i < _spellData.ProjectileAmount[_spellData.Level - 1]; i++)
+        {
+            Spell_Boomerang spellObj = _pool.GetObject();
+
+            if (spellObj.tag != "PlayerSpell")
+            {
+                spellObj.transform.SetParent(_parent);
+                spellObj.tag = "PlayerSpell";
+            }
+
+            spellObj.ResetObj(m_player.gameObject.transform.position, new Vector3(0f, 0f, 0f));
+
+            spellObj.OnSpawn(_playerData, _spellData, i);
+
+            yield return new WaitForSeconds(_spellData.Cd[_spellData.Level - 1] / _spellData.ProjectileAmount[_spellData.Level - 1]);
+        }
+    }
 }
