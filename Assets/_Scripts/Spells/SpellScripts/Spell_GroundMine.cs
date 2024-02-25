@@ -27,7 +27,7 @@ public class Spell_GroundMine : PoolObject<Spell_GroundMine>
         m_health = m_spellData.Pierce[m_spellData.Level - 1];
 
         // set Radius depending on own radius and player multiplier
-        if (m_spellData.Radius.Length >= m_spellData.Level)
+        if (m_spellData.Radius.Length == m_spellData.MaxLevel)
         {
             float radius = m_spellData.Radius[m_spellData.Level - 1] * m_playerData.AreaMultiplier;
             transform.localScale = new Vector3(radius, radius, radius);

@@ -108,8 +108,7 @@ public class SpellManager : MonoBehaviour
 
         InitScriptableObject();
 
-        // Prototyping
-        LearnActiveSpell(Spells.Boomerang);
+
     }
 
     /// <summary>

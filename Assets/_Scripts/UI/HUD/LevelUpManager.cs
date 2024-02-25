@@ -183,14 +183,6 @@ public class LevelUpManager : MonoBehaviour
         // choose 3 spells from List
         for (int i = 0; i < 3; i++)
         {
-            // PROTPTYPING
-            if (i == 0)
-            {
-                CardPassiveSpell(Spells.AreaMultiplier);
-                _availableSpells.Remove(Spells.AreaMultiplier);
-                continue;
-            }
-
             // if there are no spell (upgrades) left, make a gold card
             if (_availableSpells.Count == 0)
             {
