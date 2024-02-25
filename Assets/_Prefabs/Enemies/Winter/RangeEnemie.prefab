@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemPrefab: {fileID: 1910158392446484125, guid: f62de59e4b4b20b4ebccd7f1712a965b, type: 3}
-  m_dropChance: 0.05
+  m_dropChance: 0.1
 --- !u!114 &-6250474057389454401
 MonoBehaviour:
   m_ObjectHideFlags: 0
