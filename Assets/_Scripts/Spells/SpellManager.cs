@@ -109,16 +109,8 @@ public class SpellManager : MonoBehaviour
         InitScriptableObject();
 
         // Prototyping
-        LearnActiveSpell(Spells.NearPlayer);
-        //LearnActiveSpell(Spells.ArrowVolley);
-        //LearnActiveSpell(Spells.SwordVortex);
-        //LearnActiveSpell(Spells.AllDirections);
-        //LearnActiveSpell(Spells.AirWave);
-        //LearnActiveSpell(Spells.Shield);
-        //LearnActiveSpell(Spells.Aura);
-        //LearnActiveSpell(Spells.Bomb);
-        //LearnActiveSpell(Spells.PoisonArea);
-        //LearnActiveSpell(Spells.Shockwave);
+        LearnActiveSpell(Spells.Boomerang);
+        LearnPassiveSpell(Spells.AreaMultiplier);
     }
 
     /// <summary>
