@@ -56,11 +56,11 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
             float rotateAmount = Vector3.Cross(direction, transform.up).z;
             GetComponent<Rigidbody2D>().angularVelocity = -rotateAmount * m_rotationSpeed;
 
-            transform.Translate(Vector2.up * m_spellData.Speed[m_spellData.Level - 1] * Time.deltaTime);
+            transform.Translate(direction * m_spellData.Speed[m_spellData.Level - 1] * Time.deltaTime);
         }
         else if (m_target == null)
         {
-            SetTarget();
+            DeactivateSpell();
         }
     }
 
@@ -88,6 +88,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
             }
 
             m_target = nearestEnemy;
+            Debug.Log(m_target);
         }
 
     } 
@@ -116,6 +117,9 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
 
         // the enemy get damage on hit
         _collision.gameObject.GetComponent<IDamagable>().GetDamage(damage);
+
+
+        DeactivateSpell();
     }
 
     /// <summary>

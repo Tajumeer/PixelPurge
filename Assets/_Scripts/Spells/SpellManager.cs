@@ -109,6 +109,7 @@ public class SpellManager : MonoBehaviour
         InitScriptableObject();
 
         // Prototyping
+        LearnActiveSpell(Spells.NearPlayer);
         //LearnActiveSpell(Spells.ArrowVolley);
         //LearnActiveSpell(Spells.SwordVortex);
         //LearnActiveSpell(Spells.AllDirections);
