@@ -93,7 +93,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1232874407
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 557944411, guid: d5622c064a660f24a87b8dca73727bfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemPrefab: {fileID: 1910158392446484125, guid: 09fd18b9f0abfbd43935fc2fa0250ebb, type: 3}
-  m_dropChance: 0.15
+  m_dropChance: 0.05
 --- !u!114 &-5216834863397654387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemPrefab: {fileID: 1910158392446484125, guid: 7ba1c778680f1d444a5338881ce15e2e, type: 3}
-  m_dropChance: 0.15
+  m_dropChance: 0.1
 --- !u!195 &7851237647990967117
 NavMeshAgent:
   m_ObjectHideFlags: 0

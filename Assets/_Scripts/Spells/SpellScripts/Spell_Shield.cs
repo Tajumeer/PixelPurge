@@ -22,18 +22,6 @@ public class Spell_Shield : PoolObject<Spell_Shield>
         m_spellData = _spellData;
         m_playerData = _playerData;
 
-        // set Radius depending on own radius and player multiplier
-        if (m_spellData.Radius.Length == m_spellData.MaxLevel)
-        {
-            float radius = m_spellData.Radius[m_spellData.Level - 1] * m_playerData.AreaMultiplier;
-            transform.localScale = new Vector3(radius, radius, radius);
-        }
-        else
-            transform.localScale = new Vector3(
-                transform.localScale.x * m_playerData.AreaMultiplier,
-                transform.localScale.y * m_playerData.AreaMultiplier,
-                transform.localScale.z * m_playerData.AreaMultiplier);
-
         _playerData.DamageReductionPercentage += m_damageReductionPercentage;
 
         // Start Lifetime
