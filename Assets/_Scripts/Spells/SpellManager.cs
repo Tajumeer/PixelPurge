@@ -110,7 +110,6 @@ public class SpellManager : MonoBehaviour
 
         // Prototyping
         LearnActiveSpell(Spells.Boomerang);
-        LearnPassiveSpell(Spells.AreaMultiplier);
     }
 
     /// <summary>
@@ -498,7 +497,7 @@ public class SpellManager : MonoBehaviour
                 break;
 
             case Spells.AreaMultiplier:
-                m_data_Spells.statSO.AreaMultiplier += spellSO.Stat[spellSO.Level - 1];
+                m_data_Spells.statSO.AreaMultiplier *= spellSO.Stat[spellSO.Level - 1];
                 break;
 
             case Spells.MaxHealth:
