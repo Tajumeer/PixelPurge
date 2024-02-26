@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour, IDataPersistence
@@ -29,7 +30,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     private FirestoreRest m_firestore;
     private float m_scalingMulti;
     private DungeonHUDManager m_hudManager;
-    [HideInInspector]public int ClassIndex;
+    [HideInInspector] public int ClassIndex;
 
 
     private void Awake()
@@ -80,32 +81,41 @@ public class GameManager : MonoBehaviour, IDataPersistence
             m_hudManager.ShowGold(Gold);
     }
 
+    public void ResetHPScale()
+    {
+        m_scalingMulti = 0;
+    }
+
     public void Win()
     {
+        ResetHPScale();
         Time.timeScale = 0f;
-        UpdateLeaderboard();
         MenuManager.Instance.LoadSceneAsync(Scenes.Win, CursorTypes.UI, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
     public void Lose()
     {
+        ResetHPScale();
         Time.timeScale = 0f;
-        UpdateLeaderboard();
         MenuManager.Instance.LoadSceneAsync(Scenes.Death, CursorTypes.UI, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
-    private void UpdateLeaderboard()
+    public void UpdateLeaderboard()
     {
         if (UserScore > HighestScore)
         {
             HighestScore = UserScore;
-            m_firestore.SaveUserData("Leaderboard", UserName, UserScore);
+            Debug.Log("New Highscore pushed to Database: " + HighestScore);
+            StartCoroutine(m_firestore.SaveUserData("Leaderboard", UserName, HighestScore));
             UserScore = 0;
         }
         else
         {
             UserScore = 0;
         }
+
+        StartCoroutine(m_firestore.GetDataFromFirestore("Leaderboard", () => { } ));
+   
     }
 
     public void LoadData(GameData _data)
