@@ -174,7 +174,7 @@ public class SpellManager : MonoBehaviour
             }
         }
 
-        m_data_Spells.passiveSpellSO = new SO_PassiveSpells[(int)Spells.PassiveSpells - (int)Spells.ActiveSpells];
+        m_data_Spells.passiveSpellSO = new SO_PassiveSpells[(int)Spells.PassiveSpells - (int)Spells.ActiveSpells - 1];
 
         // Init Passive Spells
         for (int i = (int)Spells.ActiveSpells + 1; i < (int)Spells.PassiveSpells; i++)
@@ -421,7 +421,6 @@ public class SpellManager : MonoBehaviour
             case Spells.Shield:
                 GameObject shieldObj = Instantiate(m_prefab_Shield, FindObjectOfType<PlayerController>().gameObject.transform);
                 shieldObj.name = "Shield";
-                shieldObj.transform.localScale = new Vector3(1f, 1f, 1f);
                 m_parent[(int)_spell] = shieldObj.transform;
                 return;
         }

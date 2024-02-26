@@ -31,9 +31,6 @@ public class SpellSpawner : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Spawn the Spell "AllDirections"
-    /// </summary>
     public void SpawnAllDirections(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_AllDirections> _pool, Transform _parent)
     {
         for (int i = 0; i < _spellData.ProjectileAmount[_spellData.Level - 1]; i++)
@@ -52,9 +49,6 @@ public class SpellSpawner : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Spawn the Spell "NearPlayer"
-    /// </summary>
     public void SpawnNearPlayer(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_NearPlayer> _pool, Transform _parent)
     {
         StartCoroutine(SpawnNearPlayerWithDelay(_playerData, _spellData, _pool, _parent));
