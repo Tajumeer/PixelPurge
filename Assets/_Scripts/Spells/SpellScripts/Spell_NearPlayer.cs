@@ -13,7 +13,8 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     private PlayerStats m_playerData;
     private Transform m_target;
     [SerializeField] private float m_rotationSpeed;
-
+    private SpriteRenderer m_spriteRenderer;
+    private CircleCollider2D m_circleCollider;
     /// <summary>
     /// Get & reset Rigidbody, 
     /// start Lifetime & DeleteTimer,
@@ -26,8 +27,10 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
 
         m_spellData = _spellData;
         m_playerData = _playerData;
-
-
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
+        m_circleCollider = GetComponent<CircleCollider2D>();
+        m_spriteRenderer.enabled = false;
+        m_circleCollider.enabled = false;
         // set Radius depending on own radius and player multiplier
         if (m_spellData.Radius.Length == m_spellData.MaxLevel)
         {
@@ -50,18 +53,39 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
     {
         if (m_target != null)
         {
-            Vector2 direction = (Vector2)m_target.position - (Vector2)transform.position;
-            direction.Normalize();
+            m_spriteRenderer.enabled = true;
+            m_circleCollider.enabled = true;
 
-            float rotateAmount = Vector3.Cross(direction, transform.up).z;
-            GetComponent<Rigidbody2D>().angularVelocity = -rotateAmount * m_rotationSpeed;
+            if (ValidateTarget())
+            {
+                Vector2 direction = (Vector2)m_target.position - (Vector2)transform.position;
+                direction.Normalize();
 
-            transform.Translate(direction * m_spellData.Speed[m_spellData.Level - 1] * Time.deltaTime);
+                float rotateAmount = Vector3.Cross(direction, transform.up).z;
+                GetComponent<Rigidbody2D>().angularVelocity = -rotateAmount * m_rotationSpeed;
+
+                transform.Translate(direction * m_spellData.Speed[m_spellData.Level - 1] * Time.deltaTime);
+            }
+            else
+            {
+                SetTarget();
+            }
         }
         else if (m_target == null)
         {
-            DeactivateSpell();
+            m_spriteRenderer.enabled = false;
+            m_circleCollider.enabled = false;
         }
+    }
+
+    private bool ValidateTarget()
+    {
+        if (m_target.GetComponent<DeathBool>().IsDead)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     /// <summary>
@@ -91,7 +115,7 @@ public class Spell_NearPlayer : PoolObject<Spell_NearPlayer>
             Debug.Log(m_target);
         }
 
-    } 
+    }
 
     /// <summary>
     /// Get and reset rigidbody

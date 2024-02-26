@@ -391,6 +391,7 @@ public class SpellManager : MonoBehaviour
             case Spells.SwordVortex:
                 m_pool_SwordVortex = new ObjectPool<Spell_SwordVortex>(m_prefab_SwordVortex);
                 obj.name = "SwordVortex";
+                obj.transform.position = new Vector3(0.2f, -.2f, 0f);
                 break;
 
             case Spells.GroundMine:
