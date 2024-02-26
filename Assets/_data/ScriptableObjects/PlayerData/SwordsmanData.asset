@@ -16,19 +16,18 @@ MonoBehaviour:
   Level: 1
   CurrentHealth: 150
   MovementSpeed: 2.25
-  DashAmount: 0
+  DashAmount: 1
   DashSpeed: 15
   DashCooldown: 5
   DashTime: 0.2
   DamageMultiplier: 1
-  CritChance: 1
+  CritChance: 0
   CritMultiplier: 1
-  AttackSpeed: 1
   AreaMultiplier: 1
   ProjectileSpeed: 1
-  RecastTimeMultiplier: 1
+  CdReduction: 1
   MaxHealth: 150
-  HealthRegeneration: 0
+  HealthRegeneration: 1
   DamageReductionPercentage: 25
   CollectionRadius: 2
   GoldMultiplier: 1

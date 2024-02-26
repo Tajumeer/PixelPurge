@@ -1,70 +1,120 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 // Maya
 
-public class Spell_AllDirections : PoolObject<Spell_AllDirections>
+public class Spell_HomingRock : PoolObject<Spell_HomingRock>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
     private PlayerStats m_playerData;
+    private Transform m_target;
     [SerializeField] private float m_rotationSpeed;
-
-    private float m_health;
-
+    private SpriteRenderer m_spriteRenderer;
+    private CircleCollider2D m_circleCollider;
     /// <summary>
     /// Get & reset Rigidbody, 
     /// start Lifetime & DeleteTimer,
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(PlayerStats _playerData, SO_ActiveSpells _spellData, int _spellIdx)
+    public void OnSpawn(PlayerStats _playerData, SO_ActiveSpells _spellData)
     {
         InitRigidbody();
 
         m_spellData = _spellData;
         m_playerData = _playerData;
-
+        m_spriteRenderer = GetComponent<SpriteRenderer>();
+        m_circleCollider = GetComponent<CircleCollider2D>();
+        m_spriteRenderer.enabled = false;
+        m_circleCollider.enabled = false;
         // set Radius depending on own radius and player multiplier
-        if(m_spellData.Radius.Length == m_spellData.MaxLevel)
+        if (m_spellData.Radius.Length == m_spellData.MaxLevel)
         {
             float radius = m_spellData.Radius[m_spellData.Level - 1] * m_playerData.AreaMultiplier;
             transform.localScale = new Vector3(radius, radius, radius);
         }
-        else 
+        else
             transform.localScale = new Vector3(
-                transform.localScale.x * m_playerData.AreaMultiplier, 
+                transform.localScale.x * m_playerData.AreaMultiplier,
                 transform.localScale.y * m_playerData.AreaMultiplier,
                 transform.localScale.z * m_playerData.AreaMultiplier);
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
-        m_health = m_spellData.Pierce[m_spellData.Level - 1];
 
-        Move(_spellIdx);
+        SetTarget();
+    }
+
+    private void Update()
+    {
+        if (m_target != null)
+        {
+            m_spriteRenderer.enabled = true;
+            m_circleCollider.enabled = true;
+
+            if (ValidateTarget())
+            {
+                Vector2 direction = (Vector2)m_target.position - (Vector2)transform.position;
+                direction.Normalize();
+
+                float rotateAmount = Vector3.Cross(direction, transform.up).z;
+                GetComponent<Rigidbody2D>().angularVelocity = -rotateAmount * m_rotationSpeed;
+
+                transform.Translate(direction * m_spellData.Speed[m_spellData.Level - 1] * Time.deltaTime);
+            }
+            else
+            {
+                SetTarget();
+            }
+        }
+        else if (m_target == null)
+        {
+            m_spriteRenderer.enabled = false;
+            m_circleCollider.enabled = false;
+        }
+    }
+
+    private bool ValidateTarget()
+    {
+        if (m_target.GetComponent<DeathBool>().IsDead)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     /// <summary>
     /// Move away from the player in the given direction for this projecitle
     /// </summary>
     /// <param name="_spellIdx"></param>
-    private void Move(int _spellIdx)
+    private void SetTarget()
     {
-        Vector2 direction = Quaternion.Euler(0, 0, _spellIdx * (360f / m_spellData.ProjectileAmount[m_spellData.Level - 1])) * Vector2.up;
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        float currentAngle = _spellIdx * (360f / m_spellData.ProjectileAmount[m_spellData.Level - 1]);
+        if (enemies.Length > 0)
+        {
+            Transform nearestEnemy = enemies[0].transform;
 
-        Vector2 offset = new Vector2(Mathf.Cos(Mathf.Deg2Rad * currentAngle), Mathf.Sin(Mathf.Deg2Rad * currentAngle));
+            foreach (GameObject enemy in enemies)
+            {
+                float distance = Vector2.Distance(transform.position, enemy.transform.position);
+                float nearestDistance = Vector2.Distance(transform.position, nearestEnemy.position);
 
-        m_rb.AddRelativeForce((direction + offset) * m_spellData.Speed[m_spellData.Level - 1], ForceMode2D.Impulse);
-    }
+                if (distance < nearestDistance)
+                {
+                    nearestEnemy = enemy.transform;
+                }
+            }
 
-    private void Update()
-    {
-        float rotationAmount = m_rotationSpeed * Time.deltaTime;
-        m_rb.MoveRotation(m_rb.rotation + rotationAmount);
+            m_target = nearestEnemy;
+            Debug.Log(m_target);
+        }
+
     }
 
     /// <summary>
@@ -92,9 +142,8 @@ public class Spell_AllDirections : PoolObject<Spell_AllDirections>
         // the enemy get damage on hit
         _collision.gameObject.GetComponent<IDamagable>().GetDamage(damage);
 
-        // and the spell loses duration or dies
-        m_health -= 1;
-        if (m_health <= 0) DeactivateSpell();
+
+        DeactivateSpell();
     }
 
     /// <summary>

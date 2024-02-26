@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     private FirestoreRest m_firestore;
     private float m_scalingMulti;
     private DungeonHUDManager m_hudManager;
+    [HideInInspector]public int ClassIndex;
 
 
     private void Awake()
@@ -59,11 +60,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
         m_scalingMulti = _scalingMulti;
     }
 
-    private void ResetGame()
-    {
-
-    }
-
     private void Start()
     {
         m_firestore = GetComponent<FirestoreRest>();
@@ -89,28 +85,29 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void Win()
     {
         Time.timeScale = 0f;
+        UpdateLeaderboard();
         MenuManager.Instance.LoadSceneAsync(Scenes.Win, CursorTypes.UI, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
     public void Lose()
     {
         Time.timeScale = 0f;
+        UpdateLeaderboard();
         MenuManager.Instance.LoadSceneAsync(Scenes.Death, CursorTypes.UI, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
     private void UpdateLeaderboard()
     {
-        if (UserScore < HighestScore)
+        if (UserScore > HighestScore)
         {
-            UserScore = HighestScore;
+            HighestScore = UserScore;
             m_firestore.SaveUserData("Leaderboard", UserName, UserScore);
+            UserScore = 0;
         }
-    }
-
-    public void EndGameRound()
-    {
-        UpdateLeaderboard();
-        UserScore = 0;
+        else
+        {
+            UserScore = 0;
+        }
     }
 
     public void LoadData(GameData _data)
@@ -118,6 +115,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         this.HighestScore = _data.HighScore;
         this.UserName = _data.UserName;
         this.Gold = _data.Gold;
+        this.ClassIndex = _data.ClassIndex;
     }
 
     public void SaveData(ref GameData _data)
@@ -125,5 +123,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
         _data.HighScore = this.HighestScore;
         _data.UserName = this.UserName;
         _data.Gold = this.Gold;
+       _data.ClassIndex = this.ClassIndex;
     }
 }

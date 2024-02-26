@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
-public class Spell_ChainLightning : PoolObject<Spell_ChainLightning>
+// Maya
+
+public class Spell_ShurikenToss : PoolObject<Spell_ShurikenToss>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;
     private PlayerStats m_playerData;
+    [SerializeField] private float m_rotationSpeed;
 
     private float m_health;
 
@@ -16,30 +20,51 @@ public class Spell_ChainLightning : PoolObject<Spell_ChainLightning>
     /// move
     /// </summary>
     /// <param name="_spellIdx"></param>
-    public void OnSpawn(PlayerStats _playerData, SO_ActiveSpells _spellData)
+    public void OnSpawn(PlayerStats _playerData, SO_ActiveSpells _spellData, int _spellIdx)
     {
         InitRigidbody();
 
         m_spellData = _spellData;
-        m_health = m_spellData.Bounce[m_spellData.Level - 1];
         m_playerData = _playerData;
 
         // set Radius depending on own radius and player multiplier
-        if (m_spellData.Radius.Length == m_spellData.MaxLevel)
+        if(m_spellData.Radius.Length == m_spellData.MaxLevel)
         {
             float radius = m_spellData.Radius[m_spellData.Level - 1] * m_playerData.AreaMultiplier;
             transform.localScale = new Vector3(radius, radius, radius);
         }
-        else
+        else 
             transform.localScale = new Vector3(
-                transform.localScale.x * m_playerData.AreaMultiplier,
+                transform.localScale.x * m_playerData.AreaMultiplier, 
                 transform.localScale.y * m_playerData.AreaMultiplier,
                 transform.localScale.z * m_playerData.AreaMultiplier);
 
         // Start Lifetime
         StartCoroutine(DeleteTimer());
+        m_health = m_spellData.Pierce[m_spellData.Level - 1];
 
-        // AB HIER KANNST DU WAS MACHEN
+        Move(_spellIdx);
+    }
+
+    /// <summary>
+    /// Move away from the player in the given direction for this projecitle
+    /// </summary>
+    /// <param name="_spellIdx"></param>
+    private void Move(int _spellIdx)
+    {
+        Vector2 direction = Quaternion.Euler(0, 0, _spellIdx * (360f / m_spellData.ProjectileAmount[m_spellData.Level - 1])) * Vector2.up;
+
+        float currentAngle = _spellIdx * (360f / m_spellData.ProjectileAmount[m_spellData.Level - 1]);
+
+        Vector2 offset = new Vector2(Mathf.Cos(Mathf.Deg2Rad * currentAngle), Mathf.Sin(Mathf.Deg2Rad * currentAngle));
+
+        m_rb.AddRelativeForce((direction + offset) * m_spellData.Speed[m_spellData.Level - 1], ForceMode2D.Impulse);
+    }
+
+    private void Update()
+    {
+        float rotationAmount = m_rotationSpeed * Time.deltaTime;
+        m_rb.MoveRotation(m_rb.rotation + rotationAmount);
     }
 
     /// <summary>

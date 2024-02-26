@@ -73,7 +73,7 @@ public class VillageManager : MonoBehaviour
 
     private void ShowScore()
     {
-        m_scoreText.text = GameManager.Instance.UserScore.ToString();
+        m_scoreText.text = GameManager.Instance.HighestScore.ToString();
     }
 
     public void ShowStats(Characters _character)

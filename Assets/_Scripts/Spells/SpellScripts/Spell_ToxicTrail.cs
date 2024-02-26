@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spell_ArrowVolley : PoolObject<Spell_ArrowVolley>
+public class Spell_ToxicTrail : PoolObject<Spell_ToxicTrail>
 {
     private Rigidbody2D m_rb;
     private SO_ActiveSpells m_spellData;

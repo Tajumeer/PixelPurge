@@ -60,8 +60,6 @@ public class LevelPlayer : MonoBehaviour
         m_xpPool = new ObjectPool<LevelXP>(m_xpPrefab);
         m_xpParent = new GameObject();
         m_xpParent.name = "XP";
-
-        //  StartCoroutine(Spawn());
     }
 
     /// <summary>

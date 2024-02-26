@@ -55,11 +55,6 @@ public class FrostGolemController : MonoBehaviour, IDamagable
 
         m_agent.enabled = true;
 
-        //else
-        //{
-        //    m_agent.enabled = false;
-        //}
-
         if (m_agent.enabled && m_agent.isOnNavMesh)
         {
             m_agent.SetDestination(m_target.position);
@@ -84,7 +79,6 @@ public class FrostGolemController : MonoBehaviour, IDamagable
     public void SetDeathState()
     {
         if (m_isDead) { return; }
-        // m_agent.SetDestination(this.m_target.position);
 
         if (m_DropList != null)
         {
