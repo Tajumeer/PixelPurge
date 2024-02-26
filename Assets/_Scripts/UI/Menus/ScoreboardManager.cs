@@ -28,7 +28,7 @@ public class ScoreboardManager : MonoBehaviour
         m_leaderboard = GameManager.Instance.gameObject.GetComponent<FirestoreRest>().Leaderboard;
 
         // show name and score (of the first few players) in the list
-        for(int i = 0; i < m_allPlayerNames.Length; i++)
+        for (int i = 0; i < m_allPlayerNames.Length; i++)
         {
             m_allPlayerNames[i].text = m_leaderboard[i].Fields.User.stringValue;
             m_allPlayerScores[i].text = m_leaderboard[i].Fields.Score.integerValue.ToString();
@@ -45,7 +45,8 @@ public class ScoreboardManager : MonoBehaviour
             if (m_leaderboard[i].Fields.Score.integerValue < userScore)
             {
                 // check if the one before is really the player(name)
-                if (m_leaderboard[i - 1].Fields.User.stringValue == userName)
+                if ((i > 0 && m_leaderboard[i - 1].Fields.User.stringValue == userName) ||
+                         (i == 0 && m_leaderboard[i].Fields.User.stringValue == userName))
                 {
                     // show the rank of the player
                     m_playerRank.text = i.ToString();

@@ -104,7 +104,8 @@ public class FrostGolemController : MonoBehaviour, IDamagable
         GameManager.Instance.AddScore(m_ScoreOnDeath);
         GameManager.Instance.AddGold(m_goldOnDeath);
         m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
-        StartCoroutine(DestroyGameObject(5f));
+        GetComponent<DeathBool>().IsDead = true;
+        StartCoroutine(DestroyGameObject(2f));
     }
 
     private IEnumerator DestroyGameObject(float _corpseTime)
