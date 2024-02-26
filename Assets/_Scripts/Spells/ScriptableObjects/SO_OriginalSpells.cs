@@ -9,8 +9,8 @@ public class SO_OriginalSpells : ScriptableObject
 {
     [Header("Original Active Spell ScriptableObjects")]
     public SO_ActiveSpells Data_AirWave;
-    public SO_ActiveSpells Data_AllDirections;
-    public SO_ActiveSpells Data_NearPlayer;
+    public SO_ActiveSpells Data_ShurikenToss;
+    public SO_ActiveSpells Data_HomingRock;
     public SO_ActiveSpells Data_Aura;
     public SO_ActiveSpells Data_Boomerang;
     public SO_ActiveSpells Data_SwordVortex;
@@ -18,7 +18,7 @@ public class SO_OriginalSpells : ScriptableObject
     public SO_ActiveSpells Data_Shockwave;
     public SO_ActiveSpells Data_Bomb;
     public SO_ActiveSpells Data_PoisonArea;
-    public SO_ActiveSpells Data_ArrowVolley;
+    public SO_ActiveSpells Data_ToxicTrail;
     public SO_ActiveSpells Data_Shield;
 
     [Header("Original Passive Spell ScriptableObjects")]

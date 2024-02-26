@@ -21,9 +21,9 @@ public enum Spells
     PoisonArea,
     GroundMine,
     SwordVortex,
-    ArrowVolley,
-    AllDirections,
-    NearPlayer,
+    ToxicTrail,
+    ShurikenToss,
+    HomingRock,
     Boomerang,
     Shield,
     /// <summary> Indicator: End of Active Spells </summary>
@@ -57,8 +57,8 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private SO_OriginalSpells m_data_OriginalSpells;
 
     [Header("Prefabs")]
-    [SerializeField] private GameObject m_prefab_AllDirections;
-    [SerializeField] private GameObject m_prefab_NearPlayer;
+    [SerializeField] private GameObject m_prefab_ShurikenToss;
+    [SerializeField] private GameObject m_prefab_HomingRock;
     [SerializeField] private GameObject m_prefab_AirWave;
     [SerializeField] private GameObject m_prefab_Aura;
     [SerializeField] private GameObject m_prefab_Boomerang;
@@ -67,12 +67,12 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject m_prefab_Shockwave;
     [SerializeField] private GameObject m_prefab_Bomb;
     [SerializeField] private GameObject m_prefab_PoisonArea;
-    [SerializeField] private GameObject m_prefab_ArrowVolley;
+    [SerializeField] private GameObject m_prefab_ToxicTrail;
     [SerializeField] private GameObject m_prefab_Shield;
 
     [Header("Pools")]
-    private ObjectPool<Spell_ShurikenToss> m_pool_AllDirections;
-    private ObjectPool<Spell_HomingRock> m_pool_NearPlayer;
+    private ObjectPool<Spell_ShurikenToss> m_pool_ShurikenToss;
+    private ObjectPool<Spell_HomingRock> m_pool_HomingRock;
     private ObjectPool<Spell_AirWave> m_pool_AirWave;
     private ObjectPool<Spell_Boomerang> m_pool_Boomerang;
     private ObjectPool<Spell_SwordVortex> m_pool_SwordVortex;
@@ -80,7 +80,7 @@ public class SpellManager : MonoBehaviour
     private ObjectPool<Spell_Shockwave> m_pool_Shockwave;
     private ObjectPool<Spell_Bomb> m_pool_Bomb;
     private ObjectPool<Spell_PoisonArea> m_pool_PoisonArea;
-    private ObjectPool<Spell_ToxicTrail> m_pool_ArrowVolley;
+    private ObjectPool<Spell_ToxicTrail> m_pool_ToxicTrail;
 
     [Header("Parent Objects")]
     private Transform[] m_parent = new Transform[(int)Spells.ActiveSpells];
@@ -128,12 +128,12 @@ public class SpellManager : MonoBehaviour
                     m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_AirWave);
                     break;
 
-                case Spells.AllDirections:
-                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_AllDirections);
+                case Spells.ShurikenToss:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_ShurikenToss);
                     break;
 
-                case Spells.NearPlayer:
-                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_NearPlayer);
+                case Spells.HomingRock:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_HomingRock);
                     break;
 
                 case Spells.Aura:
@@ -164,8 +164,8 @@ public class SpellManager : MonoBehaviour
                     m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_PoisonArea);
                     break;
 
-                case Spells.ArrowVolley:
-                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_ArrowVolley);
+                case Spells.ToxicTrail:
+                    m_data_Spells.activeSpellSO[i] = Instantiate(m_data_OriginalSpells.Data_ToxicTrail);
                     break;
 
                 case Spells.Shield:
@@ -246,16 +246,16 @@ public class SpellManager : MonoBehaviour
             {
                 switch (i)                  // check which spell it was and spawn it
                 {
-                    case (int)Spells.AllDirections:
-                        m_spawnScript.SpawnAllDirections(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.AllDirections], m_pool_AllDirections, m_parent[(int)Spells.AllDirections]);
+                    case (int)Spells.ShurikenToss:
+                        m_spawnScript.SpawnShurikenToss(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.ShurikenToss], m_pool_ShurikenToss, m_parent[(int)Spells.ShurikenToss]);
                         break;
 
                     case (int)Spells.AirWave:
                         m_spawnScript.SpawnAirWave(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.AirWave], m_pool_AirWave, m_parent[(int)Spells.AirWave]);
                         break;
 
-                    case (int)Spells.NearPlayer:
-                        m_spawnScript.SpawnNearPlayer(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.NearPlayer], m_pool_NearPlayer, m_parent[(int)Spells.NearPlayer]);
+                    case (int)Spells.HomingRock:
+                        m_spawnScript.SpawnHomingRock(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.HomingRock], m_pool_HomingRock, m_parent[(int)Spells.HomingRock]);
                         break;
 
                     case (int)Spells.Aura:
@@ -285,8 +285,8 @@ public class SpellManager : MonoBehaviour
                         m_spawnScript.SpawnPoisonArea(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.PoisonArea], m_pool_PoisonArea, m_parent[(int)Spells.PoisonArea]);
                         break;
 
-                    case (int)Spells.ArrowVolley:
-                        m_spawnScript.SpawnArrowVolley(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.ArrowVolley], m_pool_ArrowVolley, m_parent[(int)Spells.ArrowVolley]);
+                    case (int)Spells.ToxicTrail:
+                        m_spawnScript.SpawnToxicTrail(m_data_Spells.statSO, m_data_Spells.activeSpellSO[(int)Spells.ToxicTrail], m_pool_ToxicTrail, m_parent[(int)Spells.ToxicTrail]);
                         break;
 
                     case (int)Spells.Shield:
@@ -364,14 +364,14 @@ public class SpellManager : MonoBehaviour
                 obj.name = "AirWave";
                 break;
 
-            case Spells.AllDirections:
-                m_pool_AllDirections = new ObjectPool<Spell_ShurikenToss>(m_prefab_AllDirections);
-                obj.name = "AllDirections";
+            case Spells.ShurikenToss:
+                m_pool_ShurikenToss = new ObjectPool<Spell_ShurikenToss>(m_prefab_ShurikenToss);
+                obj.name = "ShurikenToss";
                 break;
 
-            case Spells.NearPlayer:
-                m_pool_NearPlayer = new ObjectPool<Spell_HomingRock>(m_prefab_NearPlayer);
-                obj.name = "NearPlayer";
+            case Spells.HomingRock:
+                m_pool_HomingRock = new ObjectPool<Spell_HomingRock>(m_prefab_HomingRock);
+                obj.name = "HomingRock";
                 break;
 
             case Spells.Aura:
@@ -414,9 +414,9 @@ public class SpellManager : MonoBehaviour
                 obj.name = "PoisonArea";
                 break;
 
-            case Spells.ArrowVolley:
-                m_pool_ArrowVolley = new ObjectPool<Spell_ToxicTrail>(m_prefab_ArrowVolley);
-                obj.name = "ArrowVolley";
+            case Spells.ToxicTrail:
+                m_pool_ToxicTrail = new ObjectPool<Spell_ToxicTrail>(m_prefab_ToxicTrail);
+                obj.name = "ToxicTrail";
                 break;
 
             case Spells.Shield:

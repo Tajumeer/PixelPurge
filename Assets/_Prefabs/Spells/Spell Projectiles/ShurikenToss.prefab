@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 6735219912861677153}
   - component: {fileID: 4739980847773344426}
   - component: {fileID: 3242440780474736521}
-  - component: {fileID: 4417150618888573355}
+  - component: {fileID: 3640357324767834513}
   m_Layer: 8
-  m_Name: NearPlayer
+  m_Name: ShurikenToss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -75,8 +75,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -517092699
   m_SortingLayer: 5
-  m_SortingOrder: 11
-  m_Sprite: {fileID: 21300000, guid: 991f6a43ea3e4f6449b8829f8da00304, type: 3}
+  m_SortingOrder: 9
+  m_Sprite: {fileID: 21300000, guid: 3c01142d1a1692242980627a48d24a36, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -119,9 +119,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.005, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.1
 --- !u!50 &3242440780474736521
 Rigidbody2D:
   serializedVersion: 4
@@ -149,7 +149,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &4417150618888573355
+--- !u!114 &3640357324767834513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1960888898802110764}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01c11b8b3181abb4eaa9fa3350d58bad, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f58e5f223f2b2a43ae1f81d2eba76cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_rotationSpeed: 1000
+  m_rotationSpeed: 12000
