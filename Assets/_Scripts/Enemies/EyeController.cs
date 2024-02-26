@@ -173,7 +173,6 @@ public class EyeController : MonoBehaviour, IDamagable
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.LogWarning("Hit Player!");
             collision.GetComponent<IDamagable>().GetDamage(EnemyDamage);
         }
     }

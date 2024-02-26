@@ -97,7 +97,6 @@ public class EnemySpawner : MonoBehaviour
         }
 
         m_waves[m_currentWaveCount].WaveQuota = currentWaveQuota;
-        Debug.Log(currentWaveQuota);
     }
 
     private void SpawnEnemies()

@@ -37,7 +37,6 @@ public class DetailsHUDManager : MonoBehaviour
         m_spellHUDScript = FindObjectOfType<ShowSpells>();
         if (m_spellHUDScript == null)
         {
-            Debug.LogError("Could not find ShowSpell Script in DetailsHUD");
             return;
         }
 

@@ -112,7 +112,6 @@ public class Spell_HomingRock : PoolObject<Spell_HomingRock>
             }
 
             m_target = nearestEnemy;
-            Debug.Log(m_target);
         }
 
     }
