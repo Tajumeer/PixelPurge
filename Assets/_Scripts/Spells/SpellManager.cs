@@ -238,8 +238,8 @@ public class SpellManager : MonoBehaviour
         {
             SO_ActiveSpells spellSO = m_data_Spells.activeSpellSO[i];
 
-            if (spellSO == null) continue;   // safety check if its a spell
-            if (!m_active[i]) continue;     // skip if spell is not learned
+            if (spellSO == null) continue;      // safety check if its a spell
+            if (!m_active[i]) continue;         // skip if spell is not learned
 
             m_timer[i] += Time.deltaTime;
             if (m_timer[i] >= spellSO.Cd[spellSO.Level - 1] * m_data_Spells.statSO.CdReduction)      // if spell is ready

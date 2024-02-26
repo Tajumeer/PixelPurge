@@ -11,7 +11,6 @@ public class StartManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            Debug.Log("NAME: " + GameManager.Instance.UserName);
             if (GameManager.Instance.UserName == null || GameManager.Instance.UserName == "")
                 MenuManager.Instance.LoadSceneAsync(Scenes.UsernameInsertion, CursorTypes.UI);
             else MenuManager.Instance.LoadSceneAsync(Scenes.Village, CursorTypes.None);

@@ -122,7 +122,7 @@ public class VillageManager : MonoBehaviour
 
     public void HideStats(Characters _character)
     {
-        // only hide it when still this´characters stats are open and not yet another
+        // only hide it when still this characters stats are open and not yet another
         switch (_character)
         {
             case Characters.Archer:
