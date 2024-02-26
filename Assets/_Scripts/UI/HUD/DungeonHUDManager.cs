@@ -86,6 +86,7 @@ public class DungeonHUDManager : MonoBehaviour
         if (SceneManager.GetSceneByBuildIndex((int)Scenes.DetailsHUD).isLoaded) return;
 
         Time.timeScale = 0f;
+        Cursor.visible = true;
         if (m_ingameSpells != null) m_ingameSpells.SetActive(false);
         MenuManager.Instance.LoadSceneAsync(Scenes.DetailsHUD, LoadSceneMode.Additive);
 
@@ -100,7 +101,7 @@ public class DungeonHUDManager : MonoBehaviour
         if (SceneManager.GetSceneByBuildIndex((int)Scenes.LevelUp).isLoaded) return;
 
         if (m_ingameSpells != null) m_ingameSpells.SetActive(true);
-        MenuManager.Instance.UnloadSceneAsync(Scenes.DetailsHUD);
+        MenuManager.Instance.UnloadSceneAsync(Scenes.DetailsHUD, false);
         Time.timeScale = 1f;
     }
 

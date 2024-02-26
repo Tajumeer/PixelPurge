@@ -32,6 +32,9 @@ public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
 
+    [SerializeField] private Texture2D m_cursorDefaultTexture;
+    [SerializeField] private Texture2D m_cursorDungeonTexture;
+
     private void Awake()
     {
         // Destroy Instance when it is already existing, else create it
@@ -43,13 +46,33 @@ public class MenuManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void LoadSceneAsync(Scenes scene, LoadSceneMode mode = LoadSceneMode.Single)
+    public void LoadSceneAsync(Scenes scene, LoadSceneMode mode = LoadSceneMode.Single, bool defaultCursor = true)
     {
+        if (defaultCursor)
+        {
+            Cursor.SetCursor(m_cursorDefaultTexture, new Vector2(0f, 0f), CursorMode.Auto);
+        }
+        else
+        {
+            Vector2 m_cursorPosition = new Vector2(m_cursorDungeonTexture.width / 2, m_cursorDungeonTexture.height / 2);
+            Cursor.SetCursor(m_cursorDungeonTexture, m_cursorPosition, CursorMode.Auto);
+        }
+
         SceneManager.LoadSceneAsync((int)scene, mode);
     }
 
-    public void UnloadSceneAsync(Scenes scene)
+    public void UnloadSceneAsync(Scenes scene, bool defaultCursor = true)
     {
+        if (defaultCursor)
+        {
+            Cursor.SetCursor(m_cursorDefaultTexture, new Vector2(0f, 0f), CursorMode.Auto);
+        }
+        else
+        {
+            Vector2 m_cursorPosition = new Vector2(m_cursorDungeonTexture.width / 2, m_cursorDungeonTexture.height / 2);
+            Cursor.SetCursor(m_cursorDungeonTexture, m_cursorPosition, CursorMode.Auto);
+        }
+
         SceneManager.UnloadSceneAsync((int)scene);
     }
 
