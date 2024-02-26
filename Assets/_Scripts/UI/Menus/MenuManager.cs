@@ -28,11 +28,18 @@ public enum Scenes
     Beta
 }
 
+public enum CursorTypes
+{
+    None,
+    UI,
+    Dungeon
+}
+
 public class MenuManager : MonoBehaviour
 {
     public static MenuManager Instance;
 
-    [SerializeField] private Texture2D m_cursorDefaultTexture;
+    [SerializeField] private Texture2D m_cursorUITexture;
     [SerializeField] private Texture2D m_cursorDungeonTexture;
 
     private void Awake()
@@ -46,42 +53,27 @@ public class MenuManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void LoadSceneAsync(Scenes scene, LoadSceneMode mode = LoadSceneMode.Single, bool defaultCursor = true)
+    public void LoadSceneAsync(Scenes _scene, CursorTypes _cursor, LoadSceneMode _loadMode = LoadSceneMode.Single)
     {
-        if (defaultCursor)
-        {
-            Cursor.SetCursor(m_cursorDefaultTexture, new Vector2(0f, 0f), CursorMode.Auto);
-        }
-        else
-        {
-            Vector2 m_cursorPosition = new Vector2(m_cursorDungeonTexture.width / 2, m_cursorDungeonTexture.height / 2);
-            Cursor.SetCursor(m_cursorDungeonTexture, m_cursorPosition, CursorMode.Auto);
-        }
+        SetCursor(_cursor);
 
-        SceneManager.LoadSceneAsync((int)scene, mode);
+        SceneManager.LoadSceneAsync((int)_scene, _loadMode);
     }
 
-    public void UnloadSceneAsync(Scenes scene, bool defaultCursor = true)
+    public void UnloadSceneAsync(Scenes _scene, CursorTypes _cursor)
     {
-        if (defaultCursor)
-        {
-            Cursor.SetCursor(m_cursorDefaultTexture, new Vector2(0f, 0f), CursorMode.Auto);
-        }
-        else
-        {
-            Vector2 m_cursorPosition = new Vector2(m_cursorDungeonTexture.width / 2, m_cursorDungeonTexture.height / 2);
-            Cursor.SetCursor(m_cursorDungeonTexture, m_cursorPosition, CursorMode.Auto);
-        }
+        SetCursor(_cursor);
 
-        SceneManager.UnloadSceneAsync((int)scene);
+        SceneManager.UnloadSceneAsync((int)_scene);
     }
+
 
     /// <summary>
     /// Load All necessary Scenes for the Dungeon (Dungeon and HUD)
     /// </summary>
     public void LoadDungeon()
     {
-        LoadSceneAsync(Scenes.LoadingScreen);
+        LoadSceneAsync(Scenes.LoadingScreen, CursorTypes.None);
     }
 
     /// <summary>
@@ -90,19 +82,40 @@ public class MenuManager : MonoBehaviour
     public void UnloadDungeon(bool _loadVillage = true)
     {
         // check if pause menu, win screen, death screen, DetailsHUD was an open scene, then close it
-        if (SceneManager.GetSceneByBuildIndex((int)Scenes.Pause).isLoaded) UnloadSceneAsync(Scenes.Pause);
-        else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Win).isLoaded) UnloadSceneAsync(Scenes.Win);
-        else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Death).isLoaded) UnloadSceneAsync(Scenes.Death);
-        if (SceneManager.GetSceneByBuildIndex((int)Scenes.DetailsHUD).isLoaded) UnloadSceneAsync(Scenes.DetailsHUD);
+        if (SceneManager.GetSceneByBuildIndex((int)Scenes.Pause).isLoaded) UnloadSceneAsync(Scenes.Pause, CursorTypes.Dungeon);
+        else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Win).isLoaded) UnloadSceneAsync(Scenes.Win, CursorTypes.Dungeon);
+        else if(SceneManager.GetSceneByBuildIndex((int)Scenes.Death).isLoaded) UnloadSceneAsync(Scenes.Death, CursorTypes.Dungeon);
+        if (SceneManager.GetSceneByBuildIndex((int)Scenes.DetailsHUD).isLoaded) UnloadSceneAsync(Scenes.DetailsHUD, CursorTypes.Dungeon);
 
         // unload all dungeon scenes
-        UnloadSceneAsync(Scenes.Dungeon);
-        UnloadSceneAsync(Scenes.DungeonHUD);
+        UnloadSceneAsync(Scenes.Dungeon, CursorTypes.None);
+        UnloadSceneAsync(Scenes.DungeonHUD, CursorTypes.None);
 
         // load village
         if (_loadVillage)
-            LoadSceneAsync(Scenes.Village);
+            LoadSceneAsync(Scenes.Village, CursorTypes.None);
 
         Time.timeScale = 1f;
+    }
+
+    private void SetCursor(CursorTypes _cursor)
+    {
+        switch (_cursor)
+        {
+            case CursorTypes.None:
+                Cursor.visible = false;
+                break;
+
+            case CursorTypes.UI:
+                Cursor.visible = true;
+                Cursor.SetCursor(m_cursorUITexture, new Vector2(0f, 0f), CursorMode.Auto);
+                break;
+
+            case CursorTypes.Dungeon:
+                Cursor.visible = true;
+                Vector2 m_cursorPosition = new Vector2(m_cursorDungeonTexture.width / 2, m_cursorDungeonTexture.height / 2);
+                Cursor.SetCursor(m_cursorDungeonTexture, m_cursorPosition, CursorMode.Auto);
+                break;
+        }
     }
 }

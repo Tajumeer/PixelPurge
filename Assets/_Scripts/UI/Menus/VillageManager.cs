@@ -55,12 +55,12 @@ public class VillageManager : MonoBehaviour
     private void LoadPause()
     {
         Time.timeScale = 0f;
-        MenuManager.Instance.LoadSceneAsync(Scenes.Pause, LoadSceneMode.Additive);
+        MenuManager.Instance.LoadSceneAsync(Scenes.Pause, CursorTypes.UI, LoadSceneMode.Additive);
     }
 
     public void UnloadScene(Scenes _scene)
     {
-        MenuManager.Instance.UnloadSceneAsync(_scene);
+        MenuManager.Instance.UnloadSceneAsync(_scene, CursorTypes.None);
         Time.timeScale = 1f;
     }
 

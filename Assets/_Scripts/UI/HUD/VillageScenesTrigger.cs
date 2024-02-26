@@ -75,7 +75,7 @@ public class VillageScenesTrigger : MonoBehaviour
         else                                    // Load Credits, Shop or Scoreboard
         {
             Time.timeScale = 0f;
-            MenuManager.Instance.LoadSceneAsync(m_sceneToLoad, LoadSceneMode.Additive);
+            MenuManager.Instance.LoadSceneAsync(m_sceneToLoad, CursorTypes.UI, LoadSceneMode.Additive);
         }
     }
 
@@ -86,7 +86,7 @@ public class VillageScenesTrigger : MonoBehaviour
     {
         //can only be called when village is still open in the background, so we dont need to check if we are in the dungeon
 
-        MenuManager.Instance.UnloadSceneAsync(m_sceneToLoad);
+        MenuManager.Instance.UnloadSceneAsync(m_sceneToLoad, CursorTypes.None);
         Time.timeScale = 1f;
     }
 
