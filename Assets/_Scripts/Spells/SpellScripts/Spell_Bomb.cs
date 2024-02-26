@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using static UnityEngine.GraphicsBuffer;
 
 // Maya
 
@@ -60,13 +61,17 @@ public class Spell_Bomb : PoolObject<Spell_Bomb>
         float yPos = Random.Range(-radiusToSpawn, radiusToSpawn);
         Vector3 positionToSpawn = new Vector3(_playerTransf.position.x + xPos, _playerTransf.position.y + yPos, _playerTransf.position.z);
 
-        // search for enemys and if its in the camera view, instead spawn it on the enemy
+        // search for enemys
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
-        for(int i = 0; i < enemys.Length; i++)
+        for (int i = 0; i < enemys.Length; i++)
         {
-            if (!enemys[i].TryGetComponent<Collider2D>(out Collider2D col)) continue;
-            if (enemys[i].transform.position.x > -radiusToSpawn && enemys[i].transform.position.x < radiusToSpawn
-                && enemys[i].transform.position.y > -radiusToSpawn && enemys[i].transform.position.y < radiusToSpawn)
+            if (enemys[i].GetComponent<DeathBool>().IsDead) continue;
+
+            // if enemy is in the camera view, instead spawn it on the enemy
+            if (enemys[i].transform.position.x > _playerTransf.position.x - radiusToSpawn &&
+                enemys[i].transform.position.x < _playerTransf.position.x + radiusToSpawn &&
+                enemys[i].transform.position.y > _playerTransf.position.y - radiusToSpawn &&
+                enemys[i].transform.position.y < _playerTransf.position.y + radiusToSpawn)
                 positionToSpawn = enemys[i].transform.position;
         }
 
