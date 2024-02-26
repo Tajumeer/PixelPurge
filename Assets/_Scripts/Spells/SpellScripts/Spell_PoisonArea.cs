@@ -57,6 +57,10 @@ public class Spell_PoisonArea : PoolObject<Spell_PoisonArea>
         m_rb.rotation = transform.localRotation.z;
     }
 
+    /// <summary>
+    /// Take a position of an enemy or a random position in the camera view to spawn it
+    /// </summary>
+    /// <param name="_playerTransf"></param>
     private void SpawnAtRandomPosition(Transform _playerTransf)
     {
         // set Radius
@@ -69,8 +73,21 @@ public class Spell_PoisonArea : PoolObject<Spell_PoisonArea>
         // randomize position in camera view
         float xPos = Random.Range(-radiusToSpawn, radiusToSpawn);
         float yPos = Random.Range(-radiusToSpawn, radiusToSpawn);
-
         Vector3 positionToSpawn = new Vector3(_playerTransf.position.x + xPos, _playerTransf.position.y + yPos, _playerTransf.position.z);
+
+        // search for enemys
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = 0; i < enemys.Length; i++)
+        {
+            if (enemys[i].GetComponent<DeathBool>().IsDead) continue;
+
+            // if enemy is in the camera view, instead spawn it on the enemy
+            if (enemys[i].transform.position.x > _playerTransf.position.x - radiusToSpawn &&
+                enemys[i].transform.position.x < _playerTransf.position.x + radiusToSpawn &&
+                enemys[i].transform.position.y > _playerTransf.position.y - radiusToSpawn &&
+                enemys[i].transform.position.y < _playerTransf.position.y + radiusToSpawn)
+                positionToSpawn = enemys[i].transform.position;
+        }
 
         transform.position = positionToSpawn;
     }
