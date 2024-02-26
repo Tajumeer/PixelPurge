@@ -51,7 +51,6 @@ public class Spell_Aura : MonoBehaviour
             DealDamage();
             m_activeCD = 0;
         }
-
     }
 
     private void DealDamage()
