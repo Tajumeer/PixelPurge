@@ -98,9 +98,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.1}
+  m_Offset: {x: 0.017126739, y: -0.105269775}
   serializedVersion: 2
-  m_Radius: 0.4311505
+  m_Radius: 0.22694723
 --- !u!195 &8701125666328511382
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -258,7 +258,11 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1232874407
+<<<<<<< HEAD
   m_SortingLayer: 6
+=======
+  m_SortingLayer: 5
+>>>>>>> Sven
   m_SortingOrder: 1
   m_Sprite: {fileID: -1781885740, guid: 587e5f291dfa81c48ac02412cbc5c3d5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
