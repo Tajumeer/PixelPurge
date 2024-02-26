@@ -32,8 +32,6 @@ public class MapController : MonoBehaviour
         m_navMeshSurface.BuildNavMeshAsync();
         TimeManager.Instance.StartTimer("WaveSpawnTimer");
 
-
-
         FirstMapChunks("TopRight");
         FirstMapChunks("Top");
         FirstMapChunks("TopLeft");
@@ -42,7 +40,6 @@ public class MapController : MonoBehaviour
         FirstMapChunks("Bottom");
         FirstMapChunks("Right");
         FirstMapChunks("Left");
-
     }
 
 

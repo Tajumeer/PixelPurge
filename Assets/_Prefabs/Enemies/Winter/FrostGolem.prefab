@@ -93,7 +93,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1232874407
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 557944411, guid: d5622c064a660f24a87b8dca73727bfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -122,6 +122,7 @@ GameObject:
   - component: {fileID: 7851237647990967117}
   - component: {fileID: 1983383517682829490}
   - component: {fileID: 5580399509507064713}
+  - component: {fileID: 4046534253418053729}
   m_Layer: 0
   m_Name: FrostGolem
   m_TagString: Enemy
@@ -179,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemPrefab: {fileID: 1910158392446484125, guid: 09fd18b9f0abfbd43935fc2fa0250ebb, type: 3}
-  m_dropChance: 0.15
+  m_dropChance: 0.05
 --- !u!114 &-5216834863397654387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,7 +208,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemPrefab: {fileID: 1910158392446484125, guid: 7ba1c778680f1d444a5338881ce15e2e, type: 3}
-  m_dropChance: 0.15
+  m_dropChance: 0.1
 --- !u!195 &7851237647990967117
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -217,7 +218,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 7794670824351030394}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.25
+  m_Radius: 0.4
   m_Speed: 2.5
   m_Acceleration: 8
   avoidancePriority: 50
@@ -226,8 +227,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 0.6
-  m_BaseOffset: 0.43
+  m_Height: 0.8
+  m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!58 &1983383517682829490
@@ -292,3 +293,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &4046534253418053729
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7794670824351030394}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4ca1720cf57c74193552548d840af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDead: 0

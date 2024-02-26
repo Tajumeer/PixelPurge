@@ -27,7 +27,7 @@ public class Spell_Aura : MonoBehaviour
         m_playerData = _playerData;
 
         // set Radius depending on own radius and player multiplier
-        if (m_spellData.Radius.Length >= m_spellData.Level)
+        if (m_spellData.Radius.Length == m_spellData.MaxLevel)
         {
             float radius = m_spellData.Radius[m_spellData.Level - 1] * m_playerData.AreaMultiplier;
             transform.localScale = new Vector3(radius, radius, radius);
@@ -51,7 +51,6 @@ public class Spell_Aura : MonoBehaviour
             DealDamage();
             m_activeCD = 0;
         }
-
     }
 
     private void DealDamage()

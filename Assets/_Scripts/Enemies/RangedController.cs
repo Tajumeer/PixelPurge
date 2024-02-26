@@ -136,7 +136,8 @@ public class RangedController : MonoBehaviour, IDamagable
         m_enemySpawner.OnEnemyKilled();
         GameManager.Instance.AddScore(m_ScoreOnDeath);
         GameManager.Instance.AddGold(m_goldOnDeath);
-        StartCoroutine(DestroyGameObject(5f));
+        GetComponent<DeathBool>().IsDead = true;
+        StartCoroutine(DestroyGameObject(2f));
     }
 
     private IEnumerator DestroyGameObject(float _corpseTime)

@@ -158,8 +158,9 @@ public class EyeController : MonoBehaviour, IDamagable
         GameManager.Instance.AddScore(m_ScoreOnDeath);
         GameManager.Instance.AddGold(m_goldOnDeath);
         m_levelPlayer.SpawnXP(this.transform.position, m_ExpOnDeath);
+        GetComponent<DeathBool>().IsDead = true;
         GameManager.Instance.Win();
-        StartCoroutine(DestroyGameObject(5f));
+        StartCoroutine(DestroyGameObject(2f));
     }
 
     private IEnumerator DestroyGameObject(float _corpseTime)

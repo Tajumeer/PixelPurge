@@ -44,16 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06b4c88d5c37e8743ad0e27bb0fa63d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Village: 13
-  VillageHUD: 2
-  Credits: 3
-  Options: 4
-  StatUpgrade: 5
-  Dungeon: 6
-  DungeonHUD: 7
-  DetailsHUD: 8
-  LevelUp: 9
-  Pause: 10
-  Finish: 11
-  Lose: 12
-  Alpha: 1
+  m_cursorDefaultTexture: {fileID: 2800000, guid: f771863fc7ef37044a8cb7076f313ae4, type: 3}
+  m_cursorDungeonTexture: {fileID: 2800000, guid: c01dba0f279614441a1fd779e6321fb0, type: 3}

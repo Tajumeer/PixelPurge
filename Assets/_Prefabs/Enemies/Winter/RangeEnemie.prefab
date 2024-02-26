@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: -5250309188827039354}
   - component: {fileID: -6250474057389454401}
   - component: {fileID: -4392395068342566214}
+  - component: {fileID: 5424933932133576425}
   m_Layer: 0
   m_Name: RangeEnemie
   m_TagString: Enemy
@@ -111,7 +112,7 @@ NavMeshAgent:
   m_GameObject: {fileID: 3626227658068341081}
   m_Enabled: 1
   m_AgentTypeID: 0
-  m_Radius: 0.2
+  m_Radius: 0.6
   m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
@@ -120,8 +121,8 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
   m_AutoRepath: 1
-  m_Height: 0.45
-  m_BaseOffset: 0.35
+  m_Height: 1
+  m_BaseOffset: 0.55
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &1210572828293242190
@@ -166,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemPrefab: {fileID: 1910158392446484125, guid: f62de59e4b4b20b4ebccd7f1712a965b, type: 3}
-  m_dropChance: 0.05
+  m_dropChance: 0.1
 --- !u!114 &-6250474057389454401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -180,7 +181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemPrefab: {fileID: 1910158392446484125, guid: 09fd18b9f0abfbd43935fc2fa0250ebb, type: 3}
-  m_dropChance: 0.05
+  m_dropChance: 0.01
 --- !u!114 &-4392395068342566214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,7 +195,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_itemPrefab: {fileID: 1910158392446484125, guid: 7ba1c778680f1d444a5338881ce15e2e, type: 3}
-  m_dropChance: 0.05
+  m_dropChance: 0.01
+--- !u!114 &5424933932133576425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3626227658068341081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee4ca1720cf57c74193552548d840af4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsDead: 0
 --- !u!1 &4326482867426308180
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +312,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1232874407
-  m_SortingLayer: 4
+  m_SortingLayer: 6
   m_SortingOrder: 1
   m_Sprite: {fileID: 276589233, guid: 30d2c32cf51f6e8459f7f100cad01975, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

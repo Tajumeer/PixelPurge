@@ -24,7 +24,6 @@ public class AudioManager : MonoBehaviour, IDataPersistence
     [SerializeField] private AudioMixer m_mixer;
     [SerializeField] private AudioSource m_SFXSource;
     [SerializeField] private AudioSource m_musicSource;
-
     [HideInInspector] public float MasterVol;
     [HideInInspector] public float MusicVol;
     [HideInInspector] public float SFXVol;
@@ -40,8 +39,6 @@ public class AudioManager : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
-
-
     }
 
     private void InitAudio()

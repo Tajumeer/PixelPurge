@@ -51,13 +51,7 @@ public class FrostGhostController : MonoBehaviour, IDamagable
         }
         GetTargetTransform();
 
-
         m_agent.enabled = true;
-
-        //else
-        //{
-        //    m_agent.enabled = false;
-        //}
 
         if (m_agent.enabled && m_agent.isOnNavMesh)
         {
@@ -102,7 +96,8 @@ public class FrostGhostController : MonoBehaviour, IDamagable
         GameManager.Instance.AddScore(m_ScoreOnDeath);
         GameManager.Instance.AddGold(m_goldOnDeath);
         m_enemySpawner.OnEnemyKilled();
-        StartCoroutine(DestroyGameObject(5f));
+        GetComponent<DeathBool>().IsDead = true;
+        StartCoroutine(DestroyGameObject(2f));
     }
 
     private IEnumerator DestroyGameObject(float _corpseTime)

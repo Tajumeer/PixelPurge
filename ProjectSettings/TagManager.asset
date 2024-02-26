@@ -54,17 +54,20 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Ground Spells
+    uniqueID: 2104640153
+    locked: 0
   - name: Ground
     uniqueID: 1606310687
-    locked: 0
-  - name: Spells
-    uniqueID: 2104640153
     locked: 0
   - name: Obstacles
     uniqueID: 2623107153
     locked: 0
   - name: Walls
     uniqueID: 1148683797
+    locked: 0
+  - name: Projectile Spells
+    uniqueID: 3777874597
     locked: 0
   - name: Player
     uniqueID: 3062092889

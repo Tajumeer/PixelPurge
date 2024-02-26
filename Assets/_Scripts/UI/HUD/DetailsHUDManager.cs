@@ -29,7 +29,7 @@ public class DetailsHUDManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI m_statAmount_goldMultiplier;
     [SerializeField] private TextMeshProUGUI m_statAmount_damage;
     [SerializeField] private TextMeshProUGUI m_statAmount_critChance;
-    [SerializeField] private TextMeshProUGUI m_statAmount_attackSpeed;
+    [SerializeField] private TextMeshProUGUI m_statAmount_cdReduction;
     [SerializeField] private TextMeshProUGUI m_statAmount_projectileSpeed;
 
     private void OnEnable()

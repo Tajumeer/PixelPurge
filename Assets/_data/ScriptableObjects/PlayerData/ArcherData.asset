@@ -21,14 +21,14 @@ MonoBehaviour:
   DashCooldown: 3
   DashTime: 0.1
   DamageMultiplier: 1
-  CritChance: 0
+  CritChance: 0.25
   CritMultiplier: 1.5
   AreaMultiplier: 1
   ProjectileSpeed: 25
   CdReduction: 1
   MaxHealth: 100
-  HealthRegeneration: 100
-  DamageReductionPercentage: 100
+  HealthRegeneration: 0
+  DamageReductionPercentage: 0
   CollectionRadius: 2
   GoldMultiplier: 1
   XPNeeded: 5
