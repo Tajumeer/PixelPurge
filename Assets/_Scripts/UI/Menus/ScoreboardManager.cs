@@ -39,7 +39,7 @@ public class ScoreboardManager : MonoBehaviour
         bool inFirst = false;
 
         // go through the first 100 players in the scorelist
-        for (int i = 0; i < 100; i++)
+        for (int i = 0; i < m_leaderboard.Count; i++)
         {
             // until someone has a lower score then the player
             if (m_leaderboard[i].Fields.Score.integerValue < userScore)

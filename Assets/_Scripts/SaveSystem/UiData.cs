@@ -44,12 +44,6 @@ public class UiData : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void Update()
-    {
-        Debug.Log("FS Toggle = " + FullscreenToggle);
-        Debug.LogWarning(LoadOptionsOnce);
-    }
-
     public void LoadData(GameData _data)
     {
         ResolutionValue = _data.ResolutionValue;
@@ -74,8 +68,6 @@ public class UiData : MonoBehaviour, IDataPersistence
         FullscreenModeValue = this.FullscreenModeData(Fullscreen);
         _data.FullScreenMode = this.FullscreenModeValue;
         _data.StatLevel = this.StatLevel;
-
-        Debug.Log("Saved Resolution value: " + _data.ResolutionValue);
     }
 }
 

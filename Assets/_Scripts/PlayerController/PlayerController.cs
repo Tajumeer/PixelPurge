@@ -143,7 +143,6 @@ public class PlayerController : MonoBehaviour, IDamagable
         {
             StartCoroutine(Dash());
         }
-
     }
 
     private void RegenerateHealth()
@@ -290,16 +289,14 @@ public class PlayerController : MonoBehaviour, IDamagable
 
     private float CalculateReducedDamage(float _rawDamage)
     {
-        Debug.Log("Incoming Damage: " + _rawDamage);
         float reductionAmount = _rawDamage * (ActivePlayerData.DamageReductionPercentage / 100f);
         float reducedDamage = _rawDamage - reductionAmount;
 
         reducedDamage = Mathf.Max(reducedDamage, 0f);
 
-        Debug.Log("Reduced Damage: " + reducedDamage);
-
         return reducedDamage;
     }
+
     IEnumerator FlashDamage()
     {
         m_spriteRenderer.color = Color.red;
