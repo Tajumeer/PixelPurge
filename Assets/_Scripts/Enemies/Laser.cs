@@ -11,7 +11,6 @@ public class Laser : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<IDamagable>().GetDamage(GetComponentInParent<EyeController>().EnemyDamage);
-            Debug.Log("Hit Enemy with Laser");
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
@@ -25,7 +24,6 @@ public class Laser : MonoBehaviour
             if(m_damageTimer < 0.5f) {  return; }
 
             collision.gameObject.GetComponent<IDamagable>().GetDamage(GetComponentInParent<EyeController>().EnemyDamage);
-            Debug.Log("Hit Enemy with Laser");
             m_damageTimer = 0f;
         }
     }

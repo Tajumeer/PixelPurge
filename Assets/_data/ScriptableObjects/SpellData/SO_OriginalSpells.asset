@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: SO_OriginalSpells
   m_EditorClassIdentifier: 
   Data_AirWave: {fileID: 11400000, guid: 41e64fe08b0d4234091460a9f4b79e60, type: 2}
-  Data_AllDirections: {fileID: 11400000, guid: 2a50605f2860fcb4bb365c9caf810bc0, type: 2}
-  Data_NearPlayer: {fileID: 11400000, guid: 7a8ca55820a823b40aed7af5a97bc63c, type: 2}
+  Data_ShurikenToss: {fileID: 11400000, guid: 2a50605f2860fcb4bb365c9caf810bc0, type: 2}
+  Data_HomingRock: {fileID: 11400000, guid: 7a8ca55820a823b40aed7af5a97bc63c, type: 2}
   Data_Aura: {fileID: 11400000, guid: 684841cbb660cc34fa7fed376a10896f, type: 2}
   Data_Boomerang: {fileID: 11400000, guid: 2f364e49725b9d646b79f18e15d886ca, type: 2}
   Data_SwordVortex: {fileID: 11400000, guid: d86ce357fdf03cf458386e13c1de442f, type: 2}
@@ -22,7 +22,7 @@ MonoBehaviour:
   Data_Shockwave: {fileID: 11400000, guid: cf80a7f499dcd8c44932c54aac98ba9d, type: 2}
   Data_Bomb: {fileID: 11400000, guid: 840cb8c8d7ba57749bb729c09fde0822, type: 2}
   Data_PoisonArea: {fileID: 11400000, guid: 7b592b65aaef1d74c9f5d8822dfc16ec, type: 2}
-  Data_ArrowVolley: {fileID: 11400000, guid: 65944bb755e9ae549b7aecacf3c53529, type: 2}
+  Data_ToxicTrail: {fileID: 11400000, guid: 65944bb755e9ae549b7aecacf3c53529, type: 2}
   Data_Shield: {fileID: 11400000, guid: 63b004a48e4bb794fba0853bec06faaa, type: 2}
   Data_MovementSpeed: {fileID: 11400000, guid: d633753aed622064ea8408fca49f7bb7, type: 2}
   Data_DamageMultiplier: {fileID: 11400000, guid: e22bd9e4f1a703740b2af402157863c4, type: 2}

@@ -22,8 +22,6 @@ public class OptionsGraphics : MonoBehaviour
 
             ChangeResolution();
 
-            Debug.LogError("Settings Loaded - Resolution: " + m_resolution.options[m_resolution.value].text + ", Fullscreen: " + UiData.Instance.FullscreenToggle);
-
             UiData.Instance.LoadOptionsOnce = true;
         }
     }

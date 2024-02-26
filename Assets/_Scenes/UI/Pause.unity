@@ -271,6 +271,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Button Red
       objectReference: {fileID: 0}
+    - target: {fileID: 9027439360689028901, guid: afadced14bd31014d9894b99cce4ba7c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -279,6 +283,11 @@ PrefabInstance:
 --- !u!224 &14460741 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 454754886538093354, guid: afadced14bd31014d9894b99cce4ba7c, type: 3}
+  m_PrefabInstance: {fileID: 14460740}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &14460742 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9027439360689028901, guid: afadced14bd31014d9894b99cce4ba7c, type: 3}
   m_PrefabInstance: {fileID: 14460740}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &392236723
@@ -913,6 +922,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ddc4f885bafe264f890193f09d1145a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_villageButton: {fileID: 14460742}
 --- !u!1 &1639669826
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,6 @@ public class ChooseStat : MonoBehaviour
         {
             if (m_manager = FindObjectOfType<ShopManager>())
                 m_manager.InitStat(this);
-            else Debug.LogWarning("Shop Manager not found");
         }
         else m_manager.InitStat(this);
     }
@@ -33,7 +32,6 @@ public class ChooseStat : MonoBehaviour
         {
             if (m_manager = FindObjectOfType<ShopManager>())
                 m_manager.UpgradeStat(this);
-            else Debug.LogWarning("Shop Manager not found");
         }
         else m_manager.UpgradeStat(this);
     }

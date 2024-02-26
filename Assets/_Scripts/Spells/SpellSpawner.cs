@@ -31,7 +31,7 @@ public class SpellSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnAllDirections(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_ShurikenToss> _pool, Transform _parent)
+    public void SpawnShurikenToss(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_ShurikenToss> _pool, Transform _parent)
     {
         for (int i = 0; i < _spellData.ProjectileAmount[_spellData.Level - 1]; i++)
         {
@@ -49,7 +49,7 @@ public class SpellSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnNearPlayer(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_HomingRock> _pool, Transform _parent)
+    public void SpawnHomingRock(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_HomingRock> _pool, Transform _parent)
     {
         StartCoroutine(SpawnNearPlayerWithDelay(_playerData, _spellData, _pool, _parent));
     }
@@ -186,7 +186,7 @@ public class SpellSpawner : MonoBehaviour
         }
     }
 
-    public void SpawnArrowVolley(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_ToxicTrail> _pool, Transform _parent)
+    public void SpawnToxicTrail(PlayerStats _playerData, SO_ActiveSpells _spellData, ObjectPool<Spell_ToxicTrail> _pool, Transform _parent)
     {
         for (int i = 0; i < _spellData.ProjectileAmount[_spellData.Level - 1]; i++)
         {

@@ -67,7 +67,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void AddScore(int _score)
     {
         UserScore += _score;
-        Debug.Log("Current UserScore = " + UserScore);
 
         if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
             m_hudManager.ShowScore(UserScore);
@@ -76,7 +75,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public void AddGold(int _gold)
     {
         Gold += _gold;
-        Debug.Log("Current Gold = " + Gold);
 
         if (m_hudManager = FindObjectOfType<DungeonHUDManager>())
             m_hudManager.ShowGold(Gold);

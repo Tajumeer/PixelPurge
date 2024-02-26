@@ -37,7 +37,6 @@ public class DetailsHUDManager : MonoBehaviour
         m_spellHUDScript = FindObjectOfType<ShowSpells>();
         if (m_spellHUDScript == null)
         {
-            Debug.LogError("Could not find ShowSpell Script in DetailsHUD");
             return;
         }
 
@@ -45,6 +44,9 @@ public class DetailsHUDManager : MonoBehaviour
         ShowStats();
     }
 
+    /// <summary>
+    /// Show the Icon and Level of all learned Spells
+    /// </summary>
     private void ShowSpellIconAndLevel()
     {
         for (int i = 0; i < 4; i++)
@@ -78,6 +80,9 @@ public class DetailsHUDManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Show Player Stats in Details Window
+    /// </summary>
     private void ShowStats()
     {
         m_statAmount_maxHealth.text = m_data_Spells.statSO.MaxHealth.ToString();

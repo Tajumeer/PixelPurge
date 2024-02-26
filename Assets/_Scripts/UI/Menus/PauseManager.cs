@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
+    [SerializeField] private GameObject m_villageButton;
+
+    private void OnEnable()
+    {
+        if (SceneManager.GetSceneByBuildIndex((int)Scenes.Village).isLoaded) m_villageButton.SetActive(false);
+        else m_villageButton.SetActive(true);
+    }
     public void LoadOptions()
     {
         MenuManager.Instance.LoadSceneAsync(Scenes.Options, CursorTypes.UI, LoadSceneMode.Additive);

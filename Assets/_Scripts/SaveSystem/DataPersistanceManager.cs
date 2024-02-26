@@ -46,7 +46,6 @@ public class DataPersistanceManager : MonoBehaviour
 
         if(this.m_gameData == null)
         {
-            Debug.Log("No Data found. Setting Defaults");
             NewGame();
         }
 
