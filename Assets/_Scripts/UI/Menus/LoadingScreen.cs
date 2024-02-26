@@ -66,7 +66,7 @@ public class LoadingScreen : MonoBehaviour
 
         // add HUD scene
         if (m_sceneToLoad == Scenes.Dungeon)
-            MenuManager.Instance.LoadSceneAsync(Scenes.DungeonHUD, LoadSceneMode.Additive, false);
+            MenuManager.Instance.LoadSceneAsync(Scenes.DungeonHUD, CursorTypes.Dungeon, LoadSceneMode.Additive);
 
         yield return new WaitUntil(() => loadOperation.isDone);
         loadingBar.fillAmount = 1f;

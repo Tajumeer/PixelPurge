@@ -7,7 +7,7 @@ public class PauseManager : MonoBehaviour
 {
     public void LoadOptions()
     {
-        MenuManager.Instance.LoadSceneAsync(Scenes.Options, LoadSceneMode.Additive);
+        MenuManager.Instance.LoadSceneAsync(Scenes.Options, CursorTypes.UI, LoadSceneMode.Additive);
     }
 
     public void UnloadPause()
@@ -19,7 +19,7 @@ public class PauseManager : MonoBehaviour
         // or in the village
         else
         {
-            MenuManager.Instance.UnloadSceneAsync(Scenes.Pause);
+            MenuManager.Instance.UnloadSceneAsync(Scenes.Pause, CursorTypes.None);  // from Pause to Village
             Time.timeScale = 1f;
         }
     }

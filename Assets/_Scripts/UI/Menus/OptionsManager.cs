@@ -41,6 +41,6 @@ public class OptionsManager : MonoBehaviour
 
     public void UnloadOptions()
     {
-        MenuManager.Instance.UnloadSceneAsync(Scenes.Options);
+        MenuManager.Instance.UnloadSceneAsync(Scenes.Options, CursorTypes.UI);
     }
 }

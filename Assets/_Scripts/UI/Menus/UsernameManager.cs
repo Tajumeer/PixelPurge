@@ -23,11 +23,8 @@ public class UsernameManager : MonoBehaviour
 
     public void ConfirmName()
     {
-        //if (m_usernameInput.text.Length < 3) 
-        //    GameManager.Instance.UserName = m_defaultName;
-        //else 
-            GameManager.Instance.UserName = m_usernameInput.text;
+        GameManager.Instance.UserName = m_usernameInput.text;
 
-        MenuManager.Instance.LoadSceneAsync(Scenes.Village);
+        MenuManager.Instance.LoadSceneAsync(Scenes.Village, CursorTypes.None);
     }
 }

@@ -19,7 +19,7 @@ public class ScoreboardManager : MonoBehaviour
 
     public void UnloadScene()
     {
-        MenuManager.Instance.UnloadSceneAsync(Scenes.Scoreboard);
+        MenuManager.Instance.UnloadSceneAsync(Scenes.Scoreboard, CursorTypes.None);
         Time.timeScale = 1f;
     }
 

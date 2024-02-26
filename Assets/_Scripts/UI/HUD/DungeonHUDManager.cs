@@ -88,7 +88,7 @@ public class DungeonHUDManager : MonoBehaviour
         Time.timeScale = 0f;
         Cursor.visible = true;
         if (m_ingameSpells != null) m_ingameSpells.SetActive(false);
-        MenuManager.Instance.LoadSceneAsync(Scenes.DetailsHUD, LoadSceneMode.Additive);
+        MenuManager.Instance.LoadSceneAsync(Scenes.DetailsHUD, CursorTypes.UI, LoadSceneMode.Additive);
 
     }
 
@@ -101,7 +101,7 @@ public class DungeonHUDManager : MonoBehaviour
         if (SceneManager.GetSceneByBuildIndex((int)Scenes.LevelUp).isLoaded) return;
 
         if (m_ingameSpells != null) m_ingameSpells.SetActive(true);
-        MenuManager.Instance.UnloadSceneAsync(Scenes.DetailsHUD, false);
+        MenuManager.Instance.UnloadSceneAsync(Scenes.DetailsHUD, CursorTypes.Dungeon);
         Time.timeScale = 1f;
     }
 
@@ -120,12 +120,12 @@ public class DungeonHUDManager : MonoBehaviour
         Time.timeScale = 0f;
 
         ShowGameDetails();
-        MenuManager.Instance.LoadSceneAsync(Scenes.LevelUp, LoadSceneMode.Additive);
+        MenuManager.Instance.LoadSceneAsync(Scenes.LevelUp, CursorTypes.UI, LoadSceneMode.Additive);
     }
 
     public void UnloadLevelUp()
     {
-        MenuManager.Instance.UnloadSceneAsync(Scenes.LevelUp);
+        MenuManager.Instance.UnloadSceneAsync(Scenes.LevelUp, CursorTypes.UI);
         HideGameDetails();
 
         Time.timeScale = 1f;
@@ -138,12 +138,12 @@ public class DungeonHUDManager : MonoBehaviour
     private void LoadPause()
     {
         ShowGameDetails();
-        MenuManager.Instance.LoadSceneAsync(Scenes.Pause, LoadSceneMode.Additive);
+        MenuManager.Instance.LoadSceneAsync(Scenes.Pause, CursorTypes.UI, LoadSceneMode.Additive);
     }
 
     public void UnloadPause()
     {
-        MenuManager.Instance.UnloadSceneAsync(Scenes.Pause);
+        MenuManager.Instance.UnloadSceneAsync(Scenes.Pause, CursorTypes.Dungeon);
         HideGameDetails();
     }
 
