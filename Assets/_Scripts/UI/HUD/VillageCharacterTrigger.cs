@@ -81,7 +81,11 @@ public class VillageCharacterTrigger : MonoBehaviour
                         return;
                     }
                 }
-                else m_playerScript.SetCharacterVisualsAndData(m_characterToChoose);  // Change Character
+                else
+                {
+                    m_playerScript.SetCharacterVisualsAndData(m_characterToChoose);  // Change Character
+                    GameManager.Instance.ClassIndex = (int)m_characterToChoose;
+                }
             }
         }
     }

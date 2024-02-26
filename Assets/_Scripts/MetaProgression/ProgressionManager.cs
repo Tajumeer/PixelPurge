@@ -23,8 +23,6 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
 
     private PlayerController m_playerController;
 
-
-
     private void Awake()
     {
         if (m_instance == null)
@@ -36,11 +34,6 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Update()
-    {
-
     }
 
     public void InitMetaProgression(PlayerController _player)
@@ -198,7 +191,6 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
         }
     }
 
-
     public void LoadData(GameData _data)
     {
         this.m_healthLevel = _data.HealthLevel;
@@ -209,10 +201,6 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
         this.m_moveSpeedLevel = _data.MovementSpeedLevel;
         this.m_goldLevel = _data.GoldLevel;
         this.m_xpLevel = _data.XPLevel;
-
-
-
-
     }
 
     public void SaveData(ref GameData _data)
@@ -225,6 +213,5 @@ public class ProgressionManager : MonoBehaviour, IDataPersistence
         _data.MovementSpeedLevel = this.m_moveSpeedLevel;
         _data.GoldLevel = this.m_goldLevel;
         _data.XPLevel = this.m_xpLevel;
-
     }
 }

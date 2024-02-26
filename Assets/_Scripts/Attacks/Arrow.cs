@@ -5,7 +5,6 @@ using UnityEngine.AI;
 
 public class Arrow : MonoBehaviour
 {
-
     [SerializeField] private float m_projectileLifetime;
 
     private void Update()
@@ -22,9 +21,7 @@ public class Arrow : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            // m_damageToDeal = GameObject.FindWithTag("Player").GetComponent<PlayerController>().PlayerDamage;
             collision.gameObject.GetComponent<IDamagable>().GetDamage(GetComponentInParent<RangedController>().EnemyDamage);
-            Debug.Log("Hit Enemy with Arrow");
             Destroy(this.gameObject);
         }
     }

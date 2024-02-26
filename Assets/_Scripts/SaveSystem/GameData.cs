@@ -30,6 +30,8 @@ public class GameData
     public int[] StatLevel;
 
     //GameManager Variables
+    //CharacterData
+    public int ClassIndex;
     //Leaderboard 
     public string UserName;
     public int HighScore;
@@ -58,6 +60,7 @@ public class GameData
 
         this.UserName = "";
         this.HighScore = 0;
+        this.ClassIndex = 0;
 
         this.Gold = 0;
 

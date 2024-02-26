@@ -51,13 +51,7 @@ public class FrostGhostController : MonoBehaviour, IDamagable
         }
         GetTargetTransform();
 
-
         m_agent.enabled = true;
-
-        //else
-        //{
-        //    m_agent.enabled = false;
-        //}
 
         if (m_agent.enabled && m_agent.isOnNavMesh)
         {

@@ -71,8 +71,8 @@ public class SpellManager : MonoBehaviour
     [SerializeField] private GameObject m_prefab_Shield;
 
     [Header("Pools")]
-    private ObjectPool<Spell_AllDirections> m_pool_AllDirections;
-    private ObjectPool<Spell_NearPlayer> m_pool_NearPlayer;
+    private ObjectPool<Spell_ShurikenToss> m_pool_AllDirections;
+    private ObjectPool<Spell_HomingRock> m_pool_NearPlayer;
     private ObjectPool<Spell_AirWave> m_pool_AirWave;
     private ObjectPool<Spell_Boomerang> m_pool_Boomerang;
     private ObjectPool<Spell_SwordVortex> m_pool_SwordVortex;
@@ -80,7 +80,7 @@ public class SpellManager : MonoBehaviour
     private ObjectPool<Spell_Shockwave> m_pool_Shockwave;
     private ObjectPool<Spell_Bomb> m_pool_Bomb;
     private ObjectPool<Spell_PoisonArea> m_pool_PoisonArea;
-    private ObjectPool<Spell_ArrowVolley> m_pool_ArrowVolley;
+    private ObjectPool<Spell_ToxicTrail> m_pool_ArrowVolley;
 
     [Header("Parent Objects")]
     private Transform[] m_parent = new Transform[(int)Spells.ActiveSpells];
@@ -365,12 +365,12 @@ public class SpellManager : MonoBehaviour
                 break;
 
             case Spells.AllDirections:
-                m_pool_AllDirections = new ObjectPool<Spell_AllDirections>(m_prefab_AllDirections);
+                m_pool_AllDirections = new ObjectPool<Spell_ShurikenToss>(m_prefab_AllDirections);
                 obj.name = "AllDirections";
                 break;
 
             case Spells.NearPlayer:
-                m_pool_NearPlayer = new ObjectPool<Spell_NearPlayer>(m_prefab_NearPlayer);
+                m_pool_NearPlayer = new ObjectPool<Spell_HomingRock>(m_prefab_NearPlayer);
                 obj.name = "NearPlayer";
                 break;
 
@@ -415,7 +415,7 @@ public class SpellManager : MonoBehaviour
                 break;
 
             case Spells.ArrowVolley:
-                m_pool_ArrowVolley = new ObjectPool<Spell_ArrowVolley>(m_prefab_ArrowVolley);
+                m_pool_ArrowVolley = new ObjectPool<Spell_ToxicTrail>(m_prefab_ArrowVolley);
                 obj.name = "ArrowVolley";
                 break;
 

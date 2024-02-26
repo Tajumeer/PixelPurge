@@ -21,7 +21,7 @@ MonoBehaviour:
   DashCooldown: 3
   DashTime: 0.1
   DamageMultiplier: 1
-  CritChance: 0
+  CritChance: 0.25
   CritMultiplier: 1.5
   AreaMultiplier: 1
   ProjectileSpeed: 25
