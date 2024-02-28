@@ -76,6 +76,11 @@ public class Spell_HomingRock : PoolObject<Spell_HomingRock>
             m_spriteRenderer.enabled = false;
             m_circleCollider.enabled = false;
         }
+
+        if(m_target.GetComponent<DeathBool>().IsDead == true)
+        {
+            DeactivateSpell();
+        }
     }
 
     private bool ValidateTarget()

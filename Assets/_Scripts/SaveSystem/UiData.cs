@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86.Avx;
 
 public class UiData : MonoBehaviour, IDataPersistence
 {
@@ -22,9 +24,6 @@ public class UiData : MonoBehaviour, IDataPersistence
     }
     //Options Menu
     [HideInInspector] public int ResolutionValue;
-    [HideInInspector] public bool FullscreenToggle;
-    [HideInInspector] public int FullscreenModeValue;
-    [HideInInspector] public FullScreenMode Fullscreen;
     [HideInInspector] public bool LoadOptionsOnce;
 
     //Upgrade Menu
@@ -44,38 +43,16 @@ public class UiData : MonoBehaviour, IDataPersistence
         }
     }
 
-    private void Update()
-    {
-        Debug.Log("FS Toggle = " + FullscreenToggle);
-        Debug.LogWarning(LoadOptionsOnce);
-    }
-
     public void LoadData(GameData _data)
     {
         ResolutionValue = _data.ResolutionValue;
-        FullscreenModeValue = _data.FullScreenMode;
         StatLevel = _data.StatLevel;
-        GetFullScreenMode();
-    }
-
-    private int FullscreenModeData(FullScreenMode _mode)
-    {
-        return FullscreenModeValue = (int)_mode;
-    }
-
-    private FullScreenMode GetFullScreenMode()
-    {
-        return (FullScreenMode)FullscreenModeValue;
     }
 
     public void SaveData(ref GameData _data)
     {
         _data.ResolutionValue = this.ResolutionValue;
-        FullscreenModeValue = this.FullscreenModeData(Fullscreen);
-        _data.FullScreenMode = this.FullscreenModeValue;
         _data.StatLevel = this.StatLevel;
-
-        Debug.Log("Saved Resolution value: " + _data.ResolutionValue);
     }
 }
 
