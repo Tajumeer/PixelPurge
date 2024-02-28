@@ -245,7 +245,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3712252687013173661, guid: afadced14bd31014d9894b99cce4ba7c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
-      value: UnloadDungeon
+      value: Exit
       objectReference: {fileID: 0}
     - target: {fileID: 3712252687013173661, guid: afadced14bd31014d9894b99cce4ba7c, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
@@ -285,11 +285,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 454754886538093354, guid: afadced14bd31014d9894b99cce4ba7c, type: 3}
   m_PrefabInstance: {fileID: 14460740}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &14460742 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9027439360689028901, guid: afadced14bd31014d9894b99cce4ba7c, type: 3}
+--- !u!114 &14460742 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8993274095579683226, guid: afadced14bd31014d9894b99cce4ba7c, type: 3}
   m_PrefabInstance: {fileID: 14460740}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &392236723
 GameObject:
   m_ObjectHideFlags: 0
@@ -922,7 +928,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ddc4f885bafe264f890193f09d1145a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_villageButton: {fileID: 14460742}
+  m_exitButtonText: {fileID: 14460742}
 --- !u!1 &1639669826
 GameObject:
   m_ObjectHideFlags: 0

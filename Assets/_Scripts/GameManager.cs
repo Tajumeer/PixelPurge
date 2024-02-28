@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         }
 
         StartCoroutine(m_firestore.GetDataFromFirestore("Leaderboard", () => { } ));
-    
+   
     }
 
     public void LoadData(GameData _data)
