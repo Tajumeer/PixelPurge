@@ -24,8 +24,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     }
 
     public string UserName;
-    [HideInInspector] public int UserScore;
-    [HideInInspector] public int HighestScore;
+    public int UserScore;
+    public int HighestScore;
     public int Gold;
     private FirestoreRest m_firestore;
     private float m_scalingMulti;
@@ -81,21 +81,22 @@ public class GameManager : MonoBehaviour, IDataPersistence
             m_hudManager.ShowGold(Gold);
     }
 
-    public void ResetHPScale()
+    public void ResetGame()
     {
         m_scalingMulti = 0;
+        UpdateLeaderboard();
     }
 
     public void Win()
     {
-        ResetHPScale();
+        ResetGame();
         Time.timeScale = 0f;
         MenuManager.Instance.LoadSceneAsync(Scenes.Win, CursorTypes.UI, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }
 
     public void Lose()
     {
-        ResetHPScale();
+        ResetGame();
         Time.timeScale = 0f;
         MenuManager.Instance.LoadSceneAsync(Scenes.Death, CursorTypes.UI, UnityEngine.SceneManagement.LoadSceneMode.Additive);
     }

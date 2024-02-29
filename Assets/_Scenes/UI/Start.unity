@@ -251,6 +251,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3427212454272665614, guid: bcfbff2112ec5cd489569ff5bd07ab16, type: 3}
+      propertyPath: m_isTesting
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6196863456956936042, guid: bcfbff2112ec5cd489569ff5bd07ab16, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -455,9 +459,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResolutionValue: 0
-  FullscreenToggle: 0
-  FullscreenModeValue: 0
-  Fullscreen: 0
   LoadOptionsOnce: 0
   StatLevel: 0100000002000000030000000200000001000000020000000400000003000000
 --- !u!114 &1009410049

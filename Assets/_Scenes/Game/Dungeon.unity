@@ -933,6 +933,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 271138519033306592, guid: c146c123fe1a3294592e02aa8ee2af04, type: 3}
+      propertyPath: m_waveInterval
+      value: 60
+      objectReference: {fileID: 0}
+    - target: {fileID: 271138519033306592, guid: c146c123fe1a3294592e02aa8ee2af04, type: 3}
       propertyPath: m_waves.Array.size
       value: 12
       objectReference: {fileID: 0}

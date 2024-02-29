@@ -35,6 +35,8 @@ public class VillageManager : MonoBehaviour
 
         m_statTitle.text = "Archer";
         HideStats(Characters.Archer);
+
+        GameManager.Instance.ResetGame();
     }
 
     private void Update()

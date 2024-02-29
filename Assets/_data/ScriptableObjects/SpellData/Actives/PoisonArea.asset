@@ -24,10 +24,10 @@ MonoBehaviour:
   - 135
   - 180
   Lifetime:
-  - 2
-  - 3
   - 4
-  - 5
+  - 6
+  - 8
+  - 10
   Speed: []
   Cd:
   - 5
@@ -40,10 +40,10 @@ MonoBehaviour:
   - 0.3
   - 0.3
   Radius:
-  - 2
-  - 2.5
-  - 3
-  - 3.5
+  - 4
+  - 5
+  - 6
+  - 7
   ProjectileAmount: 01000000010000000200000003000000
   Pierce: []
   Bounce: []

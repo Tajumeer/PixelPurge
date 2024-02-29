@@ -53,9 +53,6 @@ public class Spell_HomingRock : PoolObject<Spell_HomingRock>
     {
         if (m_target != null)
         {
-            m_spriteRenderer.enabled = true;
-            m_circleCollider.enabled = true;
-
             if (ValidateTarget())
             {
                 Vector2 direction = (Vector2)m_target.position - (Vector2)transform.position;
@@ -73,24 +70,25 @@ public class Spell_HomingRock : PoolObject<Spell_HomingRock>
         }
         else if (m_target == null)
         {
-            m_spriteRenderer.enabled = false;
-            m_circleCollider.enabled = false;
-        }
-
-        if(m_target.GetComponent<DeathBool>().IsDead == true)
-        {
             DeactivateSpell();
         }
+
     }
 
     private bool ValidateTarget()
     {
         if (m_target.GetComponent<DeathBool>().IsDead)
         {
+            DeactivateSpell();
             return false;
         }
-
-        return true;
+        else if (!m_target.GetComponent<DeathBool>().IsDead)
+        {
+            m_spriteRenderer.enabled = true;
+            m_circleCollider.enabled = true;
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
