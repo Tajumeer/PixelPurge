@@ -31,6 +31,6 @@ MonoBehaviour:
   DamageReductionPercentage: 25
   CollectionRadius: 2
   GoldMultiplier: 1
-  XPNeeded: 5
-  XPNeededMultiplier: 0.1
+  XPNeeded: 15
+  XPNeededMultiplier: 0.5
   XPMultiplier: 1

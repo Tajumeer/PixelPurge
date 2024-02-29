@@ -19,10 +19,10 @@ MonoBehaviour:
   Level: 0
   MaxLevel: 4
   Damage:
-  - 10
-  - 20
-  - 30
-  - 30
+  - 45
+  - 90
+  - 135
+  - 180
   Lifetime:
   - 2
   - 3
