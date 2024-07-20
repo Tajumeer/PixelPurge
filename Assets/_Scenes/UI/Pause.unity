@@ -296,6 +296,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &14460743 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9027439360689028901, guid: afadced14bd31014d9894b99cce4ba7c, type: 3}
+  m_PrefabInstance: {fileID: 14460740}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &392236723
 GameObject:
   m_ObjectHideFlags: 0
@@ -929,6 +934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_exitButtonText: {fileID: 14460742}
+  m_exitButton: {fileID: 14460743}
 --- !u!1 &1639669826
 GameObject:
   m_ObjectHideFlags: 0

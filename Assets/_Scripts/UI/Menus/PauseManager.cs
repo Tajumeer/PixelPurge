@@ -8,10 +8,12 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_exitButtonText;
+    [SerializeField] private GameObject m_exitButton;
 
     private void OnEnable()
     {
-        if (SceneManager.GetSceneByBuildIndex((int)Scenes.Village).isLoaded) m_exitButtonText.text = "Exit";
+        //if (SceneManager.GetSceneByBuildIndex((int)Scenes.Village).isLoaded) m_exitButtonText.text = "Exit";
+        if (SceneManager.GetSceneByBuildIndex((int)Scenes.Village).isLoaded) m_exitButton.SetActive(false);
         else m_exitButtonText.text = "Village";
     }
 
